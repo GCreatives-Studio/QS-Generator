@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BCAinsurance - Quotation Slip Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     :root {
@@ -15,8 +18,8 @@
       --bca-accent: #e6f4fc;
       --bg-canvas: #eef2f6;
       --panel-bg: #ffffff;
-      --font-heading: "Poppins", "Aptos Display", "Calibri", Arial, sans-serif;
-      --font-body: "Poppins", "Aptos", "Calibri", Arial, Helvetica, sans-serif;
+      --font-heading: "Poppins", Arial, sans-serif;
+      --font-body: "Poppins", Arial, Helvetica, sans-serif;
     }
 
     * {
@@ -30,6 +33,7 @@
       background-color: var(--bg-canvas);
       color: #1e293b;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     /* ================= LOGIN GATE ================= */
@@ -49,7 +53,7 @@
       width: 100%;
       max-width: 390px;
       border-radius: 20px;
-      padding: 36px 32px 30px 32px;
+      padding: 32px 26px 26px 26px;
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
     }
 
@@ -58,29 +62,7 @@
       align-items: center;
       justify-content: center;
       min-height: 54px;
-      margin-bottom: 24px;
-    }
-
-    .login-logo-wrap img {
-      max-height: 50px;
-      max-width: 240px;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      display: block;
-    }
-
-    .login-logo-fallback {
-      font-family: var(--font-heading);
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--bca-navy);
-      letter-spacing: -0.4px;
-    }
-
-    .login-logo-fallback span {
-      font-weight: 500;
-      font-style: italic;
+      margin-bottom: 22px;
     }
 
     .login-error {
@@ -110,10 +92,6 @@
       font-family: inherit;
       color: #1e293b;
       transition: border-color 0.2s, background-color 0.2s;
-    }
-
-    .input-group input::placeholder {
-      color: #64748b;
     }
 
     .input-group input:focus {
@@ -191,6 +169,47 @@
       display: flex;
     }
 
+    /* Mobile Topbar (Hidden on Desktop) */
+    .mobile-topbar {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 45;
+      background-color: var(--bca-navy);
+      color: #ffffff;
+      padding: 10px 14px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+    }
+
+    .mobile-menu-btn {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .mobile-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.5);
+      z-index: 48;
+    }
+
+    .mobile-backdrop.show {
+      display: block;
+    }
+
     /* ================= LEFT NAVY SIDEBAR ================= */
     .nav-sidebar {
       width: 245px;
@@ -203,30 +222,28 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      z-index: 30;
+      z-index: 50;
       box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.24s ease;
     }
 
     .nav-brand {
-      padding: 22px 20px 18px 20px;
+      padding: 20px 18px 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .nav-brand img {
-      max-width: 185px;
-      max-height: 44px;
-      width: auto;
-      height: auto;
-      display: block;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-    }
-
-    .nav-brand-fallback {
-      font-family: var(--font-heading);
-      font-size: 20px;
-      font-weight: 800;
-      color: #ffffff;
-      letter-spacing: -0.3px;
+    .nav-close-btn {
+      display: none;
+      background: rgba(255, 255, 255, 0.14);
+      border: none;
+      color: #fff;
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
     }
 
     .nav-menu {
@@ -316,22 +333,24 @@
     .workspace {
       flex: 1;
       display: flex;
+      flex-direction: column;
       min-width: 0;
       min-height: 100vh;
     }
 
     .portal-view {
       flex: 1;
-      padding: 34px 38px;
+      padding: 32px 36px;
       max-width: 1120px;
+      width: 100%;
     }
 
     .portal-header {
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .portal-header h2 {
-      font-size: 23px;
+      font-size: 22px;
       color: var(--bca-navy);
       font-weight: 700;
     }
@@ -344,7 +363,7 @@
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 16px;
     }
 
@@ -423,15 +442,47 @@
       color: var(--bca-blue);
     }
 
+    /* Template Settings Card */
+    .template-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 22px;
+      max-width: 780px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+    }
+
+    .template-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .template-card-head h3 {
+      font-size: 16px;
+      color: var(--bca-navy);
+    }
+
+    .template-card-head p {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
     /* Coming Soon View */
     .coming-soon-box {
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 52px 32px;
+      padding: 44px 24px;
       text-align: center;
       max-width: 520px;
-      margin: 48px auto;
+      margin: 32px auto;
       box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
     }
 
@@ -449,7 +500,7 @@
     }
 
     .coming-soon-box h2 {
-      font-size: 22px;
+      font-size: 21px;
       color: var(--bca-navy);
       margin-bottom: 8px;
     }
@@ -469,8 +520,8 @@
     }
 
     .sidebar {
-      width: 390px;
-      min-width: 350px;
+      width: 380px;
+      min-width: 340px;
       background: var(--panel-bg);
       border-right: 1px solid #cbd5e1;
       height: 100vh;
@@ -658,10 +709,11 @@
       background: #e2e8f0;
       color: #334155;
       font-size: 10.5px;
-      padding: 3px 7px;
+      padding: 4px 9px;
       border-radius: 4px;
       border: none;
       cursor: pointer;
+      font-weight: 600;
     }
 
     .btn-reset:hover {
@@ -692,6 +744,7 @@
       color: #000;
       font-size: 9.4pt;
       line-height: 1.38;
+      transform-origin: top center;
     }
 
     .page-a4.hidden-section {
@@ -724,6 +777,7 @@
       border-bottom: 2px solid var(--bca-blue);
       padding-bottom: 8px;
       margin-bottom: 12px;
+      gap: 8px;
     }
 
     .doc-header.full-header-img {
@@ -739,11 +793,9 @@
       display: block;
     }
 
-    .logo-left img {
-      height: 44px;
-      width: auto;
-      display: block;
-      object-fit: contain;
+    .logo-left {
+      display: flex;
+      align-items: center;
     }
 
     .logo-right {
@@ -787,6 +839,7 @@
       color: #222;
       display: flex;
       justify-content: space-between;
+      gap: 10px;
       position: relative;
       z-index: 1;
     }
@@ -954,6 +1007,20 @@
       margin-top: 16px;
     }
 
+    .our-sig-area {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      margin: 4px 0;
+    }
+
+    .our-sig-img {
+      max-height: 50px;
+      max-width: 180px;
+      object-fit: contain;
+      display: block;
+    }
+
     .sign-box {
       border: 1px solid #334155;
       border-radius: 4px;
@@ -965,18 +1032,195 @@
       background: #ffffff;
     }
 
+    .partner-blank-space {
+      height: 44px;
+    }
+
     .sig-line-row {
-      margin-top: 14px;
-      padding-top: 5px;
+      margin-top: 10px;
+      padding-top: 6px;
       border-top: 1px dashed #94a3b8;
     }
 
-    .sig-preview-img {
-      max-height: 46px;
-      max-width: 170px;
-      object-fit: contain;
-      display: block;
-      margin: 4px 0;
+    /* ================= MOBILE VIEW RESPONSIVE ================= */
+    @media (max-width: 900px) {
+      .app-wrapper.authenticated {
+        display: block;
+      }
+
+      .mobile-topbar {
+        display: flex;
+      }
+
+      .nav-sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        transform: translateX(-100%);
+      }
+
+      .nav-sidebar.open {
+        transform: translateX(0);
+      }
+
+      .nav-close-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .portal-view {
+        padding: 18px 14px 36px 14px;
+      }
+
+      .portal-header h2 {
+        font-size: 19px;
+      }
+
+      .template-card {
+        padding: 16px;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .generator-workspace {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid #cbd5e1;
+        padding: 14px;
+      }
+
+      .btn-group {
+        position: static;
+        margin-top: 12px;
+        padding-top: 0;
+        border-top: none;
+      }
+
+      .preview-container {
+        width: 100%;
+        padding: 14px 10px 28px 10px;
+        gap: 14px;
+        overflow-x: hidden;
+      }
+
+      .page-a4 {
+        width: 100%;
+        min-height: auto;
+        padding: 14px 12px;
+        font-size: 8.2pt;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .doc-header {
+        flex-wrap: wrap;
+        padding-bottom: 6px;
+        margin-bottom: 10px;
+      }
+
+      .ojk-badge-group {
+        gap: 4px;
+      }
+
+      .ojk-box {
+        font-size: 5.8pt;
+        padding: 2px 5px;
+      }
+
+      .qs-header-bar {
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .qs-header-bar h2 {
+        font-size: 11.5pt;
+      }
+
+      .qs-header-bar .qs-no {
+        font-size: 8pt;
+      }
+
+      table.qs-table td {
+        padding: 3px 3px;
+        font-size: 7.8pt;
+      }
+
+      table.qs-table td.label-col {
+        width: 34%;
+      }
+
+      table.qs-table td.colon-col {
+        width: 3%;
+      }
+
+      table.qs-table td.val-col {
+        width: 63%;
+      }
+
+      .premi-box {
+        padding: 8px;
+        font-size: 7.8pt;
+      }
+
+      table.premi-table td.num {
+        width: 28%;
+      }
+
+      table.premi-table td.curr {
+        width: 8%;
+      }
+
+      table.spec-table {
+        font-size: 7.4pt;
+      }
+
+      table.spec-table th,
+      table.spec-table td {
+        padding: 4px 5px;
+      }
+
+      table.spec-table td.spec-key {
+        width: 32%;
+      }
+
+      .sign-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .sign-box {
+        min-height: auto;
+        padding: 8px 10px;
+      }
+
+      .partner-blank-space {
+        height: 28px;
+      }
+
+      .doc-footer {
+        flex-direction: column;
+        gap: 4px;
+        font-size: 6.5pt;
+      }
+
+      .doc-footer .out-footer-right {
+        text-align: left !important;
+      }
+
+      .watermark {
+        font-size: 36pt;
+      }
     }
 
     @media print {
@@ -984,6 +1228,8 @@
         background: #fff;
       }
       .login-overlay,
+      .mobile-topbar,
+      .mobile-backdrop,
       .nav-sidebar,
       .sidebar {
         display: none !important;
@@ -998,10 +1244,14 @@
         gap: 0;
       }
       .page-a4 {
+        width: 210mm;
+        min-height: 296mm;
+        padding: 12mm 15mm 14mm 15mm;
         box-shadow: none;
         margin: 0;
         page-break-after: always;
         height: 297mm;
+        font-size: 9.4pt;
       }
       .page-a4.hidden-section {
         display: none !important;
@@ -1057,16 +1307,15 @@
   <!-- ================= MAIN PORTAL ================= -->
   <div class="app-wrapper" id="appWrapper">
 
+    <!-- BACKDROP MOBILE -->
+    <div class="mobile-backdrop" id="mobileBackdrop" onclick="closeMobileMenu()"></div>
+
     <!-- SIDEBAR NAVIGASI KIRI (BIRU TUA + LOGO BCAI PUTIH) -->
-    <aside class="nav-sidebar">
+    <aside class="nav-sidebar" id="navSidebar">
       <div>
         <div class="nav-brand">
-          <img
-            id="sidebarWhiteLogo"
-            alt="BCAinsurance"
-            onerror="this.style.display='none'; document.getElementById('navFallbackText').style.display='block';"
-          />
-          <div id="navFallbackText" class="nav-brand-fallback" style="display:none;">BCAinsurance</div>
+          <div id="sidebarBrandLogo"></div>
+          <button type="button" class="nav-close-btn" onclick="closeMobileMenu()" aria-label="Tutup Menu">&times;</button>
         </div>
 
         <ul class="nav-menu">
@@ -1104,12 +1353,11 @@
           </li>
           <div class="nav-divider"></div>
 
-          <li class="nav-item" data-nav="MISC" onclick="switchNav('MISC')">
+          <li class="nav-item" data-nav="TEMPLATE" onclick="switchNav('TEMPLATE')">
             <span class="nav-item-left">
-              <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-              <span>Miscellaneous</span>
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <span>Setting Template</span>
             </span>
-            <span class="nav-badge-soon">Coming Soon</span>
           </li>
           <div class="nav-divider"></div>
         </ul>
@@ -1123,11 +1371,20 @@
     <!-- AREA KONTEN KANAN -->
     <div class="workspace">
 
-      <!-- 1. BERANDA -->
+      <!-- TOPBAR KHUSUS HP -->
+      <header class="mobile-topbar">
+        <button type="button" class="mobile-menu-btn" onclick="openMobileMenu()">
+          <span>☰</span>
+          <span>Menu</span>
+        </button>
+        <div id="mobileTopbarLogo"></div>
+      </header>
+
+      <!-- 1. BERANDA (3 PRODUK: MPAR, PA, TRAVEL) -->
       <section class="portal-view" id="viewHome">
         <div class="portal-header">
           <h2>Quotation Slip Portal</h2>
-          <p>Pilih lini produk untuk membuka generator Quotation Slip dan spesifikasi produk.</p>
+          <p>Pilih lini produk untuk membuat Quotation Slip atau atur template header &amp; footer umum.</p>
         </div>
 
         <div class="product-grid">
@@ -1138,7 +1395,7 @@
                 <span class="status-pill ready">Tersedia</span>
               </div>
               <h3>Movable Property All Risk</h3>
-              <p>Generator Quotation Slip &amp; spesifikasi produk dengan opsi bahasa konsisten (English / Bahasa Indonesia).</p>
+              <p>Generator Quotation Slip &amp; spesifikasi produk MPAR (Asuransi Barang Bergerak) dengan opsi bahasa English / Bahasa Indonesia.</p>
             </div>
             <div class="card-action">Buka Generator QS →</div>
           </div>
@@ -1166,22 +1423,71 @@
             </div>
             <div class="card-action" style="color:#64748b;">Coming Soon</div>
           </div>
+        </div>
+      </section>
 
-          <div class="product-card" onclick="switchNav('MISC')">
+      <!-- 2. SETTING TEMPLATE (GENERAL HEADER, FOOTER & LOGO) -->
+      <section class="portal-view" id="viewTemplate" style="display: none;">
+        <div class="portal-header">
+          <h2>Setting Template</h2>
+          <p>Pengaturan general logo, header, dan footer yang berlaku untuk Quotation Slip semua produk.</p>
+        </div>
+
+        <div class="template-card">
+          <div class="template-card-head">
             <div>
-              <div class="product-card-top">
-                <div class="product-icon">MISC</div>
-                <span class="status-pill soon">Coming Soon</span>
-              </div>
-              <h3>Miscellaneous</h3>
-              <p>Template Quotation Slip untuk produk miscellaneous lainnya.</p>
+              <h3>Logo, Header &amp; Footer Umum</h3>
+              <p>Perubahan di sini otomatis diterapkan ke seluruh halaman dokumen QS.</p>
             </div>
-            <div class="card-action" style="color:#64748b;">Coming Soon</div>
+            <button type="button" class="btn-reset" onclick="resetBranding()">Reset Default</button>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Main Logo (Upload Kustom)</label>
+              <input type="file" id="uploadMainLogo" accept="image/*" onchange="handleLogoUpload(event, 'mainLogo')" />
+            </div>
+            <div class="form-group">
+              <label>Right Logo</label>
+              <input type="file" id="uploadRightLogo" accept="image/*" onchange="handleLogoUpload(event, 'rightLogo')" />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Full Header Image</label>
+              <input type="file" id="uploadFullHeader" accept="image/*" onchange="handleFullBannerUpload(event, 'fullHeader')" />
+            </div>
+            <div class="form-group">
+              <label>Full Footer Image</label>
+              <input type="file" id="uploadFullFooter" accept="image/*" onchange="handleFullBannerUpload(event, 'fullFooter')" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Logo Height: <span id="logoSizeVal">38</span>px</label>
+            <input type="range" id="logoHeightSlider" min="24" max="64" value="38" oninput="updateLogoSize(this.value)" />
+          </div>
+
+          <div class="form-group">
+            <label>Office Address</label>
+            <input type="text" id="inAddress" value="Gedung Sahid Sudirman Center Lantai 10 / Unit F, Jl. Jend. Sudirman Kav. 86, Jakarta 10220" oninput="renderAll()" />
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Phone / Fax</label>
+              <input type="text" id="inPhone" value="T. (021) 27889588 | F. (021) 27889577" oninput="renderAll()" />
+            </div>
+            <div class="form-group">
+              <label>Website / Call Center</label>
+              <input type="text" id="inWeb" value="www.bcainsurance.co.id | haloBCA 1500888" oninput="renderAll()" />
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 2. COMING SOON VIEW (PA / TRAVEL / MISC) -->
+      <!-- 3. COMING SOON VIEW (PA / TRAVEL) -->
       <section class="portal-view" id="viewComingSoon" style="display: none;">
         <div class="coming-soon-box">
           <div class="coming-soon-tag">Coming Soon</div>
@@ -1195,22 +1501,22 @@
         </div>
       </section>
 
-      <!-- 3. GENERATOR MPAR (QS + SPESIFIKASI PRODUK) -->
+      <!-- 4. GENERATOR MPAR (QS + SPESIFIKASI PRODUK) -->
       <div class="generator-workspace" id="viewGenerator" style="display: none;">
         <aside class="sidebar">
           <div class="sidebar-header">
             <h1>MPAR Quotation Slip</h1>
-            <p>Atur bahasa, skema premi, klausula &amp; tanda tangan</p>
+            <p>Isian spesifik penawaran, premi, klausula &amp; tanda tangan</p>
           </div>
 
-          <!-- 0. Bahasa & Bagian Dokumen -->
+          <!-- 1. Bahasa & Bagian Dokumen -->
           <div class="section-box">
-            <div class="section-title"><span>0. Bahasa &amp; Bagian Dokumen</span></div>
+            <div class="section-title"><span>1. Bahasa &amp; Bagian Dokumen</span></div>
             <div class="form-group">
-              <label>Bahasa Dokumen (Konsisten Penuh)</label>
+              <label>Bahasa</label>
               <select id="inLang" onchange="onLangChange()">
-                <option value="EN">English (All English)</option>
-                <option value="ID">Bahasa Indonesia (Semua Bahasa Indonesia)</option>
+                <option value="EN">English</option>
+                <option value="ID">Bahasa Indonesia</option>
               </select>
             </div>
             <div class="form-group" style="margin-bottom: 0;">
@@ -1220,52 +1526,6 @@
                 <option value="QS_ONLY">Quotation Slip Only</option>
                 <option value="SPEC_ONLY">Product Spec Only</option>
               </select>
-            </div>
-          </div>
-
-          <!-- 1. Logo, Header & Footer -->
-          <div class="section-box">
-            <div class="section-title">
-              <span id="secBrandingTitle">1. Logo, Header &amp; Footer</span>
-              <button type="button" class="btn-reset" onclick="resetBranding()">Reset</button>
-            </div>
-            <div class="grid-2">
-              <div class="form-group">
-                <label>Main Logo</label>
-                <input type="file" id="uploadMainLogo" accept="image/*" onchange="handleLogoUpload(event, 'mainLogo')" />
-              </div>
-              <div class="form-group">
-                <label>Right Logo</label>
-                <input type="file" id="uploadRightLogo" accept="image/*" onchange="handleLogoUpload(event, 'rightLogo')" />
-              </div>
-            </div>
-            <div class="grid-2">
-              <div class="form-group">
-                <label>Full Header Image</label>
-                <input type="file" id="uploadFullHeader" accept="image/*" onchange="handleFullBannerUpload(event, 'fullHeader')" />
-              </div>
-              <div class="form-group">
-                <label>Full Footer Image</label>
-                <input type="file" id="uploadFullFooter" accept="image/*" onchange="handleFullBannerUpload(event, 'fullFooter')" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Logo Height: <span id="logoSizeVal">44</span>px</label>
-              <input type="range" id="logoHeightSlider" min="28" max="70" value="44" oninput="updateLogoSize(this.value)" />
-            </div>
-            <div class="form-group">
-              <label>Office Address</label>
-              <input type="text" id="inAddress" value="Gedung Sahid Sudirman Center Lantai 10 / Unit F, Jl. Jend. Sudirman Kav. 86, Jakarta 10220" oninput="renderAll()" />
-            </div>
-            <div class="grid-2">
-              <div class="form-group">
-                <label>Phone / Fax</label>
-                <input type="text" id="inPhone" value="T. (021) 27889588 | F. (021) 27889577" oninput="renderAll()" />
-              </div>
-              <div class="form-group">
-                <label>Website / Call Center</label>
-                <input type="text" id="inWeb" value="www.bcainsurance.co.id | haloBCA 1500888" oninput="renderAll()" />
-              </div>
             </div>
           </div>
 
@@ -1283,6 +1543,10 @@
               </div>
             </div>
             <div class="form-group">
+              <label>Wording</label>
+              <input type="text" id="inWording" value="Munich Re Wording" oninput="renderAll()" />
+            </div>
+            <div class="form-group">
               <label>Marketing Channel / Partner</label>
               <input type="text" id="inChannel" value="PT Trijata Nusa" oninput="renderAll()" />
             </div>
@@ -1294,7 +1558,7 @@
               <label>Interest Insured</label>
               <input type="text" id="inInterest" value="Laptop" oninput="renderAll()" />
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 0;">
               <label>Brand / Category Spec</label>
               <input type="text" id="inBrandSpec" value="Laptop / PC DYNABOOK (B2B Office Rental)" oninput="renderAll()" />
             </div>
@@ -1313,6 +1577,7 @@
                 <input type="number" id="inPrice" value="20000000" step="100000" oninput="calculateAndRender()" />
               </div>
             </div>
+
             <div class="grid-2">
               <div class="form-group">
                 <label>Annual Rate (%)</label>
@@ -1320,28 +1585,31 @@
               </div>
               <div class="form-group">
                 <label>Period (Years)</label>
-                <select id="inPeriod" onchange="calculateAndRender()">
+                <select id="inPeriod" onchange="onPeriodSelectChange()">
                   <option value="1">1 Year (12 Months)</option>
-                  <option value="2">2 Years (24 Months)</option>
-                  <option value="3">3 Years (36 Months)</option>
-                  <option value="4" selected>4 Years (48 Months)</option>
+                  <option value="2" selected>2 Years (24 Months)</option>
                 </select>
               </div>
             </div>
 
             <div class="grid-2">
               <div class="form-group">
-                <label>Discount (%)</label>
-                <input type="number" id="inDiscount" value="30" min="0" max="100" step="0.1" oninput="calculateAndRender()" />
+                <label>Custom Years (Override)</label>
+                <input type="number" id="inCustomYears" placeholder="e.g. 3 or 4" step="0.5" min="0.5" oninput="calculateAndRender()" />
               </div>
               <div class="form-group">
-                <label>Custom Period Text</label>
-                <input type="text" id="inPeriodLabel" placeholder="Auto" oninput="calculateAndRender()" />
+                <label>Discount (%)</label>
+                <input type="number" id="inDiscount" value="30" min="0" max="100" step="0.1" oninput="calculateAndRender()" />
               </div>
             </div>
 
             <div class="form-group">
-              <label>Discount Note</label>
+              <label>Custom Period Text</label>
+              <input type="text" id="inPeriodLabel" placeholder="Auto" oninput="calculateAndRender()" />
+            </div>
+
+            <div class="form-group">
+              <label>Special Terms / Discount Note</label>
               <input type="text" id="inDiscNote" value="Discount 30% (applicable under special terms for orders above 100 units)" oninput="calculateAndRender()" />
             </div>
 
@@ -1358,10 +1626,10 @@
 
             <div class="calc-summary">
               <div class="calc-row"><span>Sum Insured:</span> <strong id="sumTsi">Rp 3.000.000.000</strong></div>
-              <div class="calc-row"><span>Gross Premi (<span id="sumRatePct">4%</span>):</span> <span id="sumGross">Rp 120.000.000</span></div>
-              <div class="calc-row"><span>Discount (<span id="sumDiscPct">30%</span>):</span> <span id="sumDisc">- Rp 36.000.000</span></div>
-              <div class="calc-row"><span>Premi Net:</span> <strong id="sumNet">Rp 84.000.000</strong></div>
-              <div class="calc-row total"><span>TOTAL PREMI:</span> <span id="sumGrand">Rp 84.025.000</span></div>
+              <div class="calc-row"><span>Gross Premi (<span id="sumRatePct">2%</span>):</span> <span id="sumGross">Rp 60.000.000</span></div>
+              <div class="calc-row"><span>Discount (<span id="sumDiscPct">30%</span>):</span> <span id="sumDisc">- Rp 18.000.000</span></div>
+              <div class="calc-row"><span>Premi Net:</span> <strong id="sumNet">Rp 42.000.000</strong></div>
+              <div class="calc-row total"><span>TOTAL PREMI:</span> <span id="sumGrand">Rp 42.025.000</span></div>
             </div>
           </div>
 
@@ -1377,9 +1645,9 @@
             </div>
           </div>
 
-          <!-- 5. Signatory & Signature Option -->
+          <!-- 5. Signatory & Our Digital Signature -->
           <div class="section-box">
-            <div class="section-title"><span id="secSigTitle">5. Signatory &amp; Signature</span></div>
+            <div class="section-title"><span id="secSigTitle">5. Signatory &amp; Our Signature</span></div>
             <div class="grid-2">
               <div class="form-group">
                 <label>Officer Name</label>
@@ -1392,31 +1660,20 @@
             </div>
 
             <div class="form-group">
-              <label>Signature Mode</label>
+              <label>Our Signature Mode</label>
               <select id="inSigMode" onchange="renderSignatureMode()">
-                <option value="BLANK">Blank Lines (Manual Sign &amp; Date)</option>
-                <option value="DIGITAL">Direct Digital Signature</option>
+                <option value="BLANK">Blank Space (Manual Sign)</option>
+                <option value="DIGITAL">Digital Signature (BCAinsurance)</option>
               </select>
             </div>
 
             <div id="digitalSigControls" style="display: none;">
-              <div class="grid-2">
-                <div class="form-group">
-                  <label>Partner Signatory</label>
-                  <input type="text" id="inPartnerSigner" placeholder="Name" oninput="renderSignatureMode()" />
-                </div>
-                <div class="form-group">
-                  <label>Signed Date</label>
-                  <input type="text" id="inSignedDate" placeholder="Date" oninput="renderSignatureMode()" />
-                </div>
-              </div>
-
               <div class="sig-pad-box">
-                <label style="font-size: 11px; font-weight: 700; color: #334155;">Draw Signature:</label>
-                <canvas id="sigCanvas" class="sig-canvas" width="330" height="76"></canvas>
+                <label style="font-size: 11px; font-weight: 700; color: #334155;">Draw Our Signature:</label>
+                <canvas id="sigCanvas" class="sig-canvas" width="320" height="76"></canvas>
                 <div class="sig-actions">
                   <button type="button" class="btn-reset" onclick="clearSignaturePad()">Clear</button>
-                  <span style="font-size: 10.5px; color: #64748b;">Partner box</span>
+                  <span style="font-size: 10.5px; color: #64748b;">Muncul di sisi BCAinsurance</span>
                 </div>
               </div>
             </div>
@@ -1453,7 +1710,7 @@
                 <tr>
                   <td class="label-col t-lbl-wording">WORDING</td>
                   <td class="colon-col">:</td>
-                  <td class="val-col t-val-wording">Munich Re Wording</td>
+                  <td class="val-col out-wording">Munich Re Wording</td>
                 </tr>
                 <tr>
                   <td class="label-col t-lbl-insured">THE INSURED</td>
@@ -1527,7 +1784,7 @@
                     <td class="curr"><strong>Rp</strong></td>
                     <td class="num"><strong class="out-net-premi"></strong></td>
                   </tr>
-                  <tr>
+                  <tr id="rowDiscNote">
                     <td colspan="3" style="font-size: 8pt; font-style: italic; padding: 4px 4px 6px 4px;">
                       *<span class="out-disc-note"></span>
                     </td>
@@ -1581,7 +1838,7 @@
                 <div style="font-size: 8.8pt;">
                   <div>Jakarta, <span class="out-doc-date"></span></div>
                   <div class="t-sincerely">Yours sincerely,</div>
-                  <div style="height: 48px;"></div>
+                  <div class="our-sig-area" data-our-sig-slot="qs"></div>
                   <div><strong>(<span class="out-marketing-name"></span>)</strong></div>
                   <div class="t-role-label">Marketing</div>
                   <div style="font-size: 8pt; color: #334155;"><span class="t-email-label">Email</span>: <span class="out-marketing-email"></span></div>
@@ -1593,9 +1850,10 @@
                     <div style="font-weight: 700; font-size: 8.3pt; margin-top: 3px;" class="t-noted-agreed">NOTED &amp; AGREED</div>
                     <div style="font-size: 8.3pt; margin-top: 5px;"><span class="t-by-label">By</span> : <strong><span class="out-insured"></span></strong></div>
                   </div>
+                  <div class="partner-blank-space"></div>
                   <div class="sig-line-row" style="font-size: 8.3pt;">
-                    <div data-sig-slot="main">Sign : ________________________</div>
-                    <div data-date-slot="main" style="margin-top: 8px;">Date : ________________________</div>
+                    <div class="t-partner-sign-line">Sign : ________________________</div>
+                    <div class="t-partner-date-line" style="margin-top: 8px;">Date : ________________________</div>
                   </div>
                 </div>
               </div>
@@ -1638,7 +1896,7 @@
                 </tr>
                 <tr>
                   <td class="spec-key t-sp-wording">Policy Wording</td>
-                  <td class="t-sp-wording-val">BCAinsurance Movable Property All Risk Policy Wording</td>
+                  <td class="out-wording">Munich Re Wording</td>
                 </tr>
                 <tr>
                   <td class="spec-key t-sp-benefits">Insurance Benefits</td>
@@ -1726,7 +1984,7 @@
                   <div>Jakarta, <span class="out-doc-date"></span></div>
                   <div class="t-sincerely">Yours sincerely,</div>
                   <div><strong>PT ASURANSI UMUM BCA</strong></div>
-                  <div style="height: 55px;"></div>
+                  <div class="our-sig-area" data-our-sig-slot="spec"></div>
                   <div><strong><span class="out-marketing-name"></span></strong></div>
                 </div>
 
@@ -1736,9 +1994,10 @@
                     <div style="font-weight: 700; font-size: 8.5pt; margin-top: 3px;" class="t-noted-agreed">NOTED &amp; AGREED</div>
                     <div style="font-size: 8.5pt; margin-top: 5px;"><span class="t-by-label">By</span> : <strong><span class="out-channel"></span></strong></div>
                   </div>
+                  <div class="partner-blank-space"></div>
                   <div class="sig-line-row" style="font-size: 8.5pt;">
-                    <div data-sig-slot="main">Sign : ________________________</div>
-                    <div data-date-slot="main" style="margin-top: 8px;">Date : ________________________</div>
+                    <div class="t-partner-sign-line">Sign : ________________________</div>
+                    <div class="t-partner-date-line" style="margin-top: 8px;">Date : ________________________</div>
                   </div>
                 </div>
               </div>
@@ -1756,23 +2015,44 @@
   </div>
 
   <script>
-    /* ================= LOGO BCA INSURANCE ================= */
-    const LOGO_FILENAME = "logo bcai warna.png";
+    /* ================= LOGO BCA INSURANCE (SVG DEFAULT + CUSTOM UPLOAD) ================= */
+    function getDefaultBcaLogoSVG(heightPx = 38, theme = "color") {
+      const primary = theme === "white" ? "#ffffff" : "#005baa";
+      const accent = theme === "white" ? "#93c5fd" : "#123663";
+      const subColor = theme === "white" ? "#e2e8f0" : "#0f294a";
+      const ratio = 165 / 44;
+      const widthPx = Math.round(heightPx * ratio);
 
-    function getLogoSrc() {
-      const custom = localStorage.getItem("bca_qs_mainLogo");
-      return custom ? custom : encodeURI(LOGO_FILENAME);
+      return `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 46" width="${widthPx}" height="${heightPx}" style="display:block; max-width:100%; height:auto;" role="img" aria-label="BCAinsurance">
+          <path d="M8 9 L26 6 L24 38 L6 35 Z" fill="${primary}"/>
+          <path d="M29 5 L44 8 L42 36 L27 38 Z" fill="${accent}"/>
+          <path d="M12 22 L17 27 L22 15" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="50" y="23" font-family="Poppins, Arial, sans-serif" font-size="16" font-weight="800" fill="${primary}">BCA</text>
+          <text x="86" y="23" font-family="Poppins, Arial, sans-serif" font-size="14.5" font-weight="600" font-style="italic" fill="${subColor}">insurance</text>
+          <text x="50" y="36" font-family="Poppins, Arial, sans-serif" font-size="7" font-weight="600" letter-spacing="0.4" fill="${subColor}">PT ASURANSI UMUM BCA</text>
+        </svg>
+      `;
     }
 
-    function getOfficialBcaLogoHTML(heightPx = 44) {
-      return `
-        <img
-          src="${getLogoSrc()}"
-          alt="BCAinsurance"
-          style="height:${heightPx}px; width:auto; display:block; object-fit:contain;"
-          onerror="this.style.display='none';"
-        />
-      `;
+    function getBrandLogoHTML(heightPx = 38, theme = "color") {
+      const custom = localStorage.getItem("bca_qs_mainLogo");
+      if (custom) {
+        const filterStyle = theme === "white" ? "filter: brightness(0) invert(1);" : "";
+        return `<img src="${custom}" alt="BCAinsurance" style="height:${heightPx}px; max-width:190px; width:auto; display:block; object-fit:contain; ${filterStyle}" />`;
+      }
+      return getDefaultBcaLogoSVG(heightPx, theme);
+    }
+
+    /* ================= MOBILE DRAWER ================= */
+    function openMobileMenu() {
+      document.getElementById("navSidebar").classList.add("open");
+      document.getElementById("mobileBackdrop").classList.add("show");
+    }
+
+    function closeMobileMenu() {
+      document.getElementById("navSidebar").classList.remove("open");
+      document.getElementById("mobileBackdrop").classList.remove("show");
     }
 
     /* ================= AUTH ================= */
@@ -1802,6 +2082,7 @@
     }
 
     function handleLogout() {
+      closeMobileMenu();
       sessionStorage.removeItem("bca_qs_auth");
       document.getElementById("loginPass").value = "";
       document.getElementById("appWrapper").classList.remove("authenticated");
@@ -1819,7 +2100,7 @@
       alert("Silakan hubungi tim Marketing Strategy / Admin internal untuk reset akses.");
     }
 
-    /* ================= NAVIGATION (BERANDA, MPAR, COMING SOON) ================= */
+    /* ================= NAVIGATION ================= */
     const COMING_SOON_INFO = {
       PA: {
         title: "Personal Accident (PA)",
@@ -1828,28 +2109,29 @@
       TRAVEL: {
         title: "Travel Insurance",
         desc: "Template Quotation Slip untuk produk Travel Insurance sedang disiapkan. Saat ini generator aktif tersedia untuk MPAR."
-      },
-      MISC: {
-        title: "Miscellaneous",
-        desc: "Template Quotation Slip untuk lini produk Miscellaneous sedang disiapkan. Saat ini generator aktif tersedia untuk MPAR."
       }
     };
 
     function switchNav(navKey) {
+      closeMobileMenu();
       document.querySelectorAll(".nav-item").forEach((el) => {
         el.classList.toggle("active", el.getAttribute("data-nav") === navKey);
       });
 
       const homeView = document.getElementById("viewHome");
+      const templateView = document.getElementById("viewTemplate");
       const soonView = document.getElementById("viewComingSoon");
       const genView = document.getElementById("viewGenerator");
 
       homeView.style.display = "none";
+      templateView.style.display = "none";
       soonView.style.display = "none";
       genView.style.display = "none";
 
       if (navKey === "HOME") {
         homeView.style.display = "block";
+      } else if (navKey === "TEMPLATE") {
+        templateView.style.display = "block";
       } else if (navKey === "MPAR") {
         genView.style.display = "flex";
         renderAll();
@@ -1869,7 +2151,6 @@
         valType: "Movable Property All Risk",
         valTypeUpper: "MOVABLE PROPERTY ALL RISK INSURANCE",
         lblWording: "WORDING",
-        valWording: "Munich Re Wording",
         lblInsured: "THE INSURED",
         lblPeriod: "PERIOD OF INSURANCE",
         lblLocation: "RISK LOCATION",
@@ -1882,7 +2163,7 @@
         lblTsi: "SUM INSURED",
         lblDeductible: "DEDUCTIBLE",
         valDeductible: "Theft : 10% of Loss, minimum IDR 100,000<br/>Earthquake, Volcanic Eruption and Tsunami : 10% of TSI, minimum IDR 100,000<br/>Other : 10% of TSI, minimum IDR 100,000",
-        lblRate: "Rate : Moveable",
+        lblRate: "Rate",
         perAnnum: "per annum",
         lblGross: "Gross Premi",
         ofTsi: "of TSI",
@@ -1900,12 +2181,13 @@
         insuredBoxTitle: "TO BE FILLED BY THE INSURED :",
         notedAgreed: "NOTED & AGREED",
         byLabel: "By",
+        partnerSign: "Sign : ________________________",
+        partnerDate: "Date : ________________________",
         specTitle: "PRODUCT SPECIFICATION",
         spChannel: "Marketing Channel",
         spInsured: "Insured",
         spProdname: "Product Name",
         spWording: "Policy Wording",
-        spWordingVal: "BCAinsurance Movable Property All Risk Policy Wording",
         spBenefits: "Insurance Benefits",
         spCondObj: "Insured Object Condition",
         spCatObj: "Insured Object Category",
@@ -1960,10 +2242,9 @@
         qsTitle: "PENAWARAN ASURANSI",
         noLabel: "No.",
         lblType: "JENIS ASURANSI",
-        valType: "Movable Property All Risk",
-        valTypeUpper: "ASURANSI MOVABLE PROPERTY ALL RISK",
+        valType: "Asuransi Barang Bergerak",
+        valTypeUpper: "ASURANSI BARANG BERGERAK",
         lblWording: "WORDING POLIS",
-        valWording: "Munich Re Wording",
         lblInsured: "TERTANGGUNG",
         lblPeriod: "JANGKA WAKTU",
         lblLocation: "LOKASI RISIKO",
@@ -1976,7 +2257,7 @@
         lblTsi: "HARGA PERTANGGUNGAN",
         lblDeductible: "RISIKO SENDIRI",
         valDeductible: "Pencurian : 10% dari Nilai Klaim, minimum Rp 100.000<br/>Gempa Bumi, Letusan Gunung Api & Tsunami : 10% dari Harga Pertanggungan, minimum Rp 100.000<br/>Lain-lain : 10% dari Harga Pertanggungan, minimum Rp 100.000",
-        lblRate: "Tarif : Bergerak",
+        lblRate: "Tarif",
         perAnnum: "per tahun",
         lblGross: "Gross Premi",
         ofTsi: "dari Harga Pertanggungan",
@@ -1994,12 +2275,13 @@
         insuredBoxTitle: "DIISI OLEH TERTANGGUNG :",
         notedAgreed: "DIKETAHUI & DISETUJUI",
         byLabel: "Oleh",
+        partnerSign: "Tanda Tangan : ________________________",
+        partnerDate: "Tanggal : ________________________",
         specTitle: "SPESIFIKASI PRODUK",
         spChannel: "Jalur Pemasaran",
         spInsured: "Tertanggung",
         spProdname: "Nama Produk",
         spWording: "Wording Polis",
-        spWordingVal: "Wording Polis Asuransi Movable Property All Risk BCAinsurance",
         spBenefits: "Manfaat Asuransi",
         spCondObj: "Kondisi Objek Pertanggungan",
         spCatObj: "Kategori Objek Pertanggungan",
@@ -2052,20 +2334,6 @@
       }
     };
 
-    const NUMBER_WORDS_ID = {
-      12: "dua belas",
-      24: "dua puluh empat",
-      36: "tiga puluh enam",
-      48: "empat puluh delapan"
-    };
-
-    const NUMBER_WORDS_EN = {
-      12: "twelve",
-      24: "twenty-four",
-      36: "thirty-six",
-      48: "forty-eight"
-    };
-
     function getCurrentLang() {
       return document.getElementById("inLang").value || "EN";
     }
@@ -2112,7 +2380,7 @@
       specPages.forEach((p) => p.classList.toggle("hidden-section", mode === "QS_ONLY"));
     }
 
-    /* ================= SIGNATURE PAD ================= */
+    /* ================= OUR DIGITAL SIGNATURE PAD ================= */
     let isDrawing = false;
     let hasDrawnSig = false;
     let sigDataURL = "";
@@ -2179,37 +2447,38 @@
 
     function renderSignatureMode() {
       const lang = getCurrentLang();
+      const dict = I18N[lang];
       const mode = document.getElementById("inSigMode").value;
       document.getElementById("digitalSigControls").style.display = mode === "DIGITAL" ? "block" : "none";
 
-      const partnerName = document.getElementById("inPartnerSigner").value.trim();
-      const signedDate = document.getElementById("inSignedDate").value.trim();
-
-      const signLabel = lang === "EN" ? "Sign" : "Tanda Tangan";
-      const dateLabel = lang === "EN" ? "Date" : "Tanggal";
-
-      document.querySelectorAll('[data-sig-slot="main"]').forEach((el) => {
-        if (mode === "BLANK") {
-          el.innerHTML = `${signLabel} : ________________________`;
+      document.querySelectorAll("[data-our-sig-slot]").forEach((slot) => {
+        if (mode === "DIGITAL" && hasDrawnSig && sigDataURL) {
+          slot.innerHTML = `<img src="${sigDataURL}" class="our-sig-img" alt="BCAinsurance Signature" />`;
         } else {
-          const imgHtml = hasDrawnSig && sigDataURL
-            ? `<img src="${sigDataURL}" class="sig-preview-img" alt="Signature" />`
-            : `<div style="height: 36px; border-bottom: 1px solid #475569; margin: 4px 0;"></div>`;
-          const nameHtml = partnerName ? `<div style="font-weight: 700;">(${escapeHTML(partnerName)})</div>` : "";
-          el.innerHTML = `<div>${signLabel} :</div>${imgHtml}${nameHtml}`;
+          slot.innerHTML = "";
         }
       });
 
-      document.querySelectorAll('[data-date-slot="main"]').forEach((el) => {
-        el.innerHTML = mode === "BLANK"
-          ? `${dateLabel} : ________________________`
-          : `${dateLabel} : <strong>${escapeHTML(signedDate || "________________________")}</strong>`;
-      });
+      setAll(".t-partner-sign-line", dict.partnerSign);
+      setAll(".t-partner-date-line", dict.partnerDate);
     }
 
     /* ================= BRANDING & CALCULATION ================= */
     function formatIDR(num) {
       return Math.round(num).toLocaleString("id-ID");
+    }
+
+    function onPeriodSelectChange() {
+      document.getElementById("inCustomYears").value = "";
+      calculateAndRender();
+    }
+
+    function getEffectiveYears() {
+      const customVal = parseFloat(document.getElementById("inCustomYears").value);
+      if (!isNaN(customVal) && customVal > 0) {
+        return customVal;
+      }
+      return parseFloat(document.getElementById("inPeriod").value) || 1;
     }
 
     function handleLogoUpload(event, key) {
@@ -2219,6 +2488,7 @@
       reader.onload = function (e) {
         localStorage.setItem("bca_qs_" + key, e.target.result);
         renderLogos();
+        renderAll();
       };
       reader.readAsDataURL(file);
     }
@@ -2250,49 +2520,38 @@
       document.getElementById("uploadRightLogo").value = "";
       document.getElementById("uploadFullHeader").value = "";
       document.getElementById("uploadFullFooter").value = "";
-      document.getElementById("logoHeightSlider").value = 44;
-      document.getElementById("logoSizeVal").textContent = 44;
+      document.getElementById("logoHeightSlider").value = 38;
+      document.getElementById("logoSizeVal").textContent = 38;
       renderLogos();
       renderAll();
     }
 
     function renderLogos() {
       const rightLogoData = localStorage.getItem("bca_qs_rightLogo");
-      const logoHeight = localStorage.getItem("bca_qs_logoHeight") || 44;
-      const logoSrc = getLogoSrc();
+      const logoHeight = parseInt(localStorage.getItem("bca_qs_logoHeight") || "38", 10);
 
-      // Login logo dengan fallback teks agar tidak pernah kosong
       const loginWrap = document.getElementById("loginLogoWrap");
       if (loginWrap) {
-        loginWrap.innerHTML = `
-          <img
-            src="${logoSrc}"
-            alt="BCAinsurance"
-            onerror="this.style.display='none'; document.getElementById('logoFallbackText').style.display='block';"
-          />
-          <div id="logoFallbackText" class="login-logo-fallback" style="display:none;">
-            BCA<span>insurance</span>
-          </div>
-        `;
+        loginWrap.innerHTML = getBrandLogoHTML(44, "color");
       }
 
-      // Sidebar white logo
-      const sidebarWhiteLogo = document.getElementById("sidebarWhiteLogo");
-      if (sidebarWhiteLogo) {
-        sidebarWhiteLogo.style.display = "block";
-        document.getElementById("navFallbackText").style.display = "none";
-        sidebarWhiteLogo.src = logoSrc;
+      const sidebarBrand = document.getElementById("sidebarBrandLogo");
+      if (sidebarBrand) {
+        sidebarBrand.innerHTML = getBrandLogoHTML(36, "white");
       }
 
-      // Header A4 main logo
+      const mobileTopbar = document.getElementById("mobileTopbarLogo");
+      if (mobileTopbar) {
+        mobileTopbar.innerHTML = getBrandLogoHTML(30, "white");
+      }
+
       document.querySelectorAll('[data-slot="main-logo"]').forEach((el) => {
-        el.innerHTML = getOfficialBcaLogoHTML(logoHeight);
+        el.innerHTML = getBrandLogoHTML(logoHeight, "color");
       });
 
-      // Header A4 right logo
       document.querySelectorAll('[data-slot="right-logo"]').forEach((el) => {
         if (rightLogoData) {
-          el.innerHTML = `<img src="${rightLogoData}" style="max-height:${Math.max(30, logoHeight - 8)}px;" alt="OJK" />`;
+          el.innerHTML = `<img src="${rightLogoData}" style="max-height:${Math.max(28, logoHeight - 6)}px;" alt="OJK" />`;
         } else {
           el.innerHTML = `
             <div class="ojk-badge-group">
@@ -2358,7 +2617,6 @@
       const discNote = escapeHTML(ctx.discNote);
 
       if (lang === "EN") {
-        const word = NUMBER_WORDS_EN[months] || months;
         document.getElementById("specBenefitsCell").innerHTML = `
           Provides protection for physical loss or damage to the insured object caused by:
           <table class="sub-table">
@@ -2385,7 +2643,7 @@
           Total Loss: 100% of purchase invoice (no depreciation)
         `;
         document.getElementById("specPeriodCell").innerHTML = `
-          Up to <strong>${months} (${word}) months</strong> from confirmation of unit receipt or 12:00 noon, whichever is later.
+          Up to <strong>${months} months</strong> (${periodYears} year(s)) from confirmation of unit receipt or 12:00 noon, whichever is later.
         `;
         document.getElementById("specIndemnityCell").innerHTML = `
           • <strong>Repairment:</strong> 100% of repair labor and spare parts minus applicable deductible.<br/>
@@ -2400,7 +2658,9 @@
           • Replacement: 10% of claim amount, min. IDR 100,000
         `;
         document.getElementById("specDeprCell").textContent = "No depreciation";
-        document.getElementById("specDiscCell").innerHTML = `<strong>${discPct}%</strong> — ${discNote}`;
+        document.getElementById("specDiscCell").innerHTML = discNote
+          ? `<strong>${discPct}%</strong> — ${discNote}`
+          : `<strong>${discPct}%</strong>`;
         document.getElementById("specClaimMethodCell").innerHTML = `
           <strong>1. Reimbursement:</strong> Repair or replacement at authorized/non-authorized service centers across Indonesia (subject to prior Insurer approval).<br/>
           <strong>2. Cashless:</strong> Repair or replacement at designated partner service centers; Insured pays deductible upon claim approval and salvage handover. Includes up to 1x pickup and 1x delivery.
@@ -2417,7 +2677,6 @@
           3) Additional terms and conditions (if any) will be discussed and agreed further.
         `;
       } else {
-        const word = NUMBER_WORDS_ID[months] || months;
         document.getElementById("specBenefitsCell").innerHTML = `
           Memberikan perlindungan atas kerugian atau kerusakan fisik pada objek pertanggungan akibat:
           <table class="sub-table">
@@ -2444,7 +2703,7 @@
           Kerugian Total: 100% dari faktur pembelian (tanpa depresiasi)
         `;
         document.getElementById("specPeriodCell").innerHTML = `
-          Hingga <strong>${months} (${word}) bulan</strong> sejak konfirmasi penerimaan unit oleh pengguna atau pukul 12.00 siang, mana yang lebih akhir.
+          Hingga <strong>${months} bulan</strong> (${periodYears} tahun) sejak konfirmasi penerimaan unit oleh pengguna atau pukul 12.00 siang, mana yang lebih akhir.
         `;
         document.getElementById("specIndemnityCell").innerHTML = `
           • <strong>Perbaikan:</strong> 100% biaya jasa perbaikan dan suku cadang dikurangi risiko sendiri.<br/>
@@ -2459,7 +2718,9 @@
           • Penggantian: 10% dari nilai klaim, minimum Rp 100.000
         `;
         document.getElementById("specDeprCell").textContent = "Tidak ada depresiasi";
-        document.getElementById("specDiscCell").innerHTML = `<strong>${discPct}%</strong> — ${discNote}`;
+        document.getElementById("specDiscCell").innerHTML = discNote
+          ? `<strong>${discPct}%</strong> — ${discNote}`
+          : `<strong>${discPct}%</strong>`;
         document.getElementById("specClaimMethodCell").innerHTML = `
           <strong>1. Penggantian Biaya (Reimbursement):</strong> Perbaikan atau penggantian di bengkel/pusat layanan resmi maupun tidak resmi di Indonesia dengan persetujuan Penanggung terlebih dahulu.<br/>
           <strong>2. Nontunai (Cashless):</strong> Perbaikan atau penggantian di pusat layanan mitra Penanggung; Tertanggung membayar risiko sendiri setelah klaim disetujui dan sisa barang diserahkan. Termasuk layanan antar-jemput maksimal 1 kali jemput dan 1 kali antar.
@@ -2471,7 +2732,7 @@
           • <strong>Data Barang:</strong> Nama barang, kategori, merek/tipe, harga barang, nomor seri, kode SKU, nomor faktur, tanggal terima barang.
         `;
         document.getElementById("specOtherCell").innerHTML = `
-          1) Mengikuti syarat dan ketentuan Polis Asuransi Movable Property All Risk BCAinsurance.<br/>
+          1) Mengikuti syarat dan ketentuan Polis Asuransi Barang Bergerak BCAinsurance.<br/>
           2) Spesifikasi produk di atas dapat ditinjau dan disepakati bersama.<br/>
           3) Ketentuan tambahan (jika ada) akan dibahas dan disepakati lebih lanjut.
         `;
@@ -2485,10 +2746,10 @@
       const units = parseFloat(document.getElementById("inUnits").value) || 0;
       const price = parseFloat(document.getElementById("inPrice").value) || 0;
       const annualRate = parseFloat(document.getElementById("inRate").value) || 0;
-      const periodYears = parseInt(document.getElementById("inPeriod").value, 10) || 1;
+      const periodYears = getEffectiveYears();
       const discPct = parseFloat(document.getElementById("inDiscount").value) || 0;
       const customPeriodLabel = document.getElementById("inPeriodLabel").value.trim();
-      const customDiscNote = document.getElementById("inDiscNote").value.trim();
+      const discNoteText = document.getElementById("inDiscNote").value.trim();
       const policyFee = parseFloat(document.getElementById("inPolicyFee").value) || 0;
       const stampFee = parseFloat(document.getElementById("inStampFee").value) || 0;
 
@@ -2507,9 +2768,9 @@
       document.getElementById("sumNet").textContent = "Rp " + formatIDR(netPremi);
       document.getElementById("sumGrand").textContent = "Rp " + formatIDR(grandPremi);
 
-      const months = periodYears * 12;
+      const months = Math.round(periodYears * 12);
       const defaultPeriodLabel = lang === "EN"
-        ? `${periodYears} Year${periodYears > 1 ? "s" : ""} (${months} Months)`
+        ? `${periodYears} Year${periodYears !== 1 ? "s" : ""} (${months} Months)`
         : `${periodYears} Tahun (${months} Bulan)`;
 
       setAll(".out-period-text", customPeriodLabel || defaultPeriodLabel);
@@ -2531,8 +2792,16 @@
         rowStamp.style.display = stampFee > 0 ? "table-row" : "none";
       }
 
-      const discNoteText = customDiscNote || (discPct > 0 ? `${dict.lblDiscRow} ${discPct}%` : "-");
-      setAll(".out-disc-note", discNoteText);
+      const rowDiscNote = document.getElementById("rowDiscNote");
+      if (rowDiscNote) {
+        if (discNoteText) {
+          rowDiscNote.style.display = "table-row";
+          setAll(".out-disc-note", discNoteText);
+        } else {
+          rowDiscNote.style.display = "none";
+          setAll(".out-disc-note", "");
+        }
+      }
 
       setAll(".t-qs-title", dict.qsTitle);
       setAll(".t-no-label", dict.noLabel);
@@ -2540,7 +2809,6 @@
       setAll(".t-val-type", dict.valType);
       setAll(".t-spec-subtitle", dict.valTypeUpper);
       setAll(".t-lbl-wording", dict.lblWording);
-      setAll(".t-val-wording", dict.valWording);
       setAll(".t-lbl-insured", dict.lblInsured);
       setAll(".t-lbl-period", dict.lblPeriod);
       setAll(".t-lbl-location", dict.lblLocation);
@@ -2577,7 +2845,6 @@
       setAll(".t-sp-insured", dict.spInsured);
       setAll(".t-sp-prodname", dict.spProdname);
       setAll(".t-sp-wording", dict.spWording);
-      setAll(".t-sp-wording-val", dict.spWordingVal);
       setAll(".t-sp-benefits", dict.spBenefits);
       setAll(".t-sp-cond-obj", dict.spCondObj);
       setAll(".t-sp-cat-obj", dict.spCatObj);
@@ -2617,6 +2884,7 @@
     function renderAll() {
       setAll(".out-qs-no", document.getElementById("inQsNo").value);
       setAll(".out-doc-date", document.getElementById("inDocDate").value);
+      setAll(".out-wording", document.getElementById("inWording").value);
       setAll(".out-channel", document.getElementById("inChannel").value);
       setAll(".out-channel-upper", document.getElementById("inChannel").value.toUpperCase());
       setAll(".out-insured", document.getElementById("inInsured").value);
