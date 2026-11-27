@@ -1,0 +1,1488 @@
+Saya sudah menambahkan layar Login Gate yang muncul sebelum masuk ke aplikasi utama, lengkap dengan tombol Logout di pojok kanan atas panel kontrol agar aman saat selesai digunakan.
+Kredensial Login Default:
+ * Username: bcains_underwriting (atau bisa juga pakai marketing_bca)
+ * Password: BCAins#2026
+(Catatan: Untuk mengubah username/password kapan saja, cukup edit bagian VALID_USERS di dalam kode JavaScript).
+Berikut kode lengkap index.html terbaru yang siap langsung digunakan atau di-upload ke GitHub:
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BCA Insurance - Automatic QS & Product Spec Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    :root {
+      --bca-blue: #003399;
+      --bca-light-blue: #0066cc;
+      --bca-accent: #e6f0ff;
+      --ui-bg: #f3f5f9;
+      --panel-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--ui-bg);
+      color: #1e293b;
+      min-height: 100vh;
+    }
+
+    /* ================= LOGIN SCREEN ================= */
+    .login-overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #001f66 0%, #003399 55%, #0055cc 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .login-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 390px;
+      border-radius: 12px;
+      padding: 32px 28px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    .login-brand {
+      text-align: center;
+      margin-bottom: 22px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 16px;
+    }
+
+    .login-brand .logo-text {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--bca-blue);
+      letter-spacing: -0.5px;
+    }
+
+    .login-brand .logo-text span {
+      font-weight: 400;
+      color: var(--bca-light-blue);
+    }
+
+    .login-brand p {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .login-badge {
+      display: inline-block;
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-top: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .login-error {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #f87171;
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      display: none;
+    }
+
+    .pass-wrapper {
+      position: relative;
+    }
+
+    .toggle-pass {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 11px;
+      color: var(--bca-light-blue);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* ================= MAIN APP LAYOUT ================= */
+    .app-wrapper {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .app-wrapper.authenticated {
+      display: flex;
+    }
+
+    /* ================= SIDEBAR CONTROL PANEL ================= */
+    .sidebar {
+      width: 410px;
+      min-width: 360px;
+      background: var(--panel-bg);
+      border-right: 1px solid #cbd5e1;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .sidebar-header {
+      border-bottom: 2px solid var(--bca-blue);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .sidebar-header h1 {
+      font-size: 16.5px;
+      color: var(--bca-blue);
+      font-weight: 700;
+    }
+
+    .sidebar-header p {
+      font-size: 11.5px;
+      color: #64748b;
+      margin-top: 3px;
+    }
+
+    .btn-logout {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fca5a5;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 9px;
+      border-radius: 5px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-logout:hover {
+      background: #fecaca;
+    }
+
+    .section-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 13px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--bca-blue);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 4px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 12.5px;
+      border: 1px solid #cbd5e1;
+      border-radius: 5px;
+      background: #fff;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--bca-light-blue);
+      box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.15);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .calc-summary {
+      background: var(--bca-accent);
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 12px;
+    }
+
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .calc-row.total {
+      border-top: 1px solid #93c5fd;
+      padding-top: 6px;
+      margin-top: 6px;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--bca-blue);
+    }
+
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+      position: sticky;
+      bottom: 0;
+      background: #fff;
+      padding-top: 10px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .btn {
+      padding: 10px 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: var(--bca-blue);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #002266;
+    }
+
+    .btn-secondary {
+      background: #0f766e;
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      background: #115e59;
+    }
+
+    .btn-reset {
+      background: #e2e8f0;
+      color: #334155;
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* ================= PREVIEW AREA ================= */
+    .preview-container {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .page-a4 {
+      width: 210mm;
+      min-height: 296mm;
+      background: #fff;
+      padding: 12mm 15mm 14mm 15mm;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #000;
+      font-size: 9.5pt;
+      line-height: 1.35;
+    }
+
+    .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-38deg);
+      font-size: 72pt;
+      font-weight: 800;
+      color: rgba(0, 0, 0, 0.055);
+      letter-spacing: 8px;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header Kop Surat */
+    .doc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid var(--bca-blue);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .logo-left img {
+      max-height: 46px;
+      object-fit: contain;
+    }
+
+    .default-bca-logo {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .default-bca-logo .brand {
+      font-size: 20pt;
+      font-weight: 900;
+      color: var(--bca-blue);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .default-bca-logo .brand span {
+      font-weight: 400;
+      color: var(--bca-light-blue);
+    }
+
+    .default-bca-logo .tagline {
+      font-size: 8pt;
+      font-style: italic;
+      color: #444;
+      margin-top: 2px;
+    }
+
+    .logo-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: right;
+    }
+
+    .logo-right img {
+      max-height: 38px;
+      object-fit: contain;
+    }
+
+    .ojk-fallback {
+      font-size: 7pt;
+      color: #333;
+      border: 1px solid #999;
+      padding: 3px 6px;
+      border-radius: 3px;
+      line-height: 1.2;
+    }
+
+    /* Footer Kop Surat */
+    .doc-footer {
+      border-top: 1.5px solid var(--bca-blue);
+      padding-top: 6px;
+      margin-top: 10px;
+      font-size: 7.5pt;
+      color: #222;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Document Titles & Tables */
+    .qs-title-block {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .qs-title-block h2 {
+      font-size: 13pt;
+      font-weight: 700;
+      text-decoration: underline;
+      letter-spacing: 0.5px;
+    }
+
+    .qs-title-block .qs-no {
+      font-size: 9.5pt;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    table.qs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8px;
+    }
+
+    table.qs-table td {
+      padding: 3.5px 5px;
+      vertical-align: top;
+    }
+
+    table.qs-table td.label-col {
+      width: 28%;
+      font-weight: 700;
+    }
+
+    table.qs-table td.colon-col {
+      width: 3%;
+      font-weight: 700;
+    }
+
+    table.qs-table td.val-col {
+      width: 69%;
+    }
+
+    .premi-box {
+      border: 1px solid #000;
+      padding: 8px 10px;
+      margin-top: 6px;
+      background: #fafafa;
+    }
+
+    table.premi-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table.premi-table td {
+      padding: 2.5px 4px;
+    }
+
+    table.premi-table td.num {
+      text-align: right;
+      font-weight: 600;
+      width: 22%;
+    }
+
+    table.premi-table td.curr {
+      width: 6%;
+      text-align: right;
+    }
+
+    table.premi-table tr.total-row td {
+      border-top: 1.5px solid #000;
+      font-weight: 700;
+      padding-top: 5px;
+    }
+
+    .clauses-list {
+      padding-left: 18px;
+      font-size: 8.6pt;
+      line-height: 1.38;
+    }
+
+    .clauses-list li {
+      margin-bottom: 2.5px;
+    }
+
+    /* Spec Table */
+    table.spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.7pt;
+    }
+
+    table.spec-table th,
+    table.spec-table td {
+      border: 1px solid #333;
+      padding: 5px 7px;
+      vertical-align: top;
+    }
+
+    table.spec-table td.spec-key {
+      width: 27%;
+      font-weight: 700;
+      background-color: #f4f7fb;
+    }
+
+    .sub-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+    }
+
+    .sub-table td {
+      border: 1px solid #666;
+      padding: 3.5px 5px;
+      font-size: 8.2pt;
+    }
+
+    .sign-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 16px;
+    }
+
+    .sign-box {
+      border: 1px solid #000;
+      padding: 8px 10px;
+      min-height: 105px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Print Mode */
+    @media print {
+      body {
+        background: #fff;
+      }
+      .login-overlay,
+      .sidebar {
+        display: none !important;
+      }
+      .app-wrapper {
+        display: block !important;
+      }
+      .preview-container {
+        padding: 0;
+        gap: 0;
+      }
+      .page-a4 {
+        box-shadow: none;
+        margin: 0;
+        page-break-after: always;
+        height: 297mm;
+      }
+      .page-a4:last-child {
+        page-break-after: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= LOGIN GATE ================= -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="logo-text">BCA<span>insurance</span></div>
+        <p>Quotation Slip &amp; Product Spec Generator</p>
+        <div class="login-badge">INTERNAL &amp; CONFIDENTIAL ACCESS</div>
+      </div>
+
+      <div class="login-error" id="loginError">
+        Username atau Password tidak sesuai. Silakan coba lagi.
+      </div>
+
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="loginUser">Username</label>
+          <input type="text" id="loginUser" placeholder="Masukkan username" autocomplete="username" required />
+        </div>
+        <div class="form-group">
+          <label for="loginPass">Password</label>
+          <div class="pass-wrapper">
+            <input type="password" id="loginPass" placeholder="Masukkan password" autocomplete="current-password" required />
+            <button type="button" class="toggle-pass" onclick="togglePassword()">Lihat</button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px; padding: 11px;">
+          Masuk ke Tools QS
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MAIN APPLICATION ================= -->
+  <div class="app-wrapper" id="appWrapper">
+
+    <!-- PANEL KONTROL KIRI -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div>
+          <h1>BCA Insurance QS Generator</h1>
+          <p>Quotation Slip &amp; Spesifikasi Produk</p>
+        </div>
+        <button type="button" class="btn-logout" onclick="handleLogout()">Logout</button>
+      </div>
+
+      <!-- 1. Custom Logo & Header -->
+      <div class="section-box">
+        <div class="section-title">
+          <span>1. Logo &amp; Kop Surat (Custom)</span>
+          <button type="button" class="btn-reset" onclick="resetBranding()">Reset Logo</button>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Upload Logo Utama (BCA)</label>
+            <input type="file" id="uploadMainLogo" accept="image/*" onchange="handleLogoUpload(event, 'mainLogo')" />
+          </div>
+          <div class="form-group">
+            <label>Upload Logo Kanan (OJK)</label>
+            <input type="file" id="uploadRightLogo" accept="image/*" onchange="handleLogoUpload(event, 'rightLogo')" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Tinggi Logo Utama: <span id="logoSizeVal">46</span>px</label>
+          <input type="range" id="logoHeightSlider" min="28" max="75" value="46" oninput="updateLogoSize(this.value)" />
+        </div>
+        <div class="form-group">
+          <label>Alamat Kantor (Footer)</label>
+          <input type="text" id="inAddress" value="Gedung Sahid Sudirman Center Lantai 10 / Unit F, Jl. Jend. Sudirman Kav. 86, Jakarta 10220" oninput="renderAll()" />
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Telp / Fax</label>
+            <input type="text" id="inPhone" value="T. (021) 27889588 | F. (021) 27889577" oninput="renderAll()" />
+          </div>
+          <div class="form-group">
+            <label>Web / Call Center</label>
+            <input type="text" id="inWeb" value="www.bcainsurance.co.id | haloBCA 1500888" oninput="renderAll()" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Produk & Tertanggung -->
+      <div class="section-box">
+        <div class="section-title"><span>2. Produk &amp; Tertanggung</span></div>
+        <div class="form-group">
+          <label>Pilih Produk Asuransi</label>
+          <select id="inProduct" onchange="onProductChange()">
+            <option value="MPAR">Movable Property All Risk (MPAR)</option>
+            <option value="PAR">Property All Risk (PAR)</option>
+            <option value="EEI">Electronic Equipment Insurance (EEI)</option>
+            <option value="ADLD">Accidental Damage &amp; Liquid Damage (ADLD)</option>
+          </select>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Nomor QS</label>
+            <input type="text" id="inQsNo" value="1265/QS/BCAinsurance/11/2026" oninput="renderAll()" />
+          </div>
+          <div class="form-group">
+            <label>Tanggal Dokumen</label>
+            <input type="text" id="inDocDate" value="13 November 2026" oninput="renderAll()" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Jalur Pemasaran / Partner</label>
+          <input type="text" id="inChannel" value="PT Trijata Nusa" oninput="renderAll()" />
+        </div>
+        <div class="form-group">
+          <label>The Insured (Tertanggung)</label>
+          <input type="text" id="inInsured" value="PT Trijata Nusa QQ Partner PT Trijata Nusa" oninput="renderAll()" />
+        </div>
+        <div class="form-group">
+          <label>Interest Insured (Objek Pertanggungan)</label>
+          <input type="text" id="inInterest" value="Laptop" oninput="renderAll()" />
+        </div>
+        <div class="form-group">
+          <label>Merk / Kategori (Spesifikasi Produk)</label>
+          <input type="text" id="inBrandSpec" value="Laptop / PC DYNABOOK (Sewa B2B Office)" oninput="renderAll()" />
+        </div>
+      </div>
+
+      <!-- 3. Kalkulasi Volume, Rate & Periode -->
+      <div class="section-box">
+        <div class="section-title"><span>3. Simulasi Rate, Periode &amp; Volume</span></div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Total Unit</label>
+            <input type="number" id="inUnits" value="150" min="1" oninput="calculateAndRender()" />
+          </div>
+          <div class="form-group">
+            <label>Harga per Unit (Rp)</label>
+            <input type="number" id="inPrice" value="20000000" step="100000" oninput="calculateAndRender()" />
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Rate per Tahun (%)</label>
+            <input type="number" id="inRate" value="1.0" step="0.05" min="0" oninput="calculateAndRender()" />
+          </div>
+          <div class="form-group">
+            <label>Periode (Tahun)</label>
+            <select id="inPeriod" onchange="calculateAndRender()">
+              <option value="1">1 Tahun (12 Bulan)</option>
+              <option value="2">2 Tahun (24 Bulan)</option>
+              <option value="3">3 Tahun (36 Bulan)</option>
+              <option value="4" selected>4 Tahun (48 Bulan)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Diskon (%)</label>
+            <input type="number" id="inDiscount" value="30" min="0" max="100" step="0.1" oninput="calculateAndRender()" />
+          </div>
+          <div class="form-group">
+            <label>Label Periode di QS</label>
+            <input type="text" id="inPeriodLabel" placeholder="Otomatis jika dikosongkan" oninput="calculateAndRender()" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Catatan Diskon / Terms (Bebas Disesuaikan)</label>
+          <input type="text" id="inDiscNote" value="Discount 30% sesuai kesepakatan penawaran" oninput="calculateAndRender()" />
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Biaya Polis (Rp)</label>
+            <input type="number" id="inPolicyFee" value="15000" oninput="calculateAndRender()" />
+          </div>
+          <div class="form-group">
+            <label>Biaya Materai (Rp)</label>
+            <input type="number" id="inStampFee" value="20000" oninput="calculateAndRender()" />
+          </div>
+        </div>
+
+        <div class="calc-summary">
+          <div class="calc-row"><span>Total Sum Insured (TSI):</span> <strong id="sumTsi">Rp 3.000.000.000</strong></div>
+          <div class="calc-row"><span>Total Rate (<span id="sumRatePct">4%</span>):</span> <span id="sumGross">Rp 120.000.000</span></div>
+          <div class="calc-row"><span>Discount (<span id="sumDiscPct">30%</span>):</span> <span id="sumDisc">- Rp 36.000.000</span></div>
+          <div class="calc-row"><span>Net Premi:</span> <strong id="sumNet">Rp 84.000.000</strong></div>
+          <div class="calc-row total"><span>TOTAL PREMI:</span> <span id="sumGrand">Rp 84.035.000</span></div>
+        </div>
+      </div>
+
+      <!-- 4. Penandatangan -->
+      <div class="section-box">
+        <div class="section-title"><span>4. Penandatangan Dokumen</span></div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Marketing QS (Hal. 2)</label>
+            <input type="text" id="inMarketingName" value="Teressa Tumion" oninput="renderAll()" />
+          </div>
+          <div class="form-group">
+            <label>Email Marketing</label>
+            <input type="text" id="inMarketingEmail" value="Teressa_tumion@bcainsurance.co.id" oninput="renderAll()" />
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Pejabat Spec Produk (Hal. 4)</label>
+            <input type="text" id="inSpecSigner" value="Fitriadi" oninput="renderAll()" />
+          </div>
+          <div class="form-group">
+            <label>Tanggal Spec Produk</label>
+            <input type="text" id="inSpecDate" value="26 November 2026" oninput="renderAll()" />
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" onclick="downloadPDF()">⬇ Download PDF</button>
+        <button type="button" class="btn btn-secondary" onclick="window.print()">🖨 Print / Save PDF</button>
+      </div>
+    </aside>
+
+    <!-- ================= AREA PRATINJAU A4 ================= -->
+    <main class="preview-container" id="pdfDocumentArea">
+
+      <!-- HALAMAN 1: QUOTATION SLIP -->
+      <section class="page-a4">
+        <div class="page-content">
+          <div class="doc-header">
+            <div class="logo-left" data-slot="main-logo"></div>
+            <div class="logo-right" data-slot="right-logo"></div>
+          </div>
+
+          <div class="qs-title-block">
+            <h2>QUOTATION SLIP</h2>
+            <div class="qs-no">No.: <span class="out-qs-no"></span></div>
+          </div>
+
+          <table class="qs-table">
+            <tr>
+              <td class="label-col">TYPE OF INSURANCE</td>
+              <td class="colon-col">:</td>
+              <td class="val-col out-product-name">Movable Property All Risk</td>
+            </tr>
+            <tr>
+              <td class="label-col">WORDING</td>
+              <td class="colon-col">:</td>
+              <td class="val-col out-wording">Munich Re Wording</td>
+            </tr>
+            <tr>
+              <td class="label-col">THE INSURED</td>
+              <td class="colon-col">:</td>
+              <td class="val-col out-insured"></td>
+            </tr>
+            <tr>
+              <td class="label-col">PERIOD OF INSURANCE</td>
+              <td class="colon-col">:</td>
+              <td class="val-col"><span class="out-period-text"></span></td>
+            </tr>
+            <tr>
+              <td class="label-col">RISK LOCATION</td>
+              <td class="colon-col">:</td>
+              <td class="val-col">All Indonesia</td>
+            </tr>
+            <tr>
+              <td class="label-col">COVERAGE</td>
+              <td class="colon-col">:</td>
+              <td class="val-col out-coverage">
+                All risk of sudden, unforeseen and accidental physical loss or damage to the insured property from any cause (subject to policy exclusions)
+              </td>
+            </tr>
+            <tr>
+              <td class="label-col">INTEREST INSURED</td>
+              <td class="colon-col">:</td>
+              <td class="val-col out-interest"></td>
+            </tr>
+            <tr>
+              <td class="label-col">TOTAL UNIT</td>
+              <td class="colon-col">:</td>
+              <td class="val-col out-units"></td>
+            </tr>
+            <tr>
+              <td class="label-col">PRICE PER UNIT</td>
+              <td class="colon-col">:</td>
+              <td class="val-col out-price"></td>
+            </tr>
+            <tr>
+              <td class="label-col">SUM INSURED</td>
+              <td class="colon-col">:</td>
+              <td class="val-col"><strong class="out-tsi"></strong></td>
+            </tr>
+            <tr>
+              <td class="label-col">DEDUCTIBLE</td>
+              <td class="colon-col">:</td>
+              <td class="val-col">
+                - Theft: 10% of Loss, minimum IDR 100.000,-<br />
+                - Earth Quake, Volcanic Eruption and Tsunami: 10% of TSI min IDR 100,000<br />
+                - Other: 10% of TSI min IDR 100,000
+              </td>
+            </tr>
+          </table>
+
+          <div class="premi-box">
+            <div style="font-weight: 700; margin-bottom: 6px;">
+              Rate: Moveable: <span class="out-annual-rate"></span>% per tahun
+            </div>
+            <table class="premi-table">
+              <tr>
+                <td>Gross Premi (<span class="out-total-rate"></span>% of TSI)</td>
+                <td class="curr">Rp</td>
+                <td class="num out-gross-premi"></td>
+              </tr>
+              <tr>
+                <td>Discount (<span class="out-disc-pct"></span>%)</td>
+                <td class="curr"></td>
+                <td class="num"><span class="out-disc-pct"></span>%</td>
+              </tr>
+              <tr>
+                <td>Total Discount</td>
+                <td class="curr">Rp</td>
+                <td class="num out-total-disc"></td>
+              </tr>
+              <tr>
+                <td><strong>Premi</strong></td>
+                <td class="curr"><strong>Rp</strong></td>
+                <td class="num"><strong class="out-net-premi"></strong></td>
+              </tr>
+              <tr>
+                <td colspan="3" style="font-size: 8pt; font-style: italic; padding: 4px 4px 6px 4px;">
+                  *<span class="out-disc-note"></span>
+                </td>
+              </tr>
+              <tr>
+                <td>Biaya Polis</td>
+                <td class="curr">= Rp</td>
+                <td class="num out-policy-fee"></td>
+              </tr>
+              <tr>
+                <td>Biaya Materai</td>
+                <td class="curr">= Rp</td>
+                <td class="num out-stamp-fee"></td>
+              </tr>
+              <tr class="total-row">
+                <td>Total Premi</td>
+                <td class="curr">= Rp</td>
+                <td class="num out-grand-premi"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="doc-footer">
+          <div class="out-footer-left"></div>
+          <div class="out-footer-right" style="text-align: right;"></div>
+        </div>
+      </section>
+
+      <!-- HALAMAN 2: CLAUSES & SIGNATORY QS -->
+      <section class="page-a4">
+        <div class="page-content">
+          <div class="doc-header">
+            <div class="logo-left" data-slot="main-logo"></div>
+            <div class="logo-right" data-slot="right-logo"></div>
+          </div>
+
+          <div style="font-weight: 700; font-size: 10.5pt; margin-bottom: 6px; text-decoration: underline;">CLAUSES</div>
+          <ol class="clauses-list">
+            <li>JAMINAN TERHADAP NILAI PENGGANTIAN PENUH (MR 507) - HANYA BERLAKU UNTUK BARANG BARU SAJA</li>
+            <li>KLAUSUL RISIKO INDUSTRI, REMBESAN, POLUSI, DAN KONTAMINASI - NMA 1685</li>
+            <li>KLAUSUL PENGECUALIAN ASBESTOS</li>
+            <li>JAMINAN UNTUK ANGIN RIBUT, ANGIN PUYUH DAN TOPAN (MR 506)</li>
+            <li>KLAUSUL PENGESAMPINGAN</li>
+            <li>KLAUSUL PENGECUALIAN PERANG DAN PERANG SIPIL - NMA 464</li>
+            <li>KLAUSUL PENGECUALIAN DAN PEMBATASAN SANKSI</li>
+            <li>JAMINAN UNTUK KERUSAKAN AKIBAT PERAKITAN SENDIRI</li>
+            <li>KLAUSUL PENGECUALIAN ADANYA KONTAMINASI RADIOAKTIF, KIMIA, BIOLOGI, BIOKIMIA DAN SENJATA ELEKTROMAGNETIK</li>
+            <li>ENDORSEMEN PENGENALAN TANGGAL ELEKTRONIK (A) NMA 2800 - 11/12/97</li>
+            <li>KLAUSUL PERSELISIHAN</li>
+            <li>Klausula Pemberitahuan Kerugian (30 Hari)</li>
+            <li>Klausula Tatacara Tuntutan Ganti Rugi</li>
+            <li>PENGECUALIAN KERUGIAN SIBER TERBATAS - LMA 5410</li>
+            <li>PENGECUALIAN WABAH PENYAKIT MENULAR - LMA 5396</li>
+            <li>KLAUSUL MATA UANG</li>
+            <li>JAMINAN UNTUK GEMPA BUMI (MR 505)</li>
+            <li>KLAUSUL PENGECUALIAN JALUR TRANSMISI DAN DISTRIBUSI</li>
+            <li>KLAUSUL PENGECUALIAN TERORISME DAN SABOTASE</li>
+            <li>KLAUSUL GANTI RUGI HARGA PERTANGGUNGAN</li>
+            <li>JAMINAN UNTUK KERUGIAN ATAU KERUSAKAN KARENA PEMOGOKAN KERUSUHAN DAN HURUHARA (SRCC) (MR 001)</li>
+            <li>PENGECUALIAN SIBER DAN DATA PROPERTI LMA 5401 (Diubah)</li>
+            <li>KLAUSUL PENGECUALIAN RISIKO TENAGA NUKLIR 1994 - NMA 1975 (A)</li>
+            <li>ENDORSEMEN AMERIKA SERIKAT DAN KANADA UNTUK KLAUSUL PENGECUALIAN ADANYA KONTAMINASI RADIOAKTIF, KIMIA, BIOLOGI, BIOKIMIA DAN SENJATA ELEKTROMAGNETIK 10/11/03</li>
+            <li>KLAUSUL KETENTUAN KHUSUS MENGENAI KEWAJIBAN TERTANGGUNG MENYAMPAIKAN KETERANGAN, INFORMASI DAN DATA (FAKTA MATERIAL) DAN KONSEKUENSI PELANGGARANNYA</li>
+          </ol>
+
+          <p style="margin-top: 12px; font-size: 9pt;">
+            Thank you for your attention and looking forward your acceptance/comments.
+          </p>
+
+          <div class="sign-grid">
+            <div style="font-size: 9pt;">
+              <div>Jakarta, <span class="out-doc-date"></span></div>
+              <div>Yours sincerely,</div>
+              <div style="height: 48px;"></div>
+              <div><strong>(<span class="out-marketing-name"></span>)</strong></div>
+              <div>Marketing</div>
+              <div style="font-size: 8pt; color: #333;">Email: <span class="out-marketing-email"></span></div>
+            </div>
+
+            <div class="sign-box">
+              <div>
+                <div style="font-weight: 700; text-decoration: underline; font-size: 8.5pt;">TO BE FILLED BY THE INSURED :</div>
+                <div style="font-weight: 700; font-size: 8.5pt; margin-top: 2px;">NOTED &amp; AGREED</div>
+                <div style="font-size: 8.5pt; margin-top: 4px;">By : <span class="out-insured"></span></div>
+              </div>
+              <div style="font-size: 8.5pt;">
+                <div>Sign : ________________________</div>
+                <div style="margin-top: 4px;">Date : ________________________</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-footer">
+          <div class="out-footer-left"></div>
+          <div class="out-footer-right" style="text-align: right;"></div>
+        </div>
+      </section>
+
+      <!-- HALAMAN 3: SPESIFIKASI PRODUK (BAGIAN 1) -->
+      <section class="page-a4">
+        <div class="watermark">CONFIDENTIAL</div>
+        <div class="page-content">
+          <div class="doc-header">
+            <div class="logo-left" data-slot="main-logo"></div>
+            <div class="logo-right" data-slot="right-logo"></div>
+          </div>
+
+          <div class="qs-title-block">
+            <h2 style="text-decoration: none; font-size: 11.5pt;">SPESIFIKASI PRODUK</h2>
+            <div style="font-weight: 700; font-size: 10.5pt;">ASURANSI <span class="out-product-upper">MOVABLE PROPERTY ALL RISKS</span></div>
+            <div style="font-weight: 700; font-size: 10pt; text-transform: uppercase;" class="out-channel-upper"></div>
+            <div class="qs-no">No: <span class="out-qs-no"></span></div>
+          </div>
+
+          <table class="spec-table">
+            <tr>
+              <td class="spec-key">Jalur Pemasaran</td>
+              <td class="out-channel"></td>
+            </tr>
+            <tr>
+              <td class="spec-key">Tertanggung</td>
+              <td class="out-insured"></td>
+            </tr>
+            <tr>
+              <td class="spec-key">Nama Produk</td>
+              <td class="out-product-name">Movable Property All Risks</td>
+            </tr>
+            <tr>
+              <td class="spec-key">Wording Polis</td>
+              <td>Asuransi <span class="out-product-name">Movable Property All Risks</span> BCAinsurance</td>
+            </tr>
+            <tr>
+              <td class="spec-key">Manfaat Asuransi</td>
+              <td>
+                Memberikan manfaat perlindungan atas Kerusakan atau Kehilangan pada Objek Pertanggungan yang diakibatkan oleh:
+                <table class="sub-table">
+                  <tr>
+                    <td style="width: 32%; font-weight: 700;">Kerusakan Tidak Terduga</td>
+                    <td>Menjamin apabila unit mengalami kerusakan akibat kejadian yang tidak terduga, tiba-tiba dan tidak disengaja yang tidak dikecualikan dalam polis.</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: 700;">Kerusakan Akibat Cairan</td>
+                    <td>Menjamin apabila unit rusak akibat cairan / air seperti terjatuh ke air, terendam air, masuknya air ke dalam unit dsb.</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: 700;">Kebakaran, Petir, Ledakan, Kejatuhan Pesawat &amp; Asap</td>
+                    <td>Menjamin apabila unit rusak atau hilang akibat kebakaran, sambaran petir, ledakan, kejatuhan pesawat dan asap.</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: 700;">Kerusuhan, Pemogokan, Huru-Hara (RSMDCC)</td>
+                    <td>Menjamin apabila unit rusak atau hilang akibat kerusuhan, pemogokan, huru-hara dan perbuatan jahat orang lain.</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: 700;">Bencana Alam</td>
+                    <td>Menjamin apabila unit rusak akibat gempa bumi, tsunami, letusan gunung berapi, banjir, angin topan, atau tanah longsor.</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="spec-key">Kondisi Objek Pertanggungan</td>
+              <td>
+                • Barang baru;<br />
+                • Barang orisinil, sesuai dengan standar pabrikan dan tidak dimodifikasi;<br />
+                • Bukan merupakan produk refurbishment dan/atau pasar gelap;<br />
+                • Bukan merupakan spare parts yang dijual secara terpisah.
+              </td>
+            </tr>
+            <tr>
+              <td class="spec-key">Kategori Objek Pertanggungan</td>
+              <td>
+                <strong class="out-interest"></strong> — <span class="out-brand-spec"></span><br />
+                <em>Catatan: Obyek pertanggungan dipergunakan untuk partner <span class="out-channel"></span> (B2B).</em>
+              </td>
+            </tr>
+            <tr>
+              <td class="spec-key">Nilai Pertanggungan</td>
+              <td>Maksimal s.d IDR 100.000.000 / Barang (Simulasi saat ini: <strong><span class="out-price"></span> / unit</strong>)</td>
+            </tr>
+            <tr>
+              <td class="spec-key">Kondisi Pertanggungan</td>
+              <td>
+                Rusak Sebagian: 100% dari invoice pembelian (tanpa depresiasi)<br />
+                Rusak Total: 100% dari invoice pembelian (tanpa depresiasi)
+              </td>
+            </tr>
+            <tr>
+              <td class="spec-key">Periode Pertanggungan</td>
+              <td>
+                Periode pertanggungan s.d <strong><span class="out-months"></span> (<span class="out-months-word"></span>) bulan</strong> berlaku sejak konfirmasi perangkat/unit diterima oleh pembeli/pengguna pada waktu tertentu atau pukul 12.00 siang yang mana yang terakhir.
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="doc-footer">
+          <div class="out-footer-left"></div>
+          <div class="out-footer-right" style="text-align: right;"></div>
+        </div>
+      </section>
+
+      <!-- HALAMAN 4: SPESIFIKASI PRODUK (BAGIAN 2 & SIGNATORY) -->
+      <section class="page-a4">
+        <div class="watermark">CONFIDENTIAL</div>
+        <div class="page-content">
+          <div class="doc-header">
+            <div class="logo-left" data-slot="main-logo"></div>
+            <div class="logo-right" data-slot="right-logo"></div>
+          </div>
+
+          <table class="spec-table">
+            <tr>
+              <td class="spec-key">Metode Ganti Rugi</td>
+              <td>
+                • <strong>Repairment:</strong> Penggantian 100% biaya jasa perbaikan + suku cadang dikurangi biaya deductible.<br />
+                • <strong>Replacement:</strong> Penggantian maksimal 100% dari harga unit dikurangi biaya deductible.<br />
+                • Dinyatakan total loss apabila repair cost atau surat penawaran perbaikan menunjukan &ge; 75% dari nilai unit.
+              </td>
+            </tr>
+            <tr>
+              <td class="spec-key">Premi Asuransi</td>
+              <td><strong><span class="out-annual-rate"></span>% per Tahun</strong> (Total <span class="out-total-rate"></span>% untuk <span class="out-period-num"></span> tahun). Premi diperhitungkan dari Harga Barang.</td>
+            </tr>
+            <tr>
+              <td class="spec-key">Risiko Sendiri (Deductible)</td>
+              <td>
+                • Repairment: 10% dari Nilai Klaim, Min. Rp 100.000<br />
+                • Replacement: 10% dari Nilai Klaim, Min. Rp 100.000
+              </td>
+            </tr>
+            <tr>
+              <td class="spec-key">Ketentuan Depresiasi</td>
+              <td>Tidak ada depresiasi</td>
+            </tr>
+            <tr>
+              <td class="spec-key">Diskon</td>
+              <td><strong><span class="out-disc-pct"></span>%</strong> — <span class="out-disc-note"></span></td>
+            </tr>
+            <tr>
+              <td class="spec-key">Metode Pertanggungan</td>
+              <td>
+                <strong>1. Tebusan (Reimbursement):</strong> Perbaikan/penggantian di authorized maupun non-authorized service center di seluruh Indonesia (dengan persetujuan Penanggung sebelum klaim).<br />
+                <strong>2. Tanpa Tunai (Cashless):</strong> Perbaikan/penggantian di service center rekanan Penanggung; Tertanggung hanya membayar Risiko Sendiri setelah klaim disetujui dan salvage diserahkan. Termasuk layanan Pick Up &amp; Delivery maksimal 1x pickup &amp; 1x delivery.
+              </td>
+            </tr>
+            <tr>
+              <td class="spec-key">Batas Yuridiksi</td>
+              <td>Berlaku di Wilayah Indonesia</td>
+            </tr>
+            <tr>
+              <td class="spec-key">Data / Dokumen Penutupan</td>
+              <td>
+                Semua informasi Obyek Pertanggungan harus dideklarasikan <strong>H+1</strong> sejak tanggal transaksi:<br />
+                • <strong>Data Tertanggung:</strong> Nama, No. Telepon, NIK/KITAS, Email, Alamat, Jenis Kelamin.<br />
+                • <strong>Data Barang:</strong> Nama Barang, Kategori, Tipe/Merk, Harga Barang, Serial Number, No. SKU, No. Invoice, Tanggal Terima Barang.
+              </td>
+            </tr>
+            <tr>
+              <td class="spec-key">Ketentuan Lain</td>
+              <td>
+                1) Mengikuti Ketentuan Polis Asuransi <span class="out-product-name">Movable Property All Risks</span> BCAinsurance.<br />
+                2) Spesifikasi produk (benefit, premi, komisi, TC) di atas dapat direview kembali.<br />
+                3) Detail Terms &amp; Conditions lainnya (jika ada) akan didiskusikan dan disepakati lebih lanjut.
+              </td>
+            </tr>
+          </table>
+
+          <div class="sign-grid" style="margin-top: 18px;">
+            <div style="font-size: 9pt;">
+              <div>JAKARTA, <span class="out-spec-date"></span></div>
+              <div>Hormat kami,</div>
+              <div><strong>PT ASURANSI UMUM BCA</strong></div>
+              <div style="height: 55px;"></div>
+              <div><strong><span class="out-spec-signer"></span></strong></div>
+            </div>
+
+            <div class="sign-box">
+              <div>
+                <div style="font-weight: 700; text-decoration: underline; font-size: 8.5pt;">TO BE FILLED BY THE INSURED</div>
+                <div style="font-weight: 700; font-size: 8.5pt; margin-top: 2px;">NOTED &amp; AGREED</div>
+                <div style="font-size: 8.5pt; margin-top: 4px;">by : <strong><span class="out-channel"></span></strong></div>
+              </div>
+              <div style="font-size: 8.5pt;">
+                <div>Sign : ________________________</div>
+                <div style="margin-top: 4px;">Date : ________________________</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-footer">
+          <div class="out-footer-left"></div>
+          <div class="out-footer-right" style="text-align: right;"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    /* ================= AUTHENTICATION CONFIG ================= */
+    const VALID_USERS = {
+      "bcains_underwriting": "BCAins#2026",
+      "marketing_bca": "BCAins#2026"
+    };
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const user = document.getElementById("loginUser").value.trim().toLowerCase();
+      const pass = document.getElementById("loginPass").value;
+      const errBox = document.getElementById("loginError");
+
+      if (VALID_USERS[user] && VALID_USERS[user] === pass) {
+        sessionStorage.setItem("bca_qs_auth", "true");
+        errBox.style.display = "none";
+        unlockApp();
+      } else {
+        errBox.style.display = "block";
+      }
+    }
+
+    function unlockApp() {
+      document.getElementById("loginOverlay").style.display = "none";
+      document.getElementById("appWrapper").classList.add("authenticated");
+    }
+
+    function handleLogout() {
+      sessionStorage.removeItem("bca_qs_auth");
+      document.getElementById("loginPass").value = "";
+      document.getElementById("appWrapper").classList.remove("authenticated");
+      document.getElementById("loginOverlay").style.display = "flex";
+    }
+
+    function togglePassword() {
+      const passInput = document.getElementById("loginPass");
+      const btn = event.target;
+      if (passInput.type === "password") {
+        passInput.type = "text";
+        btn.textContent = "Tutup";
+      } else {
+        passInput.type = "password";
+        btn.textContent = "Lihat";
+      }
+    }
+
+    /* ================= PRODUCT & CALCULATION ================= */
+    const PRODUCT_PRESETS = {
+      MPAR: {
+        name: "Movable Property All Risk",
+        wording: "Munich Re Wording",
+        coverage: "All risk of sudden, unforeseen and accidental physical loss or damage to the insured property from any cause (subject to policy exclusions)"
+      },
+      PAR: {
+        name: "Property All Risk",
+        wording: "Munich Re Standard PAR Wording",
+        coverage: "Sudden and unforeseen physical loss or damage to the insured property at fixed premises from any cause not specifically excluded"
+      },
+      EEI: {
+        name: "Electronic Equipment Insurance",
+        wording: "Munich Re EEI Wording",
+        coverage: "Sudden and unforeseen physical loss or damage to electronic equipment, external data media, and increased cost of working"
+      },
+      ADLD: {
+        name: "Accidental Damage & Liquid Damage (ADLD)",
+        wording: "BCA Insurance ADLD Special Wording",
+        coverage: "Accidental physical damage, cracked screen, and liquid/water damage to portable electronic devices"
+      }
+    };
+
+    const NUMBER_WORDS = {
+      12: "dua belas",
+      24: "dua puluh empat",
+      36: "tiga puluh enam",
+      48: "empat puluh delapan"
+    };
+
+    function formatIDR(num) {
+      return Math.round(num).toLocaleString("id-ID");
+    }
+
+    function handleLogoUpload(event, key) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        localStorage.setItem("bca_qs_" + key, e.target.result);
+        renderLogos();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function updateLogoSize(val) {
+      document.getElementById("logoSizeVal").textContent = val;
+      localStorage.setItem("bca_qs_logoHeight", val);
+      renderLogos();
+    }
+
+    function resetBranding() {
+      localStorage.removeItem("bca_qs_mainLogo");
+      localStorage.removeItem("bca_qs_rightLogo");
+      localStorage.removeItem("bca_qs_logoHeight");
+      document.getElementById("uploadMainLogo").value = "";
+      document.getElementById("uploadRightLogo").value = "";
+      document.getElementById("logoHeightSlider").value = 46;
+      document.getElementById("logoSizeVal").textContent = 46;
+      renderLogos();
+    }
+
+    function renderLogos() {
+      const mainLogoData = localStorage.getItem("bca_qs_mainLogo");
+      const rightLogoData = localStorage.getItem("bca_qs_rightLogo");
+      const logoHeight = localStorage.getItem("bca_qs_logoHeight") || 46;
+
+      document.querySelectorAll('[data-slot="main-logo"]').forEach((el) => {
+        if (mainLogoData) {
+          el.innerHTML = `<img src="${mainLogoData}" style="max-height:${logoHeight}px;" alt="BCA Insurance Logo" />`;
+        } else {
+          el.innerHTML = `
+            <div class="default-bca-logo">
+              <div class="brand">BCA<span>insurance</span></div>
+              <div class="tagline">Solusi tepat asuransi Anda</div>
+            </div>
+          `;
+        }
+      });
+
+      document.querySelectorAll('[data-slot="right-logo"]').forEach((el) => {
+        if (rightLogoData) {
+          el.innerHTML = `<img src="${rightLogoData}" style="max-height:${Math.max(32, logoHeight - 6)}px;" alt="OJK Logo" />`;
+        } else {
+          el.innerHTML = `
+            <div class="ojk-fallback">
+              <strong>BCAinsurance</strong><br/>Berizin dan diawasi OJK
+            </div>
+            <div class="ojk-fallback" style="border-color:#003399; color:#003399;">
+              <strong>MARI</strong><br/>Berasuransi
+            </div>
+          `;
+        }
+      });
+    }
+
+    function onProductChange() {
+      const code = document.getElementById("inProduct").value;
+      const preset = PRODUCT_PRESETS[code];
+      document.querySelectorAll(".out-product-name").forEach((el) => (el.textContent = preset.name));
+      document.querySelectorAll(".out-product-upper").forEach((el) => (el.textContent = preset.name.toUpperCase()));
+      document.querySelectorAll(".out-wording").forEach((el) => (el.textContent = preset.wording));
+      document.querySelectorAll(".out-coverage").forEach((el) => (el.textContent = preset.coverage));
+      renderAll();
+    }
+
+    function calculateAndRender() {
+      const units = parseFloat(document.getElementById("inUnits").value) || 0;
+      const price = parseFloat(document.getElementById("inPrice").value) || 0;
+      const annualRate = parseFloat(document.getElementById("inRate").value) || 0;
+      const periodYears = parseInt(document.getElementById("inPeriod").value, 10) || 1;
+      const discPct = parseFloat(document.getElementById("inDiscount").value) || 0;
+      const customPeriodLabel = document.getElementById("inPeriodLabel").value.trim();
+      const customDiscNote = document.getElementById("inDiscNote").value.trim();
+
+      const policyFee = parseFloat(document.getElementById("inPolicyFee").value) || 0;
+      const stampFee = parseFloat(document.getElementById("inStampFee").value) || 0;
+
+      const tsi = units * price;
+      const totalRatePct = +(annualRate * periodYears).toFixed(4);
+      const grossPremi = tsi * (totalRatePct / 100);
+      const totalDisc = grossPremi * (discPct / 100);
+      const netPremi = grossPremi - totalDisc;
+      const grandPremi = netPremi + policyFee + stampFee;
+
+      document.getElementById("sumTsi").textContent = "Rp " + formatIDR(tsi);
+      document.getElementById("sumRatePct").textContent = totalRatePct + "%";
+      document.getElementById("sumGross").textContent = "Rp " + formatIDR(grossPremi);
+      document.getElementById("sumDiscPct").textContent = discPct + "%";
+      document.getElementById("sumDisc").textContent = "- Rp " + formatIDR(totalDisc);
+      document.getElementById("sumNet").textContent = "Rp " + formatIDR(netPremi);
+      document.getElementById("sumGrand").textContent = "Rp " + formatIDR(grandPremi);
+
+      const months = periodYears * 12;
+      const defaultPeriodLabel = `${periodYears} Year${periodYears > 1 ? "s" : ""} (${months} Months)`;
+
+      setAll(".out-period-text", customPeriodLabel || defaultPeriodLabel);
+      setAll(".out-period-num", periodYears);
+      setAll(".out-months", months);
+      setAll(".out-months-word", NUMBER_WORDS[months] || months);
+
+      setAll(".out-units", formatIDR(units));
+      setAll(".out-price", "Rp. " + formatIDR(price));
+      setAll(".out-tsi", "Rp. " + formatIDR(tsi));
+      setAll(".out-annual-rate", annualRate);
+      setAll(".out-total-rate", totalRatePct);
+      setAll(".out-gross-premi", formatIDR(grossPremi));
+      setAll(".out-disc-pct", discPct);
+      setAll(".out-total-disc", formatIDR(totalDisc));
+      setAll(".out-net-premi", formatIDR(netPremi));
+      setAll(".out-policy-fee", "Rp " + formatIDR(policyFee));
+      setAll(".out-stamp-fee", "Rp " + formatIDR(stampFee));
+      setAll(".out-grand-premi", "Rp " + formatIDR(grandPremi));
+
+      const discNoteText = customDiscNote || (discPct > 0 ? `Discount ${discPct}%` : "Tidak ada diskon");
+      setAll(".out-disc-note", discNoteText);
+
+      renderAll();
+    }
+
+    function setAll(selector, text) {
+      document.querySelectorAll(selector).forEach((el) => (el.textContent = text));
+    }
+
+    function renderAll() {
+      setAll(".out-qs-no", document.getElementById("inQsNo").value);
+      setAll(".out-doc-date", document.getElementById("inDocDate").value);
+      setAll(".out-channel", document.getElementById("inChannel").value);
+      setAll(".out-channel-upper", document.getElementById("inChannel").value.toUpperCase());
+      setAll(".out-insured", document.getElementById("inInsured").value);
+      setAll(".out-interest", document.getElementById("inInterest").value);
+      setAll(".out-brand-spec", document.getElementById("inBrandSpec").value);
+
+      setAll(".out-marketing-name", document.getElementById("inMarketingName").value);
+      setAll(".out-marketing-email", document.getElementById("inMarketingEmail").value);
+      setAll(".out-spec-signer", document.getElementById("inSpecSigner").value);
+      setAll(".out-spec-date", document.getElementById("inSpecDate").value);
+
+      setAll(".out-footer-left", document.getElementById("inAddress").value);
+      setAll(".out-footer-right", document.getElementById("inPhone").value + " | " + document.getElementById("inWeb").value);
+    }
+
+    function downloadPDF() {
+      const element = document.getElementById("pdfDocumentArea");
+      const insuredName = document.getElementById("inChannel").value.replace(/[^a-zA-Z0-9]/g, "_");
+      const prodCode = document.getElementById("inProduct").value;
+      const filename = `QS_${prodCode}_${insuredName}.pdf`;
+
+      const opt = {
+        margin: 0,
+        filename: filename,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+        pagebreak: { mode: ["css", "legacy"] }
+      };
+
+      html2pdf().set(opt).from(element).save();
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      if (sessionStorage.getItem("bca_qs_auth") === "true") {
+        unlockApp();
+      }
+      const savedHeight = localStorage.getItem("bca_qs_logoHeight");
+      if (savedHeight) {
+        document.getElementById("logoHeightSlider").value = savedHeight;
+        document.getElementById("logoSizeVal").textContent = savedHeight;
+      }
+      renderLogos();
+      onProductChange();
+      calculateAndRender();
+    });
+  </script>
+</body>
+</html>
+
