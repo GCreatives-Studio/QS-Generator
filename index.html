@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BCAinsurance - Quotation Slip Portal</title>
+  <title>BCAinsurance - QS, UW, Partnership & PKS Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
@@ -22,11 +22,7 @@
       --font-body: "Poppins", Arial, Helvetica, sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: var(--font-body);
@@ -65,6 +61,15 @@
       margin-bottom: 22px;
     }
 
+    .login-logo-wrap img {
+      max-height: 50px;
+      max-width: 240px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
     .login-error {
       background: #fef2f2;
       color: #b91c1c;
@@ -76,10 +81,7 @@
       display: none;
     }
 
-    .input-group {
-      position: relative;
-      margin-bottom: 14px;
-    }
+    .input-group { position: relative; margin-bottom: 14px; }
 
     .input-group input {
       width: 100%;
@@ -91,7 +93,6 @@
       font-size: 13.5px;
       font-family: inherit;
       color: #1e293b;
-      transition: border-color 0.2s, background-color 0.2s;
     }
 
     .input-group input:focus {
@@ -140,12 +141,9 @@
       font-size: 14.5px;
       font-weight: 700;
       cursor: pointer;
-      transition: background-color 0.2s;
     }
 
-    .btn-login:hover {
-      background-color: var(--bca-navy-dark);
-    }
+    .btn-login:hover { background-color: var(--bca-navy-dark); }
 
     .forgot-link {
       display: inline-block;
@@ -160,16 +158,9 @@
     }
 
     /* ================= MAIN PORTAL LAYOUT ================= */
-    .app-wrapper {
-      display: none;
-      min-height: 100vh;
-    }
+    .app-wrapper { display: none; min-height: 100vh; }
+    .app-wrapper.authenticated { display: flex; }
 
-    .app-wrapper.authenticated {
-      display: flex;
-    }
-
-    /* Mobile Topbar (Hidden on Desktop) */
     .mobile-topbar {
       display: none;
       position: sticky;
@@ -182,6 +173,16 @@
       justify-content: space-between;
       gap: 10px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+    }
+
+    .mobile-topbar img {
+      max-height: 30px;
+      max-width: 150px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      filter: brightness(0) invert(1);
     }
 
     .mobile-menu-btn {
@@ -206,14 +207,12 @@
       z-index: 48;
     }
 
-    .mobile-backdrop.show {
-      display: block;
-    }
+    .mobile-backdrop.show { display: block; }
 
     /* ================= LEFT NAVY SIDEBAR ================= */
     .nav-sidebar {
-      width: 245px;
-      min-width: 245px;
+      width: 256px;
+      min-width: 256px;
       background-color: var(--bca-navy);
       color: #ffffff;
       height: 100vh;
@@ -225,14 +224,40 @@
       z-index: 50;
       box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
       transition: transform 0.24s ease;
+      overflow-y: auto;
     }
 
     .nav-brand {
-      padding: 20px 18px 16px 18px;
+      padding: 18px 18px 12px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 8px;
     }
+
+    .nav-brand img {
+      max-width: 175px;
+      max-height: 42px;
+      width: auto;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .role-chip {
+      margin: 0 18px 10px 18px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 11px;
+      color: #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .role-chip strong { color: #7dd3fc; }
 
     .nav-close-btn {
       display: none;
@@ -246,16 +271,14 @@
       cursor: pointer;
     }
 
-    .nav-menu {
-      list-style: none;
-    }
+    .nav-menu { list-style: none; }
 
     .nav-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 13px 20px;
-      font-size: 13.5px;
+      padding: 11px 18px;
+      font-size: 12.5px;
       font-weight: 500;
       color: #e2e8f0;
       cursor: pointer;
@@ -263,10 +286,7 @@
       border-left: 3px solid transparent;
     }
 
-    .nav-item:hover {
-      background-color: var(--bca-navy-hover);
-      color: #ffffff;
-    }
+    .nav-item:hover { background-color: var(--bca-navy-hover); color: #ffffff; }
 
     .nav-item.active {
       background-color: var(--bca-navy-dark);
@@ -275,40 +295,37 @@
       border-left-color: #38bdf8;
     }
 
-    .nav-item-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .nav-item-left { display: flex; align-items: center; gap: 10px; }
 
     .nav-item svg {
-      width: 17px;
-      height: 17px;
+      width: 15px;
+      height: 15px;
       stroke: currentColor;
       fill: none;
       stroke-width: 1.9;
       flex-shrink: 0;
     }
 
-    .nav-divider {
-      height: 1px;
-      background-color: rgba(255, 255, 255, 0.2);
-      margin: 2px 0;
-    }
+    .nav-divider { height: 1px; background-color: rgba(255, 255, 255, 0.15); margin: 1px 0; }
 
     .nav-badge-soon {
-      font-size: 9.5px;
+      font-size: 9px;
       background: rgba(255, 255, 255, 0.14);
       color: #cbd5e1;
-      padding: 2px 7px;
+      padding: 2px 6px;
       border-radius: 10px;
-      letter-spacing: 0.2px;
     }
 
-    .nav-footer {
-      padding: 14px 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    .nav-badge-count {
+      font-size: 10px;
+      background: #0284c7;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 99px;
     }
+
+    .nav-footer { padding: 14px 18px; border-top: 1px solid rgba(255, 255, 255, 0.15); }
 
     .btn-logout-nav {
       width: 100%;
@@ -320,50 +337,49 @@
       padding: 8px 12px;
       border-radius: 6px;
       cursor: pointer;
-      transition: 0.2s;
     }
 
-    .btn-logout-nav:hover {
-      background: #dc2626;
-      border-color: #dc2626;
-      color: #fff;
-    }
+    .btn-logout-nav:hover { background: #dc2626; border-color: #dc2626; color: #fff; }
 
     /* ================= RIGHT WORKSPACE ================= */
-    .workspace {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      min-height: 100vh;
-    }
+    .workspace { flex: 1; display: flex; flex-direction: column; min-width: 0; min-height: 100vh; }
 
-    .portal-view {
-      flex: 1;
-      padding: 32px 36px;
-      max-width: 1120px;
-      width: 100%;
-    }
+    .portal-view { flex: 1; padding: 26px 32px; max-width: 1220px; width: 100%; }
 
     .portal-header {
-      margin-bottom: 22px;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    .portal-header h2 {
-      font-size: 22px;
-      color: var(--bca-navy);
-      font-weight: 700;
+    .portal-header h2 { font-size: 21px; color: var(--bca-navy); font-weight: 700; }
+    .portal-header p { font-size: 12.5px; color: #64748b; margin-top: 4px; }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
     }
 
-    .portal-header p {
-      font-size: 13px;
-      color: #64748b;
-      margin-top: 4px;
+    .kpi-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
     }
+
+    .kpi-label { font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; }
+    .kpi-value { font-size: 20px; font-weight: 800; color: var(--bca-navy); margin-top: 4px; }
+    .kpi-sub { font-size: 11px; color: #475569; margin-top: 2px; }
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
       gap: 16px;
     }
 
@@ -386,12 +402,7 @@
       border-color: #93c5fd;
     }
 
-    .product-card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
+    .product-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 
     .product-icon {
       width: 38px;
@@ -403,78 +414,58 @@
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 12px;
+      font-size: 11.5px;
     }
 
-    .status-pill {
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 99px;
-    }
+    .status-pill { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 99px; }
+    .status-pill.ready, .status-pill.approved { background: #dcfce7; color: #15803d; }
+    .status-pill.soon { background: #f1f5f9; color: #64748b; }
+    .status-pill.pending { background: #fef3c7; color: #b45309; }
+    .status-pill.rejected { background: #fee2e2; color: #b91c1c; }
 
-    .status-pill.ready {
-      background: #dcfce7;
-      color: #15803d;
-    }
+    .product-card h3 { font-size: 15px; color: #0f172a; margin-bottom: 6px; }
+    .product-card p { font-size: 12px; color: #64748b; line-height: 1.45; margin-bottom: 14px; }
+    .card-action { font-size: 12px; font-weight: 700; color: var(--bca-blue); }
 
-    .status-pill.soon {
-      background: #f1f5f9;
-      color: #64748b;
-    }
-
-    .product-card h3 {
-      font-size: 15.5px;
-      color: #0f172a;
-      margin-bottom: 6px;
-    }
-
-    .product-card p {
-      font-size: 12.5px;
-      color: #64748b;
-      line-height: 1.45;
-      margin-bottom: 14px;
-    }
-
-    .card-action {
-      font-size: 12.5px;
-      font-weight: 700;
-      color: var(--bca-blue);
-    }
-
-    /* Template Settings Card */
-    .template-card {
+    .data-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 22px;
-      max-width: 780px;
-      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
     }
 
-    .template-card-head {
+    .data-card-top {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 14px;
-      margin-bottom: 18px;
+      align-items: flex-start;
       gap: 12px;
       flex-wrap: wrap;
+      margin-bottom: 10px;
     }
 
-    .template-card-head h3 {
-      font-size: 16px;
-      color: var(--bca-navy);
-    }
+    .data-card-title { font-size: 15px; font-weight: 700; color: var(--bca-navy); }
+    .data-card-meta { font-size: 12px; color: #64748b; margin-top: 2px; }
+    .data-card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
-    .template-card-head p {
+    .sub-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .sub-tab-btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #334155;
       font-size: 12px;
-      color: #64748b;
-      margin-top: 2px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .sub-tab-btn.active {
+      background: var(--bca-navy);
+      color: #ffffff;
+      border-color: var(--bca-navy);
     }
 
-    /* Coming Soon View */
     .coming-soon-box {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -499,28 +490,14 @@
       text-transform: uppercase;
     }
 
-    .coming-soon-box h2 {
-      font-size: 21px;
-      color: var(--bca-navy);
-      margin-bottom: 8px;
-    }
-
-    .coming-soon-box p {
-      font-size: 13px;
-      color: #64748b;
-      line-height: 1.5;
-      margin-bottom: 22px;
-    }
+    .coming-soon-box h2 { font-size: 21px; color: var(--bca-navy); margin-bottom: 8px; }
+    .coming-soon-box p { font-size: 13px; color: #64748b; line-height: 1.5; margin-bottom: 22px; }
 
     /* ================= GENERATOR WORKSPACE ================= */
-    .generator-workspace {
-      display: flex;
-      flex: 1;
-      min-width: 0;
-    }
+    .generator-workspace { display: flex; flex: 1; min-width: 0; }
 
     .sidebar {
-      width: 380px;
+      width: 385px;
       min-width: 340px;
       background: var(--panel-bg);
       border-right: 1px solid #cbd5e1;
@@ -532,23 +509,9 @@
       z-index: 20;
     }
 
-    .sidebar-header {
-      border-bottom: 2px solid var(--bca-navy);
-      padding-bottom: 10px;
-      margin-bottom: 12px;
-    }
-
-    .sidebar-header h1 {
-      font-size: 16px;
-      color: var(--bca-navy);
-      font-weight: 700;
-    }
-
-    .sidebar-header p {
-      font-size: 11px;
-      color: #64748b;
-      margin-top: 2px;
-    }
+    .sidebar-header { border-bottom: 2px solid var(--bca-navy); padding-bottom: 10px; margin-bottom: 12px; }
+    .sidebar-header h1 { font-size: 16px; color: var(--bca-navy); font-weight: 700; }
+    .sidebar-header p { font-size: 11px; color: #64748b; margin-top: 2px; }
 
     .section-box {
       background: #f8fafc;
@@ -571,21 +534,9 @@
       gap: 6px;
     }
 
-    .form-group {
-      margin-bottom: 8px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 11.5px;
-      font-weight: 600;
-      color: #334155;
-      margin-bottom: 3px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
+    .form-group { margin-bottom: 8px; }
+    .form-group label { display: block; font-size: 11.5px; font-weight: 600; color: #334155; margin-bottom: 3px; }
+    .form-group input, .form-group select, .form-group textarea {
       width: 100%;
       padding: 7px 9px;
       font-size: 12px;
@@ -594,25 +545,15 @@
       background: #fff;
       font-family: inherit;
     }
-
-    .form-group textarea {
-      resize: vertical;
-      line-height: 1.35;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
+    .form-group textarea { resize: vertical; line-height: 1.35; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
       outline: none;
       border-color: var(--bca-blue);
       box-shadow: 0 0 0 2px rgba(0, 91, 170, 0.14);
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 
     .calc-summary {
       background: var(--bca-accent);
@@ -621,13 +562,7 @@
       padding: 9px;
       font-size: 11.5px;
     }
-
-    .calc-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 3px;
-    }
-
+    .calc-row { display: flex; justify-content: space-between; margin-bottom: 3px; }
     .calc-row.total {
       border-top: 1px solid #7cc4ed;
       padding-top: 5px;
@@ -644,7 +579,6 @@
       padding: 8px;
       margin-top: 6px;
     }
-
     .sig-canvas {
       width: 100%;
       height: 76px;
@@ -655,14 +589,7 @@
       display: block;
       touch-action: none;
     }
-
-    .sig-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 6px;
-      gap: 6px;
-    }
+    .sig-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; gap: 6px; }
 
     .btn-group {
       display: grid;
@@ -677,7 +604,7 @@
     }
 
     .btn {
-      padding: 9px 11px;
+      padding: 8px 11px;
       border: none;
       border-radius: 6px;
       font-size: 12px;
@@ -687,24 +614,13 @@
       text-align: center;
     }
 
-    .btn-primary {
-      background: var(--bca-navy);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: var(--bca-navy-dark);
-    }
-
-    .btn-secondary {
-      background: #0f766e;
-      color: #fff;
-    }
-
-    .btn-secondary:hover {
-      background: #115e59;
-    }
-
+    .btn-primary { background: var(--bca-navy); color: #fff; }
+    .btn-primary:hover { background: var(--bca-navy-dark); }
+    .btn-secondary { background: #0f766e; color: #fff; }
+    .btn-secondary:hover { background: #115e59; }
+    .btn-accent { background: #0284c7; color: #fff; }
+    .btn-accent:hover { background: #0369a1; }
+    .btn-danger { background: #dc2626; color: #fff; }
     .btn-reset {
       background: #e2e8f0;
       color: #334155;
@@ -715,10 +631,7 @@
       cursor: pointer;
       font-weight: 600;
     }
-
-    .btn-reset:hover {
-      background: #cbd5e1;
-    }
+    .btn-reset:hover { background: #cbd5e1; }
 
     /* ================= PREVIEW AREA ================= */
     .preview-container {
@@ -744,12 +657,9 @@
       color: #000;
       font-size: 9.4pt;
       line-height: 1.38;
-      transform-origin: top center;
     }
 
-    .page-a4.hidden-section {
-      display: none !important;
-    }
+    .page-a4.hidden-section { display: none !important; }
 
     .watermark {
       position: absolute;
@@ -765,10 +675,7 @@
       z-index: 0;
     }
 
-    .page-content {
-      position: relative;
-      z-index: 1;
-    }
+    .page-content { position: relative; z-index: 1; }
 
     .doc-header {
       display: flex;
@@ -780,56 +687,11 @@
       gap: 8px;
     }
 
-    .doc-header.full-header-img {
-      display: block;
-      border-bottom: none;
-      padding-bottom: 4px;
-    }
+    .doc-header.full-header-img { display: block; border-bottom: none; padding-bottom: 4px; }
+    .doc-header.full-header-img img { width: 100%; max-height: 75px; object-fit: contain; display: block; }
 
-    .doc-header.full-header-img img {
-      width: 100%;
-      max-height: 75px;
-      object-fit: contain;
-      display: block;
-    }
-
-    .logo-left {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-align: right;
-    }
-
-    .logo-right img {
-      max-height: 36px;
-      object-fit: contain;
-    }
-
-    .ojk-badge-group {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .ojk-box {
-      border: 1px solid #94a3b8;
-      padding: 3px 7px;
-      border-radius: 3px;
-      font-size: 6.8pt;
-      line-height: 1.2;
-      color: #1e293b;
-      text-align: center;
-    }
-
-    .ojk-box.mari {
-      border-color: var(--bca-blue);
-      color: var(--bca-blue);
-    }
+    .logo-left { display: flex; align-items: center; }
+    .logo-left img { height: 44px; width: auto; display: block; object-fit: contain; }
 
     .doc-footer {
       border-top: 1.5px solid var(--bca-blue);
@@ -844,18 +706,8 @@
       z-index: 1;
     }
 
-    .doc-footer.full-footer-img {
-      display: block;
-      border-top: none;
-      padding-top: 4px;
-    }
-
-    .doc-footer.full-footer-img img {
-      width: 100%;
-      max-height: 60px;
-      object-fit: contain;
-      display: block;
-    }
+    .doc-footer.full-footer-img { display: block; border-top: none; padding-top: 4px; }
+    .doc-footer.full-footer-img img { width: 100%; max-height: 60px; object-fit: contain; display: block; }
 
     .qs-header-bar {
       display: flex;
@@ -865,62 +717,18 @@
       padding-bottom: 5px;
       margin-bottom: 12px;
     }
+    .qs-header-bar h2 { font-size: 14pt; font-weight: 700; letter-spacing: 0.4px; color: var(--bca-dark-blue); }
+    .qs-header-bar .qs-no { font-size: 9.5pt; font-weight: 700; }
 
-    .qs-header-bar h2 {
-      font-size: 14pt;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      color: var(--bca-dark-blue);
-    }
+    .qs-title-block { text-align: center; margin-bottom: 10px; }
+    .qs-title-block h2 { font-size: 13.5pt; font-weight: 700; letter-spacing: 0.5px; color: var(--bca-dark-blue); }
+    .qs-title-block .qs-no { font-size: 9.5pt; font-weight: 700; margin-top: 2px; }
 
-    .qs-header-bar .qs-no {
-      font-size: 9.5pt;
-      font-weight: 700;
-    }
-
-    .qs-title-block {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .qs-title-block h2 {
-      font-size: 13.5pt;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      color: var(--bca-dark-blue);
-    }
-
-    .qs-title-block .qs-no {
-      font-size: 9.5pt;
-      font-weight: 700;
-      margin-top: 2px;
-    }
-
-    table.qs-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 10px;
-    }
-
-    table.qs-table td {
-      padding: 4px 5px;
-      vertical-align: top;
-    }
-
-    table.qs-table td.label-col {
-      width: 28%;
-      font-weight: 700;
-      color: #0f172a;
-    }
-
-    table.qs-table td.colon-col {
-      width: 3%;
-      font-weight: 700;
-    }
-
-    table.qs-table td.val-col {
-      width: 69%;
-    }
+    table.qs-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    table.qs-table td { padding: 4px 5px; vertical-align: top; }
+    table.qs-table td.label-col { width: 28%; font-weight: 700; color: #0f172a; }
+    table.qs-table td.colon-col { width: 3%; font-weight: 700; }
+    table.qs-table td.val-col { width: 69%; }
 
     .premi-box {
       border: 1px solid #334155;
@@ -929,27 +737,10 @@
       margin-top: 8px;
       background: #f8fafc;
     }
-
-    table.premi-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    table.premi-table td {
-      padding: 3px 4px;
-    }
-
-    table.premi-table td.num {
-      text-align: right;
-      font-weight: 600;
-      width: 22%;
-    }
-
-    table.premi-table td.curr {
-      width: 6%;
-      text-align: right;
-    }
-
+    table.premi-table { width: 100%; border-collapse: collapse; }
+    table.premi-table td { padding: 3px 4px; }
+    table.premi-table td.num { text-align: right; font-weight: 600; width: 22%; }
+    table.premi-table td.curr { width: 6%; text-align: right; }
     table.premi-table tr.total-row td {
       border-top: 1.5px solid #000;
       font-weight: 700;
@@ -957,70 +748,17 @@
       color: var(--bca-dark-blue);
     }
 
-    .clauses-list {
-      padding-left: 16px;
-      font-size: 8.2pt;
-      line-height: 1.36;
-      list-style-type: disc;
-    }
+    .clauses-list { padding-left: 16px; font-size: 8.2pt; line-height: 1.36; list-style-type: disc; }
+    .clauses-list li { margin-bottom: 2px; }
 
-    .clauses-list li {
-      margin-bottom: 2px;
-    }
+    table.spec-table { width: 100%; border-collapse: collapse; font-size: 8.7pt; margin-bottom: 10px; }
+    table.spec-table th, table.spec-table td { border: 1px solid #334155; padding: 5px 7px; vertical-align: top; }
+    table.spec-table th { background: #e2e8f0; color: #0f172a; text-align: left; }
+    table.spec-table td.spec-key { width: 28%; font-weight: 700; background-color: #f1f5f9; color: #0f172a; }
 
-    table.spec-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 8.7pt;
-    }
-
-    table.spec-table th,
-    table.spec-table td {
-      border: 1px solid #334155;
-      padding: 5px 7px;
-      vertical-align: top;
-    }
-
-    table.spec-table td.spec-key {
-      width: 27%;
-      font-weight: 700;
-      background-color: #f1f5f9;
-      color: #0f172a;
-    }
-
-    .sub-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 4px;
-    }
-
-    .sub-table td {
-      border: 1px solid #64748b;
-      padding: 3.5px 5px;
-      font-size: 8.2pt;
-    }
-
-    .sign-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 26px;
-      margin-top: 16px;
-    }
-
-    .our-sig-area {
-      min-height: 54px;
-      display: flex;
-      align-items: center;
-      margin: 4px 0;
-    }
-
-    .our-sig-img {
-      max-height: 50px;
-      max-width: 180px;
-      object-fit: contain;
-      display: block;
-    }
-
+    .sign-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 16px; }
+    .our-sig-area { min-height: 54px; display: flex; align-items: center; margin: 4px 0; }
+    .our-sig-img { max-height: 50px; max-width: 180px; object-fit: contain; display: block; }
     .sign-box {
       border: 1px solid #334155;
       border-radius: 4px;
@@ -1031,234 +769,47 @@
       justify-content: space-between;
       background: #ffffff;
     }
-
-    .partner-blank-space {
-      height: 44px;
+    .partner-blank-space { height: 44px; }
+    .sig-line-row { margin-top: 10px; padding-top: 6px; border-top: 1px dashed #94a3b8; }
+    .tier-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 700;
+      background: #dbeafe;
+      color: var(--bca-navy);
     }
 
-    .sig-line-row {
-      margin-top: 10px;
-      padding-top: 6px;
-      border-top: 1px dashed #94a3b8;
-    }
-
-    /* ================= MOBILE VIEW RESPONSIVE ================= */
     @media (max-width: 900px) {
-      .app-wrapper.authenticated {
-        display: block;
-      }
-
-      .mobile-topbar {
-        display: flex;
-      }
-
-      .nav-sidebar {
-        position: fixed;
-        left: 0;
-        top: 0;
-        height: 100vh;
-        transform: translateX(-100%);
-      }
-
-      .nav-sidebar.open {
-        transform: translateX(0);
-      }
-
-      .nav-close-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .portal-view {
-        padding: 18px 14px 36px 14px;
-      }
-
-      .portal-header h2 {
-        font-size: 19px;
-      }
-
-      .template-card {
-        padding: 16px;
-      }
-
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-
-      .generator-workspace {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        width: 100%;
-        min-width: 0;
-        height: auto;
-        position: static;
-        border-right: none;
-        border-bottom: 1px solid #cbd5e1;
-        padding: 14px;
-      }
-
-      .btn-group {
-        position: static;
-        margin-top: 12px;
-        padding-top: 0;
-        border-top: none;
-      }
-
-      .preview-container {
-        width: 100%;
-        padding: 14px 10px 28px 10px;
-        gap: 14px;
-        overflow-x: hidden;
-      }
-
-      .page-a4 {
-        width: 100%;
-        min-height: auto;
-        padding: 14px 12px;
-        font-size: 8.2pt;
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
-      }
-
-      .doc-header {
-        flex-wrap: wrap;
-        padding-bottom: 6px;
-        margin-bottom: 10px;
-      }
-
-      .ojk-badge-group {
-        gap: 4px;
-      }
-
-      .ojk-box {
-        font-size: 5.8pt;
-        padding: 2px 5px;
-      }
-
-      .qs-header-bar {
-        flex-direction: column;
-        gap: 2px;
-      }
-
-      .qs-header-bar h2 {
-        font-size: 11.5pt;
-      }
-
-      .qs-header-bar .qs-no {
-        font-size: 8pt;
-      }
-
-      table.qs-table td {
-        padding: 3px 3px;
-        font-size: 7.8pt;
-      }
-
-      table.qs-table td.label-col {
-        width: 34%;
-      }
-
-      table.qs-table td.colon-col {
-        width: 3%;
-      }
-
-      table.qs-table td.val-col {
-        width: 63%;
-      }
-
-      .premi-box {
-        padding: 8px;
-        font-size: 7.8pt;
-      }
-
-      table.premi-table td.num {
-        width: 28%;
-      }
-
-      table.premi-table td.curr {
-        width: 8%;
-      }
-
-      table.spec-table {
-        font-size: 7.4pt;
-      }
-
-      table.spec-table th,
-      table.spec-table td {
-        padding: 4px 5px;
-      }
-
-      table.spec-table td.spec-key {
-        width: 32%;
-      }
-
-      .sign-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        margin-top: 12px;
-      }
-
-      .sign-box {
-        min-height: auto;
-        padding: 8px 10px;
-      }
-
-      .partner-blank-space {
-        height: 28px;
-      }
-
-      .doc-footer {
-        flex-direction: column;
-        gap: 4px;
-        font-size: 6.5pt;
-      }
-
-      .doc-footer .out-footer-right {
-        text-align: left !important;
-      }
-
-      .watermark {
-        font-size: 36pt;
-      }
+      .app-wrapper.authenticated { display: block; }
+      .mobile-topbar { display: flex; }
+      .nav-sidebar { position: fixed; left: 0; top: 0; height: 100vh; transform: translateX(-100%); }
+      .nav-sidebar.open { transform: translateX(0); }
+      .nav-close-btn { display: inline-flex; align-items: center; justify-content: center; }
+      .portal-view { padding: 18px 14px 36px 14px; }
+      .portal-header h2 { font-size: 19px; }
+      .data-card { padding: 15px; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .generator-workspace { flex-direction: column; }
+      .sidebar { width: 100%; min-width: 0; height: auto; position: static; border-right: none; border-bottom: 1px solid #cbd5e1; padding: 14px; }
+      .btn-group { position: static; margin-top: 12px; padding-top: 0; border-top: none; }
+      .preview-container { width: 100%; padding: 14px 10px 28px 10px; gap: 14px; overflow-x: hidden; }
+      .page-a4 { width: 100%; min-height: auto; padding: 14px 12px; font-size: 8.2pt; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1); }
+      .sign-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 12px; }
+      .doc-footer { flex-direction: column; gap: 4px; font-size: 6.5pt; }
+      .doc-footer .out-footer-right { text-align: left !important; }
+      .watermark { font-size: 36pt; }
     }
 
     @media print {
-      body {
-        background: #fff;
-      }
-      .login-overlay,
-      .mobile-topbar,
-      .mobile-backdrop,
-      .nav-sidebar,
-      .sidebar {
-        display: none !important;
-      }
-      .app-wrapper,
-      .workspace,
-      .generator-workspace {
-        display: block !important;
-      }
-      .preview-container {
-        padding: 0;
-        gap: 0;
-      }
-      .page-a4 {
-        width: 210mm;
-        min-height: 296mm;
-        padding: 12mm 15mm 14mm 15mm;
-        box-shadow: none;
-        margin: 0;
-        page-break-after: always;
-        height: 297mm;
-        font-size: 9.4pt;
-      }
-      .page-a4.hidden-section {
-        display: none !important;
-      }
-      .page-a4:last-child {
-        page-break-after: auto;
-      }
+      body { background: #fff; }
+      .login-overlay, .mobile-topbar, .mobile-backdrop, .nav-sidebar, .sidebar, .no-print { display: none !important; }
+      .app-wrapper, .workspace, .generator-workspace { display: block !important; }
+      .preview-container { padding: 0; gap: 0; }
+      .page-a4 { width: 210mm; min-height: 296mm; padding: 12mm 15mm 14mm 15mm; box-shadow: none; margin: 0; page-break-after: always; font-size: 9.4pt; }
+      .page-a4.hidden-section { display: none !important; }
+      .page-a4:last-child { page-break-after: auto; }
     }
   </style>
 </head>
@@ -1306,11 +857,8 @@
 
   <!-- ================= MAIN PORTAL ================= -->
   <div class="app-wrapper" id="appWrapper">
-
-    <!-- BACKDROP MOBILE -->
     <div class="mobile-backdrop" id="mobileBackdrop" onclick="closeMobileMenu()"></div>
 
-    <!-- SIDEBAR NAVIGASI KIRI (BIRU TUA + LOGO BCAI PUTIH) -->
     <aside class="nav-sidebar" id="navSidebar">
       <div>
         <div class="nav-brand">
@@ -1318,20 +866,52 @@
           <button type="button" class="nav-close-btn" onclick="closeMobileMenu()" aria-label="Tutup Menu">&times;</button>
         </div>
 
+        <div class="role-chip">
+          <span>Role:</span>
+          <strong id="sidebarRoleLabel">Marketing</strong>
+        </div>
+
         <ul class="nav-menu">
           <li class="nav-item active" data-nav="HOME" onclick="switchNav('HOME')">
             <span class="nav-item-left">
               <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-              <span>Beranda</span>
+              <span>Dashboard &amp; QS</span>
             </span>
           </li>
           <div class="nav-divider"></div>
 
-          <li class="nav-item" data-nav="MPAR" onclick="switchNav('MPAR')">
+          <li class="nav-item" data-nav="NEW_QS" onclick="switchNav('NEW_QS')">
             <span class="nav-item-left">
-              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
-              <span>MPAR</span>
+              <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+              <span>New QS (MPAR)</span>
             </span>
+          </li>
+          <div class="nav-divider"></div>
+
+          <li class="nav-item" data-nav="DRAFTS" onclick="switchNav('DRAFTS')">
+            <span class="nav-item-left">
+              <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+              <span>Draft QS</span>
+            </span>
+            <span class="nav-badge-count" id="draftCountBadge">1</span>
+          </li>
+          <div class="nav-divider"></div>
+
+          <li class="nav-item" data-nav="UW_APPROVAL" onclick="switchNav('UW_APPROVAL')">
+            <span class="nav-item-left">
+              <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              <span>Akseptasi UW</span>
+            </span>
+            <span class="nav-badge-count" id="uwPendingBadge">0</span>
+          </li>
+          <div class="nav-divider"></div>
+
+          <li class="nav-item" data-nav="KERJASAMA" onclick="switchNav('KERJASAMA')">
+            <span class="nav-item-left">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span>Penawaran Kerjasama</span>
+            </span>
+            <span class="nav-badge-count" id="ksPendingBadge">0</span>
           </li>
           <div class="nav-divider"></div>
 
@@ -1368,10 +948,7 @@
       </div>
     </aside>
 
-    <!-- AREA KONTEN KANAN -->
     <div class="workspace">
-
-      <!-- TOPBAR KHUSUS HP -->
       <header class="mobile-topbar">
         <button type="button" class="mobile-menu-btn" onclick="openMobileMenu()">
           <span>☰</span>
@@ -1380,24 +957,117 @@
         <div id="mobileTopbarLogo"></div>
       </header>
 
-      <!-- 1. BERANDA (3 PRODUK: MPAR, PA, TRAVEL) -->
+      <!-- 1. DASHBOARD TRACKING QS KELUAR & APPROVAL -->
       <section class="portal-view" id="viewHome">
         <div class="portal-header">
-          <h2>Quotation Slip Portal</h2>
-          <p>Pilih lini produk untuk membuat Quotation Slip atau atur template header &amp; footer umum.</p>
+          <div>
+            <h2>Dashboard Tracking QS &amp; Portal</h2>
+            <p>Pantau total QS yang keluar, cari berdasarkan No. QS / penawaran, dan cek status approval.</p>
+          </div>
+          <div class="data-card-actions">
+            <button type="button" class="btn btn-primary" onclick="switchNav('NEW_QS')">+ New QS (MPAR)</button>
+            <button type="button" class="btn btn-accent" onclick="switchNav('KERJASAMA')">Penawaran Kerjasama</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Total QS Keluar</div>
+            <div class="kpi-value" id="kpiTotalQs">0</div>
+            <div class="kpi-sub" id="kpiTotalQsPremi">Total Premi: Rp 0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">QS Sudah Approve</div>
+            <div class="kpi-value" id="kpiApprovedQs">0</div>
+            <div class="kpi-sub">Disetujui Underwriter</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Menunggu UW</div>
+            <div class="kpi-value" id="kpiPendingQs">0</div>
+            <div class="kpi-sub">Dalam proses akseptasi</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Penawaran Kerjasama</div>
+            <div class="kpi-value" id="kpiTotalKs">0</div>
+            <div class="kpi-sub" id="kpiApprovedKsSub">0 Approved</div>
+          </div>
+        </div>
+
+        <div class="data-card">
+          <div class="section-title"><span>Tracking QS Keluar (Search No. QS / Penawaran &amp; Status)</span></div>
+          <div class="grid-3" style="margin-bottom: 12px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label>Cari No. QS / Penawaran / Insured</label>
+              <input type="text" id="qsSearchInput" placeholder="Ketik No. QS, nama penawaran, atau insured..." oninput="renderQsTrackingTable()" />
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label>Filter Status Approval</label>
+              <select id="qsStatusFilter" onchange="renderQsTrackingTable()">
+                <option value="ALL">Semua Status</option>
+                <option value="APPROVED">Approved (Sudah Approve)</option>
+                <option value="PENDING_UW">Menunggu UW</option>
+                <option value="DRAFT_ONLY">Draft / Belum Diajukan</option>
+                <option value="REJECTED">Revisi / Ditolak</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label>Aksi Cepat</label>
+              <button type="button" class="btn btn-reset" style="width:100%; height:33px;" onclick="logCurrentQsToTracker()">+ Catat QS Aktif ke Tracker</button>
+            </div>
+          </div>
+
+          <div style="overflow-x:auto;">
+            <table class="spec-table" style="margin-bottom:0;">
+              <thead>
+                <tr>
+                  <th>No. QS</th>
+                  <th>Nama Penawaran / Insured</th>
+                  <th>TSI</th>
+                  <th>Total Premi</th>
+                  <th>Status UW</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="qsTrackerBody"></tbody>
+            </table>
+          </div>
         </div>
 
         <div class="product-grid">
-          <div class="product-card" onclick="switchNav('MPAR')">
+          <div class="product-card" onclick="switchNav('NEW_QS')">
             <div>
               <div class="product-card-top">
-                <div class="product-icon">MPAR</div>
-                <span class="status-pill ready">Tersedia</span>
+                <div class="product-icon">NEW</div>
+                <span class="status-pill ready">Blank Form</span>
               </div>
-              <h3>Movable Property All Risk</h3>
-              <p>Generator Quotation Slip &amp; spesifikasi produk MPAR (Asuransi Barang Bergerak) dengan opsi bahasa English / Bahasa Indonesia.</p>
+              <h3>New QS (MPAR)</h3>
+              <p>Mulai Quotation Slip baru dengan form kosong dan wording dikosongkan di awal.</p>
             </div>
-            <div class="card-action">Buka Generator QS →</div>
+            <div class="card-action">Mulai New QS →</div>
+          </div>
+
+          <div class="product-card" onclick="switchNav('DRAFTS')">
+            <div>
+              <div class="product-card-top">
+                <div class="product-icon">DRAFT</div>
+                <span class="status-pill ready">Tersimpan</span>
+              </div>
+              <h3>Draft QS</h3>
+              <p>Akses, edit, atau simpan draft penawaran (termasuk data contoh Teressa).</p>
+            </div>
+            <div class="card-action">Buka Daftar Draft →</div>
+          </div>
+
+          <div class="product-card" onclick="switchNav('KERJASAMA')">
+            <div>
+              <div class="product-card-top">
+                <div class="product-icon">B2B</div>
+                <span class="status-pill ready">Partner &amp; PKS</span>
+              </div>
+              <h3>Penawaran Kerjasama</h3>
+              <p>Form pengajuan internal, template untuk partner, approval BS/Prodev, dan terbit No. PKS.</p>
+            </div>
+            <div class="card-action">Buka Penawaran Kerjasama →</div>
           </div>
 
           <div class="product-card" onclick="switchNav('PA')">
@@ -1407,7 +1077,7 @@
                 <span class="status-pill soon">Coming Soon</span>
               </div>
               <h3>Personal Accident</h3>
-              <p>Template Quotation Slip perlindungan kecelakaan diri untuk pengembangan fitur berikutnya.</p>
+              <p>Template Quotation Slip perlindungan kecelakaan diri untuk pengembangan berikutnya.</p>
             </div>
             <div class="card-action" style="color:#64748b;">Coming Soon</div>
           </div>
@@ -1426,18 +1096,248 @@
         </div>
       </section>
 
-      <!-- 2. SETTING TEMPLATE (GENERAL HEADER, FOOTER & LOGO) -->
-      <section class="portal-view" id="viewTemplate" style="display: none;">
+      <!-- 2. DAFTAR DRAFT QS -->
+      <section class="portal-view" id="viewDrafts" style="display: none;">
         <div class="portal-header">
-          <h2>Setting Template</h2>
-          <p>Pengaturan general logo, header, dan footer yang berlaku untuk Quotation Slip semua produk.</p>
+          <div>
+            <h2>Draft Quotation Slip</h2>
+            <p>Pilih draft untuk dimuat ke editor MPAR dan dilanjutkan pengisiannya.</p>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="switchNav('NEW_QS')">+ Buat New QS Kosong</button>
+        </div>
+        <div id="draftListContainer"></div>
+      </section>
+
+      <!-- 3. WORKSPACE AKSEPTASI UNDERWRITER (uw_bcai) -->
+      <section class="portal-view" id="viewUwApproval" style="display: none;">
+        <div class="portal-header">
+          <div>
+            <h2>Workspace Akseptasi Underwriter</h2>
+            <p id="uwSubtitleInfo">Tinjau pengajuan akseptasi QS dari Marketing dan berikan status akseptasi / catatan UW.</p>
+          </div>
+          <button type="button" class="btn btn-accent" onclick="switchNav('NEW_QS')">Kembali ke QS</button>
+        </div>
+        <div id="uwQueueContainer"></div>
+      </section>
+
+      <!-- 4. PENAWARAN KERJASAMA (FORM PENGAJUAN INTERNAL + TEMPLATE PARTNER + WORKFLOW BS/PRODEV/PKS) -->
+      <section class="portal-view" id="viewKerjasama" style="display: none;">
+        <div class="portal-header">
+          <div>
+            <h2>Penawaran Kerjasama — MPAR</h2>
+            <p>Form pengajuan internal, template penawaran untuk partner, workflow BS &amp; Prodev, serta penerbitan No. PKS.</p>
+          </div>
+          <div class="data-card-actions no-print">
+            <button type="button" class="btn btn-reset" onclick="resetKerjasamaForm()">Reset Form</button>
+            <button type="button" class="btn btn-secondary" onclick="window.print()">🖨 Cetak / Simpan PDF</button>
+          </div>
         </div>
 
-        <div class="template-card">
-          <div class="template-card-head">
+        <div class="sub-tabs no-print">
+          <button type="button" class="sub-tab-btn active" id="tabKsForm" onclick="switchKsTab('FORM')">1. Form Pengajuan &amp; Template Partner</button>
+          <button type="button" class="sub-tab-btn" id="tabKsMonitor" onclick="switchKsTab('MONITOR')">2. Monitoring Approval &amp; Terbit PKS</button>
+        </div>
+
+        <!-- TAB 1: FORM PENGAJUAN INTERNAL + TEMPLATE UNTUK PARTNER -->
+        <div id="ksTabFormPanel">
+          <div class="data-card no-print">
+            <div class="section-title"><span>A. Form Pengajuan Kerjasama Internal (Acuan Data &amp; Kelas)</span></div>
+            <div class="grid-3">
+              <div class="form-group">
+                <label>No. Surat Penawaran</label>
+                <input type="text" id="ksLetterNo" value="SPH/018/BCAI-MKT/XI/2026" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Judul / Nama Penawaran Kerjasama</label>
+                <input type="text" id="ksTitle" placeholder="Contoh: Kerjasama MPAR Partner Elektronik" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Nama Perusahaan / Partner &amp; PIC</label>
+                <input type="text" id="ksCompany" placeholder="Contoh: PT Mitra Retail (Up. Bpk/Ibu ...)" oninput="renderKerjasama()" />
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div class="form-group">
+                <label>Kategori Barang / Objek</label>
+                <input type="text" id="ksCategory" placeholder="Contoh: Laptop, Gadget, Peralatan" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Potensi Premi / Tahun (Rp) — Parameter Kelas</label>
+                <input type="number" id="ksAnnualPremiPot" value="650000000" step="10000000" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Estimasi Volume / Bulan (Unit) &amp; Avg Harga</label>
+                <div class="grid-2" style="gap:6px;">
+                  <input type="number" id="ksMonthlyVol" placeholder="Unit/bln" oninput="renderKerjasama()" />
+                  <input type="number" id="ksAvgPrice" placeholder="Harga (Rp)" oninput="renderKerjasama()" />
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div class="form-group">
+                <label>Komisi 1 (%)</label>
+                <input type="number" id="ksComm1" value="30" step="0.5" min="0" max="100" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Komisi 2 (%)</label>
+                <input type="number" id="ksComm2" value="10" step="0.5" min="0" max="100" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Keterangan Pajak / Basis Komisi</label>
+                <input type="text" id="ksCommTax" value="Exclude / Include Pajak (sesuai kesepakatan)" oninput="renderKerjasama()" />
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; background:#f1f5f9; padding:8px 12px; border-radius:8px; margin-bottom:10px;">
+              <div>
+                <span class="tier-badge" id="ksTierBadge">Kelas B</span>
+                <span style="font-size:12px; color:#334155; margin-left:8px;" id="ksTierDesc"></span>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:12px; font-weight:700; color:var(--bca-navy);" id="ksRecCommText"></div>
+                <div style="font-size:11px; color:#475569;" id="ksCommCheckText"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="data-card no-print">
+            <div class="section-title"><span>B. Isi Template Penawaran Kerjasama Untuk Partner</span></div>
+
+            <div class="form-group">
+              <label>Jenis Program</label>
+              <input type="text" id="ksProgramType" value="Program Perlindungan Movable Property All Risk (MPAR) Partner" oninput="renderKerjasama()" />
+            </div>
+
+            <div class="form-group">
+              <label>Cakupan Manfaat Utama</label>
+              <textarea id="ksMainBenefits" rows="3" oninput="renderKerjasama()">Menjamin kerugian atau kerusakan fisik secara tiba-tiba dan tidak terduga atas barang yang diasuransikan sesuai syarat dan ketentuan polis MPAR yang berlaku.</textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Keunggulan Layanan</label>
+              <textarea id="ksServiceAdvantages" rows="3" oninput="renderKerjasama()">Proses pengajuan dan pelaporan yang terstruktur, dukungan tim operasional &amp; klaim BCAinsurance, serta skema komersial yang kompetitif dan fleksibel.</textarea>
+            </div>
+
+            <div class="grid-3">
+              <div class="form-group">
+                <label>Estimasi Premi (Teks / Ringkasan)</label>
+                <input type="text" id="ksPremiEstimate" placeholder="Contoh: Rincian perhitungan premi terlampir / sesuai rate" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Masa Berlaku Penawaran (Hari)</label>
+                <select id="ksValidityDays" onchange="renderKerjasama()">
+                  <option value="14">14 hari sejak tanggal surat ini diterbitkan</option>
+                  <option value="30">30 hari sejak tanggal surat ini diterbitkan</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Tanggal Surat Penawaran</label>
+                <input type="text" id="ksOfferDate" value="28 November 2026" oninput="renderKerjasama()" />
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom:0;">
+              <label>Special Condition Terms (Custom)</label>
+              <textarea id="ksSpecialTerms" rows="3" placeholder="Ketentuan khusus tambahan untuk partner..." oninput="renderKerjasama()"></textarea>
+            </div>
+
+            <div class="data-card-actions" style="margin-top: 12px;">
+              <button type="button" class="btn btn-accent" id="btnSubmitKsMkt" onclick="submitKerjasamaFromMarketing()">📤 Ajukan Penawaran Kerjasama (Ke BS &amp; Prodev)</button>
+              <button type="button" class="btn btn-primary" id="btnDirectGenerateBs" onclick="directGenerateByBs()">⚡ Generate Langsung (Khusus BS - Tanpa Approval)</button>
+            </div>
+            <div style="font-size:11px; color:#64748b; margin-top:6px;">
+              *Catatan: User <strong>bs_bcai</strong> dapat langsung generate penawaran kerjasama tanpa perlu approval. User <strong>mkt_bcai</strong> mengajukan untuk approval BS &amp; Prodev.
+            </div>
+          </div>
+
+          <!-- DOKUMEN SURAT PENAWARAN KERJASAMA UNTUK PARTNER -->
+          <div class="page-a4" style="width:100%; min-height:auto; padding:18px;">
+            <div class="page-content">
+              <div class="doc-header" data-header-bar>
+                <div class="logo-left" data-slot="main-logo"></div>
+                <div class="logo-right" data-slot="right-logo"></div>
+              </div>
+
+              <div class="qs-title-block">
+                <h2>SURAT PENAWARAN KERJASAMA ASURANSI</h2>
+                <div class="qs-no">No. Surat: <span id="outKsLetterNo">SPH/018/BCAI-MKT/XI/2026</span> &bull; <span id="outKsOfferDate"></span></div>
+              </div>
+
+              <div style="font-size:9pt; margin-bottom:10px; line-height:1.45;">
+                <div>Kepada Yth. <strong><span id="outKsPartnerCompany">Partner</span></strong></div>
+                <div style="margin-top:4px;" id="outKsPartnerSub"></div>
+                <div style="margin-top:4px; color:#334155;">
+                  Dengan hormat, bersama surat ini kami sampaikan penawaran kerjasama program asuransi dari <strong>PT Asuransi Umum BCA</strong> dengan cakupan utama sebagai berikut:
+                </div>
+              </div>
+
+              <table class="spec-table">
+                <tr>
+                  <td class="spec-key">Jenis Program</td>
+                  <td id="outKsProgramType"></td>
+                </tr>
+                <tr>
+                  <td class="spec-key">Cakupan Manfaat Utama</td>
+                  <td id="outKsMainBenefits"></td>
+                </tr>
+                <tr>
+                  <td class="spec-key">Keunggulan Layanan</td>
+                  <td id="outKsServiceAdvantages"></td>
+                </tr>
+                <tr>
+                  <td class="spec-key">Commercial Terms</td>
+                  <td id="outKsPartnerComm"></td>
+                </tr>
+                <tr>
+                  <td class="spec-key">Special Condition Terms</td>
+                  <td id="outKsPartnerSpecial"></td>
+                </tr>
+                <tr>
+                  <td class="spec-key">Estimasi Premi &amp; Masa Berlaku</td>
+                  <td id="outKsValidityText"></td>
+                </tr>
+                <tr id="rowKsPksReference" style="display:none;">
+                  <td class="spec-key">Referensi No. PKS</td>
+                  <td id="outKsPksReference"></td>
+                </tr>
+              </table>
+
+              <div style="font-size:8.7pt; color:#1e293b; margin-top:10px; line-height:1.45;">
+                Demikian penawaran kerjasama ini kami sampaikan. Atas perhatian dan kerja sama yang terjalin, kami ucapkan terima kasih.<br /><br />
+                Hormat kami,<br />
+                <strong>PT ASURANSI UMUM BCA</strong>
+              </div>
+            </div>
+
+            <div class="doc-footer" data-footer-bar>
+              <div class="out-footer-left"></div>
+              <div class="out-footer-right" style="text-align: right;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: MONITORING APPROVAL BS & PRODEV + PENERBITAN NO. PKS -->
+        <div id="ksTabMonitorPanel" style="display:none;">
+          <div id="ksMonitorListContainer"></div>
+        </div>
+      </section>
+
+      <!-- 5. SETTING TEMPLATE -->
+      <section class="portal-view" id="viewTemplate" style="display: none;">
+        <div class="portal-header">
+          <div>
+            <h2>Setting Template</h2>
+            <p>Pengaturan general logo, header, dan footer yang berlaku untuk dokumen di portal.</p>
+          </div>
+        </div>
+
+        <div class="data-card" style="max-width:780px;">
+          <div class="data-card-top">
             <div>
               <h3>Logo, Header &amp; Footer Umum</h3>
-              <p>Perubahan di sini otomatis diterapkan ke seluruh halaman dokumen QS.</p>
+              <p class="data-card-meta">Perubahan di sini otomatis diterapkan ke seluruh halaman dokumen.</p>
             </div>
             <button type="button" class="btn-reset" onclick="resetBranding()">Reset Default</button>
           </div>
@@ -1465,8 +1365,8 @@
           </div>
 
           <div class="form-group">
-            <label>Logo Height: <span id="logoSizeVal">38</span>px</label>
-            <input type="range" id="logoHeightSlider" min="24" max="64" value="38" oninput="updateLogoSize(this.value)" />
+            <label>Logo Height: <span id="logoSizeVal">44</span>px</label>
+            <input type="range" id="logoHeightSlider" min="28" max="70" value="44" oninput="updateLogoSize(this.value)" />
           </div>
 
           <div class="form-group">
@@ -1487,29 +1387,26 @@
         </div>
       </section>
 
-      <!-- 3. COMING SOON VIEW (PA / TRAVEL) -->
+      <!-- 6. COMING SOON VIEW -->
       <section class="portal-view" id="viewComingSoon" style="display: none;">
         <div class="coming-soon-box">
           <div class="coming-soon-tag">Coming Soon</div>
           <h2 id="soonTitle">Personal Accident (PA)</h2>
           <p id="soonDesc">
-            Template Quotation Slip untuk lini produk ini sedang dalam tahap persiapan dan belum tersedia. Silakan gunakan menu MPAR untuk membuat Quotation Slip saat ini.
+            Template Quotation Slip untuk lini produk ini sedang dalam tahap persiapan dan belum tersedia. Silakan gunakan menu New QS (MPAR) atau Draft QS saat ini.
           </p>
-          <button type="button" class="btn btn-primary" onclick="switchNav('MPAR')">
-            Buka Generator MPAR
-          </button>
+          <button type="button" class="btn btn-primary" onclick="switchNav('NEW_QS')">Buka New QS (MPAR)</button>
         </div>
       </section>
 
-      <!-- 4. GENERATOR MPAR (QS + SPESIFIKASI PRODUK) -->
+      <!-- 7. GENERATOR MPAR -->
       <div class="generator-workspace" id="viewGenerator" style="display: none;">
         <aside class="sidebar">
           <div class="sidebar-header">
             <h1>MPAR Quotation Slip</h1>
-            <p>Isian spesifik penawaran, premi, klausula &amp; tanda tangan</p>
+            <p id="qsModeBanner">Mode: New QS (Kosong di awal) — Simpan ke Draft atau Kirim ke UW</p>
           </div>
 
-          <!-- 1. Bahasa & Bagian Dokumen -->
           <div class="section-box">
             <div class="section-title"><span>1. Bahasa &amp; Bagian Dokumen</span></div>
             <div class="form-group">
@@ -1520,7 +1417,7 @@
               </select>
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <label id="lblDocMode">Bagian Dokumen</label>
+              <label>Bagian Dokumen</label>
               <select id="inDocMode" onchange="applyDocMode()">
                 <option value="ALL">Quotation Slip + Product Spec (All Pages)</option>
                 <option value="QS_ONLY">Quotation Slip Only</option>
@@ -1529,65 +1426,66 @@
             </div>
           </div>
 
-          <!-- 2. Data Penawaran & Tertanggung -->
           <div class="section-box">
-            <div class="section-title"><span id="secInsuredTitle">2. Insured &amp; Offer Details</span></div>
+            <div class="section-title">
+              <span>2. Insured &amp; Offer Details</span>
+              <button type="button" class="btn-reset" onclick="clearNewQsForm()">Kosongkan</button>
+            </div>
             <div class="grid-2">
               <div class="form-group">
                 <label>Document No.</label>
-                <input type="text" id="inQsNo" value="001/ MPO / BCAinsurance / 11/ 2026" oninput="renderAll()" />
+                <input type="text" id="inQsNo" placeholder="Nomor dokumen QS" oninput="renderAll()" />
               </div>
               <div class="form-group">
                 <label>Document Date</label>
-                <input type="text" id="inDocDate" value="13 November 2026" oninput="renderAll()" />
+                <input type="text" id="inDocDate" placeholder="Contoh: 28 November 2026" oninput="renderAll()" />
               </div>
             </div>
             <div class="form-group">
               <label>Wording</label>
-              <input type="text" id="inWording" value="Munich Re Wording" oninput="renderAll()" />
+              <input type="text" id="inWording" placeholder="Kosong di awal — isi wording sesuai kebutuhan" oninput="renderAll()" />
             </div>
             <div class="form-group">
               <label>Marketing Channel / Partner</label>
-              <input type="text" id="inChannel" value="PT Trijata Nusa" oninput="renderAll()" />
+              <input type="text" id="inChannel" placeholder="Nama partner / channel" oninput="renderAll()" />
             </div>
             <div class="form-group">
               <label>The Insured</label>
-              <input type="text" id="inInsured" value="PT Trijata Nusa QQ Partner PT Trijata Nusa" oninput="renderAll()" />
+              <input type="text" id="inInsured" placeholder="Nama tertanggung" oninput="renderAll()" />
             </div>
             <div class="form-group">
               <label>Interest Insured</label>
-              <input type="text" id="inInterest" value="Laptop" oninput="renderAll()" />
+              <input type="text" id="inInterest" placeholder="Contoh: Laptop / Peralatan" oninput="renderAll()" />
             </div>
             <div class="form-group" style="margin-bottom: 0;">
               <label>Brand / Category Spec</label>
-              <input type="text" id="inBrandSpec" value="Laptop / PC DYNABOOK (B2B Office Rental)" oninput="renderAll()" />
+              <input type="text" id="inBrandSpec" placeholder="Spesifikasi merek / kategori" oninput="renderAll()" />
             </div>
           </div>
 
-          <!-- 3. Kalkulasi Volume, Rate & Periode -->
           <div class="section-box">
-            <div class="section-title"><span id="secCalcTitle">3. Rate, Period &amp; Premi</span></div>
+            <div class="section-title"><span>3. Rate, Period &amp; Premi</span></div>
             <div class="grid-2">
               <div class="form-group">
                 <label>Total Unit</label>
-                <input type="number" id="inUnits" value="150" min="1" oninput="calculateAndRender()" />
+                <input type="number" id="inUnits" value="0" min="0" oninput="calculateAndRender()" />
               </div>
               <div class="form-group">
                 <label>Price per Unit (Rp)</label>
-                <input type="number" id="inPrice" value="20000000" step="100000" oninput="calculateAndRender()" />
+                <input type="number" id="inPrice" value="0" step="100000" oninput="calculateAndRender()" />
               </div>
             </div>
 
             <div class="grid-2">
               <div class="form-group">
                 <label>Annual Rate (%)</label>
-                <input type="number" id="inRate" value="1.0" step="0.05" min="0" oninput="calculateAndRender()" />
+                <input type="number" id="inRate" value="0" step="0.05" min="0" oninput="calculateAndRender()" />
               </div>
               <div class="form-group">
                 <label>Period (Years)</label>
                 <select id="inPeriod" onchange="onPeriodSelectChange()">
                   <option value="1">1 Year (12 Months)</option>
-                  <option value="2" selected>2 Years (24 Months)</option>
+                  <option value="2">2 Years (24 Months)</option>
                 </select>
               </div>
             </div>
@@ -1599,7 +1497,7 @@
               </div>
               <div class="form-group">
                 <label>Discount (%)</label>
-                <input type="number" id="inDiscount" value="30" min="0" max="100" step="0.1" oninput="calculateAndRender()" />
+                <input type="number" id="inDiscount" value="0" min="0" max="100" step="0.1" oninput="calculateAndRender()" />
               </div>
             </div>
 
@@ -1610,13 +1508,13 @@
 
             <div class="form-group">
               <label>Special Terms / Discount Note</label>
-              <input type="text" id="inDiscNote" value="Discount 30% (applicable under special terms for orders above 100 units)" oninput="calculateAndRender()" />
+              <input type="text" id="inDiscNote" placeholder="Kosongkan jika tidak ada catatan khusus" oninput="calculateAndRender()" />
             </div>
 
             <div class="grid-2">
               <div class="form-group">
                 <label>Admin Fee (Rp)</label>
-                <input type="number" id="inPolicyFee" value="25000" oninput="calculateAndRender()" />
+                <input type="number" id="inPolicyFee" value="0" oninput="calculateAndRender()" />
               </div>
               <div class="form-group">
                 <label>Stamp Duty (Rp)</label>
@@ -1625,37 +1523,35 @@
             </div>
 
             <div class="calc-summary">
-              <div class="calc-row"><span>Sum Insured:</span> <strong id="sumTsi">Rp 3.000.000.000</strong></div>
-              <div class="calc-row"><span>Gross Premi (<span id="sumRatePct">2%</span>):</span> <span id="sumGross">Rp 60.000.000</span></div>
-              <div class="calc-row"><span>Discount (<span id="sumDiscPct">30%</span>):</span> <span id="sumDisc">- Rp 18.000.000</span></div>
-              <div class="calc-row"><span>Premi Net:</span> <strong id="sumNet">Rp 42.000.000</strong></div>
-              <div class="calc-row total"><span>TOTAL PREMI:</span> <span id="sumGrand">Rp 42.025.000</span></div>
+              <div class="calc-row"><span>Sum Insured:</span> <strong id="sumTsi">Rp 0</strong></div>
+              <div class="calc-row"><span>Gross Premi (<span id="sumRatePct">0%</span>):</span> <span id="sumGross">Rp 0</span></div>
+              <div class="calc-row"><span>Discount (<span id="sumDiscPct">0%</span>):</span> <span id="sumDisc">- Rp 0</span></div>
+              <div class="calc-row"><span>Premi Net:</span> <strong id="sumNet">Rp 0</strong></div>
+              <div class="calc-row total"><span>TOTAL PREMI:</span> <span id="sumGrand">Rp 0</span></div>
             </div>
           </div>
 
-          <!-- 4. Custom Clauses -->
           <div class="section-box">
             <div class="section-title">
-              <span id="secClausesTitle">4. Custom Clauses</span>
+              <span>4. Custom Clauses</span>
               <button type="button" class="btn-reset" onclick="resetClauses()">Reset</button>
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <label id="lblClausesHelp">One line = one clause (editable)</label>
-              <textarea id="inClauses" rows="7" oninput="renderClauses()"></textarea>
+              <label>One line = one clause (editable)</label>
+              <textarea id="inClauses" rows="6" oninput="renderClauses()"></textarea>
             </div>
           </div>
 
-          <!-- 5. Signatory & Our Digital Signature -->
           <div class="section-box">
-            <div class="section-title"><span id="secSigTitle">5. Signatory &amp; Our Signature</span></div>
+            <div class="section-title"><span>5. Signatory &amp; Our Signature</span></div>
             <div class="grid-2">
               <div class="form-group">
                 <label>Officer Name</label>
-                <input type="text" id="inMarketingName" value="Teressa Tumion" oninput="renderAll()" />
+                <input type="text" id="inMarketingName" placeholder="Nama petugas" oninput="renderAll()" />
               </div>
               <div class="form-group">
                 <label>Officer Email</label>
-                <input type="text" id="inMarketingEmail" value="Teressa_tumion@bcainsurance.co.id" oninput="renderAll()" />
+                <input type="text" id="inMarketingEmail" placeholder="Email petugas" oninput="renderAll()" />
               </div>
             </div>
 
@@ -1679,16 +1575,33 @@
             </div>
           </div>
 
+          <div class="section-box">
+            <div class="section-title"><span>6. Draft, Tracker &amp; Akseptasi UW</span></div>
+            <div class="form-group">
+              <label>Nama Draft / Penawaran</label>
+              <input type="text" id="inDraftName" placeholder="Contoh: Draft Penawaran Partner X" />
+            </div>
+            <div class="form-group">
+              <label>Catatan Permintaan Akseptasi UW</label>
+              <textarea id="inUwRequestNote" rows="2" placeholder="Catatan limit TSI, rate/diskon, atau klausula untuk Underwriter..."></textarea>
+            </div>
+            <div style="font-size:11px; color:#334155; margin-bottom:6px;">
+              Status UW Saat Ini: <strong id="currentUwStatusLabel">Belum Diajukan</strong>
+            </div>
+            <div class="grid-2">
+              <button type="button" class="btn btn-reset" style="padding:8px;" onclick="saveCurrentAsDraft()">💾 Save Draft</button>
+              <button type="button" class="btn btn-accent" onclick="submitForUwApproval()">📤 Minta Akseptasi UW</button>
+            </div>
+          </div>
+
           <div class="btn-group">
             <button type="button" class="btn btn-primary" onclick="downloadPDF()">⬇ Download PDF</button>
             <button type="button" class="btn btn-secondary" onclick="window.print()">🖨 Print</button>
           </div>
         </aside>
 
-        <!-- AREA PRATINJAU A4 -->
+        <!-- PREVIEW A4 -->
         <main class="preview-container" id="pdfDocumentArea">
-
-          <!-- PAGE 1: QUOTATION SLIP MAIN -->
           <section class="page-a4" id="pageQs1">
             <div class="page-content">
               <div class="doc-header" data-header-bar>
@@ -1710,7 +1623,7 @@
                 <tr>
                   <td class="label-col t-lbl-wording">WORDING</td>
                   <td class="colon-col">:</td>
-                  <td class="val-col out-wording">Munich Re Wording</td>
+                  <td class="val-col out-wording"></td>
                 </tr>
                 <tr>
                   <td class="label-col t-lbl-insured">THE INSURED</td>
@@ -1814,7 +1727,6 @@
             </div>
           </section>
 
-          <!-- PAGE 2: CLAUSES & SIGNATORY -->
           <section class="page-a4" id="pageQs2">
             <div class="page-content">
               <div class="doc-header" data-header-bar>
@@ -1865,7 +1777,6 @@
             </div>
           </section>
 
-          <!-- PAGE 3: PRODUCT SPECIFICATION PART 1 -->
           <section class="page-a4" id="pageSpec1">
             <div class="watermark">CONFIDENTIAL</div>
             <div class="page-content">
@@ -1882,46 +1793,16 @@
               </div>
 
               <table class="spec-table">
-                <tr>
-                  <td class="spec-key t-sp-channel">Marketing Channel</td>
-                  <td class="out-channel"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-insured">Insured</td>
-                  <td class="out-insured"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-prodname">Product Name</td>
-                  <td class="t-val-type">Movable Property All Risk</td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-wording">Policy Wording</td>
-                  <td class="out-wording">Munich Re Wording</td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-benefits">Insurance Benefits</td>
-                  <td id="specBenefitsCell"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-cond-obj">Insured Object Condition</td>
-                  <td id="specObjectCondCell"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-cat-obj">Insured Object Category</td>
-                  <td id="specObjectCatCell"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-sum-val">Sum Insured Limit</td>
-                  <td id="specSumLimitCell"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-cov-cond">Coverage Condition</td>
-                  <td id="specCovCondCell"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-period">Coverage Period</td>
-                  <td id="specPeriodCell"></td>
-                </tr>
+                <tr><td class="spec-key t-sp-channel">Marketing Channel</td><td class="out-channel"></td></tr>
+                <tr><td class="spec-key t-sp-insured">Insured</td><td class="out-insured"></td></tr>
+                <tr><td class="spec-key t-sp-prodname">Product Name</td><td class="t-val-type">Movable Property All Risk</td></tr>
+                <tr><td class="spec-key t-sp-wording">Policy Wording</td><td class="out-wording"></td></tr>
+                <tr><td class="spec-key t-sp-benefits">Insurance Benefits</td><td id="specBenefitsCell"></td></tr>
+                <tr><td class="spec-key t-sp-cond-obj">Insured Object Condition</td><td id="specObjectCondCell"></td></tr>
+                <tr><td class="spec-key t-sp-cat-obj">Insured Object Category</td><td id="specObjectCatCell"></td></tr>
+                <tr><td class="spec-key t-sp-sum-val">Sum Insured Limit</td><td id="specSumLimitCell"></td></tr>
+                <tr><td class="spec-key t-sp-cov-cond">Coverage Condition</td><td id="specCovCondCell"></td></tr>
+                <tr><td class="spec-key t-sp-period">Coverage Period</td><td id="specPeriodCell"></td></tr>
               </table>
             </div>
 
@@ -1931,7 +1812,6 @@
             </div>
           </section>
 
-          <!-- PAGE 4: PRODUCT SPECIFICATION PART 2 -->
           <section class="page-a4" id="pageSpec2">
             <div class="watermark">CONFIDENTIAL</div>
             <div class="page-content">
@@ -1941,42 +1821,15 @@
               </div>
 
               <table class="spec-table">
-                <tr>
-                  <td class="spec-key t-sp-indemnity">Indemnification Method</td>
-                  <td id="specIndemnityCell"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-premi">Insurance Premi</td>
-                  <td id="specPremiCell"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-deductible">Deductible</td>
-                  <td id="specDeductibleCell"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-depr">Depreciation</td>
-                  <td id="specDeprCell"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-disc">Discount</td>
-                  <td id="specDiscCell"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-claim-method">Claim Settlement Method</td>
-                  <td id="specClaimMethodCell"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-jurisdiction">Jurisdiction</td>
-                  <td id="specJurisdictionCell"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-docs">Declaration &amp; Data</td>
-                  <td id="specDocsCell"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key t-sp-other">Other Terms</td>
-                  <td id="specOtherCell"></td>
-                </tr>
+                <tr><td class="spec-key t-sp-indemnity">Indemnification Method</td><td id="specIndemnityCell"></td></tr>
+                <tr><td class="spec-key t-sp-premi">Insurance Premi</td><td id="specPremiCell"></td></tr>
+                <tr><td class="spec-key t-sp-deductible">Deductible</td><td id="specDeductibleCell"></td></tr>
+                <tr><td class="spec-key t-sp-depr">Depreciation</td><td id="specDeprCell"></td></tr>
+                <tr><td class="spec-key t-sp-disc">Discount</td><td id="specDiscCell"></td></tr>
+                <tr><td class="spec-key t-sp-claim-method">Claim Settlement Method</td><td id="specClaimMethodCell"></td></tr>
+                <tr><td class="spec-key t-sp-jurisdiction">Jurisdiction</td><td id="specJurisdictionCell"></td></tr>
+                <tr><td class="spec-key t-sp-docs">Declaration &amp; Data</td><td id="specDocsCell"></td></tr>
+                <tr><td class="spec-key t-sp-other">Other Terms</td><td id="specOtherCell"></td></tr>
               </table>
 
               <div class="sign-grid" style="margin-top: 18px;">
@@ -2008,43 +1861,46 @@
               <div class="out-footer-right" style="text-align: right;"></div>
             </div>
           </section>
-
         </main>
       </div>
     </div>
   </div>
 
   <script>
-    /* ================= LOGO BCA INSURANCE (SVG DEFAULT + CUSTOM UPLOAD) ================= */
-    function getDefaultBcaLogoSVG(heightPx = 38, theme = "color") {
-      const primary = theme === "white" ? "#ffffff" : "#005baa";
-      const accent = theme === "white" ? "#93c5fd" : "#123663";
-      const subColor = theme === "white" ? "#e2e8f0" : "#0f294a";
-      const ratio = 165 / 44;
-      const widthPx = Math.round(heightPx * ratio);
+    const LOGO_CANDIDATES = [
+      "logo bcai warna.png",
+      "./logo bcai warna.png",
+      encodeURI("logo bcai warna.png"),
+      "./" + encodeURI("logo bcai warna.png"),
+      "assets/logo bcai warna.png",
+      "./assets/logo bcai warna.png"
+    ];
 
-      return `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 46" width="${widthPx}" height="${heightPx}" style="display:block; max-width:100%; height:auto;" role="img" aria-label="BCAinsurance">
-          <path d="M8 9 L26 6 L24 38 L6 35 Z" fill="${primary}"/>
-          <path d="M29 5 L44 8 L42 36 L27 38 Z" fill="${accent}"/>
-          <path d="M12 22 L17 27 L22 15" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-          <text x="50" y="23" font-family="Poppins, Arial, sans-serif" font-size="16" font-weight="800" fill="${primary}">BCA</text>
-          <text x="86" y="23" font-family="Poppins, Arial, sans-serif" font-size="14.5" font-weight="600" font-style="italic" fill="${subColor}">insurance</text>
-          <text x="50" y="36" font-family="Poppins, Arial, sans-serif" font-size="7" font-weight="600" letter-spacing="0.4" fill="${subColor}">PT ASURANSI UMUM BCA</text>
-        </svg>
-      `;
-    }
-
-    function getBrandLogoHTML(heightPx = 38, theme = "color") {
-      const custom = localStorage.getItem("bca_qs_mainLogo");
-      if (custom) {
-        const filterStyle = theme === "white" ? "filter: brightness(0) invert(1);" : "";
-        return `<img src="${custom}" alt="BCAinsurance" style="height:${heightPx}px; max-width:190px; width:auto; display:block; object-fit:contain; ${filterStyle}" />`;
+    function handlePngFallback(imgEl) {
+      const idx = parseInt(imgEl.getAttribute("data-cand-idx") || "0", 10);
+      const nextIdx = idx + 1;
+      if (nextIdx < LOGO_CANDIDATES.length) {
+        imgEl.setAttribute("data-cand-idx", String(nextIdx));
+        imgEl.src = LOGO_CANDIDATES[nextIdx];
+      } else {
+        imgEl.style.display = "none";
       }
-      return getDefaultBcaLogoSVG(heightPx, theme);
     }
 
-    /* ================= MOBILE DRAWER ================= */
+    function getLogoSrc() {
+      return localStorage.getItem("bca_qs_mainLogo") || LOGO_CANDIDATES[0];
+    }
+
+    function buildPngLogoImg(opts = {}) {
+      const { id = "", className = "", style = "", alt = "BCAinsurance" } = opts;
+      const src = getLogoSrc();
+      return `<img ${id ? `id="${id}"` : ""} ${className ? `class="${className}"` : ""} style="${style}" data-cand-idx="0" src="${src}" alt="${alt}" crossorigin="anonymous" onerror="handlePngFallback(this)" />`;
+    }
+
+    function getOfficialBcaLogoHTML(heightPx = 44) {
+      return buildPngLogoImg({ style: `height:${heightPx}px; width:auto; display:block; object-fit:contain;` });
+    }
+
     function openMobileMenu() {
       document.getElementById("navSidebar").classList.add("open");
       document.getElementById("mobileBackdrop").classList.add("show");
@@ -2055,10 +1911,50 @@
       document.getElementById("mobileBackdrop").classList.remove("show");
     }
 
-    /* ================= AUTH ================= */
-    const VALID_USERS = {
-      "mkt_bcai": "mkt_bcai"
+    function copyTextValue(val, label = "Nilai") {
+      if (!val) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(val).then(() => alert(`${label} (${val}) berhasil disalin.`));
+      } else {
+        alert(`${label}: ${val}`);
+      }
+    }
+
+    /* ================= USERS & ROLES ================= */
+    const USERS = {
+      "mkt_bcai": { pass: "mkt_bcai", role: "MARKETING", label: "Marketing" },
+      "uw_bcai": { pass: "uw_bcai", role: "UNDERWRITER", label: "Underwriter" },
+      "bs_bcai": { pass: "bs_bcai", role: "BS", label: "Business Strategy (BS)" },
+      "prodev_bcai": { pass: "prodev_bcai", role: "PRODEV", label: "Product Development (Prodev)" }
     };
+
+    function getCurrentRole() {
+      return sessionStorage.getItem("bca_qs_role") || "MARKETING";
+    }
+
+    function getCurrentUser() {
+      return sessionStorage.getItem("bca_qs_user") || "mkt_bcai";
+    }
+
+    function applyRoleUI() {
+      const role = getCurrentRole();
+      const labelEl = document.getElementById("sidebarRoleLabel");
+      if (labelEl) {
+        labelEl.textContent = USERS[getCurrentUser()]?.label || role;
+      }
+
+      const btnDirectBs = document.getElementById("btnDirectGenerateBs");
+      if (btnDirectBs) {
+        btnDirectBs.style.display = role === "BS" ? "inline-block" : "none";
+      }
+
+      const uwSub = document.getElementById("uwSubtitleInfo");
+      if (uwSub) {
+        uwSub.textContent = role === "UNDERWRITER"
+          ? "Anda login sebagai Underwriter (uw_bcai): tinjau pengajuan QS lalu berikan status akseptasi."
+          : "Daftar pengajuan akseptasi Underwriter. Login sebagai uw_bcai untuk melakukan akseptasi langsung.";
+      }
+    }
 
     function handleLogin(event) {
       event.preventDefault();
@@ -2066,10 +1962,18 @@
       const pass = document.getElementById("loginPass").value;
       const errBox = document.getElementById("loginError");
 
-      if (VALID_USERS[user] && VALID_USERS[user] === pass) {
+      const account = USERS[user];
+      if (account && account.pass === pass) {
         sessionStorage.setItem("bca_qs_auth", "true");
+        sessionStorage.setItem("bca_qs_user", user);
+        sessionStorage.setItem("bca_qs_role", account.role);
         errBox.style.display = "none";
         unlockApp();
+        if (account.role === "UNDERWRITER") switchNav("UW_APPROVAL");
+        else if (account.role === "BS" || account.role === "PRODEV") {
+          switchNav("KERJASAMA");
+          switchKsTab("MONITOR");
+        } else switchNav("HOME");
       } else {
         errBox.style.display = "block";
       }
@@ -2078,91 +1982,952 @@
     function unlockApp() {
       document.getElementById("loginOverlay").style.display = "none";
       document.getElementById("appWrapper").classList.add("authenticated");
+      applyRoleUI();
+      renderBadges();
       renderAll();
     }
 
     function handleLogout() {
       closeMobileMenu();
       sessionStorage.removeItem("bca_qs_auth");
-      document.getElementById("loginPass").value = "";
+      sessionStorage.removeItem("bca_qs_user");
+      sessionStorage.removeItem("bca_qs_role");
       document.getElementById("appWrapper").classList.remove("authenticated");
       document.getElementById("loginOverlay").style.display = "flex";
-      renderLogos();
+      document.getElementById("loginPass").value = "";
     }
 
     function togglePassword() {
       const passInput = document.getElementById("loginPass");
-      const checked = document.getElementById("showPassCheck").checked;
-      passInput.type = checked ? "text" : "password";
+      passInput.type = document.getElementById("showPassCheck").checked ? "text" : "password";
     }
 
     function showForgotInfo() {
-      alert("Silakan hubungi tim Marketing Strategy / Admin internal untuk reset akses.");
+      alert("Silakan hubungi admin / PIC internal BCAinsurance untuk reset password akun portal.");
     }
 
-    /* ================= NAVIGATION ================= */
-    const COMING_SOON_INFO = {
-      PA: {
-        title: "Personal Accident (PA)",
-        desc: "Template Quotation Slip untuk produk Personal Accident (PA) sedang disiapkan. Saat ini generator aktif tersedia untuk MPAR."
-      },
-      TRAVEL: {
-        title: "Travel Insurance",
-        desc: "Template Quotation Slip untuk produk Travel Insurance sedang disiapkan. Saat ini generator aktif tersedia untuk MPAR."
+    /* ================= DEFAULT CLAUSES & DATA ================= */
+    const DEFAULT_CLAUSES_EN = [
+      "1. Theft Exclusion: Loss or damage caused by theft or attempted theft without violent and forcible entry/exit is excluded.",
+      "2. Mysterious Disappearance: Mysterious disappearance or unexplained shortage discovered during stocktaking is excluded.",
+      "3. Wear and Tear: Gradual deterioration, wear and tear, rust, oxidation, and inherent vice are excluded.",
+      "4. Warranty of Invoice & Serial/IMEI: Valid proof of purchase/ownership and serial number/IMEI are required for claim verification.",
+      "5. Condition Precedent to Liability: Compliance with all terms, conditions, and warranties herein is a condition precedent to BCAinsurance's liability.",
+      "6. Deductible per Occurrence: Each and every loss or occurrence is subject to the applicable deductible stated in this Quotation Slip.",
+      "7. Sanctions Limitation and Exclusion Clause: BCAinsurance shall not be deemed to provide cover or be liable to pay any claim to the extent that such cover or payment would expose BCAinsurance to any sanction, prohibition, or restriction under United Nations resolutions or trade/economic sanctions.",
+      "8. Cyber / Data Exclusion: Loss, damage, destruction, distortion, erasure, corruption, or alteration of electronic data or software is excluded unless directly caused by a covered physical peril."
+    ].join("\n");
+
+    const DEFAULT_CLAUSES_ID = [
+      "1. Pengecualian Pencurian: Kerugian atau kerusakan akibat pencurian atau percobaan pencurian tanpa kekerasan/pembongkaran dikecualikan.",
+      "2. Hilang Misterius: Hilang misterius atau selisih stok yang baru diketahui saat stock opname dikecualikan.",
+      "3. Keausan Wajar: Keausan wajar, penurunan mutu bertahap, karat, oksidasi, dan cacat bawaan dikecualikan.",
+      "4. Bukti Kepemilikan & Seri/IMEI: Bukti pembelian/kepemilikan yang sah serta nomor seri/IMEI wajib dilampirkan saat pengajuan klaim.",
+      "5. Syarat Pendahulu: Pemenuhan seluruh syarat, ketentuan, dan jaminan merupakan syarat pendahulu tanggung jawab BCAinsurance.",
+      "6. Risiko Sendiri (Deductible): Setiap kejadian kerugian dikenakan ketentuan deductible sebagaimana tercantum dalam Quotation Slip ini.",
+      "7. Klausula Sanksi: BCAinsurance tidak memberikan pertanggungan atau pembayaran klaim yang dapat melanggar sanksi atau larangan hukum yang berlaku.",
+      "8. Pengecualian Data Elektronik: Kerusakan, kehilangan, atau perubahan data elektronik/perangkat lunak dikecualikan kecuali akibat langsung bahaya fisik yang dijamin."
+    ].join("\n");
+
+    function getBlankQsSnapshot() {
+      return {
+        lang: "EN",
+        docMode: "ALL",
+        qsNo: "",
+        docDate: "",
+        wording: "",
+        channel: "",
+        insured: "",
+        interest: "",
+        brandSpec: "",
+        units: 0,
+        price: 0,
+        rate: 0,
+        period: "1",
+        customYears: "",
+        discount: 0,
+        periodLabel: "",
+        discNote: "",
+        policyFee: 0,
+        stampFee: 0,
+        clauses: DEFAULT_CLAUSES_EN,
+        marketingName: "",
+        marketingEmail: "",
+        sigMode: "BLANK",
+        uwRequestNote: "",
+        uwStatus: "NONE",
+        uwNote: ""
+      };
+    }
+
+    const TERESSA_DRAFT = {
+      id: "draft_teressa_default",
+      name: "Draft Teressa — PT Trijata Nusa (MPAR)",
+      savedAt: "Draft Tersimpan",
+      data: {
+        lang: "EN",
+        docMode: "ALL",
+        qsNo: "001/QS/MPAR/2026",
+        docDate: "28 November 2026",
+        wording: "Munich Re Wording",
+        channel: "Partner Channel",
+        insured: "PT Trijata Nusa",
+        interest: "Laptop",
+        brandSpec: "Laptop / Commercial Equipment",
+        units: 100,
+        price: 10000000,
+        rate: 1.5,
+        period: "1",
+        customYears: "",
+        discount: 0,
+        periodLabel: "1 Year (12 Months)",
+        discNote: "",
+        policyFee: 0,
+        stampFee: 10000,
+        clauses: DEFAULT_CLAUSES_EN,
+        marketingName: "Teressa",
+        marketingEmail: "marketing@bcainsurance.co.id",
+        sigMode: "BLANK",
+        uwRequestNote: "",
+        uwStatus: "NONE",
+        uwNote: ""
       }
     };
 
-    function switchNav(navKey) {
-      closeMobileMenu();
-      document.querySelectorAll(".nav-item").forEach((el) => {
-        el.classList.toggle("active", el.getAttribute("data-nav") === navKey);
-      });
+    const DRAFTS_KEY = "bca_qs_drafts_v3";
+    const UW_KEY = "bca_qs_uw_queue_v3";
+    const QS_TRACKER_KEY = "bca_qs_tracker_v3";
+    const KS_LIST_KEY = "bca_ks_workflow_v1";
 
-      const homeView = document.getElementById("viewHome");
-      const templateView = document.getElementById("viewTemplate");
-      const soonView = document.getElementById("viewComingSoon");
-      const genView = document.getElementById("viewGenerator");
+    let activeQsRecordId = null;
 
-      homeView.style.display = "none";
-      templateView.style.display = "none";
-      soonView.style.display = "none";
-      genView.style.display = "none";
+    function getDrafts() {
+      const raw = localStorage.getItem(DRAFTS_KEY);
+      if (!raw) {
+        const init = [TERESSA_DRAFT];
+        localStorage.setItem(DRAFTS_KEY, JSON.stringify(init));
+        return init;
+      }
+      return JSON.parse(raw);
+    }
 
-      if (navKey === "HOME") {
-        homeView.style.display = "block";
-      } else if (navKey === "TEMPLATE") {
-        templateView.style.display = "block";
-      } else if (navKey === "MPAR") {
-        genView.style.display = "flex";
-        renderAll();
-      } else if (COMING_SOON_INFO[navKey]) {
-        document.getElementById("soonTitle").textContent = COMING_SOON_INFO[navKey].title;
-        document.getElementById("soonDesc").textContent = COMING_SOON_INFO[navKey].desc;
-        soonView.style.display = "block";
+    function saveDrafts(list) {
+      localStorage.setItem(DRAFTS_KEY, JSON.stringify(list));
+    }
+
+    function getUwQueue() {
+      const raw = localStorage.getItem(UW_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }
+
+    function saveUwQueue(list) {
+      localStorage.setItem(UW_KEY, JSON.stringify(list));
+    }
+
+    function getQsTracker() {
+      const raw = localStorage.getItem(QS_TRACKER_KEY);
+      if (!raw) {
+        const seed = [
+          {
+            id: "qs_seed_1",
+            qsNo: "001/QS/MPAR/2026",
+            offerName: "Penawaran MPAR PT Trijata Nusa",
+            insured: "PT Trijata Nusa",
+            tsi: 1000000000,
+            grandPremi: 15010000,
+            approvalStatus: "APPROVED",
+            uwNote: "Disetujui sesuai rate & ketentuan standar.",
+            snapshot: TERESSA_DRAFT.data
+          }
+        ];
+        localStorage.setItem(QS_TRACKER_KEY, JSON.stringify(seed));
+        return seed;
+      }
+      return JSON.parse(raw);
+    }
+
+    function saveQsTracker(list) {
+      localStorage.setItem(QS_TRACKER_KEY, JSON.stringify(list));
+    }
+
+    function getKsList() {
+      const raw = localStorage.getItem(KS_LIST_KEY);
+      if (!raw) {
+        const seed = [
+          {
+            id: "ks_seed_1",
+            letterNo: "SPH/014/BCAI-MKT/XI/2026",
+            title: "Kerjasama MPAR Partner Retail",
+            company: "PT Mitra Retail Nusantara",
+            category: "Laptop & Gadget",
+            annualPremiPot: 650000000,
+            tier: "Kelas B",
+            comm1: 30,
+            comm2: 10,
+            commTax: "Exclude / Include Pajak (sesuai kesepakatan)",
+            programType: "Program Perlindungan Movable Property All Risk (MPAR) Partner",
+            mainBenefits: "Perlindungan kerusakan fisik tak terduga atas barang sesuai polis MPAR.",
+            serviceAdvantages: "Layanan terstruktur & dukungan klaim BCAinsurance.",
+            premiEstimate: "Rincian perhitungan premi terlampir",
+            validityDays: "14",
+            offerDate: "28 November 2026",
+            specialTerms: "Penyesuaian ketentuan sesuai hasil diskusi komersial.",
+            status: "APPROVED",
+            bsNote: "Approved oleh BS — siap lanjut ke Prodev.",
+            prodevNote: "Approved oleh Prodev.",
+            pksNo: "PKS/014/BCAI-PRODEV/XI/2026",
+            readyForPartner: true
+          }
+        ];
+        localStorage.setItem(KS_LIST_KEY, JSON.stringify(seed));
+        return seed;
+      }
+      return JSON.parse(raw);
+    }
+
+    function saveKsList(list) {
+      localStorage.setItem(KS_LIST_KEY, JSON.stringify(list));
+    }
+
+    /* ================= FORM SNAPSHOT & LOAD ================= */
+    function captureCurrentQsSnapshot() {
+      return {
+        lang: document.getElementById("inLang").value,
+        docMode: document.getElementById("inDocMode").value,
+        qsNo: document.getElementById("inQsNo").value,
+        docDate: document.getElementById("inDocDate").value,
+        wording: document.getElementById("inWording").value,
+        channel: document.getElementById("inChannel").value,
+        insured: document.getElementById("inInsured").value,
+        interest: document.getElementById("inInterest").value,
+        brandSpec: document.getElementById("inBrandSpec").value,
+        units: document.getElementById("inUnits").value,
+        price: document.getElementById("inPrice").value,
+        rate: document.getElementById("inRate").value,
+        period: document.getElementById("inPeriod").value,
+        customYears: document.getElementById("inCustomYears").value,
+        discount: document.getElementById("inDiscount").value,
+        periodLabel: document.getElementById("inPeriodLabel").value,
+        discNote: document.getElementById("inDiscNote").value,
+        policyFee: document.getElementById("inPolicyFee").value,
+        stampFee: document.getElementById("inStampFee").value,
+        clauses: document.getElementById("inClauses").value,
+        marketingName: document.getElementById("inMarketingName").value,
+        marketingEmail: document.getElementById("inMarketingEmail").value,
+        sigMode: document.getElementById("inSigMode").value,
+        uwRequestNote: document.getElementById("inUwRequestNote").value,
+        uwStatus: document.getElementById("currentUwStatusLabel").getAttribute("data-status") || "NONE",
+        uwNote: document.getElementById("currentUwStatusLabel").getAttribute("data-uw-note") || ""
+      };
+    }
+
+    function applyQsSnapshot(snap, draftTitle = "") {
+      const s = { ...getBlankQsSnapshot(), ...(snap || {}) };
+      document.getElementById("inLang").value = s.lang;
+      document.getElementById("inDocMode").value = s.docMode;
+      document.getElementById("inQsNo").value = s.qsNo;
+      document.getElementById("inDocDate").value = s.docDate;
+      document.getElementById("inWording").value = s.wording;
+      document.getElementById("inChannel").value = s.channel;
+      document.getElementById("inInsured").value = s.insured;
+      document.getElementById("inInterest").value = s.interest;
+      document.getElementById("inBrandSpec").value = s.brandSpec;
+      document.getElementById("inUnits").value = s.units;
+      document.getElementById("inPrice").value = s.price;
+      document.getElementById("inRate").value = s.rate;
+      document.getElementById("inPeriod").value = s.period;
+      document.getElementById("inCustomYears").value = s.customYears;
+      document.getElementById("inDiscount").value = s.discount;
+      document.getElementById("inPeriodLabel").value = s.periodLabel;
+      document.getElementById("inDiscNote").value = s.discNote;
+      document.getElementById("inPolicyFee").value = s.policyFee;
+      document.getElementById("inStampFee").value = s.stampFee;
+      document.getElementById("inClauses").value = s.clauses;
+      document.getElementById("inMarketingName").value = s.marketingName;
+      document.getElementById("inMarketingEmail").value = s.marketingEmail;
+      document.getElementById("inSigMode").value = s.sigMode;
+      document.getElementById("inUwRequestNote").value = s.uwRequestNote || "";
+      document.getElementById("inDraftName").value = draftTitle || "";
+
+      setUwStatusDisplay(s.uwStatus || "NONE", s.uwNote || "");
+      applyDocMode();
+      renderSignatureMode();
+      calculateAndRender();
+    }
+
+    function setUwStatusDisplay(status, note = "") {
+      const el = document.getElementById("currentUwStatusLabel");
+      if (!el) return;
+      el.setAttribute("data-status", status);
+      el.setAttribute("data-uw-note", note);
+      if (status === "PENDING") {
+        el.textContent = "Menunggu Akseptasi UW" + (note ? ` (${note})` : "");
+        el.style.color = "#b45309";
+      } else if (status === "APPROVED") {
+        el.textContent = "Disetujui UW" + (note ? ` — ${note}` : "");
+        el.style.color = "#15803d";
+      } else if (status === "REJECTED") {
+        el.textContent = "Perlu Revisi / Ditolak UW" + (note ? ` — ${note}` : "");
+        el.style.color = "#b91c1c";
+      } else {
+        el.textContent = "Belum Diajukan";
+        el.style.color = "#334155";
       }
     }
 
-    /* ================= LANGUAGE PACKS (100% EN OR 100% ID) ================= */
+    function clearNewQsForm() {
+      activeQsRecordId = null;
+      applyQsSnapshot(getBlankQsSnapshot(), "");
+      document.getElementById("qsModeBanner").textContent = "Mode: New QS (Kosong di awal) — Isi data baru";
+    }
+
+    function saveCurrentAsDraft() {
+      const snap = captureCurrentQsSnapshot();
+      const customName = document.getElementById("inDraftName").value.trim();
+      const autoName = customName || `Draft ${snap.insured || snap.qsNo || "MPAR"} (${new Date().toLocaleDateString("id-ID")})`;
+      const drafts = getDrafts();
+      drafts.unshift({
+        id: "draft_" + Date.now(),
+        name: autoName,
+        savedAt: new Date().toLocaleString("id-ID"),
+        data: snap
+      });
+      saveDrafts(drafts);
+      upsertQsTrackerEntry(snap, autoName, snap.uwStatus === "APPROVED" ? "APPROVED" : (snap.uwStatus === "PENDING" ? "PENDING_UW" : "DRAFT_ONLY"), snap.uwNote || "");
+      renderBadges();
+      alert(`Draft "${autoName}" berhasil disimpan.`);
+    }
+
+    function loadDraftById(id) {
+      const found = getDrafts().find(d => d.id === id);
+      if (!found) return;
+      activeQsRecordId = found.id;
+      switchNav("NEW_QS");
+      applyQsSnapshot(found.data, found.name);
+      document.getElementById("qsModeBanner").textContent = `Mode: Edit Draft — ${found.name}`;
+    }
+
+    function deleteDraftById(id) {
+      const next = getDrafts().filter(d => d.id !== id);
+      saveDrafts(next);
+      renderBadges();
+      renderDraftsView();
+    }
+
+    function upsertQsTrackerEntry(snap, offerName, approvalStatus, uwNote = "") {
+      const calc = computePremiValues();
+      const qsNoClean = (snap.qsNo || "").trim() || `QS-TEMP-${Date.now().toString().slice(-4)}`;
+      const list = getQsTracker();
+      const idx = list.findIndex(item => item.qsNo === qsNoClean);
+      const entry = {
+        id: idx >= 0 ? list[idx].id : "qs_" + Date.now(),
+        qsNo: qsNoClean,
+        offerName: offerName || snap.channel || snap.insured || "Penawaran MPAR",
+        insured: snap.insured || "-",
+        tsi: calc.tsi,
+        grandPremi: calc.grandPremi,
+        approvalStatus,
+        uwNote,
+        snapshot: snap
+      };
+      if (idx >= 0) list[idx] = entry;
+      else list.unshift(entry);
+      saveQsTracker(list);
+      renderBadges();
+    }
+
+    function logCurrentQsToTracker() {
+      const snap = captureCurrentQsSnapshot();
+      const offerName = document.getElementById("inDraftName").value.trim() || snap.channel || snap.insured || "Penawaran MPAR";
+      const st = snap.uwStatus === "APPROVED" ? "APPROVED" : (snap.uwStatus === "PENDING" ? "PENDING_UW" : "DRAFT_ONLY");
+      upsertQsTrackerEntry(snap, offerName, st, snap.uwNote || "");
+      renderQsTrackingTable();
+      alert("QS aktif tercatat ke Dashboard Tracking.");
+    }
+
+    function submitForUwApproval() {
+      const snap = captureCurrentQsSnapshot();
+      const calc = computePremiValues();
+      const reqNote = document.getElementById("inUwRequestNote").value.trim();
+      const title = document.getElementById("inDraftName").value.trim() || snap.insured || snap.qsNo || "Pengajuan QS MPAR";
+
+      setUwStatusDisplay("PENDING", reqNote);
+      snap.uwStatus = "PENDING";
+      snap.uwRequestNote = reqNote;
+
+      const queue = getUwQueue();
+      const item = {
+        id: "uw_" + Date.now(),
+        title,
+        qsNo: snap.qsNo || "-",
+        insured: snap.insured || "-",
+        wording: snap.wording || "-",
+        tsi: calc.tsi,
+        grandPremi: calc.grandPremi,
+        requestNote: reqNote || "Mohon akseptasi Quotation Slip MPAR.",
+        status: "PENDING",
+        uwNote: "",
+        submittedAt: new Date().toLocaleString("id-ID"),
+        snapshot: snap
+      };
+      queue.unshift(item);
+      saveUwQueue(queue);
+      upsertQsTrackerEntry(snap, title, "PENDING_UW", "");
+      renderBadges();
+      alert("Permintaan akseptasi berhasil dikirim ke antrean Underwriter (uw_bcai).");
+    }
+
+    function decideUwItem(id, decision) {
+      const noteEl = document.getElementById(`uwNoteInput_${id}`);
+      const uwNote = noteEl ? noteEl.value.trim() : "";
+      const queue = getUwQueue();
+      const item = queue.find(q => q.id === id);
+      if (!item) return;
+
+      item.status = decision;
+      item.uwNote = uwNote;
+      item.decidedAt = new Date().toLocaleString("id-ID");
+      saveUwQueue(queue);
+
+      if (item.snapshot) {
+        item.snapshot.uwStatus = decision;
+        item.snapshot.uwNote = uwNote;
+        upsertQsTrackerEntry(item.snapshot, item.title, decision === "APPROVED" ? "APPROVED" : "REJECTED", uwNote);
+      }
+
+      renderBadges();
+      renderUwQueueView();
+      renderQsTrackingTable();
+    }
+
+    function renderUwQueueView() {
+      const container = document.getElementById("uwQueueContainer");
+      const queue = getUwQueue();
+      const isUw = getCurrentRole() === "UNDERWRITER";
+
+      if (!queue.length) {
+        container.innerHTML = `
+          <div class="data-card">
+            <p class="data-card-meta">Belum ada pengajuan akseptasi QS yang masuk ke antrean Underwriter.</p>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = queue.map(item => {
+        const pillClass = item.status === "APPROVED" ? "approved" : (item.status === "REJECTED" ? "rejected" : "pending");
+        const pillText = item.status === "APPROVED" ? "APPROVED UW" : (item.status === "REJECTED" ? "REVISI / DITOLAK" : "MENUNGGU AKSEPTASI");
+
+        return `
+          <div class="data-card">
+            <div class="data-card-top">
+              <div>
+                <div class="data-card-title">${escapeHtml(item.title)} <span style="font-size:12px; color:#475569;">(${escapeHtml(item.qsNo)})</span></div>
+                <div class="data-card-meta">Insured: <strong>${escapeHtml(item.insured)}</strong> • Wording: ${escapeHtml(item.wording)} • TSI: ${formatRp(item.tsi)} • Premi: ${formatRp(item.grandPremi)}</div>
+                <div class="data-card-meta">Catatan Pengajuan: <em>${escapeHtml(item.requestNote)}</em></div>
+                ${item.uwNote ? `<div class="data-card-meta" style="color:#0f172a;"><strong>Catatan UW:</strong> ${escapeHtml(item.uwNote)}</div>` : ""}
+              </div>
+              <span class="status-pill ${pillClass}">${pillText}</span>
+            </div>
+
+            ${isUw ? `
+              <div class="form-group" style="margin-top:8px;">
+                <label>Catatan / Syarat Akseptasi Underwriter</label>
+                <input type="text" id="uwNoteInput_${item.id}" value="${escapeAttr(item.uwNote || "")}" placeholder="Isi catatan persetujuan atau revisi UW..." />
+              </div>
+              <div class="data-card-actions">
+                <button type="button" class="btn btn-secondary" onclick="decideUwItem('${item.id}', 'APPROVED')">✓ Akseptasi (Approve)</button>
+                <button type="button" class="btn btn-danger" onclick="decideUwItem('${item.id}', 'REJECTED')">✕ Minta Revisi / Tolak</button>
+              </div>
+            ` : `
+              <div class="data-card-meta">Login sebagai <strong>uw_bcai</strong> untuk melakukan aksi akseptasi.</div>
+            `}
+          </div>`;
+      }).join("");
+    }
+
+    function renderDraftsView() {
+      const container = document.getElementById("draftListContainer");
+      const drafts = getDrafts();
+      if (!drafts.length) {
+        container.innerHTML = `<div class="data-card"><p class="data-card-meta">Belum ada draft tersimpan.</p></div>`;
+        return;
+      }
+
+      container.innerHTML = drafts.map(d => `
+        <div class="data-card">
+          <div class="data-card-top">
+            <div>
+              <div class="data-card-title">${escapeHtml(d.name)}</div>
+              <div class="data-card-meta">Disimpan: ${escapeHtml(d.savedAt || "-")} • Insured: ${escapeHtml(d.data?.insured || "-")} • Wording: ${escapeHtml(d.data?.wording || "(Kosong)")}</div>
+            </div>
+            <div class="data-card-actions">
+              <button type="button" class="btn btn-primary" onclick="loadDraftById('${d.id}')">Buka Draft</button>
+              <button type="button" class="btn btn-danger" onclick="deleteDraftById('${d.id}')">Hapus</button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderQsTrackingTable() {
+      const tbody = document.getElementById("qsTrackerBody");
+      if (!tbody) return;
+      const q = (document.getElementById("qsSearchInput")?.value || "").trim().toLowerCase();
+      const stFilter = document.getElementById("qsStatusFilter")?.value || "ALL";
+      const list = getQsTracker();
+
+      const filtered = list.filter(item => {
+        const matchText = !q ||
+          (item.qsNo || "").toLowerCase().includes(q) ||
+          (item.offerName || "").toLowerCase().includes(q) ||
+          (item.insured || "").toLowerCase().includes(q);
+        const matchStatus = stFilter === "ALL" || item.approvalStatus === stFilter;
+        return matchText && matchStatus;
+      });
+
+      if (!filtered.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#64748b;">Tidak ada data QS yang sesuai pencarian.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(item => {
+        let badgeCls = "soon";
+        let badgeTxt = "DRAFT / BELUM DIAJUKAN";
+        if (item.approvalStatus === "APPROVED") {
+          badgeCls = "approved";
+          badgeTxt = "APPROVED";
+        } else if (item.approvalStatus === "PENDING_UW") {
+          badgeCls = "pending";
+          badgeTxt = "MENUNGGU UW";
+        } else if (item.approvalStatus === "REJECTED") {
+          badgeCls = "rejected";
+          badgeTxt = "REVISI / DITOLAK";
+        }
+
+        return `
+          <tr>
+            <td>
+              <strong>${escapeHtml(item.qsNo)}</strong>
+              <div style="margin-top:4px;"><button type="button" class="btn-reset" onclick="copyTextValue('${escapeAttr(item.qsNo)}', 'No. QS')">Salin No. QS</button></div>
+            </td>
+            <td>${escapeHtml(item.offerName)}<div style="font-size:11px; color:#64748b;">Insured: ${escapeHtml(item.insured)}</div></td>
+            <td>${formatRp(item.tsi)}</td>
+            <td><strong>${formatRp(item.grandPremi)}</strong></td>
+            <td><span class="status-pill ${badgeCls}">${badgeTxt}</span></td>
+            <td><button type="button" class="btn-reset" onclick="openTrackedQsInGenerator('${item.id}')">Buka QS</button></td>
+          </tr>`;
+      }).join("");
+    }
+
+    function openTrackedQsInGenerator(id) {
+      const found = getQsTracker().find(x => x.id === id);
+      if (!found || !found.snapshot) return;
+      switchNav("NEW_QS");
+      applyQsSnapshot(found.snapshot, found.offerName);
+      document.getElementById("qsModeBanner").textContent = `Mode: QS ${found.qsNo} — ${found.offerName}`;
+    }
+
+    /* ================= PENAWARAN KERJASAMA (FORM + PARTNER TEMPLATE + BS/PRODEV/PKS) ================= */
+    function switchKsTab(tab) {
+      const isForm = tab === "FORM";
+      document.getElementById("tabKsForm").classList.toggle("active", isForm);
+      document.getElementById("tabKsMonitor").classList.toggle("active", !isForm);
+      document.getElementById("ksTabFormPanel").style.display = isForm ? "block" : "none";
+      document.getElementById("ksTabMonitorPanel").style.display = !isForm ? "block" : "none";
+      if (!isForm) renderKsMonitor();
+    }
+
+    function evaluateMerchantClass(annualPremiPot) {
+      const val = parseFloat(annualPremiPot) || 0;
+      if (val >= 1000000000) {
+        return {
+          tier: "Kelas A",
+          desc: "Potensi premi ≥ Rp 1.000.000.000",
+          baseComm: 35,
+          condComm: 10
+        };
+      } else if (val > 500000000) {
+        return {
+          tier: "Kelas B",
+          desc: "Potensi premi > Rp 500.000.000 – < Rp 1.000.000.000",
+          baseComm: 30,
+          condComm: 10
+        };
+      }
+      return {
+        tier: "Kelas C",
+        desc: "Potensi premi < Rp 500.000.000",
+        baseComm: 25,
+        condComm: 10
+      };
+    }
+
+    function renderKerjasama() {
+      const pot = parseFloat(document.getElementById("ksAnnualPremiPot")?.value) || 0;
+      const cls = evaluateMerchantClass(pot);
+      const comm1Val = parseFloat(document.getElementById("ksComm1")?.value) || 0;
+      const comm2Val = parseFloat(document.getElementById("ksComm2")?.value) || 0;
+
+      const badge = document.getElementById("ksTierBadge");
+      if (badge) badge.textContent = cls.tier;
+      const desc = document.getElementById("ksTierDesc");
+      if (desc) desc.textContent = cls.desc;
+      const rec = document.getElementById("ksRecCommText");
+      if (rec) rec.textContent = `Rekomendasi Komisi: Dasar ${cls.baseComm}% + Conditional ${cls.condComm}%`;
+
+      const checkEl = document.getElementById("ksCommCheckText");
+      if (checkEl) {
+        const withinRec = comm1Val <= cls.baseComm && comm2Val <= cls.condComm;
+        checkEl.textContent = withinRec
+          ? "Status Komisi: Dalam batas rekomendasi kelas"
+          : "Status Komisi: Melebihi batas standar kelas (perlu catatan/adjust BS & Prodev)";
+        checkEl.style.color = withinRec ? "#15803d" : "#b45309";
+      }
+
+      const letterNo = document.getElementById("ksLetterNo")?.value.trim() || "-";
+      const title = document.getElementById("ksTitle")?.value.trim() || "Penawaran Kerjasama MPAR";
+      const company = document.getElementById("ksCompany")?.value.trim() || "Partner";
+      const offerDate = document.getElementById("ksOfferDate")?.value.trim() || "-";
+      const progType = document.getElementById("ksProgramType")?.value.trim() || "-";
+      const benefits = document.getElementById("ksMainBenefits")?.value.trim() || "-";
+      const adv = document.getElementById("ksServiceAdvantages")?.value.trim() || "-";
+      const comm1 = document.getElementById("ksComm1")?.value || "0";
+      const comm2 = document.getElementById("ksComm2")?.value || "0";
+      const commTax = document.getElementById("ksCommTax")?.value.trim() || "-";
+      const special = document.getElementById("ksSpecialTerms")?.value.trim() || "-";
+      const estPremi = document.getElementById("ksPremiEstimate")?.value.trim() || "Rincian perhitungan premi terlampir";
+      const days = document.getElementById("ksValidityDays")?.value || "14";
+
+      document.getElementById("outKsLetterNo").textContent = letterNo;
+      document.getElementById("outKsPartnerCompany").textContent = company;
+      document.getElementById("outKsPartnerSub").textContent = `Perihal: ${title}`;
+      document.getElementById("outKsOfferDate").textContent = offerDate;
+      document.getElementById("outKsProgramType").textContent = progType;
+      document.getElementById("outKsMainBenefits").textContent = benefits;
+      document.getElementById("outKsServiceAdvantages").textContent = adv;
+      document.getElementById("outKsPartnerComm").textContent = `Komisi 1: ${comm1}% | Komisi 2: ${comm2}% (${commTax})`;
+      document.getElementById("outKsPartnerSpecial").textContent = special;
+      document.getElementById("outKsValidityText").textContent = `${estPremi}. Penawaran ini berlaku selama ${days} hari sejak tanggal surat ini diterbitkan.`;
+    }
+
+    function buildKsRecordFromForm(initialStatus, isDirectBs = false) {
+      const pot = parseFloat(document.getElementById("ksAnnualPremiPot")?.value) || 0;
+      const cls = evaluateMerchantClass(pot);
+      return {
+        id: "ks_" + Date.now(),
+        letterNo: document.getElementById("ksLetterNo")?.value.trim() || `SPH/${String(Math.floor(100 + Math.random() * 899))}/BCAI-MKT/XI/2026`,
+        title: document.getElementById("ksTitle")?.value.trim() || "Penawaran Kerjasama MPAR",
+        company: document.getElementById("ksCompany")?.value.trim() || "Partner",
+        category: document.getElementById("ksCategory")?.value.trim() || "-",
+        annualPremiPot: pot,
+        tier: cls.tier,
+        comm1: document.getElementById("ksComm1")?.value || "0",
+        comm2: document.getElementById("ksComm2")?.value || "0",
+        commTax: document.getElementById("ksCommTax")?.value.trim() || "-",
+        programType: document.getElementById("ksProgramType")?.value.trim() || "-",
+        mainBenefits: document.getElementById("ksMainBenefits")?.value.trim() || "-",
+        serviceAdvantages: document.getElementById("ksServiceAdvantages")?.value.trim() || "-",
+        premiEstimate: document.getElementById("ksPremiEstimate")?.value.trim() || "Rincian perhitungan premi terlampir",
+        validityDays: document.getElementById("ksValidityDays")?.value || "14",
+        offerDate: document.getElementById("ksOfferDate")?.value.trim() || "-",
+        specialTerms: document.getElementById("ksSpecialTerms")?.value.trim() || "-",
+        status: initialStatus,
+        bsNote: isDirectBs ? "Digenerate langsung oleh BS (tanpa approval)." : "",
+        prodevNote: "",
+        pksNo: "",
+        readyForPartner: isDirectBs,
+        createdAt: new Date().toLocaleString("id-ID")
+      };
+    }
+
+    function submitKerjasamaFromMarketing() {
+      const list = getKsList();
+      list.unshift(buildKsRecordFromForm("PENDING_BS", false));
+      saveKsList(list);
+      renderBadges();
+      switchKsTab("MONITOR");
+      alert("Pengajuan kerjasama dikirim ke alur approval BS & Prodev.");
+    }
+
+    function directGenerateByBs() {
+      const list = getKsList();
+      list.unshift(buildKsRecordFromForm("READY_BS", true));
+      saveKsList(list);
+      renderBadges();
+      switchKsTab("MONITOR");
+      alert("Penawaran kerjasama berhasil digenerate langsung oleh BS tanpa perlu approval.");
+    }
+
+    function applyKsRoleAction(id, actionType) {
+      const list = getKsList();
+      const item = list.find(x => x.id === id);
+      if (!item) return;
+
+      const commentInput = document.getElementById(`ksComment_${id}`);
+      const specialInput = document.getElementById(`ksAdjSpecial_${id}`);
+      const pksInput = document.getElementById(`ksPksInput_${id}`);
+
+      const comment = commentInput ? commentInput.value.trim() : "";
+      if (specialInput && specialInput.value.trim()) {
+        item.specialTerms = specialInput.value.trim();
+      }
+
+      if (actionType === "BS_COMMENT") {
+        item.bsNote = comment || item.bsNote;
+      } else if (actionType === "BS_APPROVE") {
+        item.bsNote = comment || "Disetujui oleh BS.";
+        item.status = "PENDING_PRODEV";
+      } else if (actionType === "PRODEV_COMMENT") {
+        item.prodevNote = comment || item.prodevNote;
+      } else if (actionType === "PRODEV_APPROVE") {
+        item.prodevNote = comment || "Disetujui oleh Prodev.";
+        item.status = "APPROVED";
+        item.readyForPartner = true;
+      } else if (actionType === "ISSUE_PKS") {
+        const noPks = (pksInput ? pksInput.value.trim() : "") || `PKS/${String(Math.floor(100 + Math.random() * 899))}/BCAI-PRODEV/2026`;
+        item.pksNo = noPks;
+        item.status = "APPROVED";
+        item.readyForPartner = true;
+        if (comment) item.prodevNote = comment;
+      }
+
+      saveKsList(list);
+      renderBadges();
+      renderKsMonitor();
+    }
+
+    function loadKsToPartnerPreview(id) {
+      const item = getKsList().find(x => x.id === id);
+      if (!item) return;
+      document.getElementById("ksLetterNo").value = item.letterNo || "";
+      document.getElementById("ksTitle").value = item.title;
+      document.getElementById("ksCompany").value = item.company;
+      document.getElementById("ksCategory").value = item.category;
+      document.getElementById("ksAnnualPremiPot").value = item.annualPremiPot;
+      document.getElementById("ksComm1").value = item.comm1;
+      document.getElementById("ksComm2").value = item.comm2;
+      document.getElementById("ksCommTax").value = item.commTax || "Exclude / Include Pajak (sesuai kesepakatan)";
+      document.getElementById("ksProgramType").value = item.programType;
+      document.getElementById("ksMainBenefits").value = item.mainBenefits;
+      document.getElementById("ksServiceAdvantages").value = item.serviceAdvantages;
+      document.getElementById("ksPremiEstimate").value = item.premiEstimate;
+      document.getElementById("ksValidityDays").value = item.validityDays;
+      document.getElementById("ksOfferDate").value = item.offerDate;
+      document.getElementById("ksSpecialTerms").value = item.specialTerms;
+
+      const pksRow = document.getElementById("rowKsPksReference");
+      const pksOut = document.getElementById("outKsPksReference");
+      if (pksRow && pksOut) {
+        if (item.pksNo) {
+          pksRow.style.display = "";
+          pksOut.textContent = item.pksNo;
+        } else {
+          pksRow.style.display = "none";
+          pksOut.textContent = "";
+        }
+      }
+
+      renderKerjasama();
+      switchKsTab("FORM");
+    }
+
+    function renderKsMonitor() {
+      const container = document.getElementById("ksMonitorListContainer");
+      if (!container) return;
+      const list = getKsList();
+      const role = getCurrentRole();
+
+      if (!list.length) {
+        container.innerHTML = `<div class="data-card"><p class="data-card-meta">Belum ada data pengajuan kerjasama.</p></div>`;
+        return;
+      }
+
+      container.innerHTML = list.map(item => {
+        const isApproved = item.status === "APPROVED" || item.status === "READY_BS";
+        const badgeCls = isApproved ? "approved" : "pending";
+        const badgeTxt = item.status === "READY_BS"
+          ? "DIRECT GENERATED (BS)"
+          : (item.status === "APPROVED" ? "APPROVED (SIAP KE PARTNER)" : (item.status === "PENDING_PRODEV" ? "APPROVED BS — MENUNGGU PRODEV" : "MENUNGGU BS & PRODEV"));
+
+        return `
+          <div class="data-card">
+            <div class="data-card-top">
+              <div>
+                <div class="data-card-title">${escapeHtml(item.title)} — <span style="color:#0f172a;">${escapeHtml(item.company)}</span></div>
+                <div class="data-card-meta">No. Surat: <strong>${escapeHtml(item.letterNo || "-")}</strong> • ${escapeHtml(item.tier)} • Komisi 1: ${escapeHtml(item.comm1)}% • Komisi 2: ${escapeHtml(item.comm2)}% • Berlaku ${escapeHtml(item.validityDays)} hari</div>
+                ${item.bsNote ? `<div class="data-card-meta"><strong>Catatan BS:</strong> ${escapeHtml(item.bsNote)}</div>` : ""}
+                ${item.prodevNote ? `<div class="data-card-meta"><strong>Catatan Prodev:</strong> ${escapeHtml(item.prodevNote)}</div>` : ""}
+                ${item.pksNo ? `<div class="data-card-meta" style="color:#15803d;"><strong>No. PKS Terbit:</strong> ${escapeHtml(item.pksNo)} <button type="button" class="btn-reset" style="margin-left:6px;" onclick="copyTextValue('${escapeAttr(item.pksNo)}', 'No. PKS')">Salin No. PKS</button></div>` : ""}
+              </div>
+              <span class="status-pill ${badgeCls}">${badgeTxt}</span>
+            </div>
+
+            <div class="data-card-meta" style="margin-bottom:8px;">
+              <strong>Special Condition Terms:</strong> ${escapeHtml(item.specialTerms || "-")}
+            </div>
+
+            ${(role === "BS" || role === "PRODEV") ? `
+              <div class="grid-2" style="margin-bottom:8px;">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Comment / Catatan (${role})</label>
+                  <input type="text" id="ksComment_${item.id}" placeholder="Tulis comment atau penyesuaian..." />
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Adjust Special Condition Terms</label>
+                  <input type="text" id="ksAdjSpecial_${item.id}" value="${escapeAttr(item.specialTerms || "")}" />
+                </div>
+              </div>
+              ${role === "PRODEV" ? `
+                <div class="form-group" style="margin-bottom:8px;">
+                  <label>Nomor PKS (Terbitkan jika sudah menjadi kerja sama)</label>
+                  <input type="text" id="ksPksInput_${item.id}" value="${escapeAttr(item.pksNo || "")}" placeholder="Contoh: PKS/025/BCAI-PRODEV/XI/2026" />
+                </div>
+              ` : ""}
+            ` : ""}
+
+            <div class="data-card-actions">
+              <button type="button" class="btn btn-reset" onclick="loadKsToPartnerPreview('${item.id}')">Lihat Template Partner</button>
+              ${role === "BS" ? `
+                <button type="button" class="btn btn-accent" onclick="applyKsRoleAction('${item.id}', 'BS_COMMENT')">Simpan Comment / Adjust</button>
+                <button type="button" class="btn btn-secondary" onclick="applyKsRoleAction('${item.id}', 'BS_APPROVE')">✓ Approve BS</button>
+              ` : ""}
+              ${role === "PRODEV" ? `
+                <button type="button" class="btn btn-accent" onclick="applyKsRoleAction('${item.id}', 'PRODEV_COMMENT')">Simpan Comment / Adjust</button>
+                <button type="button" class="btn btn-secondary" onclick="applyKsRoleAction('${item.id}', 'PRODEV_APPROVE')">✓ Approve Prodev</button>
+                <button type="button" class="btn btn-primary" onclick="applyKsRoleAction('${item.id}', 'ISSUE_PKS')">📄 Terbitkan No. PKS</button>
+              ` : ""}
+            </div>
+          </div>`;
+      }).join("");
+    }
+
+    function resetKerjasamaForm() {
+      document.getElementById("ksLetterNo").value = "SPH/018/BCAI-MKT/XI/2026";
+      document.getElementById("ksTitle").value = "";
+      document.getElementById("ksCompany").value = "";
+      document.getElementById("ksCategory").value = "";
+      document.getElementById("ksAnnualPremiPot").value = "650000000";
+      document.getElementById("ksMonthlyVol").value = "";
+      document.getElementById("ksAvgPrice").value = "";
+      document.getElementById("ksComm1").value = "30";
+      document.getElementById("ksComm2").value = "10";
+      document.getElementById("ksCommTax").value = "Exclude / Include Pajak (sesuai kesepakatan)";
+      document.getElementById("ksProgramType").value = "Program Perlindungan Movable Property All Risk (MPAR) Partner";
+      document.getElementById("ksMainBenefits").value = "Menjamin kerugian atau kerusakan fisik secara tiba-tiba dan tidak terduga atas barang yang diasuransikan sesuai syarat dan ketentuan polis MPAR yang berlaku.";
+      document.getElementById("ksServiceAdvantages").value = "Proses pengajuan dan pelaporan yang terstruktur, dukungan tim operasional & klaim BCAinsurance, serta skema komersial yang kompetitif dan fleksibel.";
+      document.getElementById("ksPremiEstimate").value = "";
+      document.getElementById("ksValidityDays").value = "14";
+      document.getElementById("ksSpecialTerms").value = "";
+      const pksRow = document.getElementById("rowKsPksReference");
+      if (pksRow) pksRow.style.display = "none";
+      renderKerjasama();
+    }
+
+    /* ================= NAVIGATION ================= */
+    function switchNav(navKey) {
+      closeMobileMenu();
+      document.querySelectorAll(".nav-item").forEach(el => {
+        el.classList.toggle("active", el.getAttribute("data-nav") === navKey);
+      });
+
+      const views = {
+        viewHome: false,
+        viewDrafts: false,
+        viewUwApproval: false,
+        viewKerjasama: false,
+        viewTemplate: false,
+        viewComingSoon: false,
+        viewGenerator: false
+      };
+
+      if (navKey === "HOME") {
+        views.viewHome = true;
+        renderQsTrackingTable();
+      } else if (navKey === "DRAFTS") {
+        views.viewDrafts = true;
+        renderDraftsView();
+      } else if (navKey === "UW_APPROVAL") {
+        views.viewUwApproval = true;
+        renderUwQueueView();
+      } else if (navKey === "KERJASAMA") {
+        views.viewKerjasama = true;
+        renderKerjasama();
+        renderKsMonitor();
+      } else if (navKey === "TEMPLATE") {
+        views.viewTemplate = true;
+      } else if (navKey === "PA" || navKey === "TRAVEL") {
+        views.viewComingSoon = true;
+        const isPa = navKey === "PA";
+        document.getElementById("soonTitle").textContent = isPa ? "Personal Accident (PA)" : "Travel Insurance";
+        document.getElementById("soonDesc").textContent = isPa
+          ? "Template Quotation Slip untuk Personal Accident (PA) sedang dalam tahap persiapan."
+          : "Template Quotation Slip untuk Travel Insurance sedang dalam tahap persiapan.";
+      } else {
+        views.viewGenerator = true;
+        if (navKey === "NEW_QS" && !activeQsRecordId) {
+          applyQsSnapshot(getBlankQsSnapshot(), "");
+          document.getElementById("qsModeBanner").textContent = "Mode: New QS (Kosong di awal) — Isi data baru";
+        }
+        activeQsRecordId = null;
+      }
+
+      Object.keys(views).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = views[id] ? (id === "viewGenerator" ? "flex" : "block") : "none";
+      });
+    }
+
+    function renderBadges() {
+      const drafts = getDrafts();
+      const uwPending = getUwQueue().filter(q => q.status === "PENDING").length;
+      const ksList = getKsList();
+      const ksApproved = ksList.filter(k => k.status === "APPROVED" || k.status === "READY_BS").length;
+      const qsList = getQsTracker();
+      const qsApproved = qsList.filter(q => q.approvalStatus === "APPROVED").length;
+      const qsPending = qsList.filter(q => q.approvalStatus === "PENDING_UW").length;
+      const totalPremiSum = qsList.reduce((acc, q) => acc + (Number(q.grandPremi) || 0), 0);
+
+      const dBadge = document.getElementById("draftCountBadge");
+      if (dBadge) dBadge.textContent = String(drafts.length);
+      const uBadge = document.getElementById("uwPendingBadge");
+      if (uBadge) uBadge.textContent = String(uwPending);
+      const kBadge = document.getElementById("ksPendingBadge");
+      if (kBadge) kBadge.textContent = String(ksList.length);
+
+      const kpiTotalQs = document.getElementById("kpiTotalQs");
+      if (kpiTotalQs) kpiTotalQs.textContent = String(qsList.length);
+      const kpiTotalQsPremi = document.getElementById("kpiTotalQsPremi");
+      if (kpiTotalQsPremi) kpiTotalQsPremi.textContent = `Total Premi: ${formatRp(totalPremiSum)}`;
+      const kpiApprovedQs = document.getElementById("kpiApprovedQs");
+      if (kpiApprovedQs) kpiApprovedQs.textContent = String(qsApproved);
+      const kpiPendingQs = document.getElementById("kpiPendingQs");
+      if (kpiPendingQs) kpiPendingQs.textContent = String(qsPending);
+      const kpiTotalKs = document.getElementById("kpiTotalKs");
+      if (kpiTotalKs) kpiTotalKs.textContent = String(ksList.length);
+      const kpiApprovedKsSub = document.getElementById("kpiApprovedKsSub");
+      if (kpiApprovedKsSub) kpiApprovedKsSub.textContent = `${ksApproved} Approved / Ready`;
+    }
+
+    /* ================= I18N & QUOTATION CALCULATOR ================= */
     const I18N = {
       EN: {
         qsTitle: "QUOTATION SLIP",
         noLabel: "No.",
         lblType: "TYPE OF INSURANCE",
         valType: "Movable Property All Risk",
-        valTypeUpper: "MOVABLE PROPERTY ALL RISK INSURANCE",
         lblWording: "WORDING",
         lblInsured: "THE INSURED",
         lblPeriod: "PERIOD OF INSURANCE",
         lblLocation: "RISK LOCATION",
         valLocation: "All Indonesia",
         lblCoverage: "COVERAGE",
-        valCoverage: "All risk of sudden, unforeseen and accidental physical loss or damage to the insured property from any cause (subject to policy exclusions)",
+        valCoverage: "All Risk as per Policy Wording",
         lblInterest: "INTEREST INSURED",
         lblUnits: "TOTAL UNIT",
         lblPrice: "PRICE PER UNIT",
         lblTsi: "SUM INSURED",
         lblDeductible: "DEDUCTIBLE",
-        valDeductible: "Theft : 10% of Loss, minimum IDR 100,000<br/>Earthquake, Volcanic Eruption and Tsunami : 10% of TSI, minimum IDR 100,000<br/>Other : 10% of TSI, minimum IDR 100,000",
+        valDeductible: "As per Policy Wording / Special Terms",
         lblRate: "Rate",
         perAnnum: "per annum",
         lblGross: "Gross Premi",
@@ -2181,12 +2946,13 @@
         insuredBoxTitle: "TO BE FILLED BY THE INSURED :",
         notedAgreed: "NOTED & AGREED",
         byLabel: "By",
-        partnerSign: "Sign : ________________________",
-        partnerDate: "Date : ________________________",
+        partnerSignLine: "Sign : ________________________",
+        partnerDateLine: "Date : ________________________",
         specTitle: "PRODUCT SPECIFICATION",
+        specSubtitle: "MOVABLE PROPERTY ALL RISK INSURANCE",
         spChannel: "Marketing Channel",
         spInsured: "Insured",
-        spProdname: "Product Name",
+        spProdName: "Product Name",
         spWording: "Policy Wording",
         spBenefits: "Insurance Benefits",
         spCondObj: "Insured Object Condition",
@@ -2203,172 +2969,130 @@
         spJurisdiction: "Jurisdiction",
         spDocs: "Declaration & Data",
         spOther: "Other Terms",
-        defaultClauses: [
-          "CLAIM PROCEDURES CLAUSES",
-          "COMMUNICABLE DISEASE ENDORSEMENT - LMA5393",
-          "COVER FOR EARTHQUAKE (MR 505)",
-          "COVER FOR HURRICANE, CYCLONE AND TYPHOON (MR 506)",
-          "COVER FOR LOSS OR DAMAGE DUE TO STRIKE, RIOT AND CIVIL COMMOTION (SRCC) (MR 001)",
-          "COVER OF FULL REPLACEMENT VALUE (MR 507)",
-          "COVER OF MOBILE AND PORTABLE EQUIPMENT OUTSIDE THE PREMISES (MR 504)",
-          "CURRENCY CLAUSE",
-          "DISPUTE CLAUSE",
-          "ELECTRONIC DATE RECOGNITION ENDORSEMENT (A) NMA 2800 - 11/12/97",
-          "EXCLUSION OF MECHANICAL AND ELECTRICAL BREAKDOWN (MR 532)",
-          "INDUSTRIES, SEEPAGE, POLLUTION AND CONTAMINATION RISK - NMA 1685",
-          "INFORMATION TECHNOLOGY HAZARDS CLARIFICATION CLAUSE (NMA 2912)- 12/11/01",
-          "INSTITUTE RADIOACTIVE CONTAMINATION, CHEMICAL, BIOLOGICAL, BIO-CHEMICAL AND ELECTROMAGNETIC WEAPONS EXCLUSION CLAUSE",
-          "LOSS NOTIFICATION CLAUSE (30 DAYS)",
-          "NUCLEAR ENERGY RISKS EXCLUSION CLAUSE 1994-NMA 1975 (A)",
-          "PREMIUM PAYMENT WARRANTY CLAUSE (60 DAYS)",
-          "PROPERTY CYBER AND DATA EXCLUSION - LMA 5401",
-          "SANCTION LIMITATION AND EXCLUSION CLAUSE",
-          "TERRORISM AND SABOTAGE EXCLUSION CLAUSE",
-          "THEFT WITH VIOLENT AND FORCIBLE ENTRY",
-          "TRANSMISSION & DISTRIBUTION LINES EXCLUSION CLAUSE",
-          "WAIVER CLAUSE",
-          "WAR AND CIVIL WAR EXCLUSION CLAUSE-NMA 464",
-          "SCRATCH, DENT, BEND, CLAW EXCEPT CAUSED BY ACCIDENT",
-          "EXCLUSION MYSTERIOUS DISAPPEARANCE",
-          "MR 504 MANUFACTURE GUARANTEED EXCLUSION",
-          "AUTOMATIC ADDITION AND DELETION CLAUSE (30 Days)",
-          "AUTOMATIC REINSTATEMENT OF SUM INSURED CLAUSE (subject to additional premium)",
-          "INTERNAL REMOVAL CLAUSE",
-          "DAMAGE CAUSED BY UNDER VOLTAGE AND/OR OVER VOLTAGE, AND INDUCTION INCLUSION",
-          "INCLUSION OF LOSS & OR DAMAGE DUE TO FAILURE OR INTERRUPTION OF ANY GAS, WATER OR ELECTRICITY SERVICE OR SUPPLY"
-        ]
+        unitWord: "Unit"
       },
       ID: {
-        qsTitle: "PENAWARAN ASURANSI",
+        qsTitle: "QUOTATION SLIP",
         noLabel: "No.",
         lblType: "JENIS ASURANSI",
-        valType: "Asuransi Barang Bergerak",
-        valTypeUpper: "ASURANSI BARANG BERGERAK",
-        lblWording: "WORDING POLIS",
+        valType: "Movable Property All Risk",
+        lblWording: "WORDING",
         lblInsured: "TERTANGGUNG",
-        lblPeriod: "JANGKA WAKTU",
+        lblPeriod: "JANGKA WAKTU PERTANGGUNGAN",
         lblLocation: "LOKASI RISIKO",
-        valLocation: "Seluruh Wilayah Indonesia",
+        valLocation: "Seluruh Indonesia",
         lblCoverage: "JAMINAN",
-        valCoverage: "Segala risiko kerugian atau kerusakan fisik yang bersifat tiba-tiba, tidak terduga, dan tidak disengaja atas objek pertanggungan (sesuai pengecualian polis)",
+        valCoverage: "All Risk sesuai Wording Polis",
         lblInterest: "OBJEK PERTANGGUNGAN",
         lblUnits: "JUMLAH UNIT",
         lblPrice: "HARGA PER UNIT",
         lblTsi: "HARGA PERTANGGUNGAN",
         lblDeductible: "RISIKO SENDIRI",
-        valDeductible: "Pencurian : 10% dari Nilai Klaim, minimum Rp 100.000<br/>Gempa Bumi, Letusan Gunung Api & Tsunami : 10% dari Harga Pertanggungan, minimum Rp 100.000<br/>Lain-lain : 10% dari Harga Pertanggungan, minimum Rp 100.000",
-        lblRate: "Tarif",
+        valDeductible: "Sesuai Wording Polis / Ketentuan Khusus",
+        lblRate: "Rate",
         perAnnum: "per tahun",
-        lblGross: "Gross Premi",
-        ofTsi: "dari Harga Pertanggungan",
+        lblGross: "Premi Bruto",
+        ofTsi: "dari TSI",
         lblDiscRow: "Diskon",
         lblTotalDisc: "Total Diskon",
-        lblNet: "Premi Net",
+        lblNet: "Premi Netto",
         lblAdmin: "Biaya Admin",
         lblStamp: "Bea Meterai",
         lblTotal: "Total Premi",
         lblClauses: "KLAUSULA :",
-        closingNote: "Terima kasih atas perhatian Anda dan kami menantikan konfirmasi persetujuan atau tanggapan Anda.",
+        closingNote: "Terima kasih atas perhatian Anda dan kami menantikan konfirmasi atau tanggapan lebih lanjut.",
         sincerely: "Hormat kami,",
-        roleLabel: "Pemasaran",
-        emailLabel: "Surel",
+        roleLabel: "Marketing",
+        emailLabel: "Email",
         insuredBoxTitle: "DIISI OLEH TERTANGGUNG :",
         notedAgreed: "DIKETAHUI & DISETUJUI",
         byLabel: "Oleh",
-        partnerSign: "Tanda Tangan : ________________________",
-        partnerDate: "Tanggal : ________________________",
+        partnerSignLine: "Tanda Tangan : ___________________",
+        partnerDateLine: "Tanggal : ________________________",
         specTitle: "SPESIFIKASI PRODUK",
-        spChannel: "Jalur Pemasaran",
+        specSubtitle: "ASURANSI MOVABLE PROPERTY ALL RISK",
+        spChannel: "Kanal Pemasaran",
         spInsured: "Tertanggung",
-        spProdname: "Nama Produk",
+        spProdName: "Nama Produk",
         spWording: "Wording Polis",
         spBenefits: "Manfaat Asuransi",
         spCondObj: "Kondisi Objek Pertanggungan",
         spCatObj: "Kategori Objek Pertanggungan",
-        spSumVal: "Batas Nilai Pertanggungan",
+        spSumVal: "Batas Harga Pertanggungan",
         spCovCond: "Kondisi Pertanggungan",
         spPeriod: "Periode Pertanggungan",
         spIndemnity: "Metode Ganti Rugi",
         spPremi: "Premi Asuransi",
-        spDeductible: "Risiko Sendiri",
-        spDepr: "Ketentuan Depresiasi",
+        spDeductible: "Risiko Sendiri (Deductible)",
+        spDepr: "Depresiasi",
         spDisc: "Diskon",
         spClaimMethod: "Metode Penyelesaian Klaim",
-        spJurisdiction: "Batas Yuridiksi",
+        spJurisdiction: "Yurisdiksi",
         spDocs: "Deklarasi & Data",
-        spOther: "Ketentuan Lain",
-        defaultClauses: [
-          "KLAUSULA PROSEDUR KLAIM",
-          "ENDORSEMEN PENYAKIT MENULAR - LMA5393",
-          "JAMINAN GEMPA BUMI (MR 505)",
-          "JAMINAN BADAI, SIKLON, DAN TOPAN (MR 506)",
-          "JAMINAN KERUGIAN ATAU KERUSAKAN AKIBAT PEMOGOKAN, KERUSUHAN, DAN HURU-HARA (SRCC) (MR 001)",
-          "JAMINAN NILAI PENGGANTIAN PENUH (MR 507)",
-          "JAMINAN PERALATAN BERGERAK DAN PORTABEL DI LUAR LOKASI (MR 504)",
-          "KLAUSULA MATA UANG",
-          "KLAUSULA PENYELESAIAN SENGKETA",
-          "ENDORSEMEN PENGENALAN TANGGAL ELEKTRONIK (A) NMA 2800 - 11/12/97",
-          "PENGECUALIAN KERUSAKAN MEKANIS DAN ELEKTRIS (MR 532)",
-          "RISIKO INDUSTRI, REMBESAN, POLUSI, DAN KONTAMINASI - NMA 1685",
-          "KLAUSULA KLARIFIKASI BAHAYA TEKNOLOGI INFORMASI (NMA 2912) - 12/11/01",
-          "PENGECUALIAN KONTAMINASI RADIOAKTIF, KIMIA, BIOLOGIS, BIOKIMIA, DAN SENJATA ELEKTROMAGNETIK",
-          "KLAUSULA PEMBERITAHUAN KERUGIAN (30 HARI)",
-          "PENGECUALIAN RISIKO ENERGI NUKLIR 1994 - NMA 1975 (A)",
-          "KLAUSULA JAMINAN PEMBAYARAN PREMI (60 HARI)",
-          "PENGECUALIAN SIBER PROPERTI DAN DATA - LMA 5401",
-          "KLAUSULA PEMBATASAN DAN PENGECUALIAN SANKSI",
-          "PENGECUALIAN TERORISME DAN SABOTASE",
-          "PENCURIAN DENGAN KEKERASAN DAN PEMBONGKARAN",
-          "PENGECUALIAN JARINGAN TRANSMISI DAN DISTRIBUSI",
-          "KLAUSULA PENGABAIAN HAK (WAIVER)",
-          "PENGECUALIAN PERANG DAN PERANG SAUDARA - NMA 464",
-          "GORENGAN/BARET, PENYOK, BENGKOK, CAKAR KECUALI DISEBABKAN KECELAKAAN",
-          "PENGECUALIAN KEHILANGAN MISTERIUS",
-          "PENGECUALIAN JAMINAN PABRIKAN MR 504",
-          "KLAUSULA PENAMBAHAN DAN PENGURANGAN OTOMATIS (30 HARI)",
-          "KLAUSULA PEMULIHAN HARGA PERTANGGUNGAN OTOMATIS (DENGAN PREMI TAMBAHAN)",
-          "KLAUSULA PEMINDAHAN INTERNAL",
-          "KERUSAKAN AKIBAT TEGANGAN RENDAH DAN/ATAU TEGANGAN TINGGI SERTA INDUKSI",
-          "JAMINAN KERUGIAN ATAU KERUSAKAN AKIBAT GANGGUAN LAYANAN GAS, AIR, ATAU LISTRIK"
-        ]
+        spOther: "Ketentuan Lainnya",
+        unitWord: "Unit"
       }
     };
 
-    function getCurrentLang() {
-      return document.getElementById("inLang").value || "EN";
+    function formatNum(num) {
+      const n = Math.round(Number(num) || 0);
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    function onLangChange() {
-      const lang = getCurrentLang();
-      document.getElementById("inClauses").value = I18N[lang].defaultClauses.join("\n");
-      renderClauses();
-      calculateAndRender();
+    function formatRp(num) {
+      return "Rp " + formatNum(num);
     }
 
-    function resetClauses() {
-      const lang = getCurrentLang();
-      document.getElementById("inClauses").value = I18N[lang].defaultClauses.join("\n");
-      renderClauses();
-    }
-
-    function renderClauses() {
-      const raw = document.getElementById("inClauses").value;
-      const lines = raw
-        .split("\n")
-        .map((line) => line.trim())
-        .filter((line) => line.length > 0);
-
-      document.getElementById("outClausesList").innerHTML = lines
-        .map((item) => `<li>${escapeHTML(item)}</li>`)
-        .join("");
-    }
-
-    function escapeHTML(str) {
-      return str
+    function escapeHtml(str) {
+      return String(str || "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;");
+    }
+
+    function escapeAttr(str) {
+      return String(str || "").replace(/"/g, "&quot;");
+    }
+
+    function getEffectiveYears() {
+      const custom = parseFloat(document.getElementById("inCustomYears").value);
+      if (!isNaN(custom) && custom > 0) return custom;
+      return parseFloat(document.getElementById("inPeriod").value) || 1;
+    }
+
+    function getPeriodText() {
+      const customLabel = document.getElementById("inPeriodLabel").value.trim();
+      if (customLabel) return customLabel;
+      const years = getEffectiveYears();
+      const months = Math.round(years * 12);
+      const isId = document.getElementById("inLang").value === "ID";
+      if (isId) {
+        return years === 1 ? "1 Tahun (12 Bulan)" : `${years} Tahun (${months} Bulan)`;
+      }
+      return years === 1 ? "1 Year (12 Months)" : `${years} Years (${months} Months)`;
+    }
+
+    function onPeriodSelectChange() {
+      document.getElementById("inCustomYears").value = "";
+      document.getElementById("inPeriodLabel").value = "";
+      calculateAndRender();
+    }
+
+    function onLangChange() {
+      const lang = document.getElementById("inLang").value;
+      const clausesBox = document.getElementById("inClauses");
+      const curVal = clausesBox.value.trim();
+      if (!curVal || curVal === DEFAULT_CLAUSES_EN.trim() || curVal === DEFAULT_CLAUSES_ID.trim()) {
+        clausesBox.value = lang === "ID" ? DEFAULT_CLAUSES_ID : DEFAULT_CLAUSES_EN;
+      }
+      renderAll();
+    }
+
+    function resetClauses() {
+      const lang = document.getElementById("inLang").value;
+      document.getElementById("inClauses").value = lang === "ID" ? DEFAULT_CLAUSES_ID : DEFAULT_CLAUSES_EN;
+      renderClauses();
     }
 
     function applyDocMode() {
@@ -2376,22 +3100,75 @@
       const qsPages = [document.getElementById("pageQs1"), document.getElementById("pageQs2")];
       const specPages = [document.getElementById("pageSpec1"), document.getElementById("pageSpec2")];
 
-      qsPages.forEach((p) => p.classList.toggle("hidden-section", mode === "SPEC_ONLY"));
-      specPages.forEach((p) => p.classList.toggle("hidden-section", mode === "QS_ONLY"));
+      qsPages.forEach(p => p && p.classList.toggle("hidden-section", mode === "SPEC_ONLY"));
+      specPages.forEach(p => p && p.classList.toggle("hidden-section", mode === "QS_ONLY"));
     }
 
-    /* ================= OUR DIGITAL SIGNATURE PAD ================= */
-    let isDrawing = false;
-    let hasDrawnSig = false;
-    let sigDataURL = "";
+    function computePremiValues() {
+      const units = parseFloat(document.getElementById("inUnits").value) || 0;
+      const price = parseFloat(document.getElementById("inPrice").value) || 0;
+      const annualRate = parseFloat(document.getElementById("inRate").value) || 0;
+      const years = getEffectiveYears();
+      const discountPct = parseFloat(document.getElementById("inDiscount").value) || 0;
+      const policyFee = parseFloat(document.getElementById("inPolicyFee").value) || 0;
+      const stampFee = parseFloat(document.getElementById("inStampFee").value) || 0;
+
+      const tsi = units * price;
+      const totalRatePct = +(annualRate * years).toFixed(4);
+      const grossPremi = tsi * (totalRatePct / 100);
+      const totalDiscount = grossPremi * (discountPct / 100);
+      const netPremi = grossPremi - totalDiscount;
+      const grandPremi = netPremi + policyFee + stampFee;
+
+      return { units, price, annualRate, years, discountPct, policyFee, stampFee, tsi, totalRatePct, grossPremi, totalDiscount, netPremi, grandPremi };
+    }
+
+    function calculateAndRender() {
+      const c = computePremiValues();
+      document.getElementById("sumTsi").textContent = formatRp(c.tsi);
+      document.getElementById("sumRatePct").textContent = `${c.totalRatePct}%`;
+      document.getElementById("sumGross").textContent = formatRp(c.grossPremi);
+      document.getElementById("sumDiscPct").textContent = `${c.discountPct}%`;
+      document.getElementById("sumDisc").textContent = `- ${formatRp(c.totalDiscount)}`;
+      document.getElementById("sumNet").textContent = formatRp(c.netPremi);
+      document.getElementById("sumGrand").textContent = formatRp(c.grandPremi);
+      renderAll();
+    }
+
+    function renderClauses() {
+      const listEl = document.getElementById("outClausesList");
+      if (!listEl) return;
+      const lines = (document.getElementById("inClauses").value || "")
+        .split("\n")
+        .map(l => l.trim())
+        .filter(Boolean);
+      listEl.innerHTML = lines.map(line => `<li>${escapeHtml(line)}</li>`).join("");
+    }
+
+    /* ================= SIGNATURE PAD ================= */
+    let sigDrawing = false;
+    let sigHasDrawn = false;
+    let savedSignatureDataUrl = localStorage.getItem("bca_qs_our_sig") || "";
 
     function initSignaturePad() {
       const canvas = document.getElementById("sigCanvas");
       if (!canvas) return;
       const ctx = canvas.getContext("2d");
-      ctx.strokeStyle = "#0f172a";
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = "#0f294a";
+      ctx.lineWidth = 2.2;
       ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+
+      if (savedSignatureDataUrl) {
+        const img = new Image();
+        img.onload = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          sigHasDrawn = true;
+          renderSignatureMode();
+        };
+        img.src = savedSignatureDataUrl;
+      }
 
       function getPos(e) {
         const rect = canvas.getBoundingClientRect();
@@ -2405,31 +3182,32 @@
 
       function startDraw(e) {
         e.preventDefault();
-        isDrawing = true;
+        sigDrawing = true;
         const pos = getPos(e);
         ctx.beginPath();
         ctx.moveTo(pos.x, pos.y);
       }
 
       function moveDraw(e) {
-        if (!isDrawing) return;
+        if (!sigDrawing) return;
         e.preventDefault();
         const pos = getPos(e);
         ctx.lineTo(pos.x, pos.y);
         ctx.stroke();
-        hasDrawnSig = true;
-        sigDataURL = canvas.toDataURL("image/png");
-        renderSignatureMode();
+        sigHasDrawn = true;
       }
 
       function endDraw() {
-        isDrawing = false;
+        if (!sigDrawing) return;
+        sigDrawing = false;
+        savedSignatureDataUrl = canvas.toDataURL("image/png");
+        localStorage.setItem("bca_qs_our_sig", savedSignatureDataUrl);
+        renderSignatureMode();
       }
 
       canvas.addEventListener("mousedown", startDraw);
       canvas.addEventListener("mousemove", moveDraw);
       window.addEventListener("mouseup", endDraw);
-
       canvas.addEventListener("touchstart", startDraw, { passive: false });
       canvas.addEventListener("touchmove", moveDraw, { passive: false });
       window.addEventListener("touchend", endDraw);
@@ -2438,56 +3216,36 @@
     function clearSignaturePad() {
       const canvas = document.getElementById("sigCanvas");
       if (!canvas) return;
-      const ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      hasDrawnSig = false;
-      sigDataURL = "";
+      canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+      sigHasDrawn = false;
+      savedSignatureDataUrl = "";
+      localStorage.removeItem("bca_qs_our_sig");
       renderSignatureMode();
     }
 
     function renderSignatureMode() {
-      const lang = getCurrentLang();
-      const dict = I18N[lang];
       const mode = document.getElementById("inSigMode").value;
-      document.getElementById("digitalSigControls").style.display = mode === "DIGITAL" ? "block" : "none";
+      const controls = document.getElementById("digitalSigControls");
+      if (controls) controls.style.display = mode === "DIGITAL" ? "block" : "none";
 
-      document.querySelectorAll("[data-our-sig-slot]").forEach((slot) => {
-        if (mode === "DIGITAL" && hasDrawnSig && sigDataURL) {
-          slot.innerHTML = `<img src="${sigDataURL}" class="our-sig-img" alt="BCAinsurance Signature" />`;
+      const slots = document.querySelectorAll("[data-our-sig-slot]");
+      slots.forEach(slot => {
+        if (mode === "DIGITAL" && savedSignatureDataUrl && sigHasDrawn) {
+          slot.innerHTML = `<img src="${savedSignatureDataUrl}" class="our-sig-img" alt="Signature" />`;
         } else {
           slot.innerHTML = "";
         }
       });
-
-      setAll(".t-partner-sign-line", dict.partnerSign);
-      setAll(".t-partner-date-line", dict.partnerDate);
     }
 
-    /* ================= BRANDING & CALCULATION ================= */
-    function formatIDR(num) {
-      return Math.round(num).toLocaleString("id-ID");
-    }
-
-    function onPeriodSelectChange() {
-      document.getElementById("inCustomYears").value = "";
-      calculateAndRender();
-    }
-
-    function getEffectiveYears() {
-      const customVal = parseFloat(document.getElementById("inCustomYears").value);
-      if (!isNaN(customVal) && customVal > 0) {
-        return customVal;
-      }
-      return parseFloat(document.getElementById("inPeriod").value) || 1;
-    }
-
+    /* ================= BRANDING & RENDER ALL ================= */
     function handleLogoUpload(event, key) {
       const file = event.target.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = function (e) {
-        localStorage.setItem("bca_qs_" + key, e.target.result);
-        renderLogos();
+      reader.onload = e => {
+        if (key === "mainLogo") localStorage.setItem("bca_qs_mainLogo", e.target.result);
+        if (key === "rightLogo") localStorage.setItem("bca_qs_rightLogo", e.target.result);
         renderAll();
       };
       reader.readAsDataURL(file);
@@ -2497,8 +3255,9 @@
       const file = event.target.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = function (e) {
-        localStorage.setItem("bca_qs_" + key, e.target.result);
+      reader.onload = e => {
+        if (key === "fullHeader") localStorage.setItem("bca_qs_fullHeader", e.target.result);
+        if (key === "fullFooter") localStorage.setItem("bca_qs_fullFooter", e.target.result);
         renderAll();
       };
       reader.readAsDataURL(file);
@@ -2507,432 +3266,215 @@
     function updateLogoSize(val) {
       document.getElementById("logoSizeVal").textContent = val;
       localStorage.setItem("bca_qs_logoHeight", val);
-      renderLogos();
-    }
-
-    function resetBranding() {
-      localStorage.removeItem("bca_qs_mainLogo");
-      localStorage.removeItem("bca_qs_rightLogo");
-      localStorage.removeItem("bca_qs_fullHeader");
-      localStorage.removeItem("bca_qs_fullFooter");
-      localStorage.removeItem("bca_qs_logoHeight");
-      document.getElementById("uploadMainLogo").value = "";
-      document.getElementById("uploadRightLogo").value = "";
-      document.getElementById("uploadFullHeader").value = "";
-      document.getElementById("uploadFullFooter").value = "";
-      document.getElementById("logoHeightSlider").value = 38;
-      document.getElementById("logoSizeVal").textContent = 38;
-      renderLogos();
       renderAll();
     }
 
-    function renderLogos() {
-      const rightLogoData = localStorage.getItem("bca_qs_rightLogo");
-      const logoHeight = parseInt(localStorage.getItem("bca_qs_logoHeight") || "38", 10);
-
-      const loginWrap = document.getElementById("loginLogoWrap");
-      if (loginWrap) {
-        loginWrap.innerHTML = getBrandLogoHTML(44, "color");
-      }
-
-      const sidebarBrand = document.getElementById("sidebarBrandLogo");
-      if (sidebarBrand) {
-        sidebarBrand.innerHTML = getBrandLogoHTML(36, "white");
-      }
-
-      const mobileTopbar = document.getElementById("mobileTopbarLogo");
-      if (mobileTopbar) {
-        mobileTopbar.innerHTML = getBrandLogoHTML(30, "white");
-      }
-
-      document.querySelectorAll('[data-slot="main-logo"]').forEach((el) => {
-        el.innerHTML = getBrandLogoHTML(logoHeight, "color");
-      });
-
-      document.querySelectorAll('[data-slot="right-logo"]').forEach((el) => {
-        if (rightLogoData) {
-          el.innerHTML = `<img src="${rightLogoData}" style="max-height:${Math.max(28, logoHeight - 6)}px;" alt="OJK" />`;
-        } else {
-          el.innerHTML = `
-            <div class="ojk-badge-group">
-              <div class="ojk-box">
-                <strong>BCAinsurance</strong><br/>Berizin dan diawasi OJK
-              </div>
-              <div class="ojk-box mari">
-                <strong>MARI</strong><br/>Berasuransi
-              </div>
-            </div>
-          `;
-        }
-      });
+    function resetBranding() {
+      ["bca_qs_mainLogo", "bca_qs_rightLogo", "bca_qs_fullHeader", "bca_qs_fullFooter", "bca_qs_logoHeight"].forEach(k => localStorage.removeItem(k));
+      document.getElementById("logoHeightSlider").value = 44;
+      document.getElementById("logoSizeVal").textContent = 44;
+      renderAll();
     }
 
-    function renderHeaderFooterBars() {
-      const fullHeader = localStorage.getItem("bca_qs_fullHeader");
-      const fullFooter = localStorage.getItem("bca_qs_fullFooter");
-      const addr = document.getElementById("inAddress").value;
-      const contact = document.getElementById("inPhone").value + " | " + document.getElementById("inWeb").value;
+    function renderBranding() {
+      const h = parseInt(localStorage.getItem("bca_qs_logoHeight") || "44", 10);
+      document.getElementById("loginLogoWrap").innerHTML = buildPngLogoImg({ style: "max-height:50px; max-width:240px; width:auto; height:auto; object-fit:contain; display:block;" });
+      document.getElementById("sidebarBrandLogo").innerHTML = buildPngLogoImg({ style: "max-width:175px; max-height:42px; width:auto; height:auto; display:block; object-fit:contain; filter:brightness(0) invert(1);" });
+      document.getElementById("mobileTopbarLogo").innerHTML = buildPngLogoImg({ style: "max-height:30px; max-width:150px; width:auto; height:auto; display:block; object-fit:contain; filter:brightness(0) invert(1);" });
 
-      document.querySelectorAll("[data-header-bar]").forEach((bar) => {
+      const fullHeader = localStorage.getItem("bca_qs_fullHeader");
+      const rightLogo = localStorage.getItem("bca_qs_rightLogo");
+
+      document.querySelectorAll("[data-header-bar]").forEach(bar => {
         if (fullHeader) {
           bar.classList.add("full-header-img");
           bar.innerHTML = `<img src="${fullHeader}" alt="Header" />`;
         } else {
           bar.classList.remove("full-header-img");
           bar.innerHTML = `
-            <div class="logo-left" data-slot="main-logo"></div>
-            <div class="logo-right" data-slot="right-logo"></div>
+            <div class="logo-left" data-slot="main-logo">${getOfficialBcaLogoHTML(h)}</div>
+            <div class="logo-right" data-slot="right-logo">${rightLogo ? `<img src="${rightLogo}" alt="Partner Logo" />` : ""}</div>
           `;
         }
       });
 
-      if (!fullHeader) {
-        renderLogos();
-      }
+      const fullFooter = localStorage.getItem("bca_qs_fullFooter");
+      const addr = document.getElementById("inAddress")?.value || "";
+      const phone = document.getElementById("inPhone")?.value || "";
+      const web = document.getElementById("inWeb")?.value || "";
 
-      document.querySelectorAll("[data-footer-bar]").forEach((bar) => {
+      document.querySelectorAll("[data-footer-bar]").forEach(bar => {
         if (fullFooter) {
           bar.classList.add("full-footer-img");
           bar.innerHTML = `<img src="${fullFooter}" alt="Footer" />`;
         } else {
           bar.classList.remove("full-footer-img");
           bar.innerHTML = `
-            <div class="out-footer-left">${escapeHTML(addr)}</div>
-            <div class="out-footer-right" style="text-align: right;">${escapeHTML(contact)}</div>
+            <div class="out-footer-left"><strong>PT ASURANSI UMUM BCA</strong><br/>${escapeHtml(addr)}</div>
+            <div class="out-footer-right" style="text-align:right;">${escapeHtml(phone)}<br/>${escapeHtml(web)}</div>
           `;
         }
       });
     }
 
-    function renderSpecLanguageContent(lang, ctx) {
-      const channel = escapeHTML(ctx.channel);
-      const interest = escapeHTML(ctx.interest);
-      const brandSpec = escapeHTML(ctx.brandSpec);
-      const priceText = escapeHTML(ctx.priceText);
-      const months = ctx.months;
-      const periodYears = ctx.periodYears;
-      const annualRate = ctx.annualRate;
-      const totalRatePct = ctx.totalRatePct;
-      const discPct = ctx.discPct;
-      const discNote = escapeHTML(ctx.discNote);
-
-      if (lang === "EN") {
-        document.getElementById("specBenefitsCell").innerHTML = `
-          Provides protection for physical loss or damage to the insured object caused by:
-          <table class="sub-table">
-            <tr><td style="width:32%;font-weight:700;">Accidental Damage</td><td>Sudden, unforeseen, and accidental physical damage not excluded under the policy.</td></tr>
-            <tr><td style="font-weight:700;">Liquid Damage</td><td>Damage caused by liquid or water ingress, accidental spill, or immersion.</td></tr>
-            <tr><td style="font-weight:700;">Fire, Lightning, Explosion, Aircraft Impact &amp; Smoke</td><td>Loss or damage resulting from fire, lightning strike, explosion, aircraft impact, or smoke.</td></tr>
-            <tr><td style="font-weight:700;">RSMDCC</td><td>Loss or damage resulting from riot, strike, civil commotion, or malicious acts.</td></tr>
-            <tr><td style="font-weight:700;">Natural Disaster</td><td>Damage caused by earthquake, tsunami, volcanic eruption, flood, storm, or landslide.</td></tr>
-          </table>
-        `;
-        document.getElementById("specObjectCondCell").innerHTML = `
-          • Brand new item;<br/>
-          • Original factory condition and unmodified;<br/>
-          • Not refurbished or grey-market goods;<br/>
-          • Not standalone spare parts.
-        `;
-        document.getElementById("specObjectCatCell").innerHTML = `
-          <strong>${interest}</strong> — ${brandSpec}<br/>
-          <em>Note: Intended for partner <strong>${channel}</strong> (B2B).</em>
-        `;
-        document.getElementById("specSumLimitCell").innerHTML = `Up to IDR 100,000,000 per item (Current simulation: <strong>${priceText} / unit</strong>)`;
-        document.getElementById("specCovCondCell").innerHTML = `
-          Partial Loss: 100% of purchase invoice (no depreciation)<br/>
-          Total Loss: 100% of purchase invoice (no depreciation)
-        `;
-        document.getElementById("specPeriodCell").innerHTML = `
-          Up to <strong>${months} months</strong> (${periodYears} year(s)) from confirmation of unit receipt or 12:00 noon, whichever is later.
-        `;
-        document.getElementById("specIndemnityCell").innerHTML = `
-          • <strong>Repairment:</strong> 100% of repair labor and spare parts minus applicable deductible.<br/>
-          • <strong>Replacement:</strong> Up to 100% of unit value minus applicable deductible.<br/>
-          • Constructive total loss applies when repair estimate is &ge; 75% of unit value.
-        `;
-        document.getElementById("specPremiCell").innerHTML = `
-          <strong>${annualRate}% per annum</strong> (Total <strong>${totalRatePct}%</strong> for <strong>${periodYears} year(s)</strong>), calculated on Sum Insured.
-        `;
-        document.getElementById("specDeductibleCell").innerHTML = `
-          • Repairment: 10% of claim amount, min. IDR 100,000<br/>
-          • Replacement: 10% of claim amount, min. IDR 100,000
-        `;
-        document.getElementById("specDeprCell").textContent = "No depreciation";
-        document.getElementById("specDiscCell").innerHTML = discNote
-          ? `<strong>${discPct}%</strong> — ${discNote}`
-          : `<strong>${discPct}%</strong>`;
-        document.getElementById("specClaimMethodCell").innerHTML = `
-          <strong>1. Reimbursement:</strong> Repair or replacement at authorized/non-authorized service centers across Indonesia (subject to prior Insurer approval).<br/>
-          <strong>2. Cashless:</strong> Repair or replacement at designated partner service centers; Insured pays deductible upon claim approval and salvage handover. Includes up to 1x pickup and 1x delivery.
-        `;
-        document.getElementById("specJurisdictionCell").textContent = "Territory of the Republic of Indonesia";
-        document.getElementById("specDocsCell").innerHTML = `
-          All insured object details must be declared on <strong>H+1</strong> from transaction date:<br/>
-          • <strong>Insured Data:</strong> Name, phone number, ID/KITAS, email, address, gender.<br/>
-          • <strong>Item Data:</strong> Item name, category, brand/model, item price, serial number, SKU, invoice number, receipt date.
-        `;
-        document.getElementById("specOtherCell").innerHTML = `
-          1) Subject to BCAinsurance Movable Property All Risk Policy terms and conditions.<br/>
-          2) Product specifications above remain subject to review and mutual agreement.<br/>
-          3) Additional terms and conditions (if any) will be discussed and agreed further.
-        `;
-      } else {
-        document.getElementById("specBenefitsCell").innerHTML = `
-          Memberikan perlindungan atas kerugian atau kerusakan fisik pada objek pertanggungan akibat:
-          <table class="sub-table">
-            <tr><td style="width:32%;font-weight:700;">Kerusakan Tidak Terduga</td><td>Kerusakan fisik yang bersifat tiba-tiba, tidak terduga, dan tidak disengaja yang tidak dikecualikan dalam polis.</td></tr>
-            <tr><td style="font-weight:700;">Kerusakan Akibat Cairan</td><td>Kerusakan akibat masuknya cairan atau air, tumpahan tidak sengaja, maupun terendam cairan.</td></tr>
-            <tr><td style="font-weight:700;">Kebakaran, Petir, Ledakan, Kejatuhan Pesawat &amp; Asap</td><td>Kerugian atau kerusakan akibat kebakaran, sambaran petir, ledakan, kejatuhan pesawat, atau asap.</td></tr>
-            <tr><td style="font-weight:700;">Kerusuhan, Pemogokan, Huru-Hara</td><td>Kerugian atau kerusakan akibat kerusuhan, pemogokan, huru-hara, atau perbuatan jahat pihak lain.</td></tr>
-            <tr><td style="font-weight:700;">Bencana Alam</td><td>Kerusakan akibat gempa bumi, tsunami, letusan gunung berapi, banjir, angin topan, atau tanah longsor.</td></tr>
-          </table>
-        `;
-        document.getElementById("specObjectCondCell").innerHTML = `
-          • Barang baru;<br/>
-          • Kondisi orisinil sesuai standar pabrikan dan tidak dimodifikasi;<br/>
-          • Bukan barang rekondisi maupun barang pasar gelap;<br/>
-          • Bukan suku cadang yang dijual terpisah.
-        `;
-        document.getElementById("specObjectCatCell").innerHTML = `
-          <strong>${interest}</strong> — ${brandSpec}<br/>
-          <em>Catatan: Diperuntukkan bagi mitra <strong>${channel}</strong> (B2B).</em>
-        `;
-        document.getElementById("specSumLimitCell").innerHTML = `Hingga Rp 100.000.000 per unit (Simulasi saat ini: <strong>${priceText} / unit</strong>)`;
-        document.getElementById("specCovCondCell").innerHTML = `
-          Kerugian Sebagian: 100% dari faktur pembelian (tanpa depresiasi)<br/>
-          Kerugian Total: 100% dari faktur pembelian (tanpa depresiasi)
-        `;
-        document.getElementById("specPeriodCell").innerHTML = `
-          Hingga <strong>${months} bulan</strong> (${periodYears} tahun) sejak konfirmasi penerimaan unit oleh pengguna atau pukul 12.00 siang, mana yang lebih akhir.
-        `;
-        document.getElementById("specIndemnityCell").innerHTML = `
-          • <strong>Perbaikan:</strong> 100% biaya jasa perbaikan dan suku cadang dikurangi risiko sendiri.<br/>
-          • <strong>Penggantian:</strong> Hingga 100% nilai unit dikurangi risiko sendiri.<br/>
-          • Dinyatakan kerugian total apabila estimasi biaya perbaikan &ge; 75% dari nilai unit.
-        `;
-        document.getElementById("specPremiCell").innerHTML = `
-          <strong>${annualRate}% per tahun</strong> (Total <strong>${totalRatePct}%</strong> untuk <strong>${periodYears} tahun</strong>), dihitung dari harga pertanggungan.
-        `;
-        document.getElementById("specDeductibleCell").innerHTML = `
-          • Perbaikan: 10% dari nilai klaim, minimum Rp 100.000<br/>
-          • Penggantian: 10% dari nilai klaim, minimum Rp 100.000
-        `;
-        document.getElementById("specDeprCell").textContent = "Tidak ada depresiasi";
-        document.getElementById("specDiscCell").innerHTML = discNote
-          ? `<strong>${discPct}%</strong> — ${discNote}`
-          : `<strong>${discPct}%</strong>`;
-        document.getElementById("specClaimMethodCell").innerHTML = `
-          <strong>1. Penggantian Biaya (Reimbursement):</strong> Perbaikan atau penggantian di bengkel/pusat layanan resmi maupun tidak resmi di Indonesia dengan persetujuan Penanggung terlebih dahulu.<br/>
-          <strong>2. Nontunai (Cashless):</strong> Perbaikan atau penggantian di pusat layanan mitra Penanggung; Tertanggung membayar risiko sendiri setelah klaim disetujui dan sisa barang diserahkan. Termasuk layanan antar-jemput maksimal 1 kali jemput dan 1 kali antar.
-        `;
-        document.getElementById("specJurisdictionCell").textContent = "Wilayah Negara Kesatuan Republik Indonesia";
-        document.getElementById("specDocsCell").innerHTML = `
-          Seluruh data objek pertanggungan dideklarasikan paling lambat <strong>H+1</strong> sejak tanggal transaksi:<br/>
-          • <strong>Data Tertanggung:</strong> Nama, nomor telepon, NIK/KITAS, surel, alamat, jenis kelamin.<br/>
-          • <strong>Data Barang:</strong> Nama barang, kategori, merek/tipe, harga barang, nomor seri, kode SKU, nomor faktur, tanggal terima barang.
-        `;
-        document.getElementById("specOtherCell").innerHTML = `
-          1) Mengikuti syarat dan ketentuan Polis Asuransi Barang Bergerak BCAinsurance.<br/>
-          2) Spesifikasi produk di atas dapat ditinjau dan disepakati bersama.<br/>
-          3) Ketentuan tambahan (jika ada) akan dibahas dan disepakati lebih lanjut.
-        `;
-      }
-    }
-
-    function calculateAndRender() {
-      const lang = getCurrentLang();
-      const dict = I18N[lang];
-
-      const units = parseFloat(document.getElementById("inUnits").value) || 0;
-      const price = parseFloat(document.getElementById("inPrice").value) || 0;
-      const annualRate = parseFloat(document.getElementById("inRate").value) || 0;
-      const periodYears = getEffectiveYears();
-      const discPct = parseFloat(document.getElementById("inDiscount").value) || 0;
-      const customPeriodLabel = document.getElementById("inPeriodLabel").value.trim();
-      const discNoteText = document.getElementById("inDiscNote").value.trim();
-      const policyFee = parseFloat(document.getElementById("inPolicyFee").value) || 0;
-      const stampFee = parseFloat(document.getElementById("inStampFee").value) || 0;
-
-      const tsi = units * price;
-      const totalRatePct = +(annualRate * periodYears).toFixed(4);
-      const grossPremi = tsi * (totalRatePct / 100);
-      const totalDisc = grossPremi * (discPct / 100);
-      const netPremi = grossPremi - totalDisc;
-      const grandPremi = netPremi + policyFee + stampFee;
-
-      document.getElementById("sumTsi").textContent = "Rp " + formatIDR(tsi);
-      document.getElementById("sumRatePct").textContent = totalRatePct + "%";
-      document.getElementById("sumGross").textContent = "Rp " + formatIDR(grossPremi);
-      document.getElementById("sumDiscPct").textContent = discPct + "%";
-      document.getElementById("sumDisc").textContent = "- Rp " + formatIDR(totalDisc);
-      document.getElementById("sumNet").textContent = "Rp " + formatIDR(netPremi);
-      document.getElementById("sumGrand").textContent = "Rp " + formatIDR(grandPremi);
-
-      const months = Math.round(periodYears * 12);
-      const defaultPeriodLabel = lang === "EN"
-        ? `${periodYears} Year${periodYears !== 1 ? "s" : ""} (${months} Months)`
-        : `${periodYears} Tahun (${months} Bulan)`;
-
-      setAll(".out-period-text", customPeriodLabel || defaultPeriodLabel);
-      setAll(".out-units", formatIDR(units));
-      setAll(".out-price", "Rp " + formatIDR(price));
-      setAll(".out-tsi", "Rp " + formatIDR(tsi));
-      setAll(".out-annual-rate", annualRate);
-      setAll(".out-total-rate", totalRatePct);
-      setAll(".out-gross-premi", formatIDR(grossPremi));
-      setAll(".out-disc-pct", discPct);
-      setAll(".out-total-disc", formatIDR(totalDisc));
-      setAll(".out-net-premi", formatIDR(netPremi));
-      setAll(".out-policy-fee", formatIDR(policyFee));
-      setAll(".out-stamp-fee", formatIDR(stampFee));
-      setAll(".out-grand-premi", formatIDR(grandPremi));
-
-      const rowStamp = document.getElementById("rowStampFee");
-      if (rowStamp) {
-        rowStamp.style.display = stampFee > 0 ? "table-row" : "none";
-      }
-
-      const rowDiscNote = document.getElementById("rowDiscNote");
-      if (rowDiscNote) {
-        if (discNoteText) {
-          rowDiscNote.style.display = "table-row";
-          setAll(".out-disc-note", discNoteText);
-        } else {
-          rowDiscNote.style.display = "none";
-          setAll(".out-disc-note", "");
-        }
-      }
-
-      setAll(".t-qs-title", dict.qsTitle);
-      setAll(".t-no-label", dict.noLabel);
-      setAll(".t-lbl-type", dict.lblType);
-      setAll(".t-val-type", dict.valType);
-      setAll(".t-spec-subtitle", dict.valTypeUpper);
-      setAll(".t-lbl-wording", dict.lblWording);
-      setAll(".t-lbl-insured", dict.lblInsured);
-      setAll(".t-lbl-period", dict.lblPeriod);
-      setAll(".t-lbl-location", dict.lblLocation);
-      setAll(".t-val-location", dict.valLocation);
-      setAll(".t-lbl-coverage", dict.lblCoverage);
-      setAll(".t-val-coverage", dict.valCoverage);
-      setAll(".t-lbl-interest", dict.lblInterest);
-      setAll(".t-lbl-units", dict.lblUnits);
-      setAll(".t-lbl-price", dict.lblPrice);
-      setAll(".t-lbl-tsi", dict.lblTsi);
-      setAll(".t-lbl-deductible", dict.lblDeductible);
-      document.querySelectorAll(".t-val-deductible").forEach((el) => (el.innerHTML = dict.valDeductible));
-      setAll(".t-lbl-rate", dict.lblRate);
-      setAll(".t-per-annum", dict.perAnnum);
-      setAll(".t-lbl-gross", dict.lblGross);
-      setAll(".t-of-tsi", dict.ofTsi);
-      setAll(".t-lbl-disc-row", dict.lblDiscRow);
-      setAll(".t-lbl-total-disc", dict.lblTotalDisc);
-      setAll(".t-lbl-net", dict.lblNet);
-      setAll(".t-lbl-admin", dict.lblAdmin);
-      setAll(".t-lbl-stamp", dict.lblStamp);
-      setAll(".t-lbl-total", dict.lblTotal);
-      setAll(".t-lbl-clauses", dict.lblClauses);
-      setAll(".t-closing-note", dict.closingNote);
-      setAll(".t-sincerely", dict.sincerely);
-      setAll(".t-role-label", dict.roleLabel);
-      setAll(".t-email-label", dict.emailLabel);
-      setAll(".t-insured-box-title", dict.insuredBoxTitle);
-      setAll(".t-noted-agreed", dict.notedAgreed);
-      setAll(".t-by-label", dict.byLabel);
-      setAll(".t-spec-title", dict.specTitle);
-
-      setAll(".t-sp-channel", dict.spChannel);
-      setAll(".t-sp-insured", dict.spInsured);
-      setAll(".t-sp-prodname", dict.spProdname);
-      setAll(".t-sp-wording", dict.spWording);
-      setAll(".t-sp-benefits", dict.spBenefits);
-      setAll(".t-sp-cond-obj", dict.spCondObj);
-      setAll(".t-sp-cat-obj", dict.spCatObj);
-      setAll(".t-sp-sum-val", dict.spSumVal);
-      setAll(".t-sp-cov-cond", dict.spCovCond);
-      setAll(".t-sp-period", dict.spPeriod);
-      setAll(".t-sp-indemnity", dict.spIndemnity);
-      setAll(".t-sp-premi", dict.spPremi);
-      setAll(".t-sp-deductible", dict.spDeductible);
-      setAll(".t-sp-depr", dict.spDepr);
-      setAll(".t-sp-disc", dict.spDisc);
-      setAll(".t-sp-claim-method", dict.spClaimMethod);
-      setAll(".t-sp-jurisdiction", dict.spJurisdiction);
-      setAll(".t-sp-docs", dict.spDocs);
-      setAll(".t-sp-other", dict.spOther);
-
-      renderSpecLanguageContent(lang, {
-        channel: document.getElementById("inChannel").value,
-        interest: document.getElementById("inInterest").value,
-        brandSpec: document.getElementById("inBrandSpec").value,
-        priceText: "Rp " + formatIDR(price),
-        months,
-        periodYears,
-        annualRate,
-        totalRatePct,
-        discPct,
-        discNote: discNoteText
-      });
-
-      renderAll();
-    }
-
-    function setAll(selector, text) {
-      document.querySelectorAll(selector).forEach((el) => (el.textContent = text));
-    }
-
     function renderAll() {
-      setAll(".out-qs-no", document.getElementById("inQsNo").value);
-      setAll(".out-doc-date", document.getElementById("inDocDate").value);
-      setAll(".out-wording", document.getElementById("inWording").value);
-      setAll(".out-channel", document.getElementById("inChannel").value);
-      setAll(".out-channel-upper", document.getElementById("inChannel").value.toUpperCase());
-      setAll(".out-insured", document.getElementById("inInsured").value);
-      setAll(".out-interest", document.getElementById("inInterest").value);
-      setAll(".out-marketing-name", document.getElementById("inMarketingName").value);
-      setAll(".out-marketing-email", document.getElementById("inMarketingEmail").value);
+      renderBranding();
+      const lang = document.getElementById("inLang")?.value || "EN";
+      const t = I18N[lang] || I18N.EN;
+      const c = computePremiValues();
 
-      renderHeaderFooterBars();
+      document.querySelectorAll(".t-qs-title").forEach(el => el.textContent = t.qsTitle);
+      document.querySelectorAll(".t-no-label").forEach(el => el.textContent = t.noLabel);
+      document.querySelectorAll(".t-lbl-type").forEach(el => el.textContent = t.lblType);
+      document.querySelectorAll(".t-val-type").forEach(el => el.textContent = t.valType);
+      document.querySelectorAll(".t-lbl-wording").forEach(el => el.textContent = t.lblWording);
+      document.querySelectorAll(".t-lbl-insured").forEach(el => el.textContent = t.lblInsured);
+      document.querySelectorAll(".t-lbl-period").forEach(el => el.textContent = t.lblPeriod);
+      document.querySelectorAll(".t-lbl-location").forEach(el => el.textContent = t.lblLocation);
+      document.querySelectorAll(".t-val-location").forEach(el => el.textContent = t.valLocation);
+      document.querySelectorAll(".t-lbl-coverage").forEach(el => el.textContent = t.lblCoverage);
+      document.querySelectorAll(".t-val-coverage").forEach(el => el.textContent = t.valCoverage);
+      document.querySelectorAll(".t-lbl-interest").forEach(el => el.textContent = t.lblInterest);
+      document.querySelectorAll(".t-lbl-units").forEach(el => el.textContent = t.lblUnits);
+      document.querySelectorAll(".t-lbl-price").forEach(el => el.textContent = t.lblPrice);
+      document.querySelectorAll(".t-lbl-tsi").forEach(el => el.textContent = t.lblTsi);
+      document.querySelectorAll(".t-lbl-deductible").forEach(el => el.textContent = t.lblDeductible);
+      document.querySelectorAll(".t-val-deductible").forEach(el => el.textContent = t.valDeductible);
+      document.querySelectorAll(".t-lbl-rate").forEach(el => el.textContent = t.lblRate);
+      document.querySelectorAll(".t-per-annum").forEach(el => el.textContent = t.perAnnum);
+      document.querySelectorAll(".t-lbl-gross").forEach(el => el.textContent = t.lblGross);
+      document.querySelectorAll(".t-of-tsi").forEach(el => el.textContent = t.ofTsi);
+      document.querySelectorAll(".t-lbl-disc-row").forEach(el => el.textContent = t.lblDiscRow);
+      document.querySelectorAll(".t-lbl-total-disc").forEach(el => el.textContent = t.lblTotalDisc);
+      document.querySelectorAll(".t-lbl-net").forEach(el => el.textContent = t.lblNet);
+      document.querySelectorAll(".t-lbl-admin").forEach(el => el.textContent = t.lblAdmin);
+      document.querySelectorAll(".t-lbl-stamp").forEach(el => el.textContent = t.lblStamp);
+      document.querySelectorAll(".t-lbl-total").forEach(el => el.textContent = t.lblTotal);
+      document.querySelectorAll(".t-lbl-clauses").forEach(el => el.textContent = t.lblClauses);
+      document.querySelectorAll(".t-closing-note").forEach(el => el.textContent = t.closingNote);
+      document.querySelectorAll(".t-sincerely").forEach(el => el.textContent = t.sincerely);
+      document.querySelectorAll(".t-role-label").forEach(el => el.textContent = t.roleLabel);
+      document.querySelectorAll(".t-email-label").forEach(el => el.textContent = t.emailLabel);
+      document.querySelectorAll(".t-insured-box-title").forEach(el => el.textContent = t.insuredBoxTitle);
+      document.querySelectorAll(".t-noted-agreed").forEach(el => el.textContent = t.notedAgreed);
+      document.querySelectorAll(".t-by-label").forEach(el => el.textContent = t.byLabel);
+      document.querySelectorAll(".t-partner-sign-line").forEach(el => el.textContent = t.partnerSignLine);
+      document.querySelectorAll(".t-partner-date-line").forEach(el => el.textContent = t.partnerDateLine);
+
+      document.querySelectorAll(".t-spec-title").forEach(el => el.textContent = t.specTitle);
+      document.querySelectorAll(".t-spec-subtitle").forEach(el => el.textContent = t.specSubtitle);
+      document.querySelectorAll(".t-sp-channel").forEach(el => el.textContent = t.spChannel);
+      document.querySelectorAll(".t-sp-insured").forEach(el => el.textContent = t.spInsured);
+      document.querySelectorAll(".t-sp-prodname").forEach(el => el.textContent = t.spProdName);
+      document.querySelectorAll(".t-sp-wording").forEach(el => el.textContent = t.spWording);
+      document.querySelectorAll(".t-sp-benefits").forEach(el => el.textContent = t.spBenefits);
+      document.querySelectorAll(".t-sp-cond-obj").forEach(el => el.textContent = t.spCondObj);
+      document.querySelectorAll(".t-sp-cat-obj").forEach(el => el.textContent = t.spCatObj);
+      document.querySelectorAll(".t-sp-sum-val").forEach(el => el.textContent = t.spSumVal);
+      document.querySelectorAll(".t-sp-cov-cond").forEach(el => el.textContent = t.spCovCond);
+      document.querySelectorAll(".t-sp-period").forEach(el => el.textContent = t.spPeriod);
+      document.querySelectorAll(".t-sp-indemnity").forEach(el => el.textContent = t.spIndemnity);
+      document.querySelectorAll(".t-sp-premi").forEach(el => el.textContent = t.spPremi);
+      document.querySelectorAll(".t-sp-deductible").forEach(el => el.textContent = t.spDeductible);
+      document.querySelectorAll(".t-sp-depr").forEach(el => el.textContent = t.spDepr);
+      document.querySelectorAll(".t-sp-disc").forEach(el => el.textContent = t.spDisc);
+      document.querySelectorAll(".t-sp-claim-method").forEach(el => el.textContent = t.spClaimMethod);
+      document.querySelectorAll(".t-sp-jurisdiction").forEach(el => el.textContent = t.spJurisdiction);
+      document.querySelectorAll(".t-sp-docs").forEach(el => el.textContent = t.spDocs);
+      document.querySelectorAll(".t-sp-other").forEach(el => el.textContent = t.spOther);
+
+      const qsNo = document.getElementById("inQsNo")?.value || "";
+      const docDate = document.getElementById("inDocDate")?.value || "";
+      const wording = document.getElementById("inWording")?.value || "";
+      const channel = document.getElementById("inChannel")?.value || "";
+      const insured = document.getElementById("inInsured")?.value || "";
+      const interest = document.getElementById("inInterest")?.value || "";
+      const brandSpec = document.getElementById("inBrandSpec")?.value || "";
+      const discNote = document.getElementById("inDiscNote")?.value || "";
+      const mktName = document.getElementById("inMarketingName")?.value || "";
+      const mktEmail = document.getElementById("inMarketingEmail")?.value || "";
+
+      document.querySelectorAll(".out-qs-no").forEach(el => el.textContent = qsNo);
+      document.querySelectorAll(".out-doc-date").forEach(el => el.textContent = docDate);
+      document.querySelectorAll(".out-wording").forEach(el => el.textContent = wording);
+      document.querySelectorAll(".out-channel").forEach(el => el.textContent = channel);
+      document.querySelectorAll(".out-channel-upper").forEach(el => el.textContent = channel.toUpperCase());
+      document.querySelectorAll(".out-insured").forEach(el => el.textContent = insured);
+      document.querySelectorAll(".out-interest").forEach(el => el.textContent = interest);
+      document.querySelectorAll(".out-units").forEach(el => el.textContent = `${formatNum(c.units)} ${t.unitWord}`);
+      document.querySelectorAll(".out-price").forEach(el => el.textContent = formatRp(c.price));
+      document.querySelectorAll(".out-tsi").forEach(el => el.textContent = formatRp(c.tsi));
+      document.querySelectorAll(".out-period-text").forEach(el => el.textContent = getPeriodText());
+
+      document.querySelectorAll(".out-annual-rate").forEach(el => el.textContent = c.annualRate);
+      document.querySelectorAll(".out-total-rate").forEach(el => el.textContent = c.totalRatePct);
+      document.querySelectorAll(".out-gross-premi").forEach(el => el.textContent = formatNum(c.grossPremi));
+      document.querySelectorAll(".out-disc-pct").forEach(el => el.textContent = c.discountPct);
+      document.querySelectorAll(".out-total-disc").forEach(el => el.textContent = formatNum(c.totalDiscount));
+      document.querySelectorAll(".out-net-premi").forEach(el => el.textContent = formatNum(c.netPremi));
+      document.querySelectorAll(".out-policy-fee").forEach(el => el.textContent = formatNum(c.policyFee));
+      document.querySelectorAll(".out-stamp-fee").forEach(el => el.textContent = formatNum(c.stampFee));
+      document.querySelectorAll(".out-grand-premi").forEach(el => el.textContent = formatNum(c.grandPremi));
+
+      document.querySelectorAll(".out-disc-note").forEach(el => el.textContent = discNote);
+      const rowDiscNote = document.getElementById("rowDiscNote");
+      if (rowDiscNote) rowDiscNote.style.display = discNote.trim() ? "" : "none";
+
+      const rowStampFee = document.getElementById("rowStampFee");
+      if (rowStampFee) rowStampFee.style.display = c.stampFee > 0 ? "" : "none";
+
+      document.querySelectorAll(".out-marketing-name").forEach(el => el.textContent = mktName);
+      document.querySelectorAll(".out-marketing-email").forEach(el => el.textContent = mktEmail);
+
+      document.getElementById("specBenefitsCell").textContent = t.valCoverage;
+      document.getElementById("specObjectCondCell").textContent = lang === "ID" ? "Sesuai ketentuan pertanggungan" : "As per underwriting condition";
+      document.getElementById("specObjectCatCell").textContent = brandSpec || interest || "-";
+      document.getElementById("specSumLimitCell").textContent = `${formatRp(c.tsi)} (${formatNum(c.units)} ${t.unitWord} × ${formatRp(c.price)})`;
+      document.getElementById("specCovCondCell").textContent = `${t.valCoverage} — ${t.valLocation}`;
+      document.getElementById("specPeriodCell").textContent = getPeriodText();
+      document.getElementById("specIndemnityCell").textContent = lang === "ID" ? "Indemnitas sesuai syarat & ketentuan polis" : "Indemnity subject to policy terms & conditions";
+      document.getElementById("specPremiCell").textContent = `${c.annualRate}% p.a. (${c.totalRatePct}% total) — Total Premi: ${formatRp(c.grandPremi)}`;
+      document.getElementById("specDeductibleCell").textContent = t.valDeductible;
+      document.getElementById("specDeprCell").textContent = lang === "ID" ? "Sesuai ketentuan polis" : "As per policy wording";
+      document.getElementById("specDiscCell").textContent = `${c.discountPct}% (${formatRp(c.totalDiscount)})${discNote ? ` — ${discNote}` : ""}`;
+      document.getElementById("specClaimMethodCell").textContent = lang === "ID" ? "Penyelesaian klaim sesuai prosedur & kelengkapan dokumen BCAinsurance" : "Claim settlement per BCAinsurance procedures & required documentation";
+      document.getElementById("specJurisdictionCell").textContent = lang === "ID" ? "Hukum Republik Indonesia" : "Republic of Indonesia";
+      document.getElementById("specDocsCell").textContent = lang === "ID" ? "Data objek, identitas tertanggung, dan dokumen pendukung sesuai ketentuan" : "Insured object data, insured details, and supporting documents per policy terms";
+      document.getElementById("specOtherCell").textContent = lang === "ID" ? "Mengikuti syarat, pengecualian, dan klausula standar BCAinsurance" : "Subject to BCAinsurance standard terms, exclusions, and clauses";
+
+      renderClauses();
       renderSignatureMode();
+      renderKerjasama();
     }
 
     function downloadPDF() {
-      if (typeof html2pdf === "undefined") {
-        window.print();
-        return;
-      }
       const element = document.getElementById("pdfDocumentArea");
-      const insuredName = document.getElementById("inChannel").value.replace(/[^a-zA-Z0-9]/g, "_");
-      const langCode = getCurrentLang();
-      const modeCode = document.getElementById("inDocMode").value;
-      const filename = `QS_MPAR_${langCode}_${insuredName}_${modeCode}.pdf`;
-
+      const qsNo = (document.getElementById("inQsNo").value || "MPAR_QS").replace(/[^a-zA-Z0-9_-]/g, "_");
       const opt = {
         margin: 0,
-        filename: filename,
+        filename: `${qsNo}_BCAinsurance.pdf`,
         image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+        html2canvas: { scale: 2, useCORS: true, logging: false },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
         pagebreak: { mode: ["css", "legacy"] }
       };
-
-      html2pdf().set(opt).from(element).save();
+      if (typeof html2pdf !== "undefined") {
+        html2pdf().set(opt).from(element).save();
+      } else {
+        window.print();
+      }
     }
 
     window.addEventListener("DOMContentLoaded", () => {
-      renderLogos();
-      const savedHeight = localStorage.getItem("bca_qs_logoHeight");
-      if (savedHeight) {
-        document.getElementById("logoHeightSlider").value = savedHeight;
-        document.getElementById("logoSizeVal").textContent = savedHeight;
-      }
-      resetClauses();
       initSignaturePad();
-      calculateAndRender();
-      applyDocMode();
-
+      getDrafts();
+      getQsTracker();
+      getKsList();
       if (sessionStorage.getItem("bca_qs_auth") === "true") {
         unlockApp();
+        switchNav("HOME");
+      } else {
+        document.getElementById("loginLogoWrap").innerHTML = buildPngLogoImg({ style: "max-height:50px; max-width:240px; width:auto; height:auto; object-fit:contain; display:block;" });
       }
     });
   </script>
