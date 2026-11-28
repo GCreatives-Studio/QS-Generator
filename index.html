@@ -218,7 +218,7 @@
 
     .mobile-backdrop.show { display: block; }
 
-    /* ================= LEFT NAVY SIDEBAR (CLEAN PRODUCT TREE) ================= */
+    /* ================= LEFT NAVY SIDEBAR ================= */
     .nav-sidebar {
       width: 260px;
       min-width: 260px;
@@ -418,7 +418,7 @@
     /* ================= RIGHT WORKSPACE ================= */
     .workspace { flex: 1; display: flex; flex-direction: column; min-width: 0; min-height: 100vh; }
 
-    .portal-view { flex: 1; padding: 26px 32px; max-width: 1220px; width: 100%; }
+    .portal-view { flex: 1; padding: 26px 32px; max-width: 1260px; width: 100%; }
 
     .portal-header {
       margin-bottom: 18px;
@@ -586,6 +586,7 @@
 
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 
     .calc-summary {
       background: var(--bca-accent);
@@ -635,6 +636,24 @@
       border-top: 1px solid #e2e8f0;
     }
 
+    .btn-group-hint {
+      grid-column: 1 / -1;
+      font-size: 11px;
+      font-weight: 600;
+      color: #b45309;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      padding: 6px 8px;
+      text-align: center;
+    }
+
+    .btn-group-hint.unlocked {
+      color: #15803d;
+      background: #dcfce7;
+      border-color: #bbf7d0;
+    }
+
     .btn {
       padding: 8px 11px;
       border: none;
@@ -647,12 +666,17 @@
       font-family: inherit;
     }
 
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
     .btn-primary { background: var(--bca-navy); color: #fff; }
-    .btn-primary:hover { background: var(--bca-navy-dark); }
+    .btn-primary:hover:not(:disabled) { background: var(--bca-navy-dark); }
     .btn-secondary { background: #0f766e; color: #fff; }
-    .btn-secondary:hover { background: #115e59; }
+    .btn-secondary:hover:not(:disabled) { background: #115e59; }
     .btn-accent { background: #0284c7; color: #fff; }
-    .btn-accent:hover { background: #0369a1; }
+    .btn-accent:hover:not(:disabled) { background: #0369a1; }
     .btn-danger { background: #dc2626; color: #fff; }
     .btn-reset {
       background: #e2e8f0;
@@ -666,6 +690,194 @@
       font-family: inherit;
     }
     .btn-reset:hover { background: #cbd5e1; }
+
+    /* ================= TIERING BUILDER UI ================= */
+    .tier-builder-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .tier-table-edit {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 12px;
+    }
+
+    .tier-table-edit th {
+      background: #e2e8f0;
+      color: #0f172a;
+      font-weight: 700;
+      text-align: left;
+      padding: 6px 8px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .tier-table-edit td {
+      padding: 5px 6px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+    }
+
+    .tier-table-edit input {
+      width: 100%;
+      padding: 5px 7px;
+      font-size: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+
+    .tier-premi-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      white-space: nowrap;
+    }
+
+    /* ================= PARTNERSHIP PROPOSAL OUTPUT STYLES ================= */
+    .proposal-hero-banner {
+      background: linear-gradient(135deg, #123663 0%, #005baa 100%);
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .proposal-hero-banner h2 {
+      font-size: 13pt;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+
+    .proposal-hero-banner p {
+      font-size: 8.5pt;
+      color: #e0f2fe;
+    }
+
+    .proposal-qs-pill {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 6px 11px;
+      border-radius: 6px;
+      text-align: right;
+      font-size: 8.2pt;
+      white-space: nowrap;
+    }
+
+    .proposal-sec-title {
+      font-size: 10pt;
+      font-weight: 800;
+      color: var(--bca-navy);
+      border-left: 4px solid var(--bca-blue);
+      padding-left: 9px;
+      margin: 14px 0 8px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .exec-summary-card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+      padding: 11px 14px;
+      font-size: 8.8pt;
+      line-height: 1.48;
+      color: #1e293b;
+    }
+
+    .sim-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .sim-highlight-card {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 7px;
+      padding: 10px 12px;
+    }
+
+    .sim-highlight-card.accent-gold {
+      background: #fefce8;
+      border-color: #fde047;
+    }
+
+    .sim-highlight-card.accent-navy {
+      background: #123663;
+      border-color: #123663;
+      color: #ffffff;
+    }
+
+    .sim-card-lbl {
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0369a1;
+    }
+
+    .sim-highlight-card.accent-gold .sim-card-lbl { color: #854d0e; }
+    .sim-highlight-card.accent-navy .sim-card-lbl { color: #93c5fd; }
+
+    .sim-card-val {
+      font-size: 12pt;
+      font-weight: 800;
+      color: #0f172a;
+      margin-top: 3px;
+    }
+
+    .sim-highlight-card.accent-navy .sim-card-val { color: #ffffff; }
+
+    .sim-card-sub {
+      font-size: 7.4pt;
+      color: #475569;
+      margin-top: 2px;
+    }
+
+    .sim-highlight-card.accent-navy .sim-card-sub { color: #cbd5e1; }
+
+    table.tier-doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.6pt;
+      margin-top: 6px;
+    }
+
+    table.tier-doc-table th {
+      background: #d9d9d9;
+      color: #000000;
+      font-weight: 700;
+      border: 1px solid #334155;
+      padding: 6px 10px;
+      text-align: center;
+    }
+
+    table.tier-doc-table td {
+      border: 1px solid #334155;
+      padding: 5px 10px;
+      color: #0f172a;
+    }
+
+    table.tier-doc-table td.num-right {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
 
     /* ================= PREVIEW AREA & FIXED HEADER/FOOTER ================= */
     .preview-container {
@@ -874,7 +1086,7 @@
       .portal-view { padding: 18px 14px 36px 14px; }
       .portal-header h2 { font-size: 19px; }
       .data-card { padding: 15px; }
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .grid-2, .grid-3, .grid-4, .sim-cards-grid { grid-template-columns: 1fr; }
       .generator-workspace { flex-direction: column; }
       .sidebar { width: 100%; min-width: 0; height: auto; position: static; border-right: none; border-bottom: 1px solid #cbd5e1; padding: 14px; }
       .btn-group { position: static; margin-top: 12px; padding-top: 0; border-top: none; }
@@ -984,7 +1196,7 @@
             </ul>
           </li>
 
-          <!-- PRODUK 2: TRAVEL (TANPA LABEL COMING SOON DI SIDEBAR) -->
+          <!-- PRODUK 2: TRAVEL -->
           <li class="nav-product-group" id="groupTravel">
             <button type="button" class="nav-product-btn" onclick="switchNav('TRAVEL')">
               <span class="nav-item-left">
@@ -995,7 +1207,7 @@
             </button>
           </li>
 
-          <!-- PRODUK 3: PA (TANPA LABEL COMING SOON DI SIDEBAR) -->
+          <!-- PRODUK 3: PA -->
           <li class="nav-product-group" id="groupPa">
             <button type="button" class="nav-product-btn" onclick="switchNav('PA')">
               <span class="nav-item-left">
@@ -1039,7 +1251,7 @@
         <div id="mobileTopbarLogo"></div>
       </header>
 
-      <!-- 1. MPAR -> DASHBOARD (TOTAL QS & STATUS APPROVAL) -->
+      <!-- 1. MPAR -> DASHBOARD -->
       <section class="portal-view" id="viewDashboard" style="display: none;">
         <div class="portal-header">
           <div>
@@ -1116,7 +1328,7 @@
         </div>
       </section>
 
-      <!-- 2. MPAR -> DRAFT (GABUNGAN DRAFT QS & DRAFT PENAWARAN KERJASAMA) -->
+      <!-- 2. MPAR -> DRAFT -->
       <section class="portal-view" id="viewDrafts" style="display: none;">
         <div class="portal-header">
           <div>
@@ -1131,7 +1343,7 @@
         <div id="draftListContainer"></div>
       </section>
 
-      <!-- 3. WORKSPACE APPROVAL UW (uw_bcai) -->
+      <!-- 3. WORKSPACE APPROVAL UW -->
       <section class="portal-view" id="viewUwApproval" style="display: none;">
         <div class="portal-header">
           <div>
@@ -1143,160 +1355,301 @@
         <div id="uwQueueContainer"></div>
       </section>
 
-      <!-- 4. MPAR -> PENAWARAN KERJASAMA (SIMPLE: SPESIFIKASI PRODUK + COMMERCIAL TERMS) -->
+      <!-- 4. MPAR -> PENAWARAN KERJASAMA PEMASARAN (PARTNERSHIP PROPOSAL) -->
       <section class="portal-view" id="viewKerjasama" style="display: none;">
         <div class="portal-header">
           <div>
-            <h2>Penawaran Kerjasama — MPAR</h2>
-            <p>Format ringkas mengikuti isian Spesifikasi Produk &amp; Commercial Terms, dilengkapi workflow BS, Prodev &amp; No. PKS.</p>
+            <h2>Penawaran Kerjasama Pemasaran (Partnership Proposal) — MPAR</h2>
+            <p>Proposal kerjasama B2B berorientasi komisi partner, opsi premi Flat Rate / Custom Tiering, simulasi pendapatan partner, dan lampiran spesifikasi produk.</p>
           </div>
           <div class="data-card-actions no-print">
-            <button type="button" class="btn btn-reset" onclick="resetKerjasamaForm()">Reset Form</button>
+            <button type="button" class="btn btn-reset" onclick="resetKerjasamaForm()">Kosongkan Form</button>
             <button type="button" class="btn btn-secondary" onclick="window.print()">🖨 Cetak / Simpan PDF</button>
           </div>
         </div>
 
         <div class="sub-tabs no-print">
-          <button type="button" class="sub-tab-btn active" id="tabKsForm" onclick="switchKsTab('FORM')">1. Form &amp; Surat Penawaran Partner</button>
+          <button type="button" class="sub-tab-btn active" id="tabKsForm" onclick="switchKsTab('FORM')">1. Form &amp; Proposal Kerjasama Partner</button>
           <button type="button" class="sub-tab-btn" id="tabKsMonitor" onclick="switchKsTab('MONITOR')">2. Monitoring Approval (BS &amp; Prodev) &amp; Terbit PKS</button>
         </div>
 
-        <!-- TAB 1: SIMPLE FORM + PREVIEW PARTNER -->
         <div id="ksTabFormPanel">
           <div class="data-card no-print">
-            <div class="section-title"><span>Isian Penawaran Kerjasama (Spesifikasi Produk &amp; Commercial Terms)</span></div>
+            <div class="section-title"><span>1. Identitas Proposal (Nomor QS) &amp; Profil Partner</span></div>
 
             <div class="grid-3">
               <div class="form-group">
-                <label>No. Surat Penawaran</label>
-                <input type="text" id="ksLetterNo" value="SPH/018/BCAI-MKT/XI/2026" oninput="renderKerjasama()" />
+                <label>No. Quotation Slip (QS)</label>
+                <input type="text" id="ksQsNo" placeholder="Contoh: 018/QS/BCAI-MKT/XI/2026" oninput="renderKerjasama()" />
               </div>
               <div class="form-group">
-                <label>Tanggal Surat</label>
-                <input type="text" id="ksOfferDate" value="28 November 2026" oninput="renderKerjasama()" />
+                <label>Tanggal Dokumen</label>
+                <input type="text" id="ksOfferDate" placeholder="Contoh: 28 November 2026" oninput="renderKerjasama()" />
               </div>
               <div class="form-group">
-                <label>Nama Partner / Perusahaan</label>
+                <label>Nama Perusahaan Partner</label>
                 <input type="text" id="ksCompany" placeholder="Contoh: PT Mitra Retail Nusantara" oninput="renderKerjasama()" />
               </div>
             </div>
 
             <div class="grid-2">
               <div class="form-group">
-                <label>Jenis Program</label>
-                <input type="text" id="ksProgramType" value="Program Perlindungan Movable Property All Risk (MPAR) Partner" oninput="renderKerjasama()" />
+                <label>Nama Program Perlindungan</label>
+                <input type="text" id="ksProgramType" placeholder="Program Perlindungan Movable Property All Risk (MPAR) Partner" oninput="renderKerjasama()" />
               </div>
               <div class="form-group">
-                <label>Objek Pertanggungan / Kategori Barang</label>
-                <input type="text" id="ksCategory" placeholder="Contoh: Laptop, Gadget, Peralatan Elektronik" oninput="renderKerjasama()" />
+                <label>Kategori Produk / Objek Pertanggungan Partner</label>
+                <input type="text" id="ksCategory" placeholder="Contoh: Laptop, Smartphone, Gadget & Peralatan Elektronik" oninput="renderKerjasama()" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Executive Summary &amp; Value Proposition Kerjasama (Persuasif untuk Partner)</label>
+              <textarea id="ksExecSummary" rows="3" placeholder="Ringkasan nilai tambah kerjasama: meningkatkan daya saing produk partner, proteksi menyeluruh bagi pelanggan, serta sumber pendapatan tambahan (fee-based income) melalui skema komisi menarik..." oninput="renderKerjasama()"></textarea>
+            </div>
+
+            <div class="section-title" style="margin-top:14px;"><span>2. Skema Perhitungan Premi (Flat Rate vs. Custom Tiering)</span></div>
+
+            <div class="grid-3">
+              <div class="form-group">
+                <label>Metode Perhitungan Premi</label>
+                <select id="ksPremiMethod" onchange="onKsPremiMethodChange()">
+                  <option value="TIERING">Custom Tiering (Berdasarkan Rentang Harga Barang)</option>
+                  <option value="FLAT">Flat Rate (% dari Harga Barang)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Average Ticket Size Partner (Rp)</label>
+                <input type="number" id="ksAvgTicket" value="4000000" step="100000" min="0" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Periode Pertanggungan</label>
+                <select id="ksCoveragePeriod" onchange="renderKerjasama()">
+                  <option value="12 Bulan (1 Tahun)">12 Bulan (1 Tahun)</option>
+                  <option value="24 Bulan (2 Tahun)">24 Bulan (2 Tahun)</option>
+                  <option value="6 Bulan">6 Bulan</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- OPSI A: FLAT RATE -->
+            <div id="ksFlatRatePanel" class="tier-builder-box" style="display:none;">
+              <div class="grid-2">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Flat Rate Premi (% per tahun)</label>
+                  <input type="number" id="ksFlatRatePct" value="2.00" step="0.05" min="0" oninput="renderKerjasama()" />
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Estimasi Premi per Unit (Berdasarkan Average Ticket Size)</label>
+                  <input type="text" id="ksFlatPremiPreview" readonly style="background:#e2e8f0; font-weight:700; color:#0f294a;" />
+                </div>
+              </div>
+            </div>
+
+            <!-- OPSI B: CUSTOM TIERING -->
+            <div id="ksTieringPanel" class="tier-builder-box">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <div>
+                  <strong style="font-size:12px; color:var(--bca-navy);">Tabel Custom Tiering Premi Asuransi</strong>
+                  <div style="font-size:11px; color:#475569;">Premi otomatis dihitung dari: <strong>Rate (%) × Batas Atas Harga Barang</strong> di tiap lapisan tier.</div>
+                </div>
+                <div style="display:flex; gap:6px; align-items:center;">
+                  <label style="font-size:11px; font-weight:600; color:#334155;">Default Rate (%):</label>
+                  <input type="number" id="ksDefaultTierRate" value="2.00" step="0.05" min="0" style="width:76px; padding:4px 6px; font-size:12px; border:1px solid #cbd5e1; border-radius:4px;" oninput="applyDefaultRateToAllTiers()" />
+                  <button type="button" class="btn btn-accent" style="padding:5px 10px; font-size:11px;" onclick="addKsTierRow()">+ Tambah Tier</button>
+                </div>
+              </div>
+
+              <div style="overflow-x:auto;">
+                <table class="tier-table-edit">
+                  <thead>
+                    <tr>
+                      <th style="width:24%;">Harga Min (IDR)</th>
+                      <th style="width:24%;">Harga Max / Batas Atas (IDR)</th>
+                      <th style="width:15%;">Rate (%)</th>
+                      <th style="width:27%;">Premi 12 Bulan (Otomatis)</th>
+                      <th style="width:10%; text-align:center;">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ksTierEditorBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="section-title" style="margin-top:14px;"><span>3. Skema Komisi Partner, Bonus Loss Ratio &amp; Simulasi Revenue</span></div>
+
+            <div class="grid-4">
+              <div class="form-group">
+                <label>Proyeksi Transaksi / Bulan (Unit)</label>
+                <input type="number" id="ksMonthlyVolume" value="500" min="0" step="10" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Komisi Dasar Partner (%)</label>
+                <input type="number" id="ksComm1" value="25" step="0.5" min="0" max="100" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Target Loss Ratio Bonus (&lt; %)</label>
+                <input type="number" id="ksLossRatioTarget" value="20" step="1" min="0" max="100" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Bonus Komisi Tahap 2 (+ %)</label>
+                <input type="number" id="ksComm2" value="5" step="0.5" min="0" max="100" oninput="renderKerjasama()" />
               </div>
             </div>
 
             <div class="grid-2">
               <div class="form-group">
-                <label>Cakupan Manfaat Utama</label>
-                <textarea id="ksMainBenefits" rows="3" oninput="renderKerjasama()">Menjamin kerugian atau kerusakan fisik secara tiba-tiba dan tidak terduga atas objek pertanggungan sesuai syarat &amp; ketentuan polis MPAR.</textarea>
+                <label>Ketentuan Pajak / Basis Pembayaran Komisi</label>
+                <input type="text" id="ksCommTax" placeholder="Exclude / Include Pajak (dibayarkan bulanan setelah rekonsiliasi)" oninput="renderKerjasama()" />
               </div>
               <div class="form-group">
-                <label>Keunggulan Layanan</label>
-                <textarea id="ksServiceAdvantages" rows="3" oninput="renderKerjasama()">Proses pendaftaran &amp; pelaporan yang mudah, dukungan tim klaim BCAinsurance, serta skema kerjasama yang fleksibel.</textarea>
+                <label>Skema Kondisi Khusus / Profit Sharing (Teks Ringkas)</label>
+                <input type="text" id="ksSpecialTerms" placeholder="Apabila Loss Ratio portofolio di bawah 20%, partner berhak mendapatkan tambahan komisi sebesar 5%." oninput="renderKerjasama()" />
               </div>
             </div>
 
-            <div class="grid-3">
+            <div class="section-title" style="margin-top:14px;"><span>4. Detail Lampiran Spesifikasi Produk</span></div>
+
+            <div class="grid-2">
               <div class="form-group">
-                <label>Rate / Estimasi Premi</label>
-                <input type="text" id="ksPremiEstimate" value="Rincian perhitungan premi terlampir" oninput="renderKerjasama()" />
+                <label>Jaminan &amp; Manfaat Utama</label>
+                <textarea id="ksMainBenefits" rows="3" oninput="renderKerjasama()"></textarea>
               </div>
               <div class="form-group">
+                <label>Pengecualian Utama &amp; Keunggulan Layanan</label>
+                <textarea id="ksServiceAdvantages" rows="3" oninput="renderKerjasama()"></textarea>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
                 <label>Deductible (Risiko Sendiri)</label>
-                <input type="text" id="ksDeductible" value="Sesuai ketentuan polis / kesepakatan" oninput="renderKerjasama()" />
+                <input type="text" id="ksDeductible" oninput="renderKerjasama()" />
               </div>
               <div class="form-group">
                 <label>Masa Berlaku Penawaran</label>
                 <select id="ksValidityDays" onchange="renderKerjasama()">
-                  <option value="14">14 hari sejak tanggal surat ini diterbitkan</option>
-                  <option value="30">30 hari sejak tanggal surat ini diterbitkan</option>
+                  <option value="14">14 hari sejak tanggal dokumen ini diterbitkan</option>
+                  <option value="30">30 hari sejak tanggal dokumen ini diterbitkan</option>
                 </select>
               </div>
             </div>
 
-            <div class="grid-3">
-              <div class="form-group">
-                <label>Commercial Terms — Komisi 1 (%)</label>
-                <input type="number" id="ksComm1" value="30" step="0.5" min="0" max="100" oninput="renderKerjasama()" />
-              </div>
-              <div class="form-group">
-                <label>Commercial Terms — Komisi 2 (%)</label>
-                <input type="number" id="ksComm2" value="10" step="0.5" min="0" max="100" oninput="renderKerjasama()" />
-              </div>
-              <div class="form-group">
-                <label>Ketentuan Pajak / Basis Komisi</label>
-                <input type="text" id="ksCommTax" value="Exclude / Include Pajak (sesuai kesepakatan)" oninput="renderKerjasama()" />
-              </div>
-            </div>
-
-            <div class="form-group" style="margin-bottom: 10px;">
-              <label>Special Condition Terms (Opsional)</label>
-              <textarea id="ksSpecialTerms" rows="2" placeholder="Ketentuan tambahan khusus untuk partner (jika ada)..." oninput="renderKerjasama()"></textarea>
-            </div>
-
-            <div class="data-card-actions">
+            <div class="data-card-actions" style="margin-top:6px;">
               <button type="button" class="btn btn-reset" onclick="saveKerjasamaAsDraft()">💾 Simpan ke Draft</button>
               <button type="button" class="btn btn-accent" id="btnSubmitKsMkt" onclick="submitKerjasamaFromMarketing()">📤 Ajukan Approval (BS &amp; Prodev)</button>
               <button type="button" class="btn btn-primary" id="btnDirectGenerateBs" onclick="directGenerateByBs()">⚡ Generate Langsung (Khusus BS)</button>
             </div>
           </div>
 
-          <!-- PREVIEW SURAT PENAWARAN KERJASAMA UNTUK PARTNER -->
+          <!-- PREVIEW DOKUMEN PROPOSAL KERJASAMA PEMASARAN -->
           <div class="page-a4" style="width:100%; min-height:auto; padding:18px;">
             <div class="page-content">
+              <!-- HEADER EXISTING (TIDAK DIUBAH) -->
               <div class="doc-header" data-header-bar></div>
 
-              <div class="qs-title-block">
-                <h2>SURAT PENAWARAN KERJASAMA ASURANSI</h2>
-                <div class="qs-no">No. Surat: <span id="outKsLetterNo">SPH/018/BCAI-MKT/XI/2026</span> &bull; Jakarta, <span id="outKsOfferDate">28 November 2026</span></div>
-              </div>
-
-              <div style="font-size:9pt; margin-bottom:10px; line-height:1.45;">
-                <div>Kepada Yth. <strong><span id="outKsPartnerCompany">Partner</span></strong></div>
-                <div style="margin-top:4px; color:#334155;">
-                  Dengan hormat, bersama surat ini kami sampaikan penawaran kerjasama program asuransi dari <strong>PT Asuransi Umum BCA</strong> dengan ringkasan spesifikasi produk dan ketentuan komersial sebagai berikut:
+              <!-- HERO BANNER PROPOSAL -->
+              <div class="proposal-hero-banner">
+                <div>
+                  <h2>PENAWARAN KERJASAMA PEMASARAN</h2>
+                  <p>Program Perlindungan Asuransi &bull; <strong><span id="outKsPartnerCompany">Partner</span></strong></p>
+                </div>
+                <div class="proposal-qs-pill">
+                  <div><strong>No. QS: <span id="outKsQsNo">-</span></strong></div>
+                  <div>Jakarta, <span id="outKsOfferDate">-</span></div>
                 </div>
               </div>
 
+              <!-- 1. EXECUTIVE SUMMARY -->
+              <div class="proposal-sec-title">1. Executive Summary &amp; Skema Kerjasama</div>
+              <div class="exec-summary-card">
+                <p id="outKsExecSummary" style="margin-bottom:8px;"></p>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; border-top:1px dashed #cbd5e1; padding-top:8px; font-size:8.4pt;">
+                  <div><strong>Program:</strong> <span id="outKsProgramType">-</span></div>
+                  <div><strong>Kategori Produk:</strong> <span id="outKsCategory">-</span></div>
+                  <div><strong>Komisi Dasar Partner:</strong> <span id="outKsBaseCommSummary" style="color:#005baa; font-weight:700;">-</span></div>
+                  <div><strong>Bonus Kondisi Khusus:</strong> <span id="outKsBonusCommSummary" style="color:#0f766e; font-weight:700;">-</span></div>
+                </div>
+              </div>
+
+              <!-- 2. SIMULASI POTENSI PENDAPATAN PARTNER -->
+              <div class="proposal-sec-title">2. Simulasi Potensi Pendapatan (Revenue) Partner</div>
+              <div class="sim-cards-grid">
+                <div class="sim-highlight-card">
+                  <div class="sim-card-lbl">Komisi Dasar / Bulan</div>
+                  <div class="sim-card-val" id="outSimMonthlyBase">IDR 0</div>
+                  <div class="sim-card-sub" id="outSimMonthlySub">0 transaksi &times; komisi dasar</div>
+                </div>
+                <div class="sim-highlight-card accent-gold">
+                  <div class="sim-card-lbl">Potensi Bonus Loss Ratio / Tahun</div>
+                  <div class="sim-card-val" id="outSimYearlyBonus">IDR 0</div>
+                  <div class="sim-card-sub" id="outSimBonusSub">Jika Loss Ratio &lt; 20%</div>
+                </div>
+                <div class="sim-highlight-card accent-navy">
+                  <div class="sim-card-lbl">Total Potensi Pendapatan / Tahun</div>
+                  <div class="sim-card-val" id="outSimYearlyTotal">IDR 0</div>
+                  <div class="sim-card-sub">Komisi Dasar + Bonus Performa</div>
+                </div>
+              </div>
+
+              <table class="spec-table" style="font-size:8.4pt;">
+                <thead>
+                  <tr>
+                    <th>Parameter Proyeksi</th>
+                    <th>Asumsi / Skema</th>
+                    <th style="text-align:right;">Estimasi Nilai</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Proyeksi Volume &amp; Average Ticket Size</td>
+                    <td id="outSimVolumeDetail">-</td>
+                    <td style="text-align:right; font-weight:600;" id="outSimPremiPerUnit">IDR 0 / unit</td>
+                  </tr>
+                  <tr>
+                    <td>Total Gross Premi Terkumpul (12 Bulan)</td>
+                    <td id="outSimAnnualVolumeDetail">-</td>
+                    <td style="text-align:right; font-weight:600;" id="outSimAnnualGrossPremi">IDR 0</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Komisi Dasar Partner (12 Bulan)</strong></td>
+                    <td id="outSimBaseCommNote">-</td>
+                    <td style="text-align:right; font-weight:700; color:#005baa;" id="outSimYearlyBase">IDR 0</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Bonus Kondisi Khusus (Profit Sharing)</strong></td>
+                    <td id="outKsPartnerSpecial">-</td>
+                    <td style="text-align:right; font-weight:700; color:#0f766e;" id="outSimYearlyBonusRow">IDR 0</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- 3. LAMPIRAN SPESIFIKASI PRODUK & TABEL PREMI/TIERING -->
+              <div class="proposal-sec-title">3. Lampiran Spesifikasi Produk &amp; Struktur Premi</div>
               <table class="spec-table">
                 <tr>
-                  <td class="spec-key">Jenis Program</td>
-                  <td id="outKsProgramType"></td>
+                  <td class="spec-key">Produk &amp; Wording</td>
+                  <td>Movable Property All Risk (MPAR) — Periode Pertanggungan: <strong id="outKsCovPeriod">12 Bulan</strong></td>
                 </tr>
                 <tr>
                   <td class="spec-key">Objek Pertanggungan</td>
-                  <td id="outKsCategory"></td>
+                  <td id="outKsCategorySpec">-</td>
                 </tr>
                 <tr>
-                  <td class="spec-key">Cakupan Manfaat Utama</td>
-                  <td id="outKsMainBenefits"></td>
+                  <td class="spec-key">Jaminan &amp; Manfaat Utama</td>
+                  <td id="outKsMainBenefits">-</td>
                 </tr>
                 <tr>
-                  <td class="spec-key">Keunggulan Layanan</td>
-                  <td id="outKsServiceAdvantages"></td>
+                  <td class="spec-key">Pengecualian Utama &amp; Layanan</td>
+                  <td id="outKsServiceAdvantages">-</td>
                 </tr>
                 <tr>
-                  <td class="spec-key">Deductible</td>
-                  <td id="outKsDeductible"></td>
+                  <td class="spec-key">Deductible (Risiko Sendiri)</td>
+                  <td id="outKsDeductible">-</td>
                 </tr>
                 <tr>
-                  <td class="spec-key">Commercial Terms</td>
-                  <td id="outKsPartnerComm"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key">Special Condition Terms</td>
-                  <td id="outKsPartnerSpecial"></td>
-                </tr>
-                <tr>
-                  <td class="spec-key">Estimasi Premi &amp; Masa Berlaku</td>
-                  <td id="outKsValidityText"></td>
+                  <td class="spec-key">Masa Berlaku Penawaran</td>
+                  <td id="outKsValidityText">-</td>
                 </tr>
                 <tr id="rowKsPksReference" style="display:none;">
                   <td class="spec-key">Nomor PKS</td>
@@ -1304,24 +1657,47 @@
                 </tr>
               </table>
 
-              <div style="font-size:8.7pt; color:#1e293b; margin-top:12px; line-height:1.45;">
-                Demikian penawaran kerjasama ini kami sampaikan. Atas perhatian dan kerja sama yang baik, kami ucapkan terima kasih.<br /><br />
+              <!-- TABEL TIERING PREMI ATAU FLAT RATE -->
+              <div id="outKsTieringBlock">
+                <div style="display:flex; justify-content:space-between; align-items:baseline; margin-top:8px;">
+                  <strong style="font-size:10pt; color:#0f172a;">Tiering Premi Asuransi</strong>
+                  <strong style="font-size:9pt; color:#0f172a;" id="outKsTierRateHeader">2.00%</strong>
+                </div>
+                <table class="tier-doc-table">
+                  <thead>
+                    <tr>
+                      <th style="width:62%;">Harga Barang</th>
+                      <th style="width:38%;" id="outKsTierPremiColTitle">Premi 12 Bulan</th>
+                    </tr>
+                  </thead>
+                  <tbody id="outKsTierDocBody"></tbody>
+                </table>
+              </div>
+
+              <div id="outKsFlatBlock" style="display:none; margin-top:8px;">
+                <div class="premi-box">
+                  <strong>Struktur Premi Flat Rate:</strong> Rate <span id="outKsFlatRateDoc">2.00%</span> dari Harga Pertanggungan per unit (Estimasi premi berdasarkan Average Ticket Size: <strong id="outKsFlatPremiDoc">IDR 0</strong>).
+                </div>
+              </div>
+
+              <div style="font-size:8.6pt; color:#1e293b; margin-top:14px; line-height:1.45;">
+                Demikian penawaran kerjasama pemasaran ini kami sampaikan. Kami siap berdiskusi lebih lanjut untuk menyesuaikan skema program sesuai kebutuhan bisnis <strong><span id="outKsPartnerCompanyClosing">Partner</span></strong>.<br /><br />
                 Hormat kami,<br />
                 <strong>PT ASURANSI UMUM BCA</strong>
               </div>
             </div>
 
+            <!-- FOOTER EXISTING (TIDAK DIUBAH & TANPA WATERMARK LINK) -->
             <div class="doc-footer" data-footer-bar></div>
           </div>
         </div>
 
-        <!-- TAB 2: MONITORING APPROVAL BS & PRODEV + PENERBITAN NO. PKS -->
         <div id="ksTabMonitorPanel" style="display:none;">
           <div id="ksMonitorListContainer"></div>
         </div>
       </section>
 
-      <!-- 5. SETTING HEADER & LOGO (FIXED & LIVE PREVIEW) -->
+      <!-- 5. SETTING HEADER & LOGO -->
       <section class="portal-view" id="viewTemplate" style="display: none;">
         <div class="portal-header">
           <div>
@@ -1396,7 +1772,7 @@
         </div>
       </section>
 
-      <!-- 6. COMING SOON VIEW (HANYA MUNCUL SAAT MENU TRAVEL / PA DIKLIK) -->
+      <!-- 6. COMING SOON VIEW -->
       <section class="portal-view" id="viewComingSoon" style="display: none;">
         <div class="coming-soon-box">
           <div class="coming-soon-tag">Coming Soon</div>
@@ -1451,8 +1827,8 @@
               </div>
             </div>
             <div class="form-group">
-              <label>Wording</label>
-              <input type="text" id="inWording" placeholder="Kosong di awal — isi wording" oninput="renderAll()" />
+              <label>Wording (Auto sesuai Bahasa)</label>
+              <input type="text" id="inWording" value="Movable Property All Risk (MPAR)" oninput="renderAll()" />
             </div>
             <div class="form-group">
               <label>Marketing Channel / Partner</label>
@@ -1604,8 +1980,9 @@
           </div>
 
           <div class="btn-group">
-            <button type="button" class="btn btn-primary" onclick="downloadPDF()">⬇ Download PDF</button>
-            <button type="button" class="btn btn-secondary" onclick="window.print()">🖨 Print</button>
+            <div class="btn-group-hint" id="pdfLockHint">🔒 Download PDF &amp; Print aktif setelah Approved UW</div>
+            <button type="button" class="btn btn-primary" id="btnDownloadPdf" onclick="downloadPDF()" disabled>⬇ Download PDF</button>
+            <button type="button" class="btn btn-secondary" id="btnPrintDoc" onclick="printApprovedDoc()" disabled>🖨 Print</button>
           </div>
         </aside>
 
@@ -1916,7 +2293,7 @@
       }
     }
 
-    /* ================= USERS & ROLES (VERIFIED) ================= */
+    /* ================= USERS & ROLES ================= */
     const USERS = {
       "mkt_bcai": { pass: "mkt_bcai", role: "MARKETING", label: "Marketing" },
       "uw_bcai": { pass: "uw_bcai", role: "UNDERWRITER", label: "Underwriter" },
@@ -1965,6 +2342,10 @@
         sessionStorage.setItem("bca_qs_user", user);
         sessionStorage.setItem("bca_qs_role", account.role);
         errBox.style.display = "none";
+
+        applyQsSnapshot(getBlankQsSnapshot(), "");
+        resetKerjasamaForm();
+
         unlockApp();
         if (account.role === "UNDERWRITER") switchNav("UW_APPROVAL");
         else if (account.role === "BS" || account.role === "PRODEV") {
@@ -1988,6 +2369,10 @@
 
     function handleLogout() {
       closeMobileMenu();
+
+      applyQsSnapshot(getBlankQsSnapshot(), "");
+      resetKerjasamaForm();
+
       sessionStorage.removeItem("bca_qs_auth");
       sessionStorage.removeItem("bca_qs_user");
       sessionStorage.removeItem("bca_qs_role");
@@ -2005,7 +2390,10 @@
       alert("Akun portal: mkt_bcai / uw_bcai / bs_bcai / prodev_bcai (password sama dengan username).");
     }
 
-    /* ================= DEFAULT CLAUSES & DATA ================= */
+    /* ================= DEFAULT WORDING & CLAUSES ================= */
+    const DEFAULT_WORDING_EN = "Movable Property All Risk (MPAR)";
+    const DEFAULT_WORDING_ID = "Asuransi Harta Benda Bergerak (Movable Property All Risk / MPAR)";
+
     const DEFAULT_CLAUSES_EN = [
       "1. Theft Exclusion: Loss or damage caused by theft or attempted theft without violent and forcible entry/exit is excluded.",
       "2. Mysterious Disappearance: Mysterious disappearance or unexplained shortage discovered during stocktaking is excluded.",
@@ -2034,7 +2422,7 @@
         docMode: "ALL",
         qsNo: "",
         docDate: "",
-        wording: "",
+        wording: DEFAULT_WORDING_EN,
         channel: "",
         insured: "",
         interest: "",
@@ -2069,7 +2457,7 @@
         docMode: "ALL",
         qsNo: "001/QS/MPAR/2026",
         docDate: "28 November 2026",
-        wording: "Munich Re Wording",
+        wording: "Movable Property All Risk (MPAR)",
         channel: "Partner Channel",
         insured: "PT Trijata Nusa",
         interest: "Laptop",
@@ -2094,10 +2482,10 @@
       }
     };
 
-    const DRAFTS_KEY = "bca_mpar_unified_drafts_v4";
-    const UW_KEY = "bca_mpar_uw_queue_v4";
-    const QS_TRACKER_KEY = "bca_mpar_qs_tracker_v4";
-    const KS_LIST_KEY = "bca_mpar_ks_list_v4";
+    const DRAFTS_KEY = "bca_mpar_unified_drafts_v6";
+    const UW_KEY = "bca_mpar_uw_queue_v6";
+    const QS_TRACKER_KEY = "bca_mpar_qs_tracker_v6";
+    const KS_LIST_KEY = "bca_mpar_ks_list_v6";
 
     function getDrafts() {
       const raw = localStorage.getItem(DRAFTS_KEY);
@@ -2135,7 +2523,7 @@
             grandPremi: 15010000,
             approvalStatus: "APPROVED",
             uwNote: "Disetujui sesuai ketentuan standar.",
-            snapshot: TERESSA_QS_DRAFT.data
+            snapshot: { ...TERESSA_QS_DRAFT.data, uwStatus: "APPROVED", uwNote: "Disetujui sesuai ketentuan standar." }
           }
         ];
         localStorage.setItem(QS_TRACKER_KEY, JSON.stringify(seed));
@@ -2148,26 +2536,47 @@
       localStorage.setItem(QS_TRACKER_KEY, JSON.stringify(list));
     }
 
+    function getDefaultKsTiers() {
+      return [
+        { min: 500000, max: 3000000, rate: 2.0 },
+        { min: 3000001, max: 5000000, rate: 2.0 },
+        { min: 5000001, max: 10000000, rate: 2.0 },
+        { min: 10000001, max: 15000000, rate: 2.0 },
+        { min: 15000001, max: 20000000, rate: 2.0 },
+        { min: 20000001, max: 30000000, rate: 2.0 },
+        { min: 30000001, max: 40000000, rate: 2.0 },
+        { min: 40000001, max: 50000000, rate: 2.0 }
+      ];
+    }
+
     function getKsList() {
       const raw = localStorage.getItem(KS_LIST_KEY);
       if (!raw) {
         const seed = [
           {
             id: "ks_seed_1",
-            letterNo: "SPH/014/BCAI-MKT/XI/2026",
+            qsNo: "014/QS/BCAI-MKT/XI/2026",
             offerDate: "28 November 2026",
             company: "PT Mitra Retail Nusantara",
             programType: "Program Perlindungan Movable Property All Risk (MPAR) Partner",
-            category: "Laptop & Gadget",
-            mainBenefits: "Menjamin kerugian atau kerusakan fisik secara tiba-tiba dan tidak terduga atas objek pertanggungan sesuai polis MPAR.",
-            serviceAdvantages: "Proses pendaftaran & pelaporan yang mudah, dukungan tim klaim BCAinsurance.",
-            premiEstimate: "Rincian perhitungan premi terlampir",
-            deductible: "Sesuai ketentuan polis / kesepakatan",
+            category: "Laptop, Smartphone & Gadget",
+            execSummary: "Program perlindungan perangkat elektronik terintegrasi untuk meningkatkan value produk partner sekaligus menghadirkan sumber pendapatan tambahan (fee-based income) melalui skema komisi menarik dan insentif performa portofolio.",
+            premiMethod: "TIERING",
+            avgTicket: 4000000,
+            coveragePeriod: "12 Bulan (1 Tahun)",
+            flatRatePct: 2.0,
+            defaultTierRate: 2.0,
+            tiers: getDefaultKsTiers(),
+            monthlyVolume: 500,
+            comm1: "25",
+            lossRatioTarget: "20",
+            comm2: "5",
+            commTax: "Exclude / Include Pajak (dibayarkan bulanan setelah rekonsiliasi)",
+            specialTerms: "Apabila Loss Ratio portofolio di bawah 20%, partner mendapatkan tambahan komisi sebesar 5%.",
+            mainBenefits: "Menjamin kerugian atau kerusakan fisik secara tiba-tiba dan tidak terduga (All Risk) termasuk jatuh, terbentur, terkena cairan, dan pencurian dengan kekerasan.",
+            serviceAdvantages: "Pengecualian standar: kehilangan misterius, keausan wajar, kerusakan akibat kelalaian disengaja. Didukung proses klaim digital cepat dari BCAinsurance.",
+            deductible: "10% dari nilai klaim yang disetujui (minimum IDR 150.000 per kejadian)",
             validityDays: "14",
-            comm1: "30",
-            comm2: "10",
-            commTax: "Exclude / Include Pajak (sesuai kesepakatan)",
-            specialTerms: "-",
             status: "APPROVED",
             bsNote: "Approved BS.",
             prodevNote: "Approved Prodev.",
@@ -2222,7 +2631,7 @@
       document.getElementById("inDocMode").value = s.docMode;
       document.getElementById("inQsNo").value = s.qsNo;
       document.getElementById("inDocDate").value = s.docDate;
-      document.getElementById("inWording").value = s.wording;
+      document.getElementById("inWording").value = s.wording || (s.lang === "ID" ? DEFAULT_WORDING_ID : DEFAULT_WORDING_EN);
       document.getElementById("inChannel").value = s.channel;
       document.getElementById("inInsured").value = s.insured;
       document.getElementById("inInterest").value = s.interest;
@@ -2250,6 +2659,25 @@
       calculateAndRender();
     }
 
+    function updatePdfDownloadLock(status) {
+      const isApproved = status === "APPROVED";
+      const btnPdf = document.getElementById("btnDownloadPdf");
+      const btnPrint = document.getElementById("btnPrintDoc");
+      const hint = document.getElementById("pdfLockHint");
+
+      if (btnPdf) btnPdf.disabled = !isApproved;
+      if (btnPrint) btnPrint.disabled = !isApproved;
+      if (hint) {
+        if (isApproved) {
+          hint.textContent = "✅ Approved UW — Silakan Download PDF atau Print";
+          hint.classList.add("unlocked");
+        } else {
+          hint.textContent = "🔒 Download PDF & Print aktif setelah Approved UW";
+          hint.classList.remove("unlocked");
+        }
+      }
+    }
+
     function setUwStatusDisplay(status, note = "") {
       const el = document.getElementById("currentUwStatusLabel");
       if (!el) return;
@@ -2268,6 +2696,7 @@
         el.textContent = "Belum Diajukan";
         el.style.color = "#334155";
       }
+      updatePdfDownloadLock(status);
     }
 
     function startFreshQs() {
@@ -2291,7 +2720,7 @@
       saveDrafts(drafts);
       upsertQsTrackerEntry(snap, autoName, snap.uwStatus === "APPROVED" ? "APPROVED" : (snap.uwStatus === "PENDING" ? "PENDING_UW" : "DRAFT_ONLY"), snap.uwNote || "");
       renderBadges();
-      alert(`Draft QS "${autoName}" berhasil disimpan ke menu Draft.`);
+      switchNav("MPAR_DRAFTS");
     }
 
     function upsertQsTrackerEntry(snap, offerName, approvalStatus, uwNote = "") {
@@ -2352,7 +2781,7 @@
       saveUwQueue(queue);
       upsertQsTrackerEntry(snap, title, "PENDING_UW", "");
       renderBadges();
-      alert("Pengajuan QS berhasil dikirim ke Underwriter (uw_bcai).");
+      switchNav("UW_APPROVAL");
     }
 
     function decideUwItem(id, decision) {
@@ -2375,6 +2804,14 @@
       renderBadges();
       renderUwQueueView();
       renderQsTrackingTable();
+    }
+
+    function openUwItemInQs(id) {
+      const item = getUwQueue().find(q => q.id === id);
+      if (!item || !item.snapshot) return;
+      switchNav("MPAR_QS");
+      applyQsSnapshot(item.snapshot, item.title);
+      document.getElementById("qsModeBanner").textContent = `QS ${item.qsNo} — Status: ${item.status}`;
     }
 
     function renderUwQueueView() {
@@ -2409,17 +2846,20 @@
                 <input type="text" id="uwNoteInput_${item.id}" value="${escapeAttr(item.uwNote || "")}" placeholder="Isi catatan persetujuan atau revisi..." />
               </div>
               <div class="data-card-actions">
+                <button type="button" class="btn btn-reset" onclick="openUwItemInQs('${item.id}')">Lihat Dokumen QS</button>
                 <button type="button" class="btn btn-secondary" onclick="decideUwItem('${item.id}', 'APPROVED')">✓ Approve UW</button>
                 <button type="button" class="btn btn-danger" onclick="decideUwItem('${item.id}', 'REJECTED')">✕ Revisi / Tolak</button>
               </div>
             ` : `
-              <div class="data-card-meta">Login sebagai <strong>uw_bcai</strong> untuk melakukan approval QS.</div>
+              <div class="data-card-actions" style="margin-top:8px;">
+                <button type="button" class="btn btn-primary" onclick="openUwItemInQs('${item.id}')">Buka QS (${item.status === "APPROVED" ? "Siap Download PDF" : "Lihat Status"})</button>
+              </div>
             `}
           </div>`;
       }).join("");
     }
 
-    /* ================= UNIFIED DRAFT VIEW (QS + PENAWARAN KERJASAMA) ================= */
+    /* ================= UNIFIED DRAFT VIEW ================= */
     function renderDraftsView() {
       const container = document.getElementById("draftListContainer");
       const drafts = getDrafts();
@@ -2434,8 +2874,8 @@
           ? `<span class="status-pill type-ks">Penawaran Kerjasama</span>`
           : `<span class="status-pill type-qs">Quotation Slip (QS)</span>`;
         const metaText = isKs
-          ? `Partner: ${escapeHtml(d.data?.company || "-")} • No. Surat: ${escapeHtml(d.data?.letterNo || "-")}`
-          : `Insured: ${escapeHtml(d.data?.insured || "-")} • Wording: ${escapeHtml(d.data?.wording || "(Kosong)")}`;
+          ? `Partner: ${escapeHtml(d.data?.company || "-")} • No. QS: ${escapeHtml(d.data?.qsNo || "-")}`
+          : `Insured: ${escapeHtml(d.data?.insured || "-")} • Wording: ${escapeHtml(d.data?.wording || "-")}`;
 
         return `
           <div class="data-card">
@@ -2528,12 +2968,19 @@
     function openTrackedQs(id) {
       const found = getQsTracker().find(x => x.id === id);
       if (!found || !found.snapshot) return;
+      const syncedSnap = {
+        ...found.snapshot,
+        uwStatus: found.approvalStatus === "APPROVED" ? "APPROVED" : (found.approvalStatus === "PENDING_UW" ? "PENDING" : (found.approvalStatus === "REJECTED" ? "REJECTED" : "NONE")),
+        uwNote: found.uwNote || found.snapshot.uwNote || ""
+      };
       switchNav("MPAR_QS");
-      applyQsSnapshot(found.snapshot, found.offerName);
+      applyQsSnapshot(syncedSnap, found.offerName);
       document.getElementById("qsModeBanner").textContent = `QS ${found.qsNo} — ${found.offerName}`;
     }
 
-    /* ================= SIMPLE PENAWARAN KERJASAMA + BS/PRODEV/PKS ================= */
+    /* ================= PENAWARAN KERJASAMA PEMASARAN + TIERING + SIMULASI ================= */
+    let ksTierRows = getDefaultKsTiers();
+
     function switchKsTab(tab) {
       const isForm = tab === "FORM";
       document.getElementById("tabKsForm").classList.toggle("active", isForm);
@@ -2543,63 +2990,246 @@
       if (!isForm) renderKsMonitor();
     }
 
+    function onKsPremiMethodChange() {
+      const method = document.getElementById("ksPremiMethod")?.value || "TIERING";
+      document.getElementById("ksTieringPanel").style.display = method === "TIERING" ? "block" : "none";
+      document.getElementById("ksFlatRatePanel").style.display = method === "FLAT" ? "block" : "none";
+      renderKerjasama();
+    }
+
+    function renderKsTierEditor() {
+      const tbody = document.getElementById("ksTierEditorBody");
+      if (!tbody) return;
+      tbody.innerHTML = ksTierRows.map((row, idx) => {
+        const premiVal = Math.round((Number(row.max) || 0) * ((Number(row.rate) || 0) / 100));
+        return `
+          <tr>
+            <td><input type="number" value="${row.min}" min="0" step="100000" oninput="updateKsTierCell(${idx}, 'min', this.value)" /></td>
+            <td><input type="number" value="${row.max}" min="0" step="100000" oninput="updateKsTierCell(${idx}, 'max', this.value)" /></td>
+            <td><input type="number" value="${row.rate}" min="0" step="0.05" oninput="updateKsTierCell(${idx}, 'rate', this.value)" /></td>
+            <td><span class="tier-premi-badge">IDR ${formatNum(premiVal)}</span></td>
+            <td style="text-align:center;">
+              <button type="button" class="btn-reset" style="color:#dc2626;" onclick="removeKsTierRow(${idx})" title="Hapus Tier">✕</button>
+            </td>
+          </tr>`;
+      }).join("");
+    }
+
+    function updateKsTierCell(idx, field, val) {
+      if (!ksTierRows[idx]) return;
+      ksTierRows[idx][field] = parseFloat(val) || 0;
+      renderKsTierEditor();
+      renderKerjasama();
+    }
+
+    function addKsTierRow() {
+      const last = ksTierRows[ksTierRows.length - 1];
+      const nextMin = last ? (Number(last.max) + 1) : 500000;
+      const nextMax = last ? (Number(last.max) + 10000000) : 3000000;
+      const defRate = parseFloat(document.getElementById("ksDefaultTierRate")?.value) || 2.0;
+      ksTierRows.push({ min: nextMin, max: nextMax, rate: defRate });
+      renderKsTierEditor();
+      renderKerjasama();
+    }
+
+    function removeKsTierRow(idx) {
+      if (ksTierRows.length <= 1) {
+        alert("Minimal harus ada 1 baris tier.");
+        return;
+      }
+      ksTierRows.splice(idx, 1);
+      renderKsTierEditor();
+      renderKerjasama();
+    }
+
+    function applyDefaultRateToAllTiers() {
+      const defRate = parseFloat(document.getElementById("ksDefaultTierRate")?.value) || 0;
+      ksTierRows = ksTierRows.map(r => ({ ...r, rate: defRate }));
+      renderKsTierEditor();
+      renderKerjasama();
+    }
+
+    function findPremiForTicketSize(avgTicket, method, flatRatePct, tiers) {
+      const ticket = Number(avgTicket) || 0;
+      if (method === "FLAT") {
+        return {
+          premiPerUnit: Math.round(ticket * ((Number(flatRatePct) || 0) / 100)),
+          matchedLabel: `Flat Rate ${Number(flatRatePct || 0).toFixed(2)}% × IDR ${formatNum(ticket)}`
+        };
+      }
+      if (!tiers || !tiers.length) {
+        return { premiPerUnit: 0, matchedLabel: "Belum ada tier" };
+      }
+      let matched = tiers.find(t => ticket >= Number(t.min) && ticket <= Number(t.max));
+      if (!matched) {
+        matched = ticket < Number(tiers[0].min) ? tiers[0] : tiers[tiers.length - 1];
+      }
+      const premiVal = Math.round(Number(matched.max) * ((Number(matched.rate) || 0) / 100));
+      return {
+        premiPerUnit: premiVal,
+        matchedLabel: `Tier IDR ${formatNum(matched.min)} – IDR ${formatNum(matched.max)} (Rate ${Number(matched.rate).toFixed(2)}%)`
+      };
+    }
+
     function captureKsFormData() {
       return {
-        letterNo: document.getElementById("ksLetterNo")?.value.trim() || "",
+        qsNo: document.getElementById("ksQsNo")?.value.trim() || "",
         offerDate: document.getElementById("ksOfferDate")?.value.trim() || "",
         company: document.getElementById("ksCompany")?.value.trim() || "",
         programType: document.getElementById("ksProgramType")?.value.trim() || "",
         category: document.getElementById("ksCategory")?.value.trim() || "",
-        mainBenefits: document.getElementById("ksMainBenefits")?.value.trim() || "",
-        serviceAdvantages: document.getElementById("ksServiceAdvantages")?.value.trim() || "",
-        premiEstimate: document.getElementById("ksPremiEstimate")?.value.trim() || "",
-        deductible: document.getElementById("ksDeductible")?.value.trim() || "",
-        validityDays: document.getElementById("ksValidityDays")?.value || "14",
+        execSummary: document.getElementById("ksExecSummary")?.value.trim() || "",
+        premiMethod: document.getElementById("ksPremiMethod")?.value || "TIERING",
+        avgTicket: parseFloat(document.getElementById("ksAvgTicket")?.value) || 0,
+        coveragePeriod: document.getElementById("ksCoveragePeriod")?.value || "12 Bulan (1 Tahun)",
+        flatRatePct: parseFloat(document.getElementById("ksFlatRatePct")?.value) || 0,
+        defaultTierRate: parseFloat(document.getElementById("ksDefaultTierRate")?.value) || 2.0,
+        tiers: JSON.parse(JSON.stringify(ksTierRows)),
+        monthlyVolume: parseFloat(document.getElementById("ksMonthlyVolume")?.value) || 0,
         comm1: document.getElementById("ksComm1")?.value || "0",
+        lossRatioTarget: document.getElementById("ksLossRatioTarget")?.value || "20",
         comm2: document.getElementById("ksComm2")?.value || "0",
         commTax: document.getElementById("ksCommTax")?.value.trim() || "",
-        specialTerms: document.getElementById("ksSpecialTerms")?.value.trim() || ""
+        specialTerms: document.getElementById("ksSpecialTerms")?.value.trim() || "",
+        mainBenefits: document.getElementById("ksMainBenefits")?.value.trim() || "",
+        serviceAdvantages: document.getElementById("ksServiceAdvantages")?.value.trim() || "",
+        deductible: document.getElementById("ksDeductible")?.value.trim() || "",
+        validityDays: document.getElementById("ksValidityDays")?.value || "14"
       };
     }
 
     function applyKsFormData(d) {
       if (!d) return;
-      document.getElementById("ksLetterNo").value = d.letterNo || "";
+      document.getElementById("ksQsNo").value = d.qsNo || "";
       document.getElementById("ksOfferDate").value = d.offerDate || "";
       document.getElementById("ksCompany").value = d.company || "";
       document.getElementById("ksProgramType").value = d.programType || "";
       document.getElementById("ksCategory").value = d.category || "";
-      document.getElementById("ksMainBenefits").value = d.mainBenefits || "";
-      document.getElementById("ksServiceAdvantages").value = d.serviceAdvantages || "";
-      document.getElementById("ksPremiEstimate").value = d.premiEstimate || "";
-      document.getElementById("ksDeductible").value = d.deductible || "";
-      document.getElementById("ksValidityDays").value = d.validityDays || "14";
-      document.getElementById("ksComm1").value = d.comm1 || "0";
-      document.getElementById("ksComm2").value = d.comm2 || "0";
+      document.getElementById("ksExecSummary").value = d.execSummary || "";
+      document.getElementById("ksPremiMethod").value = d.premiMethod || "TIERING";
+      document.getElementById("ksAvgTicket").value = d.avgTicket ?? 4000000;
+      document.getElementById("ksCoveragePeriod").value = d.coveragePeriod || "12 Bulan (1 Tahun)";
+      document.getElementById("ksFlatRatePct").value = d.flatRatePct ?? 2.0;
+      document.getElementById("ksDefaultTierRate").value = d.defaultTierRate ?? 2.0;
+      ksTierRows = Array.isArray(d.tiers) && d.tiers.length ? JSON.parse(JSON.stringify(d.tiers)) : getDefaultKsTiers();
+      document.getElementById("ksMonthlyVolume").value = d.monthlyVolume ?? 500;
+      document.getElementById("ksComm1").value = d.comm1 ?? "25";
+      document.getElementById("ksLossRatioTarget").value = d.lossRatioTarget ?? "20";
+      document.getElementById("ksComm2").value = d.comm2 ?? "5";
       document.getElementById("ksCommTax").value = d.commTax || "";
       document.getElementById("ksSpecialTerms").value = d.specialTerms || "";
-      renderKerjasama();
+      document.getElementById("ksMainBenefits").value = d.mainBenefits || "";
+      document.getElementById("ksServiceAdvantages").value = d.serviceAdvantages || "";
+      document.getElementById("ksDeductible").value = d.deductible || "";
+      document.getElementById("ksValidityDays").value = d.validityDays || "14";
+
+      renderKsTierEditor();
+      onKsPremiMethodChange();
     }
 
     function renderKerjasama() {
       const d = captureKsFormData();
-      document.getElementById("outKsLetterNo").textContent = d.letterNo || "-";
+      const partnerName = d.company || "Partner";
+
+      document.getElementById("outKsQsNo").textContent = d.qsNo || "-";
       document.getElementById("outKsOfferDate").textContent = d.offerDate || "-";
-      document.getElementById("outKsPartnerCompany").textContent = d.company || "Partner";
-      document.getElementById("outKsProgramType").textContent = d.programType || "-";
+      document.getElementById("outKsPartnerCompany").textContent = partnerName;
+      document.getElementById("outKsPartnerCompanyClosing").textContent = partnerName;
+      document.getElementById("outKsProgramType").textContent = d.programType || "Program Perlindungan Movable Property All Risk (MPAR)";
       document.getElementById("outKsCategory").textContent = d.category || "-";
-      document.getElementById("outKsMainBenefits").textContent = d.mainBenefits || "-";
-      document.getElementById("outKsServiceAdvantages").textContent = d.serviceAdvantages || "-";
-      document.getElementById("outKsDeductible").textContent = d.deductible || "-";
-      document.getElementById("outKsPartnerComm").textContent = `Komisi 1: ${d.comm1}% | Komisi 2: ${d.comm2}% (${d.commTax || "-"})`;
-      document.getElementById("outKsPartnerSpecial").textContent = d.specialTerms || "-";
-      const est = d.premiEstimate || "Rincian perhitungan premi terlampir";
-      document.getElementById("outKsValidityText").textContent = `${est}. Penawaran ini berlaku selama ${d.validityDays} hari sejak tanggal surat ini diterbitkan.`;
+      document.getElementById("outKsCategorySpec").textContent = d.category || "-";
+
+      const defaultExec = `PT Asuransi Umum BCA (BCAinsurance) mengajukan kerjasama pemasaran program perlindungan asuransi bagi pelanggan ${partnerName}. Kolaborasi ini memberikan nilai tambah proteksi menyeluruh bagi produk yang dipasarkan sekaligus menghadirkan sumber pendapatan tambahan (fee-based income) yang berkelanjutan bagi ${partnerName}.`;
+      document.getElementById("outKsExecSummary").textContent = d.execSummary || defaultExec;
+
+      const comm1 = parseFloat(d.comm1) || 0;
+      const comm2 = parseFloat(d.comm2) || 0;
+      const lrTarget = parseFloat(d.lossRatioTarget) || 0;
+
+      document.getElementById("outKsBaseCommSummary").textContent = `${comm1}% dari Gross Premi (${d.commTax || "sesuai kesepakatan"})`;
+      document.getElementById("outKsBonusCommSummary").textContent = comm2 > 0
+        ? `+${comm2}% jika Loss Ratio < ${lrTarget}%`
+        : "Tidak ada / sesuai kesepakatan";
+
+      // Hitung premi acuan dari Average Ticket Size
+      const refPremi = findPremiForTicketSize(d.avgTicket, d.premiMethod, d.flatRatePct, d.tiers);
+      const flatPreviewEl = document.getElementById("ksFlatPremiPreview");
+      if (flatPreviewEl) flatPreviewEl.value = `IDR ${formatNum(refPremi.premiPerUnit)}`;
+
+      const monthlyVol = Number(d.monthlyVolume) || 0;
+      const annualVol = monthlyVol * 12;
+      const monthlyGrossPremi = monthlyVol * refPremi.premiPerUnit;
+      const annualGrossPremi = annualVol * refPremi.premiPerUnit;
+
+      const monthlyBaseComm = Math.round(monthlyGrossPremi * (comm1 / 100));
+      const yearlyBaseComm = Math.round(annualGrossPremi * (comm1 / 100));
+      const yearlyBonusComm = Math.round(annualGrossPremi * (comm2 / 100));
+      const yearlyTotalComm = yearlyBaseComm + yearlyBonusComm;
+
+      document.getElementById("outSimMonthlyBase").textContent = `IDR ${formatNum(monthlyBaseComm)}`;
+      document.getElementById("outSimMonthlySub").textContent = `${formatNum(monthlyVol)} transaksi/bln × komisi ${comm1}%`;
+      document.getElementById("outSimYearlyBonus").textContent = `IDR ${formatNum(yearlyBonusComm)}`;
+      document.getElementById("outSimBonusSub").textContent = comm2 > 0
+        ? `Tambahan +${comm2}% jika Loss Ratio < ${lrTarget}%`
+        : "Skema komisi standar";
+      document.getElementById("outSimYearlyTotal").textContent = `IDR ${formatNum(yearlyTotalComm)}`;
+
+      document.getElementById("outSimVolumeDetail").textContent = `${formatNum(monthlyVol)} unit/bln • Avg. Ticket IDR ${formatNum(d.avgTicket)} (${refPremi.matchedLabel})`;
+      document.getElementById("outSimPremiPerUnit").textContent = `IDR ${formatNum(refPremi.premiPerUnit)} / unit`;
+      document.getElementById("outSimAnnualVolumeDetail").textContent = `${formatNum(annualVol)} unit / 12 bulan`;
+      document.getElementById("outSimAnnualGrossPremi").textContent = `IDR ${formatNum(annualGrossPremi)}`;
+      document.getElementById("outSimBaseCommNote").textContent = `${comm1}% × IDR ${formatNum(annualGrossPremi)}`;
+      document.getElementById("outSimYearlyBase").textContent = `IDR ${formatNum(yearlyBaseComm)}`;
+      document.getElementById("outSimYearlyBonusRow").textContent = `IDR ${formatNum(yearlyBonusComm)}`;
+
+      const defaultSpecial = comm2 > 0
+        ? `Apabila Loss Ratio portofolio di bawah ${lrTarget}%, partner mendapatkan tambahan komisi sebesar ${comm2}%.`
+        : "-";
+      document.getElementById("outKsPartnerSpecial").textContent = d.specialTerms || defaultSpecial;
+
+      document.getElementById("outKsCovPeriod").textContent = d.coveragePeriod;
+      document.getElementById("outKsMainBenefits").textContent = d.mainBenefits || "Menjamin kerugian atau kerusakan fisik secara tiba-tiba dan tidak terduga (All Risk) sesuai syarat & ketentuan polis MPAR.";
+      document.getElementById("outKsServiceAdvantages").textContent = d.serviceAdvantages || "Pengecualian standar polis berlaku (kehilangan misterius, keausan wajar, kelalaian disengaja).";
+      document.getElementById("outKsDeductible").textContent = d.deductible || "Sesuai ketentuan polis / kesepakatan";
+      document.getElementById("outKsValidityText").textContent = `Penawaran ini berlaku selama ${d.validityDays} hari sejak tanggal dokumen diterbitkan.`;
+
+      // Toggle tampilan Tiering vs Flat Rate di lampiran
+      const isTiering = d.premiMethod === "TIERING";
+      document.getElementById("outKsTieringBlock").style.display = isTiering ? "block" : "none";
+      document.getElementById("outKsFlatBlock").style.display = !isTiering ? "block" : "none";
+
+      if (isTiering) {
+        const uniqueRates = [...new Set(d.tiers.map(r => Number(r.rate).toFixed(2)))];
+        document.getElementById("outKsTierRateHeader").textContent = uniqueRates.length === 1
+          ? `${uniqueRates[0]}%`
+          : `Rate per Tier`;
+        document.getElementById("outKsTierPremiColTitle").textContent = `Premi ${d.coveragePeriod.split(" (")[0]}`;
+
+        const docBody = document.getElementById("outKsTierDocBody");
+        docBody.innerHTML = d.tiers.map(r => {
+          const premiCalc = Math.round((Number(r.max) || 0) * ((Number(r.rate) || 0) / 100));
+          const rateTag = uniqueRates.length > 1 ? ` <span style="font-size:7.5pt; color:#475569;">(${Number(r.rate).toFixed(2)}%)</span>` : "";
+          return `
+            <tr>
+              <td>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span>IDR ${formatNum(r.min)}</span>
+                  <span>-</span>
+                  <span>IDR ${formatNum(r.max)}</span>
+                </div>
+              </td>
+              <td class="num-right">IDR ${formatNum(premiCalc)}${rateTag}</td>
+            </tr>`;
+        }).join("");
+      } else {
+        document.getElementById("outKsFlatRateDoc").textContent = `${Number(d.flatRatePct || 0).toFixed(2)}%`;
+        document.getElementById("outKsFlatPremiDoc").textContent = `IDR ${formatNum(refPremi.premiPerUnit)}`;
+      }
     }
 
     function saveKerjasamaAsDraft() {
       const d = captureKsFormData();
-      const draftName = `Penawaran Kerjasama — ${d.company || d.letterNo || "Baru"} (${new Date().toLocaleDateString("id-ID")})`;
+      const draftName = `Penawaran Kerjasama — ${d.company || d.qsNo || "Baru"} (${new Date().toLocaleDateString("id-ID")})`;
       const drafts = getDrafts();
       drafts.unshift({
         id: "draft_ks_" + Date.now(),
@@ -2610,7 +3240,7 @@
       });
       saveDrafts(drafts);
       renderBadges();
-      alert(`Draft Penawaran Kerjasama "${draftName}" berhasil disimpan ke menu Draft.`);
+      switchNav("MPAR_DRAFTS");
     }
 
     function submitKerjasamaFromMarketing() {
@@ -2627,7 +3257,6 @@
       saveKsList(list);
       renderBadges();
       switchKsTab("MONITOR");
-      alert("Penawaran kerjasama diajukan ke BS & Prodev.");
     }
 
     function directGenerateByBs() {
@@ -2644,7 +3273,6 @@
       saveKsList(list);
       renderBadges();
       switchKsTab("MONITOR");
-      alert("Penawaran kerjasama berhasil digenerate langsung oleh BS.");
     }
 
     function applyKsRoleAction(id, actionType) {
@@ -2724,8 +3352,8 @@
           <div class="data-card">
             <div class="data-card-top">
               <div>
-                <div class="data-card-title">${escapeHtml(item.company || "Partner")} <span style="font-size:12px; color:#475569;">(${escapeHtml(item.letterNo || "-")})</span></div>
-                <div class="data-card-meta">${escapeHtml(item.programType || "-")} • Komisi 1: ${escapeHtml(item.comm1)}% • Komisi 2: ${escapeHtml(item.comm2)}%</div>
+                <div class="data-card-title">${escapeHtml(item.company || "Partner")} <span style="font-size:12px; color:#475569;">(No. QS: ${escapeHtml(item.qsNo || "-")})</span></div>
+                <div class="data-card-meta">${escapeHtml(item.programType || "-")} • Metode Premi: ${item.premiMethod === "FLAT" ? "Flat Rate" : "Custom Tiering"} • Komisi Dasar: ${escapeHtml(item.comm1)}% • Bonus LR: +${escapeHtml(item.comm2)}%</div>
                 ${item.bsNote ? `<div class="data-card-meta"><strong>Catatan BS:</strong> ${escapeHtml(item.bsNote)}</div>` : ""}
                 ${item.prodevNote ? `<div class="data-card-meta"><strong>Catatan Prodev:</strong> ${escapeHtml(item.prodevNote)}</div>` : ""}
                 ${item.pksNo ? `<div class="data-card-meta" style="color:#15803d;"><strong>No. PKS Terbit:</strong> ${escapeHtml(item.pksNo)} <button type="button" class="btn-reset" style="margin-left:6px;" onclick="copyTextValue('${escapeAttr(item.pksNo)}', 'No. PKS')">Salin No. PKS</button></div>` : ""}
@@ -2734,7 +3362,7 @@
             </div>
 
             <div class="data-card-meta" style="margin-bottom:8px;">
-              <strong>Special Condition Terms:</strong> ${escapeHtml(item.specialTerms || "-")}
+              <strong>Kondisi Khusus / Profit Sharing:</strong> ${escapeHtml(item.specialTerms || "-")}
             </div>
 
             ${(role === "BS" || role === "PRODEV") ? `
@@ -2757,7 +3385,7 @@
             ` : ""}
 
             <div class="data-card-actions">
-              <button type="button" class="btn btn-reset" onclick="loadKsToPartnerPreview('${item.id}')">Lihat Surat Partner</button>
+              <button type="button" class="btn btn-reset" onclick="loadKsToPartnerPreview('${item.id}')">Lihat Proposal Partner</button>
               ${role === "BS" ? `
                 <button type="button" class="btn btn-accent" onclick="applyKsRoleAction('${item.id}', 'BS_COMMENT')">Simpan Comment / Adjust</button>
                 <button type="button" class="btn btn-secondary" onclick="applyKsRoleAction('${item.id}', 'BS_APPROVE')">✓ Approve BS</button>
@@ -2779,23 +3407,34 @@
     }
 
     function resetKerjasamaForm() {
-      document.getElementById("ksLetterNo").value = "SPH/018/BCAI-MKT/XI/2026";
-      document.getElementById("ksOfferDate").value = "28 November 2026";
+      if (!document.getElementById("ksQsNo")) return;
+      document.getElementById("ksQsNo").value = "";
+      document.getElementById("ksOfferDate").value = "";
       document.getElementById("ksCompany").value = "";
-      document.getElementById("ksProgramType").value = "Program Perlindungan Movable Property All Risk (MPAR) Partner";
+      document.getElementById("ksProgramType").value = "";
       document.getElementById("ksCategory").value = "";
-      document.getElementById("ksMainBenefits").value = "Menjamin kerugian atau kerusakan fisik secara tiba-tiba dan tidak terduga atas objek pertanggungan sesuai syarat & ketentuan polis MPAR.";
-      document.getElementById("ksServiceAdvantages").value = "Proses pendaftaran & pelaporan yang mudah, dukungan tim klaim BCAinsurance, serta skema kerjasama yang fleksibel.";
-      document.getElementById("ksPremiEstimate").value = "Rincian perhitungan premi terlampir";
+      document.getElementById("ksExecSummary").value = "";
+      document.getElementById("ksPremiMethod").value = "TIERING";
+      document.getElementById("ksAvgTicket").value = "4000000";
+      document.getElementById("ksCoveragePeriod").value = "12 Bulan (1 Tahun)";
+      document.getElementById("ksFlatRatePct").value = "2.00";
+      document.getElementById("ksDefaultTierRate").value = "2.00";
+      ksTierRows = getDefaultKsTiers();
+      document.getElementById("ksMonthlyVolume").value = "500";
+      document.getElementById("ksComm1").value = "25";
+      document.getElementById("ksLossRatioTarget").value = "20";
+      document.getElementById("ksComm2").value = "5";
+      document.getElementById("ksCommTax").value = "";
+      document.getElementById("ksSpecialTerms").value = "";
+      document.getElementById("ksMainBenefits").value = "Menjamin kerugian atau kerusakan fisik secara tiba-tiba dan tidak terduga (All Risk) termasuk jatuh, terbentur, terkena cairan, dan pencurian dengan kekerasan.";
+      document.getElementById("ksServiceAdvantages").value = "Pengecualian standar polis berlaku (kehilangan misterius, keausan wajar, kelalaian disengaja).";
       document.getElementById("ksDeductible").value = "Sesuai ketentuan polis / kesepakatan";
       document.getElementById("ksValidityDays").value = "14";
-      document.getElementById("ksComm1").value = "30";
-      document.getElementById("ksComm2").value = "10";
-      document.getElementById("ksCommTax").value = "Exclude / Include Pajak (sesuai kesepakatan)";
-      document.getElementById("ksSpecialTerms").value = "";
       const pksRow = document.getElementById("rowKsPksReference");
       if (pksRow) pksRow.style.display = "none";
-      renderKerjasama();
+
+      renderKsTierEditor();
+      onKsPremiMethodChange();
     }
 
     /* ================= NAVIGATION ================= */
@@ -3061,6 +3700,15 @@
 
     function onLangChange() {
       const lang = document.getElementById("inLang").value;
+
+      const wordingBox = document.getElementById("inWording");
+      if (wordingBox) {
+        const curWording = wordingBox.value.trim();
+        if (!curWording || curWording === DEFAULT_WORDING_EN || curWording === DEFAULT_WORDING_ID || curWording === "Munich Re Wording") {
+          wordingBox.value = lang === "ID" ? DEFAULT_WORDING_ID : DEFAULT_WORDING_EN;
+        }
+      }
+
       const clausesBox = document.getElementById("inClauses");
       const curVal = clausesBox.value.trim();
       if (!curVal || curVal === DEFAULT_CLAUSES_EN.trim() || curVal === DEFAULT_CLAUSES_ID.trim()) {
@@ -3218,7 +3866,7 @@
       });
     }
 
-    /* ================= HEADER, LOGO & FOOTER SETTINGS (FIXED) ================= */
+    /* ================= HEADER, LOGO & FOOTER SETTINGS ================= */
     function updateHeaderMode(mode) {
       localStorage.setItem("bca_qs_headerMode", mode);
       document.getElementById("standardLogoInputs").style.display = mode === "STANDARD" ? "grid" : "none";
@@ -3391,7 +4039,7 @@
 
       const qsNo = document.getElementById("inQsNo")?.value || "";
       const docDate = document.getElementById("inDocDate")?.value || "";
-      const wording = document.getElementById("inWording")?.value || "";
+      const wording = document.getElementById("inWording")?.value || (lang === "ID" ? DEFAULT_WORDING_ID : DEFAULT_WORDING_EN);
       const channel = document.getElementById("inChannel")?.value || "";
       const insured = document.getElementById("inInsured")?.value || "";
       const interest = document.getElementById("inInterest")?.value || "";
@@ -3453,7 +4101,24 @@
       renderKerjasama();
     }
 
+    function isCurrentQsApproved() {
+      const st = document.getElementById("currentUwStatusLabel")?.getAttribute("data-status") || "NONE";
+      return st === "APPROVED";
+    }
+
+    function printApprovedDoc() {
+      if (!isCurrentQsApproved()) {
+        alert("Dokumen hanya bisa dicetak setelah mendapat Approved UW.");
+        return;
+      }
+      window.print();
+    }
+
     function downloadPDF() {
+      if (!isCurrentQsApproved()) {
+        alert("Download PDF hanya tersedia setelah pengajuan QS mendapatkan Approved UW.");
+        return;
+      }
       const element = document.getElementById("pdfDocumentArea");
       const qsNo = (document.getElementById("inQsNo").value || "MPAR_QS").replace(/[^a-zA-Z0-9_-]/g, "_");
       const opt = {
@@ -3477,6 +4142,7 @@
       getQsTracker();
       getKsList();
       applyQsSnapshot(getBlankQsSnapshot(), "");
+      resetKerjasamaForm();
 
       if (sessionStorage.getItem("bca_qs_auth") === "true") {
         unlockApp();
