@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BCAinsurance - QS, UW, Partnership & PKS Portal</title>
+  <title>BCAinsurance - Marketing, UW, BS & Prodev Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
@@ -58,7 +58,7 @@
       align-items: center;
       justify-content: center;
       min-height: 54px;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
     }
 
     .login-logo-wrap img {
@@ -68,6 +68,13 @@
       height: auto;
       object-fit: contain;
       display: block;
+    }
+
+    .login-subtitle {
+      text-align: center;
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 16px;
     }
 
     .login-error {
@@ -147,7 +154,7 @@
 
     .forgot-link {
       display: inline-block;
-      margin-top: 16px;
+      margin-top: 14px;
       font-size: 12.5px;
       color: var(--bca-navy);
       text-decoration: underline;
@@ -209,10 +216,10 @@
 
     .mobile-backdrop.show { display: block; }
 
-    /* ================= LEFT NAVY SIDEBAR ================= */
+    /* ================= LEFT NAVY SIDEBAR (CLEAN PRODUCT TREE) ================= */
     .nav-sidebar {
-      width: 256px;
-      min-width: 256px;
+      width: 260px;
+      min-width: 260px;
       background-color: var(--bca-navy);
       color: #ffffff;
       height: 100vh;
@@ -237,7 +244,7 @@
 
     .nav-brand img {
       max-width: 175px;
-      max-height: 42px;
+      max-height: 40px;
       width: auto;
       height: auto;
       display: block;
@@ -246,8 +253,8 @@
     }
 
     .role-chip {
-      margin: 0 18px 10px 18px;
-      padding: 6px 10px;
+      margin: 0 18px 12px 18px;
+      padding: 7px 10px;
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.12);
       font-size: 11px;
@@ -255,9 +262,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 6px;
     }
 
-    .role-chip strong { color: #7dd3fc; }
+    .role-chip strong { color: #7dd3fc; font-weight: 700; }
 
     .nav-close-btn {
       display: none;
@@ -271,49 +279,113 @@
       cursor: pointer;
     }
 
+    .nav-section-caption {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #93c5fd;
+      padding: 6px 18px 4px 18px;
+    }
+
     .nav-menu { list-style: none; }
 
-    .nav-item {
+    .nav-product-group { border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+
+    .nav-product-btn {
+      width: 100%;
+      background: none;
+      border: none;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 11px 18px;
-      font-size: 12.5px;
-      font-weight: 500;
-      color: #e2e8f0;
-      cursor: pointer;
-      transition: background 0.18s, color 0.18s;
-      border-left: 3px solid transparent;
-    }
-
-    .nav-item:hover { background-color: var(--bca-navy-hover); color: #ffffff; }
-
-    .nav-item.active {
-      background-color: var(--bca-navy-dark);
-      color: #ffffff;
+      padding: 12px 18px;
+      font-family: inherit;
+      font-size: 13px;
       font-weight: 600;
-      border-left-color: #38bdf8;
+      color: #f1f5f9;
+      cursor: pointer;
+      transition: background 0.18s;
+      text-align: left;
     }
+
+    .nav-product-btn:hover { background-color: var(--bca-navy-hover); color: #ffffff; }
+    .nav-product-btn.active-product { background-color: rgba(255, 255, 255, 0.08); color: #ffffff; }
 
     .nav-item-left { display: flex; align-items: center; gap: 10px; }
 
-    .nav-item svg {
-      width: 15px;
-      height: 15px;
+    .nav-item-left svg {
+      width: 16px;
+      height: 16px;
       stroke: currentColor;
       fill: none;
       stroke-width: 1.9;
       flex-shrink: 0;
     }
 
-    .nav-divider { height: 1px; background-color: rgba(255, 255, 255, 0.15); margin: 1px 0; }
+    .chevron-icon {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.2;
+      transition: transform 0.2s ease;
+    }
 
-    .nav-badge-soon {
-      font-size: 9px;
-      background: rgba(255, 255, 255, 0.14);
+    .nav-product-group.expanded .chevron-icon { transform: rotate(90deg); }
+
+    .nav-submenu {
+      list-style: none;
+      background-color: rgba(8, 26, 51, 0.55);
+      display: none;
+      padding: 4px 0;
+    }
+
+    .nav-product-group.expanded .nav-submenu { display: block; }
+
+    .nav-subitem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 18px 9px 42px;
+      font-size: 12.2px;
+      font-weight: 500;
       color: #cbd5e1;
-      padding: 2px 6px;
-      border-radius: 10px;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-subitem:hover { background-color: rgba(255, 255, 255, 0.08); color: #ffffff; }
+
+    .nav-subitem.active {
+      background-color: var(--bca-navy-dark);
+      color: #ffffff;
+      font-weight: 600;
+      border-left-color: #38bdf8;
+    }
+
+    .nav-item-standalone {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #e2e8f0;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      transition: background 0.18s;
+    }
+
+    .nav-item-standalone:hover { background-color: var(--bca-navy-hover); color: #ffffff; }
+
+    .nav-item-standalone.active {
+      background-color: var(--bca-navy-dark);
+      color: #ffffff;
+      font-weight: 600;
+      border-left-color: #38bdf8;
     }
 
     .nav-badge-count {
@@ -321,7 +393,7 @@
       background: #0284c7;
       color: #ffffff;
       font-weight: 700;
-      padding: 2px 7px;
+      padding: 1px 7px;
       border-radius: 99px;
     }
 
@@ -360,7 +432,7 @@
 
     .kpi-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
       gap: 14px;
       margin-bottom: 18px;
     }
@@ -377,55 +449,13 @@
     .kpi-value { font-size: 20px; font-weight: 800; color: var(--bca-navy); margin-top: 4px; }
     .kpi-sub { font-size: 11px; color: #475569; margin-top: 2px; }
 
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
-      gap: 16px;
-    }
-
-    .product-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      padding: 18px;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
-      cursor: pointer;
-    }
-
-    .product-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(18, 54, 99, 0.1);
-      border-color: #93c5fd;
-    }
-
-    .product-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-
-    .product-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
-      background: #eff6ff;
-      color: var(--bca-navy);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 11.5px;
-    }
-
-    .status-pill { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 99px; }
+    .status-pill { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 99px; display: inline-block; }
     .status-pill.ready, .status-pill.approved { background: #dcfce7; color: #15803d; }
     .status-pill.soon { background: #f1f5f9; color: #64748b; }
     .status-pill.pending { background: #fef3c7; color: #b45309; }
     .status-pill.rejected { background: #fee2e2; color: #b91c1c; }
-
-    .product-card h3 { font-size: 15px; color: #0f172a; margin-bottom: 6px; }
-    .product-card p { font-size: 12px; color: #64748b; line-height: 1.45; margin-bottom: 14px; }
-    .card-action { font-size: 12px; font-weight: 700; color: var(--bca-blue); }
+    .status-pill.type-qs { background: #dbeafe; color: #1d4ed8; }
+    .status-pill.type-ks { background: #e0e7ff; color: #4338ca; }
 
     .data-card {
       background: #ffffff;
@@ -470,10 +500,10 @@
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 44px 24px;
+      padding: 48px 24px;
       text-align: center;
       max-width: 520px;
-      margin: 32px auto;
+      margin: 40px auto;
       box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
     }
 
@@ -612,6 +642,7 @@
       cursor: pointer;
       transition: 0.2s;
       text-align: center;
+      font-family: inherit;
     }
 
     .btn-primary { background: var(--bca-navy); color: #fff; }
@@ -624,16 +655,17 @@
     .btn-reset {
       background: #e2e8f0;
       color: #334155;
-      font-size: 10.5px;
-      padding: 4px 9px;
-      border-radius: 4px;
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 5px;
       border: none;
       cursor: pointer;
       font-weight: 600;
+      font-family: inherit;
     }
     .btn-reset:hover { background: #cbd5e1; }
 
-    /* ================= PREVIEW AREA ================= */
+    /* ================= PREVIEW AREA & FIXED HEADER/FOOTER ================= */
     .preview-container {
       flex: 1;
       padding: 22px;
@@ -677,37 +709,88 @@
 
     .page-content { position: relative; z-index: 1; }
 
+    /* FIXED CLEAN DOCUMENT HEADER */
     .doc-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 2px solid var(--bca-blue);
-      padding-bottom: 8px;
-      margin-bottom: 12px;
-      gap: 8px;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      min-height: 54px;
+      gap: 12px;
+      width: 100%;
     }
 
-    .doc-header.full-header-img { display: block; border-bottom: none; padding-bottom: 4px; }
-    .doc-header.full-header-img img { width: 100%; max-height: 75px; object-fit: contain; display: block; }
+    .doc-header.full-header-img {
+      display: block;
+      border-bottom: none;
+      padding-bottom: 6px;
+      min-height: auto;
+    }
 
-    .logo-left { display: flex; align-items: center; }
-    .logo-left img { height: 44px; width: auto; display: block; object-fit: contain; }
+    .doc-header.full-header-img img {
+      width: 100%;
+      max-height: 82px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .logo-left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-shrink: 0;
+    }
+
+    .logo-left img {
+      width: auto;
+      max-width: 220px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .logo-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+
+    .logo-right img {
+      width: auto;
+      max-width: 170px;
+      display: block;
+      object-fit: contain;
+    }
 
     .doc-footer {
       border-top: 1.5px solid var(--bca-blue);
-      padding-top: 6px;
-      margin-top: 10px;
+      padding-top: 7px;
+      margin-top: 12px;
       font-size: 7.5pt;
       color: #222;
       display: flex;
       justify-content: space-between;
-      gap: 10px;
+      align-items: flex-start;
+      gap: 12px;
       position: relative;
       z-index: 1;
+      width: 100%;
     }
 
-    .doc-footer.full-footer-img { display: block; border-top: none; padding-top: 4px; }
-    .doc-footer.full-footer-img img { width: 100%; max-height: 60px; object-fit: contain; display: block; }
+    .doc-footer.full-footer-img {
+      display: block;
+      border-top: none;
+      padding-top: 4px;
+    }
+
+    .doc-footer.full-footer-img img {
+      width: 100%;
+      max-height: 64px;
+      object-fit: contain;
+      display: block;
+    }
 
     .qs-header-bar {
       display: flex;
@@ -720,7 +803,7 @@
     .qs-header-bar h2 { font-size: 14pt; font-weight: 700; letter-spacing: 0.4px; color: var(--bca-dark-blue); }
     .qs-header-bar .qs-no { font-size: 9.5pt; font-weight: 700; }
 
-    .qs-title-block { text-align: center; margin-bottom: 10px; }
+    .qs-title-block { text-align: center; margin-bottom: 12px; }
     .qs-title-block h2 { font-size: 13.5pt; font-weight: 700; letter-spacing: 0.5px; color: var(--bca-dark-blue); }
     .qs-title-block .qs-no { font-size: 9.5pt; font-weight: 700; margin-top: 2px; }
 
@@ -751,10 +834,10 @@
     .clauses-list { padding-left: 16px; font-size: 8.2pt; line-height: 1.36; list-style-type: disc; }
     .clauses-list li { margin-bottom: 2px; }
 
-    table.spec-table { width: 100%; border-collapse: collapse; font-size: 8.7pt; margin-bottom: 10px; }
-    table.spec-table th, table.spec-table td { border: 1px solid #334155; padding: 5px 7px; vertical-align: top; }
+    table.spec-table { width: 100%; border-collapse: collapse; font-size: 8.8pt; margin-bottom: 10px; }
+    table.spec-table th, table.spec-table td { border: 1px solid #334155; padding: 6px 8px; vertical-align: top; }
     table.spec-table th { background: #e2e8f0; color: #0f172a; text-align: left; }
-    table.spec-table td.spec-key { width: 28%; font-weight: 700; background-color: #f1f5f9; color: #0f172a; }
+    table.spec-table td.spec-key { width: 30%; font-weight: 700; background-color: #f1f5f9; color: #0f172a; }
 
     .sign-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 16px; }
     .our-sig-area { min-height: 54px; display: flex; align-items: center; margin: 4px 0; }
@@ -771,14 +854,13 @@
     }
     .partner-blank-space { height: 44px; }
     .sig-line-row { margin-top: 10px; padding-top: 6px; border-top: 1px dashed #94a3b8; }
-    .tier-badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 99px;
-      font-size: 11px;
-      font-weight: 700;
-      background: #dbeafe;
-      color: var(--bca-navy);
+
+    .header-preview-box {
+      border: 1px dashed #94a3b8;
+      border-radius: 8px;
+      padding: 14px;
+      background: #ffffff;
+      margin-top: 10px;
     }
 
     @media (max-width: 900px) {
@@ -819,6 +901,7 @@
   <div class="login-overlay" id="loginOverlay">
     <div class="login-card">
       <div class="login-logo-wrap" id="loginLogoWrap"></div>
+      <div class="login-subtitle">Portal Quotation Slip &amp; Penawaran Kerjasama</div>
 
       <div class="login-error" id="loginError">
         Username atau Password tidak sesuai.
@@ -867,79 +950,76 @@
         </div>
 
         <div class="role-chip">
-          <span>Role:</span>
+          <span>User: <strong id="sidebarUserLabel">mkt_bcai</strong></span>
           <strong id="sidebarRoleLabel">Marketing</strong>
         </div>
 
+        <div class="nav-section-caption">Produk Asuransi</div>
         <ul class="nav-menu">
-          <li class="nav-item active" data-nav="HOME" onclick="switchNav('HOME')">
-            <span class="nav-item-left">
-              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-              <span>Dashboard &amp; QS</span>
-            </span>
+          <!-- PRODUK 1: MPAR (EXPANDABLE) -->
+          <li class="nav-product-group expanded" id="groupMpar">
+            <button type="button" class="nav-product-btn active-product" onclick="toggleProductGroup('groupMpar')">
+              <span class="nav-item-left">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <span>MPAR</span>
+              </span>
+              <svg class="chevron-icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <ul class="nav-submenu">
+              <li class="nav-subitem" data-nav="MPAR_DASHBOARD" onclick="switchNav('MPAR_DASHBOARD')">
+                <span>Dashboard</span>
+              </li>
+              <li class="nav-subitem active" data-nav="MPAR_QS" onclick="switchNav('MPAR_QS')">
+                <span>QS</span>
+              </li>
+              <li class="nav-subitem" data-nav="MPAR_KERJASAMA" onclick="switchNav('MPAR_KERJASAMA')">
+                <span>Penawaran Kerjasama</span>
+              </li>
+              <li class="nav-subitem" data-nav="MPAR_DRAFTS" onclick="switchNav('MPAR_DRAFTS')">
+                <span>Draft</span>
+                <span class="nav-badge-count" id="draftCountBadge">1</span>
+              </li>
+            </ul>
           </li>
-          <div class="nav-divider"></div>
 
-          <li class="nav-item" data-nav="NEW_QS" onclick="switchNav('NEW_QS')">
-            <span class="nav-item-left">
-              <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-              <span>New QS (MPAR)</span>
-            </span>
+          <!-- PRODUK 2: TRAVEL (TANPA LABEL COMING SOON DI SIDEBAR) -->
+          <li class="nav-product-group" id="groupTravel">
+            <button type="button" class="nav-product-btn" onclick="switchNav('TRAVEL')">
+              <span class="nav-item-left">
+                <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                <span>Travel</span>
+              </span>
+              <svg class="chevron-icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </li>
-          <div class="nav-divider"></div>
 
-          <li class="nav-item" data-nav="DRAFTS" onclick="switchNav('DRAFTS')">
-            <span class="nav-item-left">
-              <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
-              <span>Draft QS</span>
-            </span>
-            <span class="nav-badge-count" id="draftCountBadge">1</span>
+          <!-- PRODUK 3: PA (TANPA LABEL COMING SOON DI SIDEBAR) -->
+          <li class="nav-product-group" id="groupPa">
+            <button type="button" class="nav-product-btn" onclick="switchNav('PA')">
+              <span class="nav-item-left">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>PA</span>
+              </span>
+              <svg class="chevron-icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </li>
-          <div class="nav-divider"></div>
+        </ul>
 
-          <li class="nav-item" data-nav="UW_APPROVAL" onclick="switchNav('UW_APPROVAL')">
+        <div class="nav-section-caption" style="margin-top: 8px;">Approval &amp; Pengaturan</div>
+        <ul class="nav-menu">
+          <li class="nav-item-standalone" data-nav="UW_APPROVAL" onclick="switchNav('UW_APPROVAL')">
             <span class="nav-item-left">
               <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-              <span>Akseptasi UW</span>
+              <span>Approval UW</span>
             </span>
             <span class="nav-badge-count" id="uwPendingBadge">0</span>
           </li>
-          <div class="nav-divider"></div>
-
-          <li class="nav-item" data-nav="KERJASAMA" onclick="switchNav('KERJASAMA')">
-            <span class="nav-item-left">
-              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              <span>Penawaran Kerjasama</span>
-            </span>
-            <span class="nav-badge-count" id="ksPendingBadge">0</span>
-          </li>
-          <div class="nav-divider"></div>
-
-          <li class="nav-item" data-nav="PA" onclick="switchNav('PA')">
-            <span class="nav-item-left">
-              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <span>Personal Accident (PA)</span>
-            </span>
-            <span class="nav-badge-soon">Coming Soon</span>
-          </li>
-          <div class="nav-divider"></div>
-
-          <li class="nav-item" data-nav="TRAVEL" onclick="switchNav('TRAVEL')">
-            <span class="nav-item-left">
-              <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-              <span>Travel</span>
-            </span>
-            <span class="nav-badge-soon">Coming Soon</span>
-          </li>
-          <div class="nav-divider"></div>
-
-          <li class="nav-item" data-nav="TEMPLATE" onclick="switchNav('TEMPLATE')">
+          <li class="nav-item-standalone" data-nav="TEMPLATE" onclick="switchNav('TEMPLATE')">
             <span class="nav-item-left">
               <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-              <span>Setting Template</span>
+              <span>Setting Header &amp; Logo</span>
             </span>
           </li>
-          <div class="nav-divider"></div>
         </ul>
       </div>
 
@@ -957,16 +1037,16 @@
         <div id="mobileTopbarLogo"></div>
       </header>
 
-      <!-- 1. DASHBOARD TRACKING QS KELUAR & APPROVAL -->
-      <section class="portal-view" id="viewHome">
+      <!-- 1. MPAR -> DASHBOARD (TOTAL QS & STATUS APPROVAL) -->
+      <section class="portal-view" id="viewDashboard" style="display: none;">
         <div class="portal-header">
           <div>
-            <h2>Dashboard Tracking QS &amp; Portal</h2>
-            <p>Pantau total QS yang keluar, cari berdasarkan No. QS / penawaran, dan cek status approval.</p>
+            <h2>Dashboard MPAR — Total QS &amp; Status Approval</h2>
+            <p>Pantau total QS keluar, status approval UW, serta progres approval kerjasama BS &amp; Prodev.</p>
           </div>
           <div class="data-card-actions">
-            <button type="button" class="btn btn-primary" onclick="switchNav('NEW_QS')">+ New QS (MPAR)</button>
-            <button type="button" class="btn btn-accent" onclick="switchNav('KERJASAMA')">Penawaran Kerjasama</button>
+            <button type="button" class="btn btn-primary" onclick="startFreshQs()">+ Buat QS Baru</button>
+            <button type="button" class="btn btn-accent" onclick="switchNav('MPAR_KERJASAMA')">+ Penawaran Kerjasama</button>
           </div>
         </div>
 
@@ -977,34 +1057,34 @@
             <div class="kpi-sub" id="kpiTotalQsPremi">Total Premi: Rp 0</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-label">QS Sudah Approve</div>
+            <div class="kpi-label">QS Sudah Approve UW</div>
             <div class="kpi-value" id="kpiApprovedQs">0</div>
-            <div class="kpi-sub">Disetujui Underwriter</div>
+            <div class="kpi-sub">Siap diberikan ke client/partner</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-label">Menunggu UW</div>
+            <div class="kpi-label">QS Menunggu UW</div>
             <div class="kpi-value" id="kpiPendingQs">0</div>
-            <div class="kpi-sub">Dalam proses akseptasi</div>
+            <div class="kpi-sub">Menunggu review uw_bcai</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-label">Penawaran Kerjasama</div>
-            <div class="kpi-value" id="kpiTotalKs">0</div>
-            <div class="kpi-sub" id="kpiApprovedKsSub">0 Approved</div>
+            <div class="kpi-label">Kerjasama Approve / PKS</div>
+            <div class="kpi-value" id="kpiApprovedKs">0</div>
+            <div class="kpi-sub" id="kpiTotalKsSub">Dari total 0 pengajuan</div>
           </div>
         </div>
 
         <div class="data-card">
-          <div class="section-title"><span>Tracking QS Keluar (Search No. QS / Penawaran &amp; Status)</span></div>
+          <div class="section-title"><span>Tracking Daftar QS Keluar &amp; Status Approval</span></div>
           <div class="grid-3" style="margin-bottom: 12px;">
             <div class="form-group" style="margin-bottom:0;">
-              <label>Cari No. QS / Penawaran / Insured</label>
-              <input type="text" id="qsSearchInput" placeholder="Ketik No. QS, nama penawaran, atau insured..." oninput="renderQsTrackingTable()" />
+              <label>Cari No. QS / Nama Penawaran / Insured</label>
+              <input type="text" id="qsSearchInput" placeholder="Ketik No. QS atau nama..." oninput="renderQsTrackingTable()" />
             </div>
             <div class="form-group" style="margin-bottom:0;">
               <label>Filter Status Approval</label>
               <select id="qsStatusFilter" onchange="renderQsTrackingTable()">
                 <option value="ALL">Semua Status</option>
-                <option value="APPROVED">Approved (Sudah Approve)</option>
+                <option value="APPROVED">Approved UW</option>
                 <option value="PENDING_UW">Menunggu UW</option>
                 <option value="DRAFT_ONLY">Draft / Belum Diajukan</option>
                 <option value="REJECTED">Revisi / Ditolak</option>
@@ -1012,7 +1092,7 @@
             </div>
             <div class="form-group" style="margin-bottom:0;">
               <label>Aksi Cepat</label>
-              <button type="button" class="btn btn-reset" style="width:100%; height:33px;" onclick="logCurrentQsToTracker()">+ Catat QS Aktif ke Tracker</button>
+              <button type="button" class="btn btn-reset" style="width:100%; height:33px;" onclick="logCurrentQsToTracker()">+ Simpan QS Aktif ke Dashboard</button>
             </div>
           </div>
 
@@ -1021,10 +1101,10 @@
               <thead>
                 <tr>
                   <th>No. QS</th>
-                  <th>Nama Penawaran / Insured</th>
+                  <th>Penawaran / Insured</th>
                   <th>TSI</th>
                   <th>Total Premi</th>
-                  <th>Status UW</th>
+                  <th>Status Approval</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -1032,100 +1112,41 @@
             </table>
           </div>
         </div>
-
-        <div class="product-grid">
-          <div class="product-card" onclick="switchNav('NEW_QS')">
-            <div>
-              <div class="product-card-top">
-                <div class="product-icon">NEW</div>
-                <span class="status-pill ready">Blank Form</span>
-              </div>
-              <h3>New QS (MPAR)</h3>
-              <p>Mulai Quotation Slip baru dengan form kosong dan wording dikosongkan di awal.</p>
-            </div>
-            <div class="card-action">Mulai New QS →</div>
-          </div>
-
-          <div class="product-card" onclick="switchNav('DRAFTS')">
-            <div>
-              <div class="product-card-top">
-                <div class="product-icon">DRAFT</div>
-                <span class="status-pill ready">Tersimpan</span>
-              </div>
-              <h3>Draft QS</h3>
-              <p>Akses, edit, atau simpan draft penawaran (termasuk data contoh Teressa).</p>
-            </div>
-            <div class="card-action">Buka Daftar Draft →</div>
-          </div>
-
-          <div class="product-card" onclick="switchNav('KERJASAMA')">
-            <div>
-              <div class="product-card-top">
-                <div class="product-icon">B2B</div>
-                <span class="status-pill ready">Partner &amp; PKS</span>
-              </div>
-              <h3>Penawaran Kerjasama</h3>
-              <p>Form pengajuan internal, template untuk partner, approval BS/Prodev, dan terbit No. PKS.</p>
-            </div>
-            <div class="card-action">Buka Penawaran Kerjasama →</div>
-          </div>
-
-          <div class="product-card" onclick="switchNav('PA')">
-            <div>
-              <div class="product-card-top">
-                <div class="product-icon">PA</div>
-                <span class="status-pill soon">Coming Soon</span>
-              </div>
-              <h3>Personal Accident</h3>
-              <p>Template Quotation Slip perlindungan kecelakaan diri untuk pengembangan berikutnya.</p>
-            </div>
-            <div class="card-action" style="color:#64748b;">Coming Soon</div>
-          </div>
-
-          <div class="product-card" onclick="switchNav('TRAVEL')">
-            <div>
-              <div class="product-card-top">
-                <div class="product-icon">TRV</div>
-                <span class="status-pill soon">Coming Soon</span>
-              </div>
-              <h3>Travel Insurance</h3>
-              <p>Template Quotation Slip asuransi perjalanan domestik &amp; internasional.</p>
-            </div>
-            <div class="card-action" style="color:#64748b;">Coming Soon</div>
-          </div>
-        </div>
       </section>
 
-      <!-- 2. DAFTAR DRAFT QS -->
+      <!-- 2. MPAR -> DRAFT (GABUNGAN DRAFT QS & DRAFT PENAWARAN KERJASAMA) -->
       <section class="portal-view" id="viewDrafts" style="display: none;">
         <div class="portal-header">
           <div>
-            <h2>Draft Quotation Slip</h2>
-            <p>Pilih draft untuk dimuat ke editor MPAR dan dilanjutkan pengisiannya.</p>
+            <h2>Draft MPAR (QS &amp; Penawaran Kerjasama)</h2>
+            <p>Semua draft QS maupun draft Penawaran Kerjasama tersimpan di sini agar mudah dilanjutkan.</p>
           </div>
-          <button type="button" class="btn btn-primary" onclick="switchNav('NEW_QS')">+ Buat New QS Kosong</button>
+          <div class="data-card-actions">
+            <button type="button" class="btn btn-primary" onclick="startFreshQs()">+ New QS</button>
+            <button type="button" class="btn btn-accent" onclick="startFreshKerjasama()">+ New Penawaran Kerjasama</button>
+          </div>
         </div>
         <div id="draftListContainer"></div>
       </section>
 
-      <!-- 3. WORKSPACE AKSEPTASI UNDERWRITER (uw_bcai) -->
+      <!-- 3. WORKSPACE APPROVAL UW (uw_bcai) -->
       <section class="portal-view" id="viewUwApproval" style="display: none;">
         <div class="portal-header">
           <div>
-            <h2>Workspace Akseptasi Underwriter</h2>
-            <p id="uwSubtitleInfo">Tinjau pengajuan akseptasi QS dari Marketing dan berikan status akseptasi / catatan UW.</p>
+            <h2>Approval Underwriter (UW)</h2>
+            <p id="uwSubtitleInfo">Daftar pengajuan QS yang membutuhkan persetujuan Underwriter.</p>
           </div>
-          <button type="button" class="btn btn-accent" onclick="switchNav('NEW_QS')">Kembali ke QS</button>
+          <button type="button" class="btn btn-accent" onclick="switchNav('MPAR_QS')">Kembali ke Form QS</button>
         </div>
         <div id="uwQueueContainer"></div>
       </section>
 
-      <!-- 4. PENAWARAN KERJASAMA (FORM PENGAJUAN INTERNAL + TEMPLATE PARTNER + WORKFLOW BS/PRODEV/PKS) -->
+      <!-- 4. MPAR -> PENAWARAN KERJASAMA (SIMPLE: SPESIFIKASI PRODUK + COMMERCIAL TERMS) -->
       <section class="portal-view" id="viewKerjasama" style="display: none;">
         <div class="portal-header">
           <div>
             <h2>Penawaran Kerjasama — MPAR</h2>
-            <p>Form pengajuan internal, template penawaran untuk partner, workflow BS &amp; Prodev, serta penerbitan No. PKS.</p>
+            <p>Format ringkas mengikuti isian Spesifikasi Produk &amp; Commercial Terms, dilengkapi workflow BS, Prodev &amp; No. PKS.</p>
           </div>
           <div class="data-card-actions no-print">
             <button type="button" class="btn btn-reset" onclick="resetKerjasamaForm()">Reset Form</button>
@@ -1134,142 +1155,111 @@
         </div>
 
         <div class="sub-tabs no-print">
-          <button type="button" class="sub-tab-btn active" id="tabKsForm" onclick="switchKsTab('FORM')">1. Form Pengajuan &amp; Template Partner</button>
-          <button type="button" class="sub-tab-btn" id="tabKsMonitor" onclick="switchKsTab('MONITOR')">2. Monitoring Approval &amp; Terbit PKS</button>
+          <button type="button" class="sub-tab-btn active" id="tabKsForm" onclick="switchKsTab('FORM')">1. Form &amp; Surat Penawaran Partner</button>
+          <button type="button" class="sub-tab-btn" id="tabKsMonitor" onclick="switchKsTab('MONITOR')">2. Monitoring Approval (BS &amp; Prodev) &amp; Terbit PKS</button>
         </div>
 
-        <!-- TAB 1: FORM PENGAJUAN INTERNAL + TEMPLATE UNTUK PARTNER -->
+        <!-- TAB 1: SIMPLE FORM + PREVIEW PARTNER -->
         <div id="ksTabFormPanel">
           <div class="data-card no-print">
-            <div class="section-title"><span>A. Form Pengajuan Kerjasama Internal (Acuan Data &amp; Kelas)</span></div>
+            <div class="section-title"><span>Isian Penawaran Kerjasama (Spesifikasi Produk &amp; Commercial Terms)</span></div>
+
             <div class="grid-3">
               <div class="form-group">
                 <label>No. Surat Penawaran</label>
                 <input type="text" id="ksLetterNo" value="SPH/018/BCAI-MKT/XI/2026" oninput="renderKerjasama()" />
               </div>
               <div class="form-group">
-                <label>Judul / Nama Penawaran Kerjasama</label>
-                <input type="text" id="ksTitle" placeholder="Contoh: Kerjasama MPAR Partner Elektronik" oninput="renderKerjasama()" />
+                <label>Tanggal Surat</label>
+                <input type="text" id="ksOfferDate" value="28 November 2026" oninput="renderKerjasama()" />
               </div>
               <div class="form-group">
-                <label>Nama Perusahaan / Partner &amp; PIC</label>
-                <input type="text" id="ksCompany" placeholder="Contoh: PT Mitra Retail (Up. Bpk/Ibu ...)" oninput="renderKerjasama()" />
+                <label>Nama Partner / Perusahaan</label>
+                <input type="text" id="ksCompany" placeholder="Contoh: PT Mitra Retail Nusantara" oninput="renderKerjasama()" />
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label>Jenis Program</label>
+                <input type="text" id="ksProgramType" value="Program Perlindungan Movable Property All Risk (MPAR) Partner" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Objek Pertanggungan / Kategori Barang</label>
+                <input type="text" id="ksCategory" placeholder="Contoh: Laptop, Gadget, Peralatan Elektronik" oninput="renderKerjasama()" />
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label>Cakupan Manfaat Utama</label>
+                <textarea id="ksMainBenefits" rows="3" oninput="renderKerjasama()">Menjamin kerugian atau kerusakan fisik secara tiba-tiba dan tidak terduga atas objek pertanggungan sesuai syarat &amp; ketentuan polis MPAR.</textarea>
+              </div>
+              <div class="form-group">
+                <label>Keunggulan Layanan</label>
+                <textarea id="ksServiceAdvantages" rows="3" oninput="renderKerjasama()">Proses pendaftaran &amp; pelaporan yang mudah, dukungan tim klaim BCAinsurance, serta skema kerjasama yang fleksibel.</textarea>
               </div>
             </div>
 
             <div class="grid-3">
               <div class="form-group">
-                <label>Kategori Barang / Objek</label>
-                <input type="text" id="ksCategory" placeholder="Contoh: Laptop, Gadget, Peralatan" oninput="renderKerjasama()" />
+                <label>Rate / Estimasi Premi</label>
+                <input type="text" id="ksPremiEstimate" value="Rincian perhitungan premi terlampir" oninput="renderKerjasama()" />
               </div>
               <div class="form-group">
-                <label>Potensi Premi / Tahun (Rp) — Parameter Kelas</label>
-                <input type="number" id="ksAnnualPremiPot" value="650000000" step="10000000" oninput="renderKerjasama()" />
+                <label>Deductible (Risiko Sendiri)</label>
+                <input type="text" id="ksDeductible" value="Sesuai ketentuan polis / kesepakatan" oninput="renderKerjasama()" />
               </div>
               <div class="form-group">
-                <label>Estimasi Volume / Bulan (Unit) &amp; Avg Harga</label>
-                <div class="grid-2" style="gap:6px;">
-                  <input type="number" id="ksMonthlyVol" placeholder="Unit/bln" oninput="renderKerjasama()" />
-                  <input type="number" id="ksAvgPrice" placeholder="Harga (Rp)" oninput="renderKerjasama()" />
-                </div>
-              </div>
-            </div>
-
-            <div class="grid-3">
-              <div class="form-group">
-                <label>Komisi 1 (%)</label>
-                <input type="number" id="ksComm1" value="30" step="0.5" min="0" max="100" oninput="renderKerjasama()" />
-              </div>
-              <div class="form-group">
-                <label>Komisi 2 (%)</label>
-                <input type="number" id="ksComm2" value="10" step="0.5" min="0" max="100" oninput="renderKerjasama()" />
-              </div>
-              <div class="form-group">
-                <label>Keterangan Pajak / Basis Komisi</label>
-                <input type="text" id="ksCommTax" value="Exclude / Include Pajak (sesuai kesepakatan)" oninput="renderKerjasama()" />
-              </div>
-            </div>
-
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; background:#f1f5f9; padding:8px 12px; border-radius:8px; margin-bottom:10px;">
-              <div>
-                <span class="tier-badge" id="ksTierBadge">Kelas B</span>
-                <span style="font-size:12px; color:#334155; margin-left:8px;" id="ksTierDesc"></span>
-              </div>
-              <div style="text-align:right;">
-                <div style="font-size:12px; font-weight:700; color:var(--bca-navy);" id="ksRecCommText"></div>
-                <div style="font-size:11px; color:#475569;" id="ksCommCheckText"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="data-card no-print">
-            <div class="section-title"><span>B. Isi Template Penawaran Kerjasama Untuk Partner</span></div>
-
-            <div class="form-group">
-              <label>Jenis Program</label>
-              <input type="text" id="ksProgramType" value="Program Perlindungan Movable Property All Risk (MPAR) Partner" oninput="renderKerjasama()" />
-            </div>
-
-            <div class="form-group">
-              <label>Cakupan Manfaat Utama</label>
-              <textarea id="ksMainBenefits" rows="3" oninput="renderKerjasama()">Menjamin kerugian atau kerusakan fisik secara tiba-tiba dan tidak terduga atas barang yang diasuransikan sesuai syarat dan ketentuan polis MPAR yang berlaku.</textarea>
-            </div>
-
-            <div class="form-group">
-              <label>Keunggulan Layanan</label>
-              <textarea id="ksServiceAdvantages" rows="3" oninput="renderKerjasama()">Proses pengajuan dan pelaporan yang terstruktur, dukungan tim operasional &amp; klaim BCAinsurance, serta skema komersial yang kompetitif dan fleksibel.</textarea>
-            </div>
-
-            <div class="grid-3">
-              <div class="form-group">
-                <label>Estimasi Premi (Teks / Ringkasan)</label>
-                <input type="text" id="ksPremiEstimate" placeholder="Contoh: Rincian perhitungan premi terlampir / sesuai rate" oninput="renderKerjasama()" />
-              </div>
-              <div class="form-group">
-                <label>Masa Berlaku Penawaran (Hari)</label>
+                <label>Masa Berlaku Penawaran</label>
                 <select id="ksValidityDays" onchange="renderKerjasama()">
                   <option value="14">14 hari sejak tanggal surat ini diterbitkan</option>
                   <option value="30">30 hari sejak tanggal surat ini diterbitkan</option>
                 </select>
               </div>
+            </div>
+
+            <div class="grid-3">
               <div class="form-group">
-                <label>Tanggal Surat Penawaran</label>
-                <input type="text" id="ksOfferDate" value="28 November 2026" oninput="renderKerjasama()" />
+                <label>Commercial Terms — Komisi 1 (%)</label>
+                <input type="number" id="ksComm1" value="30" step="0.5" min="0" max="100" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Commercial Terms — Komisi 2 (%)</label>
+                <input type="number" id="ksComm2" value="10" step="0.5" min="0" max="100" oninput="renderKerjasama()" />
+              </div>
+              <div class="form-group">
+                <label>Ketentuan Pajak / Basis Komisi</label>
+                <input type="text" id="ksCommTax" value="Exclude / Include Pajak (sesuai kesepakatan)" oninput="renderKerjasama()" />
               </div>
             </div>
 
-            <div class="form-group" style="margin-bottom:0;">
-              <label>Special Condition Terms (Custom)</label>
-              <textarea id="ksSpecialTerms" rows="3" placeholder="Ketentuan khusus tambahan untuk partner..." oninput="renderKerjasama()"></textarea>
+            <div class="form-group" style="margin-bottom: 10px;">
+              <label>Special Condition Terms (Opsional)</label>
+              <textarea id="ksSpecialTerms" rows="2" placeholder="Ketentuan tambahan khusus untuk partner (jika ada)..." oninput="renderKerjasama()"></textarea>
             </div>
 
-            <div class="data-card-actions" style="margin-top: 12px;">
-              <button type="button" class="btn btn-accent" id="btnSubmitKsMkt" onclick="submitKerjasamaFromMarketing()">📤 Ajukan Penawaran Kerjasama (Ke BS &amp; Prodev)</button>
-              <button type="button" class="btn btn-primary" id="btnDirectGenerateBs" onclick="directGenerateByBs()">⚡ Generate Langsung (Khusus BS - Tanpa Approval)</button>
-            </div>
-            <div style="font-size:11px; color:#64748b; margin-top:6px;">
-              *Catatan: User <strong>bs_bcai</strong> dapat langsung generate penawaran kerjasama tanpa perlu approval. User <strong>mkt_bcai</strong> mengajukan untuk approval BS &amp; Prodev.
+            <div class="data-card-actions">
+              <button type="button" class="btn btn-reset" onclick="saveKerjasamaAsDraft()">💾 Simpan ke Draft</button>
+              <button type="button" class="btn btn-accent" id="btnSubmitKsMkt" onclick="submitKerjasamaFromMarketing()">📤 Ajukan Approval (BS &amp; Prodev)</button>
+              <button type="button" class="btn btn-primary" id="btnDirectGenerateBs" onclick="directGenerateByBs()">⚡ Generate Langsung (Khusus BS)</button>
             </div>
           </div>
 
-          <!-- DOKUMEN SURAT PENAWARAN KERJASAMA UNTUK PARTNER -->
+          <!-- PREVIEW SURAT PENAWARAN KERJASAMA UNTUK PARTNER -->
           <div class="page-a4" style="width:100%; min-height:auto; padding:18px;">
             <div class="page-content">
-              <div class="doc-header" data-header-bar>
-                <div class="logo-left" data-slot="main-logo"></div>
-                <div class="logo-right" data-slot="right-logo"></div>
-              </div>
+              <div class="doc-header" data-header-bar></div>
 
               <div class="qs-title-block">
                 <h2>SURAT PENAWARAN KERJASAMA ASURANSI</h2>
-                <div class="qs-no">No. Surat: <span id="outKsLetterNo">SPH/018/BCAI-MKT/XI/2026</span> &bull; <span id="outKsOfferDate"></span></div>
+                <div class="qs-no">No. Surat: <span id="outKsLetterNo">SPH/018/BCAI-MKT/XI/2026</span> &bull; Jakarta, <span id="outKsOfferDate">28 November 2026</span></div>
               </div>
 
               <div style="font-size:9pt; margin-bottom:10px; line-height:1.45;">
                 <div>Kepada Yth. <strong><span id="outKsPartnerCompany">Partner</span></strong></div>
-                <div style="margin-top:4px;" id="outKsPartnerSub"></div>
                 <div style="margin-top:4px; color:#334155;">
-                  Dengan hormat, bersama surat ini kami sampaikan penawaran kerjasama program asuransi dari <strong>PT Asuransi Umum BCA</strong> dengan cakupan utama sebagai berikut:
+                  Dengan hormat, bersama surat ini kami sampaikan penawaran kerjasama program asuransi dari <strong>PT Asuransi Umum BCA</strong> dengan ringkasan spesifikasi produk dan ketentuan komersial sebagai berikut:
                 </div>
               </div>
 
@@ -1279,12 +1269,20 @@
                   <td id="outKsProgramType"></td>
                 </tr>
                 <tr>
+                  <td class="spec-key">Objek Pertanggungan</td>
+                  <td id="outKsCategory"></td>
+                </tr>
+                <tr>
                   <td class="spec-key">Cakupan Manfaat Utama</td>
                   <td id="outKsMainBenefits"></td>
                 </tr>
                 <tr>
                   <td class="spec-key">Keunggulan Layanan</td>
                   <td id="outKsServiceAdvantages"></td>
+                </tr>
+                <tr>
+                  <td class="spec-key">Deductible</td>
+                  <td id="outKsDeductible"></td>
                 </tr>
                 <tr>
                   <td class="spec-key">Commercial Terms</td>
@@ -1299,22 +1297,19 @@
                   <td id="outKsValidityText"></td>
                 </tr>
                 <tr id="rowKsPksReference" style="display:none;">
-                  <td class="spec-key">Referensi No. PKS</td>
+                  <td class="spec-key">Nomor PKS</td>
                   <td id="outKsPksReference"></td>
                 </tr>
               </table>
 
-              <div style="font-size:8.7pt; color:#1e293b; margin-top:10px; line-height:1.45;">
-                Demikian penawaran kerjasama ini kami sampaikan. Atas perhatian dan kerja sama yang terjalin, kami ucapkan terima kasih.<br /><br />
+              <div style="font-size:8.7pt; color:#1e293b; margin-top:12px; line-height:1.45;">
+                Demikian penawaran kerjasama ini kami sampaikan. Atas perhatian dan kerja sama yang baik, kami ucapkan terima kasih.<br /><br />
                 Hormat kami,<br />
                 <strong>PT ASURANSI UMUM BCA</strong>
               </div>
             </div>
 
-            <div class="doc-footer" data-footer-bar>
-              <div class="out-footer-left"></div>
-              <div class="out-footer-right" style="text-align: right;"></div>
-            </div>
+            <div class="doc-footer" data-footer-bar></div>
           </div>
         </div>
 
@@ -1324,59 +1319,64 @@
         </div>
       </section>
 
-      <!-- 5. SETTING TEMPLATE -->
+      <!-- 5. SETTING HEADER & LOGO (FIXED & LIVE PREVIEW) -->
       <section class="portal-view" id="viewTemplate" style="display: none;">
         <div class="portal-header">
           <div>
-            <h2>Setting Template</h2>
-            <p>Pengaturan general logo, header, dan footer yang berlaku untuk dokumen di portal.</p>
+            <h2>Setting Header, Logo &amp; Footer</h2>
+            <p>Atur tampilan kop surat (header) dan footer agar rapi di semua dokumen QS maupun Penawaran Kerjasama.</p>
           </div>
+          <button type="button" class="btn-reset" onclick="resetBranding()">Reset Default</button>
         </div>
 
-        <div class="data-card" style="max-width:780px;">
-          <div class="data-card-top">
-            <div>
-              <h3>Logo, Header &amp; Footer Umum</h3>
-              <p class="data-card-meta">Perubahan di sini otomatis diterapkan ke seluruh halaman dokumen.</p>
-            </div>
-            <button type="button" class="btn-reset" onclick="resetBranding()">Reset Default</button>
-          </div>
-
+        <div class="data-card" style="max-width:860px;">
           <div class="grid-2">
             <div class="form-group">
-              <label>Main Logo (Upload Kustom)</label>
+              <label>Mode Tampilan Header</label>
+              <select id="inHeaderMode" onchange="updateHeaderMode(this.value)">
+                <option value="STANDARD">Standard Header (Logo BCAinsurance + Logo Partner)</option>
+                <option value="FULL_IMAGE">Full Banner Header (1 Gambar Kop Surat Penuh)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tinggi Logo Header: <span id="logoSizeVal">42</span>px</label>
+              <input type="range" id="logoHeightSlider" min="28" max="64" value="42" oninput="updateLogoSize(this.value)" />
+            </div>
+          </div>
+
+          <div class="grid-2" id="standardLogoInputs">
+            <div class="form-group">
+              <label>Logo Utama Kiri (BCAinsurance)</label>
               <input type="file" id="uploadMainLogo" accept="image/*" onchange="handleLogoUpload(event, 'mainLogo')" />
             </div>
             <div class="form-group">
-              <label>Right Logo</label>
-              <input type="file" id="uploadRightLogo" accept="image/*" onchange="handleLogoUpload(event, 'rightLogo')" />
+              <label>Logo Kanan / Co-Brand (Opsional)</label>
+              <div style="display:flex; gap:6px;">
+                <input type="file" id="uploadRightLogo" accept="image/*" onchange="handleLogoUpload(event, 'rightLogo')" />
+                <button type="button" class="btn-reset" onclick="clearRightLogo()">Hapus</button>
+              </div>
             </div>
           </div>
 
-          <div class="grid-2">
+          <div class="grid-2" id="fullBannerInputs" style="display:none;">
             <div class="form-group">
-              <label>Full Header Image</label>
+              <label>Upload Full Header Banner</label>
               <input type="file" id="uploadFullHeader" accept="image/*" onchange="handleFullBannerUpload(event, 'fullHeader')" />
             </div>
             <div class="form-group">
-              <label>Full Footer Image</label>
+              <label>Upload Full Footer Banner (Opsional)</label>
               <input type="file" id="uploadFullFooter" accept="image/*" onchange="handleFullBannerUpload(event, 'fullFooter')" />
             </div>
           </div>
 
           <div class="form-group">
-            <label>Logo Height: <span id="logoSizeVal">44</span>px</label>
-            <input type="range" id="logoHeightSlider" min="28" max="70" value="44" oninput="updateLogoSize(this.value)" />
-          </div>
-
-          <div class="form-group">
-            <label>Office Address</label>
+            <label>Alamat Kantor (Footer)</label>
             <input type="text" id="inAddress" value="Gedung Sahid Sudirman Center Lantai 10 / Unit F, Jl. Jend. Sudirman Kav. 86, Jakarta 10220" oninput="renderAll()" />
           </div>
 
           <div class="grid-2">
             <div class="form-group">
-              <label>Phone / Fax</label>
+              <label>Telepon / Fax</label>
               <input type="text" id="inPhone" value="T. (021) 27889588 | F. (021) 27889577" oninput="renderAll()" />
             </div>
             <div class="form-group">
@@ -1384,31 +1384,38 @@
               <input type="text" id="inWeb" value="www.bcainsurance.co.id | haloBCA 1500888" oninput="renderAll()" />
             </div>
           </div>
+
+          <div class="header-preview-box">
+            <div style="font-size:11px; font-weight:700; color:#64748b; margin-bottom:8px; text-transform:uppercase;">Live Preview Header &amp; Footer Dokumen</div>
+            <div class="doc-header" data-header-bar></div>
+            <div style="height:24px;"></div>
+            <div class="doc-footer" data-footer-bar></div>
+          </div>
         </div>
       </section>
 
-      <!-- 6. COMING SOON VIEW -->
+      <!-- 6. COMING SOON VIEW (HANYA MUNCUL SAAT MENU TRAVEL / PA DIKLIK) -->
       <section class="portal-view" id="viewComingSoon" style="display: none;">
         <div class="coming-soon-box">
           <div class="coming-soon-tag">Coming Soon</div>
-          <h2 id="soonTitle">Personal Accident (PA)</h2>
+          <h2 id="soonTitle">Travel Insurance</h2>
           <p id="soonDesc">
-            Template Quotation Slip untuk lini produk ini sedang dalam tahap persiapan dan belum tersedia. Silakan gunakan menu New QS (MPAR) atau Draft QS saat ini.
+            Modul QS, Penawaran Kerjasama, Draft, dan Dashboard untuk produk ini sedang dalam tahap pengembangan dan akan segera tersedia.
           </p>
-          <button type="button" class="btn btn-primary" onclick="switchNav('NEW_QS')">Buka New QS (MPAR)</button>
+          <button type="button" class="btn btn-primary" onclick="switchNav('MPAR_QS')">Kembali ke Modul MPAR</button>
         </div>
       </section>
 
-      <!-- 7. GENERATOR MPAR -->
-      <div class="generator-workspace" id="viewGenerator" style="display: none;">
+      <!-- 7. MPAR -> QS GENERATOR -->
+      <div class="generator-workspace" id="viewGenerator">
         <aside class="sidebar">
           <div class="sidebar-header">
-            <h1>MPAR Quotation Slip</h1>
-            <p id="qsModeBanner">Mode: New QS (Kosong di awal) — Simpan ke Draft atau Kirim ke UW</p>
+            <h1>MPAR — Quotation Slip</h1>
+            <p id="qsModeBanner">Form QS Baru (Kosong di awal) — Simpan Draft atau Ajukan UW</p>
           </div>
 
           <div class="section-box">
-            <div class="section-title"><span>1. Bahasa &amp; Bagian Dokumen</span></div>
+            <div class="section-title"><span>1. Bahasa &amp; Halaman Dokumen</span></div>
             <div class="form-group">
               <label>Bahasa</label>
               <select id="inLang" onchange="onLangChange()">
@@ -1417,7 +1424,7 @@
               </select>
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <label>Bagian Dokumen</label>
+              <label>Tampilan Dokumen</label>
               <select id="inDocMode" onchange="applyDocMode()">
                 <option value="ALL">Quotation Slip + Product Spec (All Pages)</option>
                 <option value="QS_ONLY">Quotation Slip Only</option>
@@ -1429,7 +1436,7 @@
           <div class="section-box">
             <div class="section-title">
               <span>2. Insured &amp; Offer Details</span>
-              <button type="button" class="btn-reset" onclick="clearNewQsForm()">Kosongkan</button>
+              <button type="button" class="btn-reset" onclick="startFreshQs()">Kosongkan</button>
             </div>
             <div class="grid-2">
               <div class="form-group">
@@ -1443,7 +1450,7 @@
             </div>
             <div class="form-group">
               <label>Wording</label>
-              <input type="text" id="inWording" placeholder="Kosong di awal — isi wording sesuai kebutuhan" oninput="renderAll()" />
+              <input type="text" id="inWording" placeholder="Kosong di awal — isi wording" oninput="renderAll()" />
             </div>
             <div class="form-group">
               <label>Marketing Channel / Partner</label>
@@ -1492,8 +1499,8 @@
 
             <div class="grid-2">
               <div class="form-group">
-                <label>Custom Years (Override)</label>
-                <input type="number" id="inCustomYears" placeholder="e.g. 3 or 4" step="0.5" min="0.5" oninput="calculateAndRender()" />
+                <label>Custom Years</label>
+                <input type="number" id="inCustomYears" placeholder="e.g. 3" step="0.5" min="0.5" oninput="calculateAndRender()" />
               </div>
               <div class="form-group">
                 <label>Discount (%)</label>
@@ -1508,7 +1515,7 @@
 
             <div class="form-group">
               <label>Special Terms / Discount Note</label>
-              <input type="text" id="inDiscNote" placeholder="Kosongkan jika tidak ada catatan khusus" oninput="calculateAndRender()" />
+              <input type="text" id="inDiscNote" placeholder="Opsional" oninput="calculateAndRender()" />
             </div>
 
             <div class="grid-2">
@@ -1537,13 +1544,13 @@
               <button type="button" class="btn-reset" onclick="resetClauses()">Reset</button>
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <label>One line = one clause (editable)</label>
-              <textarea id="inClauses" rows="6" oninput="renderClauses()"></textarea>
+              <label>One line = one clause</label>
+              <textarea id="inClauses" rows="5" oninput="renderClauses()"></textarea>
             </div>
           </div>
 
           <div class="section-box">
-            <div class="section-title"><span>5. Signatory &amp; Our Signature</span></div>
+            <div class="section-title"><span>5. Signatory &amp; Signature</span></div>
             <div class="grid-2">
               <div class="form-group">
                 <label>Officer Name</label>
@@ -1576,21 +1583,21 @@
           </div>
 
           <div class="section-box">
-            <div class="section-title"><span>6. Draft, Tracker &amp; Akseptasi UW</span></div>
+            <div class="section-title"><span>6. Save Draft &amp; Ajukan Approval UW</span></div>
             <div class="form-group">
               <label>Nama Draft / Penawaran</label>
-              <input type="text" id="inDraftName" placeholder="Contoh: Draft Penawaran Partner X" />
+              <input type="text" id="inDraftName" placeholder="Contoh: QS MPAR PT XYZ" />
             </div>
             <div class="form-group">
-              <label>Catatan Permintaan Akseptasi UW</label>
-              <textarea id="inUwRequestNote" rows="2" placeholder="Catatan limit TSI, rate/diskon, atau klausula untuk Underwriter..."></textarea>
+              <label>Catatan untuk Underwriter (UW)</label>
+              <textarea id="inUwRequestNote" rows="2" placeholder="Catatan limit TSI, rate, atau ketentuan untuk UW..."></textarea>
             </div>
             <div style="font-size:11px; color:#334155; margin-bottom:6px;">
-              Status UW Saat Ini: <strong id="currentUwStatusLabel">Belum Diajukan</strong>
+              Status UW: <strong id="currentUwStatusLabel">Belum Diajukan</strong>
             </div>
             <div class="grid-2">
               <button type="button" class="btn btn-reset" style="padding:8px;" onclick="saveCurrentAsDraft()">💾 Save Draft</button>
-              <button type="button" class="btn btn-accent" onclick="submitForUwApproval()">📤 Minta Akseptasi UW</button>
+              <button type="button" class="btn btn-accent" onclick="submitForUwApproval()">📤 Ajukan ke UW</button>
             </div>
           </div>
 
@@ -1604,10 +1611,7 @@
         <main class="preview-container" id="pdfDocumentArea">
           <section class="page-a4" id="pageQs1">
             <div class="page-content">
-              <div class="doc-header" data-header-bar>
-                <div class="logo-left" data-slot="main-logo"></div>
-                <div class="logo-right" data-slot="right-logo"></div>
-              </div>
+              <div class="doc-header" data-header-bar></div>
 
               <div class="qs-header-bar">
                 <h2 class="t-qs-title">QUOTATION SLIP</h2>
@@ -1721,18 +1725,12 @@
               </div>
             </div>
 
-            <div class="doc-footer" data-footer-bar>
-              <div class="out-footer-left"></div>
-              <div class="out-footer-right" style="text-align: right;"></div>
-            </div>
+            <div class="doc-footer" data-footer-bar></div>
           </section>
 
           <section class="page-a4" id="pageQs2">
             <div class="page-content">
-              <div class="doc-header" data-header-bar>
-                <div class="logo-left" data-slot="main-logo"></div>
-                <div class="logo-right" data-slot="right-logo"></div>
-              </div>
+              <div class="doc-header" data-header-bar></div>
 
               <div class="qs-header-bar">
                 <h2 class="t-qs-title">QUOTATION SLIP</h2>
@@ -1771,19 +1769,13 @@
               </div>
             </div>
 
-            <div class="doc-footer" data-footer-bar>
-              <div class="out-footer-left"></div>
-              <div class="out-footer-right" style="text-align: right;"></div>
-            </div>
+            <div class="doc-footer" data-footer-bar></div>
           </section>
 
           <section class="page-a4" id="pageSpec1">
             <div class="watermark">CONFIDENTIAL</div>
             <div class="page-content">
-              <div class="doc-header" data-header-bar>
-                <div class="logo-left" data-slot="main-logo"></div>
-                <div class="logo-right" data-slot="right-logo"></div>
-              </div>
+              <div class="doc-header" data-header-bar></div>
 
               <div class="qs-title-block">
                 <h2 class="t-spec-title">PRODUCT SPECIFICATION</h2>
@@ -1806,19 +1798,13 @@
               </table>
             </div>
 
-            <div class="doc-footer" data-footer-bar>
-              <div class="out-footer-left"></div>
-              <div class="out-footer-right" style="text-align: right;"></div>
-            </div>
+            <div class="doc-footer" data-footer-bar></div>
           </section>
 
           <section class="page-a4" id="pageSpec2">
             <div class="watermark">CONFIDENTIAL</div>
             <div class="page-content">
-              <div class="doc-header" data-header-bar>
-                <div class="logo-left" data-slot="main-logo"></div>
-                <div class="logo-right" data-slot="right-logo"></div>
-              </div>
+              <div class="doc-header" data-header-bar></div>
 
               <table class="spec-table">
                 <tr><td class="spec-key t-sp-indemnity">Indemnification Method</td><td id="specIndemnityCell"></td></tr>
@@ -1856,10 +1842,7 @@
               </div>
             </div>
 
-            <div class="doc-footer" data-footer-bar>
-              <div class="out-footer-left"></div>
-              <div class="out-footer-right" style="text-align: right;"></div>
-            </div>
+            <div class="doc-footer" data-footer-bar></div>
           </section>
         </main>
       </div>
@@ -1867,6 +1850,7 @@
   </div>
 
   <script>
+    /* ================= LOGO & FALLBACK ================= */
     const LOGO_CANDIDATES = [
       "logo bcai warna.png",
       "./logo bcai warna.png",
@@ -1876,6 +1860,14 @@
       "./assets/logo bcai warna.png"
     ];
 
+    const FALLBACK_SVG_LOGO = "data:image/svg+xml;utf8," + encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="210" height="44" viewBox="0 0 210 44">
+        <rect width="210" height="44" rx="6" fill="none"/>
+        <text x="2" y="29" font-family="Poppins, Arial, sans-serif" font-weight="800" font-size="22" fill="#005baa">BCA</text>
+        <text x="52" y="29" font-family="Poppins, Arial, sans-serif" font-weight="600" font-size="20" fill="#123663">insurance</text>
+      </svg>`
+    );
+
     function handlePngFallback(imgEl) {
       const idx = parseInt(imgEl.getAttribute("data-cand-idx") || "0", 10);
       const nextIdx = idx + 1;
@@ -1883,7 +1875,8 @@
         imgEl.setAttribute("data-cand-idx", String(nextIdx));
         imgEl.src = LOGO_CANDIDATES[nextIdx];
       } else {
-        imgEl.style.display = "none";
+        imgEl.onerror = null;
+        imgEl.src = FALLBACK_SVG_LOGO;
       }
     }
 
@@ -1892,13 +1885,9 @@
     }
 
     function buildPngLogoImg(opts = {}) {
-      const { id = "", className = "", style = "", alt = "BCAinsurance" } = opts;
+      const { style = "", alt = "BCAinsurance" } = opts;
       const src = getLogoSrc();
-      return `<img ${id ? `id="${id}"` : ""} ${className ? `class="${className}"` : ""} style="${style}" data-cand-idx="0" src="${src}" alt="${alt}" crossorigin="anonymous" onerror="handlePngFallback(this)" />`;
-    }
-
-    function getOfficialBcaLogoHTML(heightPx = 44) {
-      return buildPngLogoImg({ style: `height:${heightPx}px; width:auto; display:block; object-fit:contain;` });
+      return `<img style="${style}" data-cand-idx="0" src="${src}" alt="${alt}" onerror="handlePngFallback(this)" />`;
     }
 
     function openMobileMenu() {
@@ -1911,6 +1900,11 @@
       document.getElementById("mobileBackdrop").classList.remove("show");
     }
 
+    function toggleProductGroup(groupId) {
+      const grp = document.getElementById(groupId);
+      if (grp) grp.classList.toggle("expanded");
+    }
+
     function copyTextValue(val, label = "Nilai") {
       if (!val) return;
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1920,12 +1914,12 @@
       }
     }
 
-    /* ================= USERS & ROLES ================= */
+    /* ================= USERS & ROLES (VERIFIED) ================= */
     const USERS = {
       "mkt_bcai": { pass: "mkt_bcai", role: "MARKETING", label: "Marketing" },
       "uw_bcai": { pass: "uw_bcai", role: "UNDERWRITER", label: "Underwriter" },
-      "bs_bcai": { pass: "bs_bcai", role: "BS", label: "Business Strategy (BS)" },
-      "prodev_bcai": { pass: "prodev_bcai", role: "PRODEV", label: "Product Development (Prodev)" }
+      "bs_bcai": { pass: "bs_bcai", role: "BS", label: "Business Strategy" },
+      "prodev_bcai": { pass: "prodev_bcai", role: "PRODEV", label: "Product Development" }
     };
 
     function getCurrentRole() {
@@ -1938,10 +1932,11 @@
 
     function applyRoleUI() {
       const role = getCurrentRole();
-      const labelEl = document.getElementById("sidebarRoleLabel");
-      if (labelEl) {
-        labelEl.textContent = USERS[getCurrentUser()]?.label || role;
-      }
+      const user = getCurrentUser();
+      const userEl = document.getElementById("sidebarUserLabel");
+      const roleEl = document.getElementById("sidebarRoleLabel");
+      if (userEl) userEl.textContent = user;
+      if (roleEl) roleEl.textContent = USERS[user]?.label || role;
 
       const btnDirectBs = document.getElementById("btnDirectGenerateBs");
       if (btnDirectBs) {
@@ -1951,15 +1946,15 @@
       const uwSub = document.getElementById("uwSubtitleInfo");
       if (uwSub) {
         uwSub.textContent = role === "UNDERWRITER"
-          ? "Anda login sebagai Underwriter (uw_bcai): tinjau pengajuan QS lalu berikan status akseptasi."
-          : "Daftar pengajuan akseptasi Underwriter. Login sebagai uw_bcai untuk melakukan akseptasi langsung.";
+          ? "Anda login sebagai Underwriter (uw_bcai): tinjau pengajuan QS lalu berikan status approval."
+          : "Daftar pengajuan approval Underwriter. Login sebagai uw_bcai untuk melakukan approval langsung.";
       }
     }
 
     function handleLogin(event) {
       event.preventDefault();
       const user = document.getElementById("loginUser").value.trim().toLowerCase();
-      const pass = document.getElementById("loginPass").value;
+      const pass = document.getElementById("loginPass").value.trim();
       const errBox = document.getElementById("loginError");
 
       const account = USERS[user];
@@ -1971,9 +1966,11 @@
         unlockApp();
         if (account.role === "UNDERWRITER") switchNav("UW_APPROVAL");
         else if (account.role === "BS" || account.role === "PRODEV") {
-          switchNav("KERJASAMA");
+          switchNav("MPAR_KERJASAMA");
           switchKsTab("MONITOR");
-        } else switchNav("HOME");
+        } else {
+          switchNav("MPAR_QS");
+        }
       } else {
         errBox.style.display = "block";
       }
@@ -2003,7 +2000,7 @@
     }
 
     function showForgotInfo() {
-      alert("Silakan hubungi admin / PIC internal BCAinsurance untuk reset password akun portal.");
+      alert("Akun portal: mkt_bcai / uw_bcai / bs_bcai / prodev_bcai (password sama dengan username).");
     }
 
     /* ================= DEFAULT CLAUSES & DATA ================= */
@@ -2060,9 +2057,10 @@
       };
     }
 
-    const TERESSA_DRAFT = {
-      id: "draft_teressa_default",
-      name: "Draft Teressa — PT Trijata Nusa (MPAR)",
+    const TERESSA_QS_DRAFT = {
+      id: "draft_qs_teressa",
+      docType: "QS",
+      name: "QS MPAR — PT Trijata Nusa (Teressa)",
       savedAt: "Draft Tersimpan",
       data: {
         lang: "EN",
@@ -2094,17 +2092,15 @@
       }
     };
 
-    const DRAFTS_KEY = "bca_qs_drafts_v3";
-    const UW_KEY = "bca_qs_uw_queue_v3";
-    const QS_TRACKER_KEY = "bca_qs_tracker_v3";
-    const KS_LIST_KEY = "bca_ks_workflow_v1";
-
-    let activeQsRecordId = null;
+    const DRAFTS_KEY = "bca_mpar_unified_drafts_v4";
+    const UW_KEY = "bca_mpar_uw_queue_v4";
+    const QS_TRACKER_KEY = "bca_mpar_qs_tracker_v4";
+    const KS_LIST_KEY = "bca_mpar_ks_list_v4";
 
     function getDrafts() {
       const raw = localStorage.getItem(DRAFTS_KEY);
       if (!raw) {
-        const init = [TERESSA_DRAFT];
+        const init = [TERESSA_QS_DRAFT];
         localStorage.setItem(DRAFTS_KEY, JSON.stringify(init));
         return init;
       }
@@ -2136,8 +2132,8 @@
             tsi: 1000000000,
             grandPremi: 15010000,
             approvalStatus: "APPROVED",
-            uwNote: "Disetujui sesuai rate & ketentuan standar.",
-            snapshot: TERESSA_DRAFT.data
+            uwNote: "Disetujui sesuai ketentuan standar.",
+            snapshot: TERESSA_QS_DRAFT.data
           }
         ];
         localStorage.setItem(QS_TRACKER_KEY, JSON.stringify(seed));
@@ -2157,26 +2153,23 @@
           {
             id: "ks_seed_1",
             letterNo: "SPH/014/BCAI-MKT/XI/2026",
-            title: "Kerjasama MPAR Partner Retail",
-            company: "PT Mitra Retail Nusantara",
-            category: "Laptop & Gadget",
-            annualPremiPot: 650000000,
-            tier: "Kelas B",
-            comm1: 30,
-            comm2: 10,
-            commTax: "Exclude / Include Pajak (sesuai kesepakatan)",
-            programType: "Program Perlindungan Movable Property All Risk (MPAR) Partner",
-            mainBenefits: "Perlindungan kerusakan fisik tak terduga atas barang sesuai polis MPAR.",
-            serviceAdvantages: "Layanan terstruktur & dukungan klaim BCAinsurance.",
-            premiEstimate: "Rincian perhitungan premi terlampir",
-            validityDays: "14",
             offerDate: "28 November 2026",
-            specialTerms: "Penyesuaian ketentuan sesuai hasil diskusi komersial.",
+            company: "PT Mitra Retail Nusantara",
+            programType: "Program Perlindungan Movable Property All Risk (MPAR) Partner",
+            category: "Laptop & Gadget",
+            mainBenefits: "Menjamin kerugian atau kerusakan fisik secara tiba-tiba dan tidak terduga atas objek pertanggungan sesuai polis MPAR.",
+            serviceAdvantages: "Proses pendaftaran & pelaporan yang mudah, dukungan tim klaim BCAinsurance.",
+            premiEstimate: "Rincian perhitungan premi terlampir",
+            deductible: "Sesuai ketentuan polis / kesepakatan",
+            validityDays: "14",
+            comm1: "30",
+            comm2: "10",
+            commTax: "Exclude / Include Pajak (sesuai kesepakatan)",
+            specialTerms: "-",
             status: "APPROVED",
-            bsNote: "Approved oleh BS — siap lanjut ke Prodev.",
-            prodevNote: "Approved oleh Prodev.",
-            pksNo: "PKS/014/BCAI-PRODEV/XI/2026",
-            readyForPartner: true
+            bsNote: "Approved BS.",
+            prodevNote: "Approved Prodev.",
+            pksNo: "PKS/014/BCAI-PRODEV/XI/2026"
           }
         ];
         localStorage.setItem(KS_LIST_KEY, JSON.stringify(seed));
@@ -2189,7 +2182,7 @@
       localStorage.setItem(KS_LIST_KEY, JSON.stringify(list));
     }
 
-    /* ================= FORM SNAPSHOT & LOAD ================= */
+    /* ================= QS FORM SNAPSHOT & ACTIONS ================= */
     function captureCurrentQsSnapshot() {
       return {
         lang: document.getElementById("inLang").value,
@@ -2261,13 +2254,13 @@
       el.setAttribute("data-status", status);
       el.setAttribute("data-uw-note", note);
       if (status === "PENDING") {
-        el.textContent = "Menunggu Akseptasi UW" + (note ? ` (${note})` : "");
+        el.textContent = "Menunggu UW" + (note ? ` (${note})` : "");
         el.style.color = "#b45309";
       } else if (status === "APPROVED") {
-        el.textContent = "Disetujui UW" + (note ? ` — ${note}` : "");
+        el.textContent = "Approved UW" + (note ? ` — ${note}` : "");
         el.style.color = "#15803d";
       } else if (status === "REJECTED") {
-        el.textContent = "Perlu Revisi / Ditolak UW" + (note ? ` — ${note}` : "");
+        el.textContent = "Revisi / Ditolak UW" + (note ? ` — ${note}` : "");
         el.style.color = "#b91c1c";
       } else {
         el.textContent = "Belum Diajukan";
@@ -2275,19 +2268,20 @@
       }
     }
 
-    function clearNewQsForm() {
-      activeQsRecordId = null;
+    function startFreshQs() {
+      switchNav("MPAR_QS");
       applyQsSnapshot(getBlankQsSnapshot(), "");
-      document.getElementById("qsModeBanner").textContent = "Mode: New QS (Kosong di awal) — Isi data baru";
+      document.getElementById("qsModeBanner").textContent = "Form QS Baru (Kosong di awal) — Isi data baru";
     }
 
     function saveCurrentAsDraft() {
       const snap = captureCurrentQsSnapshot();
       const customName = document.getElementById("inDraftName").value.trim();
-      const autoName = customName || `Draft ${snap.insured || snap.qsNo || "MPAR"} (${new Date().toLocaleDateString("id-ID")})`;
+      const autoName = customName || `QS MPAR — ${snap.insured || snap.qsNo || "Baru"} (${new Date().toLocaleDateString("id-ID")})`;
       const drafts = getDrafts();
       drafts.unshift({
-        id: "draft_" + Date.now(),
+        id: "draft_qs_" + Date.now(),
+        docType: "QS",
         name: autoName,
         savedAt: new Date().toLocaleString("id-ID"),
         data: snap
@@ -2295,23 +2289,7 @@
       saveDrafts(drafts);
       upsertQsTrackerEntry(snap, autoName, snap.uwStatus === "APPROVED" ? "APPROVED" : (snap.uwStatus === "PENDING" ? "PENDING_UW" : "DRAFT_ONLY"), snap.uwNote || "");
       renderBadges();
-      alert(`Draft "${autoName}" berhasil disimpan.`);
-    }
-
-    function loadDraftById(id) {
-      const found = getDrafts().find(d => d.id === id);
-      if (!found) return;
-      activeQsRecordId = found.id;
-      switchNav("NEW_QS");
-      applyQsSnapshot(found.data, found.name);
-      document.getElementById("qsModeBanner").textContent = `Mode: Edit Draft — ${found.name}`;
-    }
-
-    function deleteDraftById(id) {
-      const next = getDrafts().filter(d => d.id !== id);
-      saveDrafts(next);
-      renderBadges();
-      renderDraftsView();
+      alert(`Draft QS "${autoName}" berhasil disimpan ke menu Draft.`);
     }
 
     function upsertQsTrackerEntry(snap, offerName, approvalStatus, uwNote = "") {
@@ -2342,7 +2320,7 @@
       const st = snap.uwStatus === "APPROVED" ? "APPROVED" : (snap.uwStatus === "PENDING" ? "PENDING_UW" : "DRAFT_ONLY");
       upsertQsTrackerEntry(snap, offerName, st, snap.uwNote || "");
       renderQsTrackingTable();
-      alert("QS aktif tercatat ke Dashboard Tracking.");
+      alert("QS aktif berhasil dicatat ke Dashboard.");
     }
 
     function submitForUwApproval() {
@@ -2356,7 +2334,7 @@
       snap.uwRequestNote = reqNote;
 
       const queue = getUwQueue();
-      const item = {
+      queue.unshift({
         id: "uw_" + Date.now(),
         title,
         qsNo: snap.qsNo || "-",
@@ -2364,17 +2342,15 @@
         wording: snap.wording || "-",
         tsi: calc.tsi,
         grandPremi: calc.grandPremi,
-        requestNote: reqNote || "Mohon akseptasi Quotation Slip MPAR.",
+        requestNote: reqNote || "Mohon approval Quotation Slip MPAR.",
         status: "PENDING",
         uwNote: "",
-        submittedAt: new Date().toLocaleString("id-ID"),
         snapshot: snap
-      };
-      queue.unshift(item);
+      });
       saveUwQueue(queue);
       upsertQsTrackerEntry(snap, title, "PENDING_UW", "");
       renderBadges();
-      alert("Permintaan akseptasi berhasil dikirim ke antrean Underwriter (uw_bcai).");
+      alert("Pengajuan QS berhasil dikirim ke Underwriter (uw_bcai).");
     }
 
     function decideUwItem(id, decision) {
@@ -2386,7 +2362,6 @@
 
       item.status = decision;
       item.uwNote = uwNote;
-      item.decidedAt = new Date().toLocaleString("id-ID");
       saveUwQueue(queue);
 
       if (item.snapshot) {
@@ -2406,16 +2381,13 @@
       const isUw = getCurrentRole() === "UNDERWRITER";
 
       if (!queue.length) {
-        container.innerHTML = `
-          <div class="data-card">
-            <p class="data-card-meta">Belum ada pengajuan akseptasi QS yang masuk ke antrean Underwriter.</p>
-          </div>`;
+        container.innerHTML = `<div class="data-card"><p class="data-card-meta">Belum ada pengajuan QS yang masuk ke antrean Underwriter.</p></div>`;
         return;
       }
 
       container.innerHTML = queue.map(item => {
         const pillClass = item.status === "APPROVED" ? "approved" : (item.status === "REJECTED" ? "rejected" : "pending");
-        const pillText = item.status === "APPROVED" ? "APPROVED UW" : (item.status === "REJECTED" ? "REVISI / DITOLAK" : "MENUNGGU AKSEPTASI");
+        const pillText = item.status === "APPROVED" ? "APPROVED UW" : (item.status === "REJECTED" ? "REVISI / DITOLAK" : "MENUNGGU UW");
 
         return `
           <div class="data-card">
@@ -2431,44 +2403,76 @@
 
             ${isUw ? `
               <div class="form-group" style="margin-top:8px;">
-                <label>Catatan / Syarat Akseptasi Underwriter</label>
-                <input type="text" id="uwNoteInput_${item.id}" value="${escapeAttr(item.uwNote || "")}" placeholder="Isi catatan persetujuan atau revisi UW..." />
+                <label>Catatan / Syarat Approval Underwriter</label>
+                <input type="text" id="uwNoteInput_${item.id}" value="${escapeAttr(item.uwNote || "")}" placeholder="Isi catatan persetujuan atau revisi..." />
               </div>
               <div class="data-card-actions">
-                <button type="button" class="btn btn-secondary" onclick="decideUwItem('${item.id}', 'APPROVED')">✓ Akseptasi (Approve)</button>
-                <button type="button" class="btn btn-danger" onclick="decideUwItem('${item.id}', 'REJECTED')">✕ Minta Revisi / Tolak</button>
+                <button type="button" class="btn btn-secondary" onclick="decideUwItem('${item.id}', 'APPROVED')">✓ Approve UW</button>
+                <button type="button" class="btn btn-danger" onclick="decideUwItem('${item.id}', 'REJECTED')">✕ Revisi / Tolak</button>
               </div>
             ` : `
-              <div class="data-card-meta">Login sebagai <strong>uw_bcai</strong> untuk melakukan aksi akseptasi.</div>
+              <div class="data-card-meta">Login sebagai <strong>uw_bcai</strong> untuk melakukan approval QS.</div>
             `}
           </div>`;
       }).join("");
     }
 
+    /* ================= UNIFIED DRAFT VIEW (QS + PENAWARAN KERJASAMA) ================= */
     function renderDraftsView() {
       const container = document.getElementById("draftListContainer");
       const drafts = getDrafts();
       if (!drafts.length) {
-        container.innerHTML = `<div class="data-card"><p class="data-card-meta">Belum ada draft tersimpan.</p></div>`;
+        container.innerHTML = `<div class="data-card"><p class="data-card-meta">Belum ada draft QS maupun Penawaran Kerjasama yang tersimpan.</p></div>`;
         return;
       }
 
-      container.innerHTML = drafts.map(d => `
-        <div class="data-card">
-          <div class="data-card-top">
-            <div>
-              <div class="data-card-title">${escapeHtml(d.name)}</div>
-              <div class="data-card-meta">Disimpan: ${escapeHtml(d.savedAt || "-")} • Insured: ${escapeHtml(d.data?.insured || "-")} • Wording: ${escapeHtml(d.data?.wording || "(Kosong)")}</div>
+      container.innerHTML = drafts.map(d => {
+        const isKs = d.docType === "KERJASAMA";
+        const badgeHtml = isKs
+          ? `<span class="status-pill type-ks">Penawaran Kerjasama</span>`
+          : `<span class="status-pill type-qs">Quotation Slip (QS)</span>`;
+        const metaText = isKs
+          ? `Partner: ${escapeHtml(d.data?.company || "-")} • No. Surat: ${escapeHtml(d.data?.letterNo || "-")}`
+          : `Insured: ${escapeHtml(d.data?.insured || "-")} • Wording: ${escapeHtml(d.data?.wording || "(Kosong)")}`;
+
+        return `
+          <div class="data-card">
+            <div class="data-card-top">
+              <div>
+                <div style="margin-bottom:4px;">${badgeHtml}</div>
+                <div class="data-card-title">${escapeHtml(d.name)}</div>
+                <div class="data-card-meta">Disimpan: ${escapeHtml(d.savedAt || "-")} • ${metaText}</div>
+              </div>
+              <div class="data-card-actions">
+                <button type="button" class="btn btn-primary" onclick="openUnifiedDraft('${d.id}')">Buka Draft</button>
+                <button type="button" class="btn btn-danger" onclick="deleteUnifiedDraft('${d.id}')">Hapus</button>
+              </div>
             </div>
-            <div class="data-card-actions">
-              <button type="button" class="btn btn-primary" onclick="loadDraftById('${d.id}')">Buka Draft</button>
-              <button type="button" class="btn btn-danger" onclick="deleteDraftById('${d.id}')">Hapus</button>
-            </div>
-          </div>
-        </div>
-      `).join("");
+          </div>`;
+      }).join("");
     }
 
+    function openUnifiedDraft(id) {
+      const found = getDrafts().find(d => d.id === id);
+      if (!found) return;
+      if (found.docType === "KERJASAMA") {
+        switchNav("MPAR_KERJASAMA");
+        applyKsFormData(found.data);
+        switchKsTab("FORM");
+      } else {
+        switchNav("MPAR_QS");
+        applyQsSnapshot(found.data, found.name);
+        document.getElementById("qsModeBanner").textContent = `Edit Draft — ${found.name}`;
+      }
+    }
+
+    function deleteUnifiedDraft(id) {
+      saveDrafts(getDrafts().filter(d => d.id !== id));
+      renderBadges();
+      renderDraftsView();
+    }
+
+    /* ================= DASHBOARD TRACKING TABLE ================= */
     function renderQsTrackingTable() {
       const tbody = document.getElementById("qsTrackerBody");
       if (!tbody) return;
@@ -2492,10 +2496,10 @@
 
       tbody.innerHTML = filtered.map(item => {
         let badgeCls = "soon";
-        let badgeTxt = "DRAFT / BELUM DIAJUKAN";
+        let badgeTxt = "DRAFT";
         if (item.approvalStatus === "APPROVED") {
           badgeCls = "approved";
-          badgeTxt = "APPROVED";
+          badgeTxt = "APPROVED UW";
         } else if (item.approvalStatus === "PENDING_UW") {
           badgeCls = "pending";
           badgeTxt = "MENUNGGU UW";
@@ -2514,20 +2518,20 @@
             <td>${formatRp(item.tsi)}</td>
             <td><strong>${formatRp(item.grandPremi)}</strong></td>
             <td><span class="status-pill ${badgeCls}">${badgeTxt}</span></td>
-            <td><button type="button" class="btn-reset" onclick="openTrackedQsInGenerator('${item.id}')">Buka QS</button></td>
+            <td><button type="button" class="btn-reset" onclick="openTrackedQs('${item.id}')">Buka QS</button></td>
           </tr>`;
       }).join("");
     }
 
-    function openTrackedQsInGenerator(id) {
+    function openTrackedQs(id) {
       const found = getQsTracker().find(x => x.id === id);
       if (!found || !found.snapshot) return;
-      switchNav("NEW_QS");
+      switchNav("MPAR_QS");
       applyQsSnapshot(found.snapshot, found.offerName);
-      document.getElementById("qsModeBanner").textContent = `Mode: QS ${found.qsNo} — ${found.offerName}`;
+      document.getElementById("qsModeBanner").textContent = `QS ${found.qsNo} — ${found.offerName}`;
     }
 
-    /* ================= PENAWARAN KERJASAMA (FORM + PARTNER TEMPLATE + BS/PRODEV/PKS) ================= */
+    /* ================= SIMPLE PENAWARAN KERJASAMA + BS/PRODEV/PKS ================= */
     function switchKsTab(tab) {
       const isForm = tab === "FORM";
       document.getElementById("tabKsForm").classList.toggle("active", isForm);
@@ -2537,125 +2541,108 @@
       if (!isForm) renderKsMonitor();
     }
 
-    function evaluateMerchantClass(annualPremiPot) {
-      const val = parseFloat(annualPremiPot) || 0;
-      if (val >= 1000000000) {
-        return {
-          tier: "Kelas A",
-          desc: "Potensi premi ≥ Rp 1.000.000.000",
-          baseComm: 35,
-          condComm: 10
-        };
-      } else if (val > 500000000) {
-        return {
-          tier: "Kelas B",
-          desc: "Potensi premi > Rp 500.000.000 – < Rp 1.000.000.000",
-          baseComm: 30,
-          condComm: 10
-        };
-      }
+    function captureKsFormData() {
       return {
-        tier: "Kelas C",
-        desc: "Potensi premi < Rp 500.000.000",
-        baseComm: 25,
-        condComm: 10
+        letterNo: document.getElementById("ksLetterNo")?.value.trim() || "",
+        offerDate: document.getElementById("ksOfferDate")?.value.trim() || "",
+        company: document.getElementById("ksCompany")?.value.trim() || "",
+        programType: document.getElementById("ksProgramType")?.value.trim() || "",
+        category: document.getElementById("ksCategory")?.value.trim() || "",
+        mainBenefits: document.getElementById("ksMainBenefits")?.value.trim() || "",
+        serviceAdvantages: document.getElementById("ksServiceAdvantages")?.value.trim() || "",
+        premiEstimate: document.getElementById("ksPremiEstimate")?.value.trim() || "",
+        deductible: document.getElementById("ksDeductible")?.value.trim() || "",
+        validityDays: document.getElementById("ksValidityDays")?.value || "14",
+        comm1: document.getElementById("ksComm1")?.value || "0",
+        comm2: document.getElementById("ksComm2")?.value || "0",
+        commTax: document.getElementById("ksCommTax")?.value.trim() || "",
+        specialTerms: document.getElementById("ksSpecialTerms")?.value.trim() || ""
       };
+    }
+
+    function applyKsFormData(d) {
+      if (!d) return;
+      document.getElementById("ksLetterNo").value = d.letterNo || "";
+      document.getElementById("ksOfferDate").value = d.offerDate || "";
+      document.getElementById("ksCompany").value = d.company || "";
+      document.getElementById("ksProgramType").value = d.programType || "";
+      document.getElementById("ksCategory").value = d.category || "";
+      document.getElementById("ksMainBenefits").value = d.mainBenefits || "";
+      document.getElementById("ksServiceAdvantages").value = d.serviceAdvantages || "";
+      document.getElementById("ksPremiEstimate").value = d.premiEstimate || "";
+      document.getElementById("ksDeductible").value = d.deductible || "";
+      document.getElementById("ksValidityDays").value = d.validityDays || "14";
+      document.getElementById("ksComm1").value = d.comm1 || "0";
+      document.getElementById("ksComm2").value = d.comm2 || "0";
+      document.getElementById("ksCommTax").value = d.commTax || "";
+      document.getElementById("ksSpecialTerms").value = d.specialTerms || "";
+      renderKerjasama();
     }
 
     function renderKerjasama() {
-      const pot = parseFloat(document.getElementById("ksAnnualPremiPot")?.value) || 0;
-      const cls = evaluateMerchantClass(pot);
-      const comm1Val = parseFloat(document.getElementById("ksComm1")?.value) || 0;
-      const comm2Val = parseFloat(document.getElementById("ksComm2")?.value) || 0;
-
-      const badge = document.getElementById("ksTierBadge");
-      if (badge) badge.textContent = cls.tier;
-      const desc = document.getElementById("ksTierDesc");
-      if (desc) desc.textContent = cls.desc;
-      const rec = document.getElementById("ksRecCommText");
-      if (rec) rec.textContent = `Rekomendasi Komisi: Dasar ${cls.baseComm}% + Conditional ${cls.condComm}%`;
-
-      const checkEl = document.getElementById("ksCommCheckText");
-      if (checkEl) {
-        const withinRec = comm1Val <= cls.baseComm && comm2Val <= cls.condComm;
-        checkEl.textContent = withinRec
-          ? "Status Komisi: Dalam batas rekomendasi kelas"
-          : "Status Komisi: Melebihi batas standar kelas (perlu catatan/adjust BS & Prodev)";
-        checkEl.style.color = withinRec ? "#15803d" : "#b45309";
-      }
-
-      const letterNo = document.getElementById("ksLetterNo")?.value.trim() || "-";
-      const title = document.getElementById("ksTitle")?.value.trim() || "Penawaran Kerjasama MPAR";
-      const company = document.getElementById("ksCompany")?.value.trim() || "Partner";
-      const offerDate = document.getElementById("ksOfferDate")?.value.trim() || "-";
-      const progType = document.getElementById("ksProgramType")?.value.trim() || "-";
-      const benefits = document.getElementById("ksMainBenefits")?.value.trim() || "-";
-      const adv = document.getElementById("ksServiceAdvantages")?.value.trim() || "-";
-      const comm1 = document.getElementById("ksComm1")?.value || "0";
-      const comm2 = document.getElementById("ksComm2")?.value || "0";
-      const commTax = document.getElementById("ksCommTax")?.value.trim() || "-";
-      const special = document.getElementById("ksSpecialTerms")?.value.trim() || "-";
-      const estPremi = document.getElementById("ksPremiEstimate")?.value.trim() || "Rincian perhitungan premi terlampir";
-      const days = document.getElementById("ksValidityDays")?.value || "14";
-
-      document.getElementById("outKsLetterNo").textContent = letterNo;
-      document.getElementById("outKsPartnerCompany").textContent = company;
-      document.getElementById("outKsPartnerSub").textContent = `Perihal: ${title}`;
-      document.getElementById("outKsOfferDate").textContent = offerDate;
-      document.getElementById("outKsProgramType").textContent = progType;
-      document.getElementById("outKsMainBenefits").textContent = benefits;
-      document.getElementById("outKsServiceAdvantages").textContent = adv;
-      document.getElementById("outKsPartnerComm").textContent = `Komisi 1: ${comm1}% | Komisi 2: ${comm2}% (${commTax})`;
-      document.getElementById("outKsPartnerSpecial").textContent = special;
-      document.getElementById("outKsValidityText").textContent = `${estPremi}. Penawaran ini berlaku selama ${days} hari sejak tanggal surat ini diterbitkan.`;
+      const d = captureKsFormData();
+      document.getElementById("outKsLetterNo").textContent = d.letterNo || "-";
+      document.getElementById("outKsOfferDate").textContent = d.offerDate || "-";
+      document.getElementById("outKsPartnerCompany").textContent = d.company || "Partner";
+      document.getElementById("outKsProgramType").textContent = d.programType || "-";
+      document.getElementById("outKsCategory").textContent = d.category || "-";
+      document.getElementById("outKsMainBenefits").textContent = d.mainBenefits || "-";
+      document.getElementById("outKsServiceAdvantages").textContent = d.serviceAdvantages || "-";
+      document.getElementById("outKsDeductible").textContent = d.deductible || "-";
+      document.getElementById("outKsPartnerComm").textContent = `Komisi 1: ${d.comm1}% | Komisi 2: ${d.comm2}% (${d.commTax || "-"})`;
+      document.getElementById("outKsPartnerSpecial").textContent = d.specialTerms || "-";
+      const est = d.premiEstimate || "Rincian perhitungan premi terlampir";
+      document.getElementById("outKsValidityText").textContent = `${est}. Penawaran ini berlaku selama ${d.validityDays} hari sejak tanggal surat ini diterbitkan.`;
     }
 
-    function buildKsRecordFromForm(initialStatus, isDirectBs = false) {
-      const pot = parseFloat(document.getElementById("ksAnnualPremiPot")?.value) || 0;
-      const cls = evaluateMerchantClass(pot);
-      return {
-        id: "ks_" + Date.now(),
-        letterNo: document.getElementById("ksLetterNo")?.value.trim() || `SPH/${String(Math.floor(100 + Math.random() * 899))}/BCAI-MKT/XI/2026`,
-        title: document.getElementById("ksTitle")?.value.trim() || "Penawaran Kerjasama MPAR",
-        company: document.getElementById("ksCompany")?.value.trim() || "Partner",
-        category: document.getElementById("ksCategory")?.value.trim() || "-",
-        annualPremiPot: pot,
-        tier: cls.tier,
-        comm1: document.getElementById("ksComm1")?.value || "0",
-        comm2: document.getElementById("ksComm2")?.value || "0",
-        commTax: document.getElementById("ksCommTax")?.value.trim() || "-",
-        programType: document.getElementById("ksProgramType")?.value.trim() || "-",
-        mainBenefits: document.getElementById("ksMainBenefits")?.value.trim() || "-",
-        serviceAdvantages: document.getElementById("ksServiceAdvantages")?.value.trim() || "-",
-        premiEstimate: document.getElementById("ksPremiEstimate")?.value.trim() || "Rincian perhitungan premi terlampir",
-        validityDays: document.getElementById("ksValidityDays")?.value || "14",
-        offerDate: document.getElementById("ksOfferDate")?.value.trim() || "-",
-        specialTerms: document.getElementById("ksSpecialTerms")?.value.trim() || "-",
-        status: initialStatus,
-        bsNote: isDirectBs ? "Digenerate langsung oleh BS (tanpa approval)." : "",
-        prodevNote: "",
-        pksNo: "",
-        readyForPartner: isDirectBs,
-        createdAt: new Date().toLocaleString("id-ID")
-      };
+    function saveKerjasamaAsDraft() {
+      const d = captureKsFormData();
+      const draftName = `Penawaran Kerjasama — ${d.company || d.letterNo || "Baru"} (${new Date().toLocaleDateString("id-ID")})`;
+      const drafts = getDrafts();
+      drafts.unshift({
+        id: "draft_ks_" + Date.now(),
+        docType: "KERJASAMA",
+        name: draftName,
+        savedAt: new Date().toLocaleString("id-ID"),
+        data: d
+      });
+      saveDrafts(drafts);
+      renderBadges();
+      alert(`Draft Penawaran Kerjasama "${draftName}" berhasil disimpan ke menu Draft.`);
     }
 
     function submitKerjasamaFromMarketing() {
+      const d = captureKsFormData();
       const list = getKsList();
-      list.unshift(buildKsRecordFromForm("PENDING_BS", false));
+      list.unshift({
+        id: "ks_" + Date.now(),
+        ...d,
+        status: "PENDING_BS",
+        bsNote: "",
+        prodevNote: "",
+        pksNo: ""
+      });
       saveKsList(list);
       renderBadges();
       switchKsTab("MONITOR");
-      alert("Pengajuan kerjasama dikirim ke alur approval BS & Prodev.");
+      alert("Penawaran kerjasama diajukan ke BS & Prodev.");
     }
 
     function directGenerateByBs() {
+      const d = captureKsFormData();
       const list = getKsList();
-      list.unshift(buildKsRecordFromForm("READY_BS", true));
+      list.unshift({
+        id: "ks_" + Date.now(),
+        ...d,
+        status: "READY_BS",
+        bsNote: "Digenerate langsung oleh BS (tanpa approval).",
+        prodevNote: "",
+        pksNo: ""
+      });
       saveKsList(list);
       renderBadges();
       switchKsTab("MONITOR");
-      alert("Penawaran kerjasama berhasil digenerate langsung oleh BS tanpa perlu approval.");
+      alert("Penawaran kerjasama berhasil digenerate langsung oleh BS.");
     }
 
     function applyKsRoleAction(id, actionType) {
@@ -2675,19 +2662,17 @@
       if (actionType === "BS_COMMENT") {
         item.bsNote = comment || item.bsNote;
       } else if (actionType === "BS_APPROVE") {
-        item.bsNote = comment || "Disetujui oleh BS.";
+        item.bsNote = comment || "Approved oleh BS.";
         item.status = "PENDING_PRODEV";
       } else if (actionType === "PRODEV_COMMENT") {
         item.prodevNote = comment || item.prodevNote;
       } else if (actionType === "PRODEV_APPROVE") {
-        item.prodevNote = comment || "Disetujui oleh Prodev.";
+        item.prodevNote = comment || "Approved oleh Prodev.";
         item.status = "APPROVED";
-        item.readyForPartner = true;
       } else if (actionType === "ISSUE_PKS") {
         const noPks = (pksInput ? pksInput.value.trim() : "") || `PKS/${String(Math.floor(100 + Math.random() * 899))}/BCAI-PRODEV/2026`;
         item.pksNo = noPks;
         item.status = "APPROVED";
-        item.readyForPartner = true;
         if (comment) item.prodevNote = comment;
       }
 
@@ -2699,21 +2684,7 @@
     function loadKsToPartnerPreview(id) {
       const item = getKsList().find(x => x.id === id);
       if (!item) return;
-      document.getElementById("ksLetterNo").value = item.letterNo || "";
-      document.getElementById("ksTitle").value = item.title;
-      document.getElementById("ksCompany").value = item.company;
-      document.getElementById("ksCategory").value = item.category;
-      document.getElementById("ksAnnualPremiPot").value = item.annualPremiPot;
-      document.getElementById("ksComm1").value = item.comm1;
-      document.getElementById("ksComm2").value = item.comm2;
-      document.getElementById("ksCommTax").value = item.commTax || "Exclude / Include Pajak (sesuai kesepakatan)";
-      document.getElementById("ksProgramType").value = item.programType;
-      document.getElementById("ksMainBenefits").value = item.mainBenefits;
-      document.getElementById("ksServiceAdvantages").value = item.serviceAdvantages;
-      document.getElementById("ksPremiEstimate").value = item.premiEstimate;
-      document.getElementById("ksValidityDays").value = item.validityDays;
-      document.getElementById("ksOfferDate").value = item.offerDate;
-      document.getElementById("ksSpecialTerms").value = item.specialTerms;
+      applyKsFormData(item);
 
       const pksRow = document.getElementById("rowKsPksReference");
       const pksOut = document.getElementById("outKsPksReference");
@@ -2726,8 +2697,6 @@
           pksOut.textContent = "";
         }
       }
-
-      renderKerjasama();
       switchKsTab("FORM");
     }
 
@@ -2738,7 +2707,7 @@
       const role = getCurrentRole();
 
       if (!list.length) {
-        container.innerHTML = `<div class="data-card"><p class="data-card-meta">Belum ada data pengajuan kerjasama.</p></div>`;
+        container.innerHTML = `<div class="data-card"><p class="data-card-meta">Belum ada pengajuan penawaran kerjasama.</p></div>`;
         return;
       }
 
@@ -2753,8 +2722,8 @@
           <div class="data-card">
             <div class="data-card-top">
               <div>
-                <div class="data-card-title">${escapeHtml(item.title)} — <span style="color:#0f172a;">${escapeHtml(item.company)}</span></div>
-                <div class="data-card-meta">No. Surat: <strong>${escapeHtml(item.letterNo || "-")}</strong> • ${escapeHtml(item.tier)} • Komisi 1: ${escapeHtml(item.comm1)}% • Komisi 2: ${escapeHtml(item.comm2)}% • Berlaku ${escapeHtml(item.validityDays)} hari</div>
+                <div class="data-card-title">${escapeHtml(item.company || "Partner")} <span style="font-size:12px; color:#475569;">(${escapeHtml(item.letterNo || "-")})</span></div>
+                <div class="data-card-meta">${escapeHtml(item.programType || "-")} • Komisi 1: ${escapeHtml(item.comm1)}% • Komisi 2: ${escapeHtml(item.comm2)}%</div>
                 ${item.bsNote ? `<div class="data-card-meta"><strong>Catatan BS:</strong> ${escapeHtml(item.bsNote)}</div>` : ""}
                 ${item.prodevNote ? `<div class="data-card-meta"><strong>Catatan Prodev:</strong> ${escapeHtml(item.prodevNote)}</div>` : ""}
                 ${item.pksNo ? `<div class="data-card-meta" style="color:#15803d;"><strong>No. PKS Terbit:</strong> ${escapeHtml(item.pksNo)} <button type="button" class="btn-reset" style="margin-left:6px;" onclick="copyTextValue('${escapeAttr(item.pksNo)}', 'No. PKS')">Salin No. PKS</button></div>` : ""}
@@ -2770,7 +2739,7 @@
               <div class="grid-2" style="margin-bottom:8px;">
                 <div class="form-group" style="margin-bottom:0;">
                   <label>Comment / Catatan (${role})</label>
-                  <input type="text" id="ksComment_${item.id}" placeholder="Tulis comment atau penyesuaian..." />
+                  <input type="text" id="ksComment_${item.id}" placeholder="Tulis comment..." />
                 </div>
                 <div class="form-group" style="margin-bottom:0;">
                   <label>Adjust Special Condition Terms</label>
@@ -2779,14 +2748,14 @@
               </div>
               ${role === "PRODEV" ? `
                 <div class="form-group" style="margin-bottom:8px;">
-                  <label>Nomor PKS (Terbitkan jika sudah menjadi kerja sama)</label>
+                  <label>Terbitkan Nomor PKS</label>
                   <input type="text" id="ksPksInput_${item.id}" value="${escapeAttr(item.pksNo || "")}" placeholder="Contoh: PKS/025/BCAI-PRODEV/XI/2026" />
                 </div>
               ` : ""}
             ` : ""}
 
             <div class="data-card-actions">
-              <button type="button" class="btn btn-reset" onclick="loadKsToPartnerPreview('${item.id}')">Lihat Template Partner</button>
+              <button type="button" class="btn btn-reset" onclick="loadKsToPartnerPreview('${item.id}')">Lihat Surat Partner</button>
               ${role === "BS" ? `
                 <button type="button" class="btn btn-accent" onclick="applyKsRoleAction('${item.id}', 'BS_COMMENT')">Simpan Comment / Adjust</button>
                 <button type="button" class="btn btn-secondary" onclick="applyKsRoleAction('${item.id}', 'BS_APPROVE')">✓ Approve BS</button>
@@ -2801,22 +2770,26 @@
       }).join("");
     }
 
+    function startFreshKerjasama() {
+      switchNav("MPAR_KERJASAMA");
+      resetKerjasamaForm();
+      switchKsTab("FORM");
+    }
+
     function resetKerjasamaForm() {
       document.getElementById("ksLetterNo").value = "SPH/018/BCAI-MKT/XI/2026";
-      document.getElementById("ksTitle").value = "";
+      document.getElementById("ksOfferDate").value = "28 November 2026";
       document.getElementById("ksCompany").value = "";
+      document.getElementById("ksProgramType").value = "Program Perlindungan Movable Property All Risk (MPAR) Partner";
       document.getElementById("ksCategory").value = "";
-      document.getElementById("ksAnnualPremiPot").value = "650000000";
-      document.getElementById("ksMonthlyVol").value = "";
-      document.getElementById("ksAvgPrice").value = "";
+      document.getElementById("ksMainBenefits").value = "Menjamin kerugian atau kerusakan fisik secara tiba-tiba dan tidak terduga atas objek pertanggungan sesuai syarat & ketentuan polis MPAR.";
+      document.getElementById("ksServiceAdvantages").value = "Proses pendaftaran & pelaporan yang mudah, dukungan tim klaim BCAinsurance, serta skema kerjasama yang fleksibel.";
+      document.getElementById("ksPremiEstimate").value = "Rincian perhitungan premi terlampir";
+      document.getElementById("ksDeductible").value = "Sesuai ketentuan polis / kesepakatan";
+      document.getElementById("ksValidityDays").value = "14";
       document.getElementById("ksComm1").value = "30";
       document.getElementById("ksComm2").value = "10";
       document.getElementById("ksCommTax").value = "Exclude / Include Pajak (sesuai kesepakatan)";
-      document.getElementById("ksProgramType").value = "Program Perlindungan Movable Property All Risk (MPAR) Partner";
-      document.getElementById("ksMainBenefits").value = "Menjamin kerugian atau kerusakan fisik secara tiba-tiba dan tidak terduga atas barang yang diasuransikan sesuai syarat dan ketentuan polis MPAR yang berlaku.";
-      document.getElementById("ksServiceAdvantages").value = "Proses pengajuan dan pelaporan yang terstruktur, dukungan tim operasional & klaim BCAinsurance, serta skema komersial yang kompetitif dan fleksibel.";
-      document.getElementById("ksPremiEstimate").value = "";
-      document.getElementById("ksValidityDays").value = "14";
       document.getElementById("ksSpecialTerms").value = "";
       const pksRow = document.getElementById("rowKsPksReference");
       if (pksRow) pksRow.style.display = "none";
@@ -2826,12 +2799,23 @@
     /* ================= NAVIGATION ================= */
     function switchNav(navKey) {
       closeMobileMenu();
-      document.querySelectorAll(".nav-item").forEach(el => {
+
+      document.querySelectorAll(".nav-subitem, .nav-item-standalone").forEach(el => {
         el.classList.toggle("active", el.getAttribute("data-nav") === navKey);
       });
 
+      document.querySelectorAll(".nav-product-btn").forEach(btn => btn.classList.remove("active-product"));
+      if (navKey.startsWith("MPAR_")) {
+        document.getElementById("groupMpar")?.classList.add("expanded");
+        document.querySelector("#groupMpar .nav-product-btn")?.classList.add("active-product");
+      } else if (navKey === "TRAVEL") {
+        document.querySelector("#groupTravel .nav-product-btn")?.classList.add("active-product");
+      } else if (navKey === "PA") {
+        document.querySelector("#groupPa .nav-product-btn")?.classList.add("active-product");
+      }
+
       const views = {
-        viewHome: false,
+        viewDashboard: false,
         viewDrafts: false,
         viewUwApproval: false,
         viewKerjasama: false,
@@ -2840,35 +2824,31 @@
         viewGenerator: false
       };
 
-      if (navKey === "HOME") {
-        views.viewHome = true;
+      if (navKey === "MPAR_DASHBOARD") {
+        views.viewDashboard = true;
         renderQsTrackingTable();
-      } else if (navKey === "DRAFTS") {
+      } else if (navKey === "MPAR_DRAFTS") {
         views.viewDrafts = true;
         renderDraftsView();
       } else if (navKey === "UW_APPROVAL") {
         views.viewUwApproval = true;
         renderUwQueueView();
-      } else if (navKey === "KERJASAMA") {
+      } else if (navKey === "MPAR_KERJASAMA") {
         views.viewKerjasama = true;
         renderKerjasama();
         renderKsMonitor();
       } else if (navKey === "TEMPLATE") {
         views.viewTemplate = true;
-      } else if (navKey === "PA" || navKey === "TRAVEL") {
+        renderBranding();
+      } else if (navKey === "TRAVEL" || navKey === "PA") {
         views.viewComingSoon = true;
         const isPa = navKey === "PA";
         document.getElementById("soonTitle").textContent = isPa ? "Personal Accident (PA)" : "Travel Insurance";
         document.getElementById("soonDesc").textContent = isPa
-          ? "Template Quotation Slip untuk Personal Accident (PA) sedang dalam tahap persiapan."
-          : "Template Quotation Slip untuk Travel Insurance sedang dalam tahap persiapan.";
+          ? "Sub menu QS, Penawaran Kerjasama, Draft, dan Dashboard untuk produk Personal Accident (PA) akan segera tersedia."
+          : "Sub menu QS, Penawaran Kerjasama, Draft, dan Dashboard untuk produk Travel Insurance akan segera tersedia.";
       } else {
         views.viewGenerator = true;
-        if (navKey === "NEW_QS" && !activeQsRecordId) {
-          applyQsSnapshot(getBlankQsSnapshot(), "");
-          document.getElementById("qsModeBanner").textContent = "Mode: New QS (Kosong di awal) — Isi data baru";
-        }
-        activeQsRecordId = null;
       }
 
       Object.keys(views).forEach(id => {
@@ -2891,8 +2871,6 @@
       if (dBadge) dBadge.textContent = String(drafts.length);
       const uBadge = document.getElementById("uwPendingBadge");
       if (uBadge) uBadge.textContent = String(uwPending);
-      const kBadge = document.getElementById("ksPendingBadge");
-      if (kBadge) kBadge.textContent = String(ksList.length);
 
       const kpiTotalQs = document.getElementById("kpiTotalQs");
       if (kpiTotalQs) kpiTotalQs.textContent = String(qsList.length);
@@ -2902,10 +2880,10 @@
       if (kpiApprovedQs) kpiApprovedQs.textContent = String(qsApproved);
       const kpiPendingQs = document.getElementById("kpiPendingQs");
       if (kpiPendingQs) kpiPendingQs.textContent = String(qsPending);
-      const kpiTotalKs = document.getElementById("kpiTotalKs");
-      if (kpiTotalKs) kpiTotalKs.textContent = String(ksList.length);
-      const kpiApprovedKsSub = document.getElementById("kpiApprovedKsSub");
-      if (kpiApprovedKsSub) kpiApprovedKsSub.textContent = `${ksApproved} Approved / Ready`;
+      const kpiApprovedKs = document.getElementById("kpiApprovedKs");
+      if (kpiApprovedKs) kpiApprovedKs.textContent = String(ksApproved);
+      const kpiTotalKsSub = document.getElementById("kpiTotalKsSub");
+      if (kpiTotalKsSub) kpiTotalKsSub.textContent = `Dari total ${ksList.length} pengajuan`;
     }
 
     /* ================= I18N & QUOTATION CALCULATOR ================= */
@@ -3238,7 +3216,14 @@
       });
     }
 
-    /* ================= BRANDING & RENDER ALL ================= */
+    /* ================= HEADER, LOGO & FOOTER SETTINGS (FIXED) ================= */
+    function updateHeaderMode(mode) {
+      localStorage.setItem("bca_qs_headerMode", mode);
+      document.getElementById("standardLogoInputs").style.display = mode === "STANDARD" ? "grid" : "none";
+      document.getElementById("fullBannerInputs").style.display = mode === "FULL_IMAGE" ? "grid" : "none";
+      renderAll();
+    }
+
     function handleLogoUpload(event, key) {
       const file = event.target.files[0];
       if (!file) return;
@@ -3249,6 +3234,13 @@
         renderAll();
       };
       reader.readAsDataURL(file);
+    }
+
+    function clearRightLogo() {
+      localStorage.removeItem("bca_qs_rightLogo");
+      const inp = document.getElementById("uploadRightLogo");
+      if (inp) inp.value = "";
+      renderAll();
     }
 
     function handleFullBannerUpload(event, key) {
@@ -3270,30 +3262,42 @@
     }
 
     function resetBranding() {
-      ["bca_qs_mainLogo", "bca_qs_rightLogo", "bca_qs_fullHeader", "bca_qs_fullFooter", "bca_qs_logoHeight"].forEach(k => localStorage.removeItem(k));
-      document.getElementById("logoHeightSlider").value = 44;
-      document.getElementById("logoSizeVal").textContent = 44;
-      renderAll();
+      ["bca_qs_mainLogo", "bca_qs_rightLogo", "bca_qs_fullHeader", "bca_qs_fullFooter", "bca_qs_logoHeight", "bca_qs_headerMode"].forEach(k => localStorage.removeItem(k));
+      document.getElementById("inHeaderMode").value = "STANDARD";
+      document.getElementById("logoHeightSlider").value = 42;
+      document.getElementById("logoSizeVal").textContent = 42;
+      updateHeaderMode("STANDARD");
     }
 
     function renderBranding() {
-      const h = parseInt(localStorage.getItem("bca_qs_logoHeight") || "44", 10);
+      const h = parseInt(localStorage.getItem("bca_qs_logoHeight") || "42", 10);
+      const headerMode = localStorage.getItem("bca_qs_headerMode") || "STANDARD";
+
+      const modeSel = document.getElementById("inHeaderMode");
+      if (modeSel) modeSel.value = headerMode;
+      const stdInputs = document.getElementById("standardLogoInputs");
+      const fullInputs = document.getElementById("fullBannerInputs");
+      if (stdInputs && fullInputs) {
+        stdInputs.style.display = headerMode === "STANDARD" ? "grid" : "none";
+        fullInputs.style.display = headerMode === "FULL_IMAGE" ? "grid" : "none";
+      }
+
       document.getElementById("loginLogoWrap").innerHTML = buildPngLogoImg({ style: "max-height:50px; max-width:240px; width:auto; height:auto; object-fit:contain; display:block;" });
-      document.getElementById("sidebarBrandLogo").innerHTML = buildPngLogoImg({ style: "max-width:175px; max-height:42px; width:auto; height:auto; display:block; object-fit:contain; filter:brightness(0) invert(1);" });
-      document.getElementById("mobileTopbarLogo").innerHTML = buildPngLogoImg({ style: "max-height:30px; max-width:150px; width:auto; height:auto; display:block; object-fit:contain; filter:brightness(0) invert(1);" });
+      document.getElementById("sidebarBrandLogo").innerHTML = buildPngLogoImg({ style: "max-width:170px; max-height:38px; width:auto; height:auto; display:block; object-fit:contain; filter:brightness(0) invert(1);" });
+      document.getElementById("mobileTopbarLogo").innerHTML = buildPngLogoImg({ style: "max-height:28px; max-width:145px; width:auto; height:auto; display:block; object-fit:contain; filter:brightness(0) invert(1);" });
 
       const fullHeader = localStorage.getItem("bca_qs_fullHeader");
       const rightLogo = localStorage.getItem("bca_qs_rightLogo");
 
       document.querySelectorAll("[data-header-bar]").forEach(bar => {
-        if (fullHeader) {
+        if (headerMode === "FULL_IMAGE" && fullHeader) {
           bar.classList.add("full-header-img");
-          bar.innerHTML = `<img src="${fullHeader}" alt="Header" />`;
+          bar.innerHTML = `<img src="${fullHeader}" alt="Kop Surat BCAinsurance" />`;
         } else {
           bar.classList.remove("full-header-img");
           bar.innerHTML = `
-            <div class="logo-left" data-slot="main-logo">${getOfficialBcaLogoHTML(h)}</div>
-            <div class="logo-right" data-slot="right-logo">${rightLogo ? `<img src="${rightLogo}" alt="Partner Logo" />` : ""}</div>
+            <div class="logo-left">${buildPngLogoImg({ style: `height:${h}px; width:auto; max-width:220px; display:block; object-fit:contain;` })}</div>
+            <div class="logo-right">${rightLogo ? `<img src="${rightLogo}" style="height:${h}px; width:auto; max-width:170px; display:block; object-fit:contain;" alt="Partner Logo" />` : ""}</div>
           `;
         }
       });
@@ -3304,9 +3308,9 @@
       const web = document.getElementById("inWeb")?.value || "";
 
       document.querySelectorAll("[data-footer-bar]").forEach(bar => {
-        if (fullFooter) {
+        if (headerMode === "FULL_IMAGE" && fullFooter) {
           bar.classList.add("full-footer-img");
-          bar.innerHTML = `<img src="${fullFooter}" alt="Footer" />`;
+          bar.innerHTML = `<img src="${fullFooter}" alt="Footer BCAinsurance" />`;
         } else {
           bar.classList.remove("full-footer-img");
           bar.innerHTML = `
@@ -3470,9 +3474,11 @@
       getDrafts();
       getQsTracker();
       getKsList();
+      applyQsSnapshot(getBlankQsSnapshot(), "");
+
       if (sessionStorage.getItem("bca_qs_auth") === "true") {
         unlockApp();
-        switchNav("HOME");
+        switchNav("MPAR_QS");
       } else {
         document.getElementById("loginLogoWrap").innerHTML = buildPngLogoImg({ style: "max-height:50px; max-width:240px; width:auto; height:auto; object-fit:contain; display:block;" });
       }
